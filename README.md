@@ -4,15 +4,9 @@
 
 ## About
 
-This repository implements a supply chain representation for product ownership and traceability using smart contracts. A product refers to a non-fungible token which is represented as a batch with a specified number of units, etc., and that complies with the [EIP-721 standard](https://eips.ethereum.org/EIPS/eip-721).
-
-The transfer of batches through the actors in the value chain until an end customer is accomplished with an agreement of terms in an escrow contract that is designed to be interacted with without third parties.
-
-## About
-
 [Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on [Ethereum](/tags/ethereum) that allows its members to trace but also commerce with an [ERC-1155](/tags/erc-1155) token representation of their own products, and customers to trace and buy them.
 
-This can be seen as a colaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers that agree on following the same rules and abide by the same smart contracts to commerce with their tokens, in the case of seller roles, or certify the types of the tokens, in the case of certifiers.
+This can be seen as a collaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers that agree on following the same rules and abide by the same smart contracts to commerce with their tokens, in the case of seller roles, or certify the types of the tokens, in the case of certifiers.
 
 Whenever a token is minted, it can be deposited in an escrow, which is the mechanism that another actor in the chain can use to acquire the ownership of this token after the correspondent payment to the escrow and approval from the seller.
 
