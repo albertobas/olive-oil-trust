@@ -1,0 +1,25 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  display: flex;
+  height: 70vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.layout > h1 {
+  max-width: 40rem;
+  text-align: center;
+}
+
+.layout > p {
+  max-width: 50rem;
+  text-align: left;
+}
+
+.layout > p > a {
+  font-weight: bold;
+}
+
+.layout > p > a:hover {
+  text-decoration: underline;
+}

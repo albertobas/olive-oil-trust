@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "typeRoots": ["./types", "/node_modules/@types"],
+    "types": ["@nomiclabs/hardhat-ethers", "@nomiclabs/hardhat-waffle"],
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es6", "ESNext"],
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "sourceMap": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["./test/**/*", "./scripts/**/*", "./tasks/**/*", "./types/**/*", "helpers/**/*"],
+  "files": ["./hardhat.config.ts"]
+}

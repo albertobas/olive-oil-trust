@@ -1,0 +1,19 @@
+## directories
+.vscode
+**/node_modules
+**/generated
+**/coverage
+hardhat-env/.openzeppelin
+hardhat-env/artifacts
+hardhat-env/cache
+hardhat-env/deployments
+hardhat-env/types
+services/graph-node
+# services/graph-node/data
+subgraph/build
+
+# files
+**/*.tsbuildinfo
+**/.DS_Store
+hardhat-env/coverage.json
+subgraph/subgraph.yaml

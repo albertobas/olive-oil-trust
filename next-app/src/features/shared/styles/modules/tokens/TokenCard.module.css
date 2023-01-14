@@ -1,0 +1,73 @@
+.layout,
+.layoutselfProduced {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+.layout {
+  background-color: var(--gray-200);
+}
+.layoutselfProduced {
+  background-color: #fff;
+}
+.img {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  object-position: center;
+  position: absolute;
+}
+.description {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.description > p {
+  margin: 1rem 0 0;
+}
+
+.description > h2 {
+  @mixin $text-lg;
+  margin: 0;
+  width: fit-content;
+}
+
+.description > h3 {
+  @mixin $text-base;
+  margin: 1rem 0 0;
+  width: fit-content;
+}
+.description > ul > li > h4 {
+  @mixin $text-sm;
+  margin: 0;
+  width: fit-content;
+  display: inline;
+}
+.description > ul {
+  margin: 0;
+  padding: 0 0 0 0.5rem;
+  list-style: none;
+}
+.description > ul > li {
+  margin: 0.75rem 0 0;
+  @mixin $text-sm;
+}
+.description > ul > li > span {
+  font-weight: bold;
+}
+.tag {
+  font-style: italic;
+  color: var(--gray-500);
+  @mixin $text-base;
+}
+.date {
+  @mixin $text-sm;
+}
+.description > h2 > a:hover,
+.description > h3 > a:hover,
+.description > ul > li > h4 > a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,27 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.introLayout {
+  gap: 4rem;
+  display: flex;
+  flex-direction: row;
+}
+.layout > h1 {
+  margin-top: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+@media (--mobile-xl) {
+  .introLayout {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+  .description > p:last-of-type {
+    margin-bottom: 0;
+  }
+}

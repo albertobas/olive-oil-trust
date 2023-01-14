@@ -1,0 +1,13 @@
+.list {
+  padding: 0;
+}
+.listMargin {
+  list-style-type: disc;
+}
+.list > li,
+.listMargin > li {
+  margin: 1rem 0;
+}
+.listMargin > li > a:hover {
+  text-decoration: underline;
+}

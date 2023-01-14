@@ -1,0 +1,966 @@
+specVersion: 0.0.4
+description: ProductTrust for Ethereum
+repository: https://github.com/albertobas/olive-oil-trust/subgraph
+schema:
+  file: ./schema.graphql
+features:
+  - ipfsOnEthereumContracts
+  - fullTextSearch
+dataSources:
+  # ----------------------------------
+  #             CERTIFIERS
+  # ----------------------------------
+  - name: {{CertifierCompanyModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{CertifierCompanyAddress}}'
+      abi: {{CertifierCompanyModule}}
+      startBlock: {{CertifierCompanyStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{CertifierCompanyModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{CertifierCompanyModule}}
+          file: ./src/generated/abis/{{CertifierCompanyModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #            OLIVE GROWERS
+  # ----------------------------------
+  - name: {{OliveGrowerOneModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{OliveGrowerOneAddress}}'
+      abi: {{OliveGrowerOneModule}}
+      startBlock: {{OliveGrowerOneStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{OliveGrowerOneModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{OliveGrowerOneModule}}
+          file: ./src/generated/abis/{{OliveGrowerOneModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  # ----------------------------------
+  #            BOTTLE MANUFACTURERS
+  # ----------------------------------
+  - name: {{BottleCompanyModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottleCompanyAddress}}'
+      abi: {{BottleCompanyModule}}
+      startBlock: {{BottleCompanyStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottleCompanyModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{BottleCompanyModule}}
+          file: ./src/generated/abis/{{BottleCompanyModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  - name: BottleCompany2DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottleCompany2Address}}'
+      abi: {{BottleCompany2Module}}
+      startBlock: {{BottleCompany2StartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottleCompany2Module}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{BottleCompany2Module}}
+          file: ./src/generated/abis/{{BottleCompany2Module}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  # ----------------------------------
+  #           OLIVE OIL MILLS
+  # ----------------------------------
+  - name: {{OliveOilMillCompanyModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{OliveOilMillCompanyAddress}}'
+      abi: {{OliveOilMillCompanyModule}}
+      startBlock: {{OliveOilMillCompanyStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{OliveOilMillCompanyModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{OliveOilMillCompanyModule}}
+          file: ./src/generated/abis/{{OliveOilMillCompanyModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TokenAncestrySet(indexed address,indexed bytes32,indexed bytes32,address[][],bytes32[][],bytes32[][],uint256[][])
+          handler: handleTokenAncestrySet
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  # ----------------------------------
+  #           BOTTLING PLANTS
+  # ----------------------------------
+  - name: {{BottlingCompanyModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottlingCompanyAddress}}'
+      abi: {{BottlingCompanyModule}}
+      startBlock: {{BottlingCompanyStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottlingCompanyModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{BottlingCompanyModule}}
+          file: ./src/generated/abis/{{BottlingCompanyModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TokenAncestrySet(indexed address,indexed bytes32,indexed bytes32,address[][],bytes32[][],bytes32[][],uint256[][])
+          handler: handleTokenAncestrySet
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  # ----------------------------------
+  #           DISTRIBUTORS
+  # ----------------------------------
+  - name: {{DistributorCompanyModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{DistributorCompanyAddress}}'
+      abi: {{DistributorCompanyModule}}
+      startBlock: {{DistributorCompanyStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{DistributorCompanyModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{DistributorCompanyModule}}
+          file: ./src/generated/abis/{{DistributorCompanyModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  # ----------------------------------
+  #           RETAILERS
+  # ----------------------------------
+  - name: {{RetailerCompanyModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{RetailerCompanyAddress}}'
+      abi: {{RetailerCompanyModule}}
+      startBlock: {{RetailerCompanyStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{RetailerCompanyModule}}.ts
+      entities:
+        - Member
+        - OwnershipTransferred
+        - Contract
+        - Transaction
+        - Account
+      abis:
+        - name: {{RetailerCompanyModule}}
+          file: ./src/generated/abis/{{RetailerCompanyModule}}.json
+      eventHandlers:
+        - event: NameSet(string)
+          handler: handleNameSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        # - event: Received(address,uint256)
+        #   handler: handleReceived
+  # ----------------------------------
+  #         INDEPENDENT TOKENS
+  # ----------------------------------
+  - name: {{OliveGrowerOneOlivesModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{OliveGrowerOneOlivesAddress}}'
+      abi: {{OliveGrowerOneOlivesModule}}
+      startBlock: {{OliveGrowerOneOlivesStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{OliveGrowerOneOlivesModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - TokenTypeInfo
+        - Member
+      abis:
+        - name: {{OliveGrowerOneOlivesModule}}
+          file: ./src/generated/abis/{{OliveGrowerOneOlivesModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: BottleCompanyBottleDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottleCompanyBottleAddress}}'
+      abi: {{BottleCompanyBottleModule}}
+      startBlock: {{BottleCompanyBottleStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottleCompanyBottleModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - TokenTypeInfo
+        - Member
+      abis:
+        - name: {{BottleCompanyBottleModule}}
+          file: ./src/generated/abis/{{BottleCompanyBottleModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: BottleCompany2BottleDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottleCompany2BottleAddress}}'
+      abi: {{BottleCompany2BottleModule}}
+      startBlock: {{BottleCompany2BottleStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottleCompany2BottleModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - TokenTypeInfo
+        - Member
+      abis:
+        - name: {{BottleCompany2BottleModule}}
+          file: ./src/generated/abis/{{BottleCompany2BottleModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #          DEPENDENT TOKENS
+  # ----------------------------------
+  - name: {{BottlingCompanyOliveOilBottleModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottlingCompanyOliveOilBottleAddress}}'
+      abi: {{BottlingCompanyOliveOilBottleModule}}
+      startBlock: {{BottlingCompanyOliveOilBottleStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottlingCompanyOliveOilBottleModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - TokenTypeInfo
+        - TokenTypeInstructionsSet
+        - Member
+      abis:
+        - name: {{BottlingCompanyOliveOilBottleModule}}
+          file: ./src/generated/abis/{{BottlingCompanyOliveOilBottleModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: TokenTypeInstructionsSet(indexed address,bytes32,address[],bytes32[],uint256[])
+          handler: handleTokenTypeInstructionsSet
+        - event: TokenTypesInstructionsSet(indexed address,bytes32[],address[][],bytes32[][],uint256[][])
+          handler: handleTokenTypesInstructionsSet
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: OliveOilMillCompanyOliveOilDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{OliveOilMillCompanyOliveOilAddress}}'
+      abi: {{OliveOilMillCompanyOliveOilModule}}
+      startBlock: {{OliveOilMillCompanyOliveOilStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{OliveOilMillCompanyOliveOilModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - TokenTypeInfo
+        - TokenTypeInstructionsSet
+        - Member
+      abis:
+        - name: {{OliveOilMillCompanyOliveOilModule}}
+          file: ./src/generated/abis/{{OliveOilMillCompanyOliveOilModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: TokenTypeInstructionsSet(indexed address,bytes32,address[],bytes32[],uint256[])
+          handler: handleTokenTypeInstructionsSet
+        - event: TokenTypesInstructionsSet(indexed address,bytes32[],address[][],bytes32[][],uint256[][])
+          handler: handleTokenTypesInstructionsSet
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #            PACKED TOKENS
+  # ----------------------------------
+  - name: {{BottlingCompanyPalletModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottlingCompanyPalletAddress}}'
+      abi: {{BottlingCompanyPalletModule}}
+      startBlock: {{BottlingCompanyPalletStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottlingCompanyPalletModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - IndustrialUnitTokenInfo
+        - IndustrialUnitPackaging
+        - IndustrialUnitUnpackaging
+        - Member
+      abis:
+        - name: {{BottlingCompanyPalletModule}}
+          file: ./src/generated/abis/{{BottlingCompanyPalletModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: SinglePacked(indexed address,bytes32,address[],bytes32[],bytes32[],uint256[])
+          handler: handleSinglePacked
+        - event: BatchPacked(indexed address,bytes32[],address[][],bytes32[][],bytes32[][],uint256[][])
+          handler: handleBatchPacked
+        - event: SingleUnpacked(indexed address,indexed bytes32)
+          handler: handleSingleUnpacked
+        - event: BatchUnpacked(indexed address,bytes32[])
+          handler: handleBatchUnpacked
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: DistributorCompanyPalletDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{DistributorCompanyPalletAddress}}'
+      abi: {{DistributorCompanyPalletModule}}
+      startBlock: {{DistributorCompanyPalletStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{DistributorCompanyPalletModule}}.ts
+      entities:
+        - Token
+        - Account
+        - Contract
+        - TokenOperator
+        - Transaction
+        - TokenBalance
+        - TokenTransfer
+        - OwnershipTransferred
+        - IndustrialUnitTokenInfo
+        - IndustrialUnitPackaging
+        - IndustrialUnitUnpackaging
+        - Member
+      abis:
+        - name: {{DistributorCompanyPalletModule}}
+          file: ./src/generated/abis/{{DistributorCompanyPalletModule}}.json
+      eventHandlers:
+        - event: TokenTransferred(indexed address,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenTransferred
+        - event: BatchTransferred(indexed address,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleBatchTransferred
+        - event: SinglePacked(indexed address,bytes32,address[],bytes32[],bytes32[],uint256[])
+          handler: handleSinglePacked
+        - event: BatchPacked(indexed address,bytes32[],address[][],bytes32[][],bytes32[][],uint256[][])
+          handler: handleBatchPacked
+        - event: SingleUnpacked(indexed address,indexed bytes32)
+          handler: handleSingleUnpacked
+        - event: BatchUnpacked(indexed address,bytes32[])
+          handler: handleBatchUnpacked
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #        AGRICULTURAL ESCROWS
+  # ----------------------------------
+  - name: {{OliveGrowerOneEscrowModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{OliveGrowerOneEscrowAddress}}'
+      abi: {{OliveGrowerOneEscrowModule}}
+      startBlock: {{OliveGrowerOneEscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{OliveGrowerOneEscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractTokenTypeInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{OliveGrowerOneEscrowModule}}
+          file: ./src/generated/abis/{{OliveGrowerOneEscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,bytes32,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],bytes32[],uint256[])
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #      COMMERCIAL UNITS ESCROWS
+  # ----------------------------------
+  - name: {{BottleCompanyEscrowModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottleCompanyEscrowAddress}}'
+      abi: {{BottleCompanyEscrowModule}}
+      startBlock: {{BottleCompanyEscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottleCompanyEscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractTokenTypeInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{BottleCompanyEscrowModule}}
+          file: ./src/generated/abis/{{BottleCompanyEscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,bytes32,uint256,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],bytes32[],uint256[],uint256)
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: BottleCompany2EscrowDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottleCompany2EscrowAddress}}'
+      abi: {{BottleCompany2EscrowModule}}
+      startBlock: {{BottleCompany2EscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottleCompany2EscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractTokenTypeInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{BottleCompany2EscrowModule}}
+          file: ./src/generated/abis/{{BottleCompany2EscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,bytes32,uint256,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],bytes32[],uint256[],uint256)
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: OliveOilMillCompanyEscrowDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{OliveOilMillCompanyEscrowAddress}}'
+      abi: {{OliveOilMillCompanyEscrowModule}}
+      startBlock: {{OliveOilMillCompanyEscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{OliveOilMillCompanyEscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractTokenTypeInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{OliveOilMillCompanyEscrowModule}}
+          file: ./src/generated/abis/{{OliveOilMillCompanyEscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,bytes32,uint256,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],bytes32[],uint256[],uint256)
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: RetailerCompanyEscrowDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{RetailerCompanyEscrowAddress}}'
+      abi: {{RetailerCompanyEscrowModule}}
+      startBlock: {{RetailerCompanyEscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{RetailerCompanyEscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractTokenTypeInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{RetailerCompanyEscrowModule}}
+          file: ./src/generated/abis/{{RetailerCompanyEscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,bytes32,uint256,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],bytes32[],uint256[],uint256)
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32,uint256)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[],uint256[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #      INDUSTRIAL UNITS ESCROWS
+  # ----------------------------------
+  - name: {{BottlingCompanyEscrowModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{BottlingCompanyEscrowAddress}}'
+      abi: {{BottlingCompanyEscrowModule}}
+      startBlock: {{BottlingCompanyEscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{BottlingCompanyEscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractIndustrialUnitTokenInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{BottlingCompanyEscrowModule}}
+          file: ./src/generated/abis/{{BottlingCompanyEscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],uint256)
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  - name: DistributorCompanyEscrowDataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{DistributorCompanyEscrowAddress}}'
+      abi: {{DistributorCompanyEscrowModule}}
+      startBlock: {{DistributorCompanyEscrowStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{DistributorCompanyEscrowModule}}.ts
+      entities:
+        - Escrow
+        - Token
+        - Account
+        - Contrtact
+        - OwnershipTransferred
+        - TokenBalance
+        - EtherBalance
+        - TokenDeposit
+        - BeforeDepositReversal
+        - BatchDeposit
+        - EtherDeposit
+        - EtherDepositCancellation
+        - EscrowClosure
+        - ContractIndustrialUnitTokenInfoMapping
+        - TokenEscrowMapping
+        - Member
+      abis:
+        - name: {{DistributorCompanyEscrowModule}}
+          file: ./src/generated/abis/{{DistributorCompanyEscrowModule}}.json
+      eventHandlers:
+        - event: TokenDeposited(address,address,indexed uint256,indexed address,bytes32,uint256)
+          handler: handleTokenDeposited
+        - event: BatchDeposited(address,address,indexed uint256,indexed address,bytes32[],uint256)
+          handler: handleBatchDeposited
+        - event: RevertedBeforePayment(indexed address,indexed uint256)
+          handler: handleRevertedBeforePayment
+        - event: EtherDeposited(indexed address,address,indexed uint256,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentCancelled(indexed address,address,indexed uint256,uint256)
+          handler: handlePaymentCancelled
+        - event: RevertedAfterPayment(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleRevertedAfterPayment
+        - event: Closed(indexed address,indexed address,address,indexed uint256,uint256)
+          handler: handleClosed
+        - event: EtherWithdrawn(indexed uint256,indexed address,uint256)
+          handler: handleEtherWithdrawn
+        - event: TokenWithdrawn(indexed uint256,indexed address,indexed address,bytes32)
+          handler: handleTokenWithdrawn
+        - event: TokensWithdrawn(indexed uint256,indexed address,indexed address,bytes32[])
+          handler: handleTokensWithdrawn
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+  # ----------------------------------
+  #            CERTIFICATES
+  # ----------------------------------
+  - name: {{CertifierCompanyCertificateModule}}DataSource
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      address: '{{CertifierCompanyCertificateAddress}}'
+      abi: {{CertifierCompanyCertificateModule}}
+      startBlock: {{CertifierCompanyCertificateStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/{{CertifierCompanyCertificateModule}}.ts
+      entities:
+        - Certificate
+        - Member
+        - Account
+        - Contract
+        - OwnershipTransferred
+        - TokenCertification
+      abis:
+        - name: {{CertifierCompanyCertificateModule}}
+          file: ./src/generated/abis/{{CertifierCompanyCertificateModule}}.json
+      eventHandlers:
+        - event: TokenCertified(indexed address,bytes32,address,bytes32)
+          handler: handleTokenCertified
+        - event: BatchCertified(indexed address,bytes32[],address[],bytes32[])
+          handler: handleBatchCertified
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred

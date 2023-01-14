@@ -1,0 +1,55 @@
+.container,
+.containerLoading {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+  max-width: 80rem;
+}
+.container {
+  flex-direction: column;
+}
+.containerLoading {
+  flex-direction: row;
+}
+
+.container > svg,
+.containerLoading > svg {
+  @mixin $text-xl;
+}
+
+.containerLoading > svg {
+  margin-right: 1rem;
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.container > p,
+.containerLoading > p {
+  @mixin $text-base;
+}
+
+.container > p {
+  margin-bottom: 0;
+}
+.containerLoading > p {
+  margin: 0;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (--mobile-xl) {
+  .container {
+    max-width: 280px;
+  }
+}

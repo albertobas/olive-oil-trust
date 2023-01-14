@@ -1,0 +1,19 @@
+export interface IMetadataOOT {
+  bottleQuality: string | null;
+  bottleMaterial: string | null;
+  bottleSize: string | null;
+  description: string | null;
+  imageHeight: string | null;
+  imagePath: string | null;
+  imageWidth: string | null;
+  oliveQuality: string | null;
+  oliveOilAcidity: string | null;
+  oliveOilAroma: string | null;
+  oliveOilBitterness: string | null;
+  oliveOilColour: string | null;
+  oliveOilFruitness: string | null;
+  oliveOilIntensity: string | null;
+  oliveOilItching: string | null;
+  oliveOrigin: string | null;
+  title: string | null;
+}

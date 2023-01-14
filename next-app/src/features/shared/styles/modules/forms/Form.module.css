@@ -1,0 +1,214 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+.layoutFit {
+  height: fit-content;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--gray-400);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.closeBtn {
+  height: fit-content;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.formBtns {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.form,
+.formFlex {
+  height: 100%;
+}
+.formFlex form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.header,
+.form,
+.formFlex,
+.actionBtns {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.form,
+.formFlex,
+.actionBtns,
+.carousel {
+  margin-top: 2rem;
+}
+.actionBtns,
+.formSubmit {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.actionBtns {
+  padding-bottom: 2rem;
+  justify-content: flex-end;
+}
+.actionBtns > button,
+.formSubmit > button,
+.addField > button,
+.field button {
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--gray-600);
+}
+.actionBtns > button,
+.formSubmit > button,
+.addField > button {
+  font-weight: bold;
+}
+.header > h1 {
+  @mixin $text-xl;
+  color: var(--gray-600);
+  margin: 0;
+}
+.closeBtn,
+.fieldBtnPair > button,
+.fieldBtnPairMargin > button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background-color: transparent;
+  color: var(--gray-600);
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  @mixin $text-xl;
+}
+.fieldSm {
+  max-width: 50%;
+  min-width: 20rem;
+}
+.field,
+.fieldSm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.fieldError {
+  position: absolute;
+  color: red;
+  @mixin $text-sm;
+  margin-top: 4.5rem;
+}
+.fieldArray {
+  margin-bottom: 2rem;
+}
+.fieldArrayMultiInputMargin,
+.fieldBtnPairMargin {
+  margin-left: 2rem;
+}
+.fieldArrayMultiInput,
+.fieldArrayMultiInputMargin {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.fieldArrayMultiInput > div,
+.fieldArrayMultiInputMargin > div {
+  width: 100%;
+}
+.addField > button,
+.field button {
+  @mixin $text-sm;
+}
+.field button {
+  margin-left: 1rem;
+}
+.fieldBtnPair,
+.fieldBtnPairMargin {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.fieldBtnPair > div,
+.fieldBtnPairMargin > div {
+  width: 100%;
+}
+.fieldBtnPair > button,
+.fieldBtnPairMargin > button {
+  padding-left: 1rem;
+  height: fit-content;
+  justify-content: center;
+}
+.field label,
+.fieldSm label,
+.title,
+.note {
+  @mixin $text-sm;
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+}
+.note {
+  margin-bottom: 1rem;
+}
+.field label,
+.fieldSm label,
+.title {
+  font-weight: bold;
+}
+.field > input,
+.fieldSm > input {
+  @mixin $text-base;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1.5px solid var(--gray-400);
+  width: 100%;
+  font-family: var(--font-sans);
+  padding: 0.5em;
+  color: #000;
+  background-color: #fff;
+  outline: none;
+  appearance: none;
+}
+.layout button:disabled,
+.layoutFit button:disabled {
+  cursor: not-allowed;
+}
+.layout button:hover:enabled,
+.layoutFit button:hover:enabled {
+  color: #000;
+  cursor: pointer;
+}
+.field > input:hover,
+.field > input:focus-within,
+.fieldSm > input:hover,
+.fieldSm > input:focus-within {
+  border-color: #000;
+}
+
+@media (--mobile-xl) {
+  .fieldArrayMultiInput,
+  .fieldArrayMultiInputMargin {
+    flex-direction: column;
+    gap: 0;
+  }
+  .fieldArrayMultiInputMargin,
+  .fieldBtnPairMargin {
+    margin-left: 1rem;
+  }
+}

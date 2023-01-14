@@ -1,0 +1,16 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+}
+
+.layout > p {
+  text-align: left;
+}
+
+.layout > ul > li {
+  margin-top: 1rem;
+  list-style: disc;
+}
+
+.layout > ul > li > a:hover {
+  text-decoration: underline;
+}

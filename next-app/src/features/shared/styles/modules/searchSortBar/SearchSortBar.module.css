@@ -1,0 +1,102 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  display: grid;
+  grid-template-columns: auto;
+  align-items: center;
+  width: 100%;
+  grid-gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.search {
+  grid-column: 1;
+  position: relative;
+  width: 100%;
+  border: none;
+}
+.search > label > svg {
+  position: absolute;
+  display: block;
+  fill: currentColor;
+  top: 1em;
+  left: 1em;
+  color: var(--gray-400);
+}
+.search > input {
+  width: 100%;
+  font-family: var(--font-sans);
+  @mixin $text-base;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--gray-200);
+  padding: 0.5em 0.5em 0.5em 3em;
+  color: #000;
+  background-color: #fff;
+  outline: none;
+  appearance: none;
+}
+.search > input::placeholder {
+  opacity: 1;
+  color: var(--gray-400);
+}
+.search > input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  margin-left: 0.4em;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
+  cursor: pointer;
+}
+.search > input:hover,
+.search > input:focus-within {
+  border-color: var(--gray-600);
+}
+.sort {
+  grid-column: 2;
+  justify-self: center;
+  padding-right: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sort > button {
+  margin-left: 0.5em;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.actionBtn {
+  grid-column: 3;
+  justify-self: center;
+  width: 100%;
+}
+.sort > button:disabled {
+  cursor: not-allowed;
+  color: var(--gray-500);
+}
+.sort > button:enabled:hover {
+  color: #000;
+}
+@media (--mobile-xl) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .search {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  .sort {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  .actionBtn {
+    grid-column: 1/3;
+    grid-row: 3;
+  }
+}
+.sortDD {
+  width: 100%;
+}

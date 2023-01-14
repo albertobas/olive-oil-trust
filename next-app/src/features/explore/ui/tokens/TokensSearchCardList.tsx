@@ -1,0 +1,89 @@
+import { memo, useMemo, useState } from 'react';
+import { IItem } from 'next-app/src/features/shared/utils/interfaces';
+import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
+import { sortEscrowCardsRecords } from 'next-app/src/features/shared/utils/constants';
+import TokensCardList from 'next-app/src/features/shared/ui/tokens/TokensCardList';
+import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers';
+import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
+import FiltersToken from 'next-app/src/features/shared/ui/tokens/FiltersToken';
+
+type Props = {
+  tokens: ITokens | null;
+};
+
+function TokensSearchCardList({ tokens }: Props): JSX.Element {
+  const [sort, setSort] = useState<IItem | null>(null);
+  const [reverse, setReverse] = useState<boolean>(false);
+  const [query, setQuery] = useState<string | null>(null);
+  const [filters, setFilters] = useState<boolean>(false);
+  const [typeItems, setTypeItems] = useState<IItem[] | null>(null);
+  const [manufacturerItems, setManufacturerItems] = useState<IItem[] | null>(null);
+  const [packerItems, setPackerItems] = useState<IItem[] | null>(null);
+  const [selfProducedItem, setSelfProducedItem] = useState<IItem | null>(null);
+
+  const memoizedTokens = useMemo(() => {
+    if (tokens) {
+      return Object.values(tokens);
+    }
+    return null;
+  }, [tokens]);
+
+  const sortOptions = useMemo(() => {
+    return Object.keys(sortEscrowCardsRecords).map((key) => {
+      return { label: sortEscrowCardsRecords[key as keyof typeof sortEscrowCardsRecords], value: key } as IItem;
+    });
+  }, []);
+
+  const filteredTokens = useMemo(
+    () =>
+      memoizedTokens && memoizedTokens.length > 0
+        ? tokenFilter(tokenSearch(memoizedTokens, query), [
+            { key: 'type', items: typeItems },
+            { key: 'manufacturer', items: manufacturerItems },
+            { key: 'selfProduced', items: selfProducedItem },
+            { key: 'packer', items: packerItems }
+          ])
+        : null,
+    [memoizedTokens, query, manufacturerItems, packerItems, selfProducedItem, typeItems]
+  );
+
+  if (!filteredTokens) {
+    return <FallbackMessage message="There are no tokens to show at the moment" />;
+  }
+
+  return (
+    <>
+      <SearchSortBar
+        query={query}
+        reverse={reverse}
+        sort={sort}
+        options={sortOptions}
+        setReverse={setReverse}
+        setQuery={setQuery}
+        setSort={setSort}
+        setFilters={setFilters}
+      />
+      {filters && (
+        <FiltersToken
+          data={memoizedTokens}
+          typeItems={typeItems}
+          manufacturerItems={manufacturerItems}
+          packerItems={packerItems}
+          selfProducedItem={selfProducedItem}
+          setTypeItems={setTypeItems}
+          setManufacturerItems={setManufacturerItems}
+          setPackerItems={setPackerItems}
+          setSelfProducedItem={setSelfProducedItem}
+        />
+      )}
+      <TokensCardList data={filteredTokens} reverse={reverse} sort={sort} />
+    </>
+  );
+}
+
+export default memo(TokensSearchCardList, areEqual);
+
+function areEqual(prevProps: Props, nextProps: Props) {
+  return JSON.stringify(prevProps.tokens) === JSON.stringify(nextProps.tokens);
+}

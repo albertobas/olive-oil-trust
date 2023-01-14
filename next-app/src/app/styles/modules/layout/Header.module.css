@@ -1,0 +1,59 @@
+.header {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 100;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+.options {
+  display: flex;
+  flex-direction: row;
+}
+.connect > button {
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  @mixin $text-base;
+}
+.logo > a {
+  cursor: pointer;
+}
+
+.connect > button:hover {
+  background-color: var(--gray-100);
+}
+
+.connectSm {
+  display: none;
+}
+
+@media (--laptop-m) {
+  .connect {
+    display: none;
+  }
+  .connectSm {
+    display: flex;
+    align-items: center;
+  }
+  .connectSm > button {
+    display: inline-flex;
+    border: none;
+    /* font-size: inherit; */
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    /* padding: 0.1rem 0 0.1rem 0.5rem; */
+    margin: 0.1rem 0 0.1rem 0.5rem;
+    padding: 0;
+    @mixin $text-2xl;
+  }
+}

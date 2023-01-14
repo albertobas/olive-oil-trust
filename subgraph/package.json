@@ -1,0 +1,31 @@
+{
+  "name": "subgraph",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "precodegen": "ts-node scripts generateSubgraph --deployment localhost",
+    "codegen": "graph codegen subgraph.yaml --output-dir src/generated/types/",
+    "create": "graph create --node http://127.0.0.1:8020/ olive-oil-trust",
+    "remove": "graph remove --node http://127.0.0.1:8020/ olive-oil-trust",
+    "deploy": "graph deploy --node http://127.0.0.1:8020/ --ipfs http://127.0.0.1:5001 olive-oil-trust",
+    "build": "graph build",
+    "lint": "eslint . --ext .ts"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@amxx/graphprotocol-utils": "^1.1.0",
+    "@graphprotocol/graph-cli": "^0.34.0",
+    "@graphprotocol/graph-ts": "^0.28.0",
+    "@types/node": "^18.7.17",
+    "@types/yargs": "^17.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "handlebars": "^4.7.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "yargs": "^17.5.1"
+  }
+}

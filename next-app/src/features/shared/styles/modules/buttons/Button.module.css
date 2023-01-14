@@ -1,0 +1,24 @@
+.btn {
+  letter-spacing: 0.8px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  outline: none;
+  font-size: 0.925rem;
+  padding: 10px;
+  margin: 0px;
+  width: 100%;
+  background: var(--green-200);
+  color: #fff;
+  border: none;
+}
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.btn:enabled:hover {
+  background-color: var(--green-300);
+}

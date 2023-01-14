@@ -1,0 +1,3 @@
+.modal {
+  composes: modal from 'src/shared/styles/modules/utils.module.css';
+}

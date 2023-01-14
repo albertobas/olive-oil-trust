@@ -1,0 +1,36 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+.layout > h2 {
+  @mixin $text-lg;
+  margin: 0;
+  width: fit-content;
+}
+.layout > h3 {
+  @mixin $text-base;
+  margin: 1rem 0 0;
+  width: fit-content;
+}
+.tag {
+  font-style: italic;
+  color: var(--gray-600);
+  margin: 0;
+  @mixin $text-base;
+}
+.layout > p {
+  @mixin $text-sm;
+  margin: 1rem 0 0;
+}
+.date {
+  @mixin $text-sm;
+}
+.layout > h2 > a:hover,
+.layout > h3 > a:hover {
+  text-decoration: underline;
+}

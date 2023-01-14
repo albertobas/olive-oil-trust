@@ -1,0 +1,23 @@
+.menuItem {
+  position: relative;
+  font-size: 14px;
+  @mixin $text-base;
+}
+
+.menuItem > a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  @mixin $text-base;
+}
+
+.menuItem > a:hover {
+  background-color: var(--gray-100);
+}

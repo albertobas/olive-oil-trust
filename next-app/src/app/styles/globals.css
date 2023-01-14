@@ -1,0 +1,108 @@
+:root {
+  /* Dimensions */
+  --max-width: 2560px;
+  /* Colors */
+  --gray-100: #f2f2f2;
+  --gray-200: #eaeaea;
+  --gray-300: #d7d7d7;
+  --gray-400: #b9b9b9;
+  --gray-500: #9c9c9c;
+  --gray-600: #7f7f7f;
+  --gray-700: #616161;
+  --gray-800: #444444;
+  --green-200: #6f8e4d; /* #18a055;*/
+  --green-300: #485c32; /*#003500 #137e43;*/
+  --red: #c9302c;
+  /* Others */
+  --text-global: var(--gray-800);
+  --border-radius: 0.3rem;
+  --shadow: 0px 1px 5px var(--gray-500);
+  --transition-duration: 0.25s;
+  --transition-timing-function: ease;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+    sans-serif;
+  --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+    monospace;
+}
+* {
+  box-sizing: border-box;
+  --toastify-color-progress-success: var(--green-200);
+  --toastify-icon-color-success: var(--green-200);
+}
+html {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #fff;
+  scroll-behavior: auto;
+}
+body {
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: geometricPrecision; /*optimizeLegibility;*/
+  font-feature-settings: 'kern';
+  box-sizing: border-box;
+  margin: 0px;
+  -webkit-font-smoothing: antialiased;
+  color: var(--text-global);
+  background-color: #fff;
+}
+
+::selection {
+  background-color: #0969da;
+  color: #fff;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+h1 {
+  @mixin $text-4xl;
+}
+h2 {
+  @mixin $text-3xl;
+}
+h1,
+h2 {
+  margin: 2rem 0 1rem;
+  letter-spacing: -0.025em;
+}
+h3 {
+  @mixin $text-2xl;
+  margin: 2rem 0 1rem;
+  letter-spacing: -0.025em;
+}
+h4 {
+  @mixin $text-xl;
+  margin: 0;
+}
+h5 {
+  @mixin $text-lg;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 700;
+  color: #000;
+}
+p {
+  margin: 1rem 0;
+}
+ul {
+  list-style-type: none;
+}
+.overlay {
+  position: fixed;
+  inset: 0px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

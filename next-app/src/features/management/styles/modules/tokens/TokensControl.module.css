@@ -1,0 +1,20 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  margin-top: 0.5rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.layout > button {
+  max-width: 100%;
+  width: 280px;
+  min-width: 280px;
+}
+
+.modal {
+  composes: modal from 'src/shared/styles/modules/utils.module.css';
+}

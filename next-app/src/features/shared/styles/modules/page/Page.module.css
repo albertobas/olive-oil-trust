@@ -1,0 +1,7 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+}
+
+.lastUpdated {
+  @mixin $text-sm;
+}

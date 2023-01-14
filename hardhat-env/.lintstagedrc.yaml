@@ -1,0 +1,8 @@
+"**/*.{ts,js}":
+  - prettier --config ../.prettierrc.yaml --write
+  - eslint --fix
+"**/*.sol":
+  - prettier --config ../.prettierrc.yaml --write
+  - solhint --config ./.solhint.json --ignore-path ./.solhintignore --fix ./contracts/**/*.sol
+"**/*.{json,md,yaml,yml}":
+  - prettier --config ../.prettierrc.yaml --write

@@ -1,0 +1,19 @@
+.advancedRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.advancedLabel {
+  @mixin $text-sm;
+  padding-bottom: 0.2em;
+  margin: 0;
+}
+.dd {
+  width: 280px;
+}
+
+@media (--mobile-m) {
+  .dd {
+    width: 70vw;
+  }
+}

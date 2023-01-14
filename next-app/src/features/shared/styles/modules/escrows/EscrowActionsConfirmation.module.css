@@ -1,0 +1,31 @@
+.layout {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.actionBtns {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.actionBtns > button {
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--gray-600);
+  font-weight: bold;
+}
+
+.actionBtns > button:disabled {
+  cursor: not-allowed;
+}
+.actionBtns > button:hover:enabled {
+  color: #000;
+  cursor: pointer;
+}

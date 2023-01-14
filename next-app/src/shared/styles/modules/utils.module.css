@@ -1,0 +1,33 @@
+.container {
+  max-width: var(--max-width);
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.modal,
+.modalSm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: var(--shadow);
+  overflow: auto;
+  border-radius: var(--border-radius);
+  outline: none;
+  background-color: #fff;
+  height: fit-content;
+  min-height: fit-content;
+  max-height: 90%;
+  min-width: 280px;
+}
+.modal {
+  width: 90%;
+}
+.modalSm {
+  width: fit-content;
+}
+
+@media (--mobile-s) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}

@@ -1,0 +1,19 @@
+## directories
+**/node_modules
+hardhat-env/.openzeppelin
+hardhat-env/artifacts
+hardhat-env/cache
+hardhat-env/types
+hardhat-env/coverage
+next-app/.next
+next-app/src/generated
+services/graph-node
+subgraph/build
+subgraph/src/generated
+
+# files
+package-lock.json
+**/*.tsbuildinfo
+hardhat-env/coverage.json
+subgraph/templates/subgraph.template.yaml
+subgraph/subgraph.yaml

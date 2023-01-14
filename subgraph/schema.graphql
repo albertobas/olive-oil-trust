@@ -1,0 +1,419 @@
+# ----------------------------------
+#             INTERFACES
+# ----------------------------------
+interface IEvent {
+  id: String!
+  emitter: Account!
+  timestamp: BigInt!
+  transaction: Transaction!
+}
+interface IEscrow {
+  id: String!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  seller: Account!
+  tokenContract: TokenContract!
+}
+interface IEscrowDepositor {
+  id: String!
+  buyer: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+}
+interface IMetadata {
+  bottleQuality: String
+  bottleMaterial: String
+  bottleSize: BigInt
+  description: String
+  imageHeight: BigInt
+  imagePath: String
+  imageWidth: BigInt
+  oliveQuality: String
+  oliveOilAcidity: BigDecimal
+  oliveOilAroma: String
+  oliveOilBitterness: String
+  oliveOilColour: String
+  oliveOilFruitness: String
+  oliveOilIntensity: String
+  oliveOilItching: String
+  oliveOrigin: String
+  title: String
+}
+interface ITokenInfo {
+  id: String!
+  contract: TokenContract!
+  emitter: Account!
+  transaction: Transaction!
+}
+# ----------------------------------
+#             ENUMERABLES
+# ----------------------------------
+enum EscrowState {
+  NonActive
+  Active
+  RevertedBeforePayment
+  EtherDeposited
+  RevertedAfterPayment
+  Closed
+}
+enum MemberRole {
+  OliveGrower
+  BottleManufacturer
+  OliveOilMill
+  BottlingPlant
+  Distributor
+  Retailer
+  Certifier
+}
+# ----------------------------------
+#              ENTITIES
+# ----------------------------------
+type Account @entity {
+  # account address
+  id: Bytes!
+  asCertificateContract: CertificateContract
+  asEscrowContract: EscrowContract
+  asMemberContract: MemberContract
+  asTokenContract: TokenContract
+  escrowBalance: Balance
+  events: [IEvent!] @derivedFrom(field: "emitter")
+  ownerOfMember: [MemberContract!] @derivedFrom(field: "owner")
+  ownerOfCertificateContract: [CertificateContract!]! @derivedFrom(field: "owner")
+  ownerOfEscrowContract: [EscrowContract!]! @derivedFrom(field: "owner")
+  ownerOfTokenContract: [TokenContract!]! @derivedFrom(field: "owner")
+  ownershipTransferred: [OwnershipTransferred!] @derivedFrom(field: "owner")
+  tokenBalances: [Balance!] @derivedFrom(field: "tokenAccount")
+  tokenOperatorOwner: [TokenOperator!] @derivedFrom(field: "owner")
+  tokenOperatorOperator: [TokenOperator!] @derivedFrom(field: "operator")
+  tokenTransferFromEvent: [TokenTransfer!] @derivedFrom(field: "from")
+  tokenTransferToEvent: [TokenTransfer!] @derivedFrom(field: "to")
+  tokenTransferOperatorEvent: [TokenTransfer!] @derivedFrom(field: "operator")
+}
+type MemberContract @entity {
+  # member address
+  id: Bytes!
+  name: String
+  owner: Account!
+  role: MemberRole
+  asAccount: Account!
+}
+# Due to contract aptitude to change ownership entity is mutable
+type TokenContract @entity {
+  # contract address
+  id: Bytes!
+  asAccount: Account!
+  owner: Account
+  balances: [Balance!] @derivedFrom(field: "tokenTokenContract")
+  tokenTypes: [TokenType!] @derivedFrom(field: "contract")
+  industrialUnitPackaging: [IndustrialUnitPackaging!] @derivedFrom(field: "contract")
+  industrialUnitUnpackaging: [IndustrialUnitUnpackaging!] @derivedFrom(field: "contract")
+  operators: [TokenOperator!] @derivedFrom(field: "contract")
+  tokens: [Token!] @derivedFrom(field: "contract")
+  tokenCertification: [TokenCertification!] @derivedFrom(field: "tokenContract")
+  tokenTypeInstructionsSet: [TokenTypeInstructionsSet!] @derivedFrom(field: "contract")
+  tokenTransfers: [TokenTransfer!] @derivedFrom(field: "contract")
+}
+# Due to contract aptitude to change ownership entity is mutable
+type EscrowContract @entity {
+  id: Bytes!
+  asAccount: Account!
+  owner: Account
+  afterDepositReversal: [AfterDepositReversal!]! @derivedFrom(field: "escrowContract")
+  balances: [Balance!] @derivedFrom(field: "escrowEscrowContract")
+  beforeDepositReversal: [BeforeDepositReversal!]! @derivedFrom(field: "escrowContract")
+  escrows: [Escrow!] @derivedFrom(field: "contract")
+  escrowClosure: [EscrowClosure!]! @derivedFrom(field: "escrowContract")
+  etherDeposit: [EtherDeposit!]! @derivedFrom(field: "escrowContract")
+  etherDepositCancellation: [EtherDepositCancellation!]! @derivedFrom(field: "escrowContract")
+  tokenDeposit: [TokenDeposit!]! @derivedFrom(field: "escrowContract")
+}
+# Due to contract aptitude to change ownership entity is mutable
+type CertificateContract @entity {
+  id: Bytes!
+  asAccount: Account!
+  owner: Account
+  certificates: [Certificate!] @derivedFrom(field: "contract")
+  tokenCertification: [TokenCertification!] @derivedFrom(field: "certificateContract")
+}
+type Certificate implements IMetadata @entity {
+  id: String!
+  identifier: String!
+  bottleQuality: String
+  bottleMaterial: String
+  bottleSize: BigInt
+  contract: CertificateContract!
+  creationDate: BigInt!
+  description: String
+  imageHeight: BigInt
+  imagePath: String
+  imageWidth: BigInt
+  oliveQuality: String
+  oliveOilAcidity: BigDecimal
+  oliveOilAroma: String
+  oliveOilBitterness: String
+  oliveOilColour: String
+  oliveOilFruitness: String
+  oliveOilIntensity: String
+  oliveOilItching: String
+  oliveOrigin: String
+  title: String
+  uri: String!
+  certification: [TokenCertification!] @derivedFrom(field: "certificate")
+  tokenTypes: [TokenTypeCertificateMapping!] @derivedFrom(field: "certificate")
+}
+type Escrow @entity {
+  id: String!
+  buyer: Account
+  buyerWallet: Bytes
+  contract: EscrowContract!
+  escrowId: BigInt!
+  escrowBalance: Balance!
+  etherBalance: Balance!
+  identifier: BigInt!
+  price: BigInt
+  seller: Account
+  sellerWallet: Bytes
+  state: EscrowState
+  closure: EscrowClosure
+  reversalAfterDeposit: AfterDepositReversal
+  reversalBeforeDeposit: BeforeDepositReversal
+  tokenDeposits: [TokenDeposit!]! @derivedFrom(field: "escrow")
+  etherDeposits: [EtherDeposit!]! @derivedFrom(field: "escrow")
+  etherDepositCancellations: [EtherDepositCancellation!]! @derivedFrom(field: "escrow")
+  tokens: [TokenEscrowMapping!]! @derivedFrom(field: "escrow")
+}
+type Token @entity {
+  id: String!
+  contract: TokenContract!
+  tokenType: TokenType
+  identifier: String!
+  industrialUnitTokenInfo: IndustrialUnitTokenInfo
+  mintingDate: BigInt
+  totalSupply: Balance!
+  ancestry: [Ancestor!] @derivedFrom(field: "descendant")
+  balances: [Balance!]! @derivedFrom(field: "tokenToken")
+  escrows: [TokenEscrowMapping!] @derivedFrom(field: "token")
+  transfers: [TokenTransfer!]! @derivedFrom(field: "token")
+}
+type Ancestor @entity(immutable: true) {
+  id: String!
+  token: Token!
+  amount: BigInt!
+  descendant: Token!
+}
+type TokenType implements IMetadata @entity {
+  id: String!
+  bottleQuality: String
+  bottleMaterial: String
+  bottleSize: BigInt
+  contract: TokenContract!
+  creationDate: BigInt!
+  description: String
+  identifier: String!
+  imageHeight: BigInt
+  imagePath: String
+  imageWidth: BigInt
+  oliveQuality: String
+  oliveOilAcidity: BigDecimal
+  oliveOilAroma: String
+  oliveOilBitterness: String
+  oliveOilColour: String
+  oliveOilFruitness: String
+  oliveOilIntensity: String
+  oliveOilItching: String
+  oliveOrigin: String
+  title: String
+  tokenTypeInstructionsSet: TokenTypeInstructionsSet
+  uri: String
+  instructions: [Instruction!] @derivedFrom(field: "tokenType")
+  # instructions: Instructions
+  certificates: [TokenTypeCertificateMapping!] @derivedFrom(field: "tokenType")
+  tokens: [Token!] @derivedFrom(field: "tokenType")
+}
+type Instruction @entity(immutable: true) {
+  id: String!
+  instructedCertificate: Certificate
+  instructedTokenAmount: BigInt!
+  instructedTokenType: TokenType
+  tokenTypeInstructionsSet: TokenTypeInstructionsSet!
+  tokenType: TokenType!
+}
+type Balance @entity {
+  id: String!
+  escrowEscrowContract: EscrowContract
+  escrowEscrow: Escrow
+  escrowAccount: Account
+  escrowAmounts: [BigInt!]
+  escrowTokens: [Token!]
+  tokenAccount: Account
+  tokenToken: Token
+  tokenTokenContract: TokenContract
+  value: BigDecimal
+  valueExact: BigInt
+  tokenTransferFromEvent: [TokenTransfer!] @derivedFrom(field: "fromBalance")
+  tokenTransferToEvent: [TokenTransfer!] @derivedFrom(field: "toBalance")
+}
+type TokenOperator @entity {
+  id: String!
+  approved: Boolean!
+  contract: TokenContract!
+  operator: Account!
+  owner: Account!
+}
+type IndustrialUnitTokenInfo @entity(immutable: true) {
+  id: String!
+  amounts: [BigInt!]
+  industrialUnit: Token!
+  commercialUnits: [Token!]!
+}
+type Transaction @entity(immutable: true) {
+  id: String!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  events: [IEvent!]! @derivedFrom(field: "transaction")
+}
+# EVENTS
+type TokenCertification implements IEvent @entity(immutable: true) {
+  id: String!
+  certificate: Certificate!
+  certificateContract: CertificateContract!
+  emitter: Account!
+  timestamp: BigInt!
+  tokenContract: TokenContract!
+  transaction: Transaction!
+}
+type TokenTransfer implements IEvent @entity(immutable: true) {
+  id: String!
+  contract: TokenContract!
+  emitter: Account!
+  from: Account
+  fromBalance: Balance
+  operator: Account!
+  timestamp: BigInt!
+  to: Account
+  toBalance: Balance
+  token: Token!
+  transaction: Transaction!
+  value: BigDecimal!
+  valueExact: BigInt!
+}
+type TokenTypeInstructionsSet implements IEvent & ITokenInfo @entity(immutable: true) {
+  id: String!
+  contract: TokenContract!
+  emitter: Account!
+  tokenType: TokenType!
+  timestamp: BigInt!
+  transaction: Transaction!
+  instructions: [Instruction!] @derivedFrom(field: "tokenTypeInstructionsSet")
+}
+type IndustrialUnitPackaging implements IEvent & ITokenInfo @entity(immutable: true) {
+  id: String!
+  idustrialUnitTokenInfo: IndustrialUnitTokenInfo!
+  contract: TokenContract!
+  emitter: Account!
+  owner: Account!
+  timestamp: BigInt!
+  token: Token!
+  transaction: Transaction!
+}
+type IndustrialUnitUnpackaging implements IEvent @entity(immutable: true) {
+  id: String!
+  contract: TokenContract!
+  emitter: Account!
+  owner: Account!
+  timestamp: BigInt!
+  token: Token!
+  transaction: Transaction!
+}
+type EscrowClosure implements IEvent @entity(immutable: true) {
+  id: String!
+  emitter: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  timestamp: BigInt!
+  transaction: Transaction!
+}
+type AfterDepositReversal implements IEvent @entity(immutable: true) {
+  id: String!
+  emitter: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  timestamp: BigInt!
+  transaction: Transaction!
+}
+type EtherDepositCancellation implements IEvent & IEscrowDepositor @entity(immutable: true) {
+  id: String!
+  buyer: Account!
+  buyerWallet: Bytes!
+  emitter: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  timestamp: BigInt!
+  transaction: Transaction!
+}
+type EtherDeposit implements IEvent & IEscrowDepositor @entity(immutable: true) {
+  id: String!
+  buyer: Account!
+  buyerWallet: Bytes!
+  emitter: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  timestamp: BigInt!
+  transaction: Transaction!
+  value: BigDecimal!
+  valueExact: BigInt!
+}
+type BeforeDepositReversal implements IEvent @entity(immutable: true) {
+  id: String!
+  emitter: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  timestamp: BigInt!
+  transaction: Transaction!
+}
+type TokenDeposit implements IEvent & IEscrow @entity(immutable: true) {
+  id: String!
+  amount: BigInt
+  emitter: Account!
+  escrow: Escrow!
+  escrowContract: EscrowContract!
+  seller: Account!
+  sellerWallet: Bytes!
+  timestamp: BigInt!
+  token: Token!
+  tokenContract: TokenContract!
+  transaction: Transaction!
+}
+type OwnershipTransferred implements IEvent @entity(immutable: true) {
+  id: String!
+  certificateContract: CertificateContract
+  emitter: Account!
+  escrowContract: EscrowContract
+  memberContract: MemberContract
+  owner: Account!
+  previousOwner: Account!
+  timestamp: BigInt!
+  tokenContract: TokenContract
+  transaction: Transaction!
+}
+# MAPPINGS
+type TokenEscrowMapping @entity(immutable: true) {
+  id: String!
+  token: Token!
+  escrow: Escrow!
+}
+type TokenTypeCertificateMapping @entity(immutable: true) {
+  id: String!
+  tokenType: TokenType!
+  certificate: Certificate!
+}
+# ----------------------------------
+#          FULL TEXT SEARCH
+# ----------------------------------
+type _Schema_
+  @fulltext(
+    name: "memberSearch"
+    language: en
+    algorithm: rank
+    include: [{ entity: "MemberContract", fields: [{ name: "name" }] }]
+  )

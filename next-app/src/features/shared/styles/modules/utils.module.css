@@ -1,0 +1,9 @@
+.cardList {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  position: relative;
+  padding-top: 1.5rem;
+  padding-bottom: 5rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

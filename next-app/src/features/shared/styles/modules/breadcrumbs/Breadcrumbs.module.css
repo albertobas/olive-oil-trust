@@ -1,0 +1,49 @@
+.container {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  position: relative;
+  cursor: default;
+  color: var(--gray-700);
+}
+.container > nav {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 0 0 0 auto;
+}
+.container > nav > ol {
+  display: flex;
+  flex-flow: wrap;
+  padding: 0px;
+  margin: 0px;
+  align-items: center;
+  list-style-type: none;
+}
+.container > nav > ol > li,
+.container > nav > ol > li > a,
+.container > nav > ol > li::after {
+  @mixin $text-sm;
+}
+.container > nav > ol > li::after {
+  content: '>';
+  display: inline;
+  margin: 1rem;
+}
+.container > nav > ol > li:last-child::after {
+  display: none;
+}
+.container > nav > ol > li > a:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+@media (--tablet) {
+  .container > nav > ol > li {
+    font-weight: 600;
+  }
+  .container > nav > ol > li:last-child {
+    display: none;
+  }
+  .container > nav > ol > li:nth-last-child(2):after {
+    display: none;
+  }
+}

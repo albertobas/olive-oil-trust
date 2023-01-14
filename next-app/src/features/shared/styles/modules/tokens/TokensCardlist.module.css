@@ -1,0 +1,3 @@
+.layout {
+  composes: cardList from 'src/features/shared/styles/modules/utils.module.css';
+}

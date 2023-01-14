@@ -1,0 +1,35 @@
+extends:
+  - next/core-web-vitals
+  - prettier
+ignorePatterns:
+  - node_modules
+rules:
+  "semi":
+    - error
+    - always
+# parserOptions:
+#   project: tsconfig.json
+#   tsConfigRootDir: __dirname
+#   sourceType: module
+# plugins:
+#   - '@typescript-eslint'
+overrides:
+  - files:
+      - "**/*.ts?(x)"
+    parserOptions:
+      project: tsconfig.json
+      tsConfigRootDir: __dirname
+      sourceType: module
+    extends:
+      - next/core-web-vitals
+      - plugin:@typescript-eslint/recommended
+      - prettier
+    plugins:
+      - "@typescript-eslint"
+  # - files: '**/*.ts'
+  #   processor: '@graphql-eslint/graphql'
+  # - files: '**/*.graphql'
+  #   extends: 'plugin:@graphql-eslint/schema-recommended'
+  #   rules:
+  #     'prettier/prettier':
+  #       - error

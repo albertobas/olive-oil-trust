@@ -1,0 +1,74 @@
+.layout {
+  composes: container from 'src/shared/styles/modules/utils.module.css';
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.introLayout {
+  gap: 4rem;
+  display: flex;
+  flex-direction: row;
+}
+.layout > h1 {
+  margin-top: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  word-break: break-word;
+}
+.cardWrapper {
+  max-width: 260px;
+  z-index: 10;
+}
+.ancestryLayout {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  gap: 5rem;
+}
+.ancestry {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  align-items: flex-end;
+}
+.firstAncestry {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.secondAncestry {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+}
+.listMargin {
+  list-style-type: disc;
+}
+.listMargin > li {
+  margin: 1rem 0;
+}
+.listMargin > li > a:hover {
+  text-decoration: underline;
+}
+
+@media (--mobile-xl) {
+  .introLayout {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+  .secondAncestry {
+    flex-direction: column;
+    gap: 5rem;
+  }
+  .ancestry {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: flex-end;
+  }
+  .description > p:last-of-type {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,11 @@
+.layout {
+  composes: cardList from 'src/features/shared/styles/modules/utils.module.css';
+}
+
+.modal {
+  composes: modal from 'src/shared/styles/modules/utils.module.css';
+}
+
+.modalSm {
+  composes: modalSm from 'src/shared/styles/modules/utils.module.css';
+}

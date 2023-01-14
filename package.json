@@ -1,0 +1,65 @@
+{
+  "name": "olive-oil-trust",
+  "version": "1.0.0",
+  "description": "Olive Oil Trust is an olive oil traceability solution built on Ethereum",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "npm run hardhat:lint && npm run subgraph:lint",
+    "prepare": "husky install",
+    "hardhat:node": "npm run node --workspace=hardhat-env",
+    "hardhat:compile": "npm run compile --workspace=hardhat-env",
+    "hardhat:test": "npm run test --workspace=hardhat-env",
+    "hardhat:clean": "npm run clean --workspace=hardhat-env",
+    "hardhat:coverage": "npm run coverage --workspace=hardhat-env",
+    "hardhat:deploy": "npm run deploy --workspace=hardhat-env",
+    "hardhat:deploy-former": "npm run compile --workspace=hardhat-env && npm run share --workspace=hardhat-env && npm run deploy --workspace=hardhat-env",
+    "hardhat:share": "npm run share --workspace=hardhat-env",
+    "hardhat:size-contracts": "npm run size-contracts --workspace=hardhat-env",
+    "hardhat:lint": "npm run lint --workspace=hardhat-env",
+    "hardhat:lint:sol": "npm run lint:sol --workspace=hardhat-env",
+    "hardhat:lint:ts": "npm run lint:ts --workspace=hardhat-env",
+    "hardhat:tsc": "npm run tsc --workspace=hardhat-env",
+    "hardhat:setState": "npm run setState --workspace=hardhat-env",
+    "subgraph:lint": "npm run lint --workspace=subgraph",
+    "subgraph:precodegen": "npm run precodegen --workspace=subgraph",
+    "subgraph:codegen": "npm run codegen --workspace=subgraph",
+    "subgraph:create": "npm run create --workspace=subgraph",
+    "subgraph:remove": "npm run remove --workspace=subgraph",
+    "subgraph:deploy": "npm run deploy --workspace=subgraph",
+    "subgraph:build": "npm run build --workspace=subgraph",
+    "next-app:dev": "npm run dev --workspace=next-app",
+    "next-app:lint": "npm run lint --workspace=next-app",
+    "next-app:tsc": "npm run tsc --workspace=next-app",
+    "services:start": "npm run clean:graph-node --workspace=services & npm run start:graph-node --workspace=services",
+    "start": "npm run hardhat:deploy && npm run hardhat:share && npm run subgraph:codegen && npm run subgraph:create && npm run subgraph:deploy",
+    "start:setState": "npm run hardhat:deploy && npm run hardhat:setState && npm run hardhat:share && npm run subgraph:codegen && npm run subgraph:create && npm run subgraph:deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertobas/olive-oil-trust.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Alberto Bas",
+    "url": "https://github.com/albertobas"
+  },
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/albertobas/olive-oil-trust/issues"
+  },
+  "homepage": "https://github.com/albertobas/olive-oil-trust#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "workspaces": [
+    "hardhat-env",
+    "subgraph",
+    "next-app",
+    "services"
+  ]
+}
