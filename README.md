@@ -4,11 +4,11 @@
 
 ## About
 
-[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on Ethereum that allows its members to trace and commerce with an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.
+[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on Ethereum that allows its members to trace and trade an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.
 
 This can be seen as a collaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers.
 
-For this, they agree to follow the same rules, i.e. to abide by the same smart contracts to commerce with their tokens or to certify the types of the tokens.
+For this, they agree to follow the same rules, i.e. to abide by the same smart contracts to trade their tokens or to certify the types of the tokens.
 
 Whenever a token is minted, it can be deposited in an escrow, which is the mechanism that another actor in the chain can use to acquire the ownership of this token after the correspondent payment to the escrow and approval from the seller.
 

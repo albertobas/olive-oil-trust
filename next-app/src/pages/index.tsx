@@ -9,8 +9,8 @@ const Home: NextPage = () => {
   const { isConnected, isConnecting } = useAppSelector((state) => state.connection);
   const title = 'Buy, sell and trace products in the Olive Oil Trust value chain';
   const paragraph =
-    'Olive Oil Trust is an olive oil traceability solution built on Ethereum that permits members to ' +
-    'trace and commerce with their own products and customers to buy and trace them.';
+    'Olive Oil Trust is an olive oil traceability solution built on Ethereum that allows its members to trace and ' +
+    'trade an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.';
 
   return (
     <div className={styles.layout}>
