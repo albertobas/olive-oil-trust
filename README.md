@@ -4,9 +4,11 @@
 
 ## About
 
-[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on [Ethereum](/tags/ethereum) that allows its members to trace but also commerce with an [ERC-1155](/tags/erc-1155) token representation of their own products, and customers to trace and buy them.
+[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on Ethereum that allows its members to trace and commerce with an ERC-1155 token representation of their own products, and end customers to trace and buy those tokens.
 
-This can be seen as a collaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers that agree on following the same rules and abide by the same smart contracts to commerce with their tokens, in the case of seller roles, or certify the types of the tokens, in the case of certifiers.
+This can be seen as a collaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers.
+
+For this, they agree to follow the same rules, i.e. to abide by the same smart contracts to commerce with their tokens or to certify the types of the tokens.
 
 Whenever a token is minted, it can be deposited in an escrow, which is the mechanism that another actor in the chain can use to acquire the ownership of this token after the correspondent payment to the escrow and approval from the seller.
 
@@ -16,11 +18,11 @@ This is due to the immutability characteristics of this technology, which then m
 
 ## Technical details
 
-The contracts are written in [Solidity](/tags/solidity) using [Hardhat](/tags/hardhat), an Ethereum development environment. All the contracts are upgradeable and most of them are UUPS compliant.
+The contracts are written in Solidity using Hardhat, an Ethereum development environment. All the contracts are upgradeable and most of them are UUPS compliant.
 
-The front-end code is mostly written in [TypeScript](/tags/typescript) using [Next.js](/tags/next-js), a [React.js](/tags/react-js) framework, and it is implemented based on an hexagonal architecture in which the global state exists outside the core and persists globally using [Redux](/tags/redux).
+The front-end code is mostly written in TypeScript using Next.js, a React.js framework, and it is implemented based on an hexagonal architecture in which the global state exists outside the core and persists globally using Redux.
 
-Finally, data are queried from a local [TheGraph](/tags/the-graph) node using [GraphQL](/tags/graph-ql). The subgraph that is used is set to support multiple networks, i.e., when the contracts are deployed to a particular chain, relevant deployment data will be shared accordingly for this purpose.
+Finally, data are queried from a local TheGraph node using GraphQL. The subgraph that is used is set to support multiple networks, i.e., when the contracts are deployed to a particular chain, relevant deployment data will be shared accordingly for this purpose.
 
 - **Contracts Framework**: [Hardhat](https://hardhat.org/)
 - **Front-End Framework**: [Next.js](https://nextjs.org/)
@@ -41,7 +43,7 @@ Finally, data are queried from a local [TheGraph](/tags/the-graph) node using [G
 - `next-app/src/**/styles/*`: CSSModules files.
 - `services/*`: TheGraph graph node.
 - `subgraph/scripts/*`: script to generate a subgraph YAML file from a template, replacing keys for values from a JSON file.
-- `subgraph/src/*`: mappings, written in [AssemblyScript](/tags/assemblyscript), constants and entities used to extract data from the local Hardhat chain, process it and store it.
+- `subgraph/src/*`: mappings, written in AssemblyScript, constants and entities used to extract data from the local Hardhat chain, process it and store it.
 - `subgraph/templates/*`: a subgraph YAML template file.
 
 ## Running locally
@@ -78,7 +80,7 @@ Once it is up and running, in the terminal tab or window left run:
 $ npm run start
 ```
 
-This will compile the contracts, deploy them in the local Hardhat chain, paste required info in the subgraph and front-end workspaces, generate the subgraph YAML file, create the subgraph and deploy it, i.e. load it, compile it, build it and upload it to IPFS.
+This will compile the contracts, deploy them in the local Hardhat chain, paste required info in the subgraph and front-end workspaces, generate the subgraph YAML file and finally create the subgraph and deploy it, i.e. load the subgraph, compile it, build it and upload it to IPFS.
 
 When this is all accomplished, just run the following command to start the Next.js development server:
 
@@ -90,10 +92,10 @@ Then, visit `http://localhost:3000` to view your application.
 
 In order to simulate the work flow in an olive oil supply chain, the current version of Olive Oil Trust deploys several contracts for figurative members in this supply chain.
 
-Signer addresses from the Hardhat chain can be used to configure multiple wallets in Metamask for every single one of this members, as well as a figurative end customer, and sign transactions in the localhost chain.
+Signer addresses from the Hardhat chain can be used to configure multiple wallets in Metamask for every single one of this members, as well as a figurative end customer, in order to sign transactions in the localhost chain.
 
-In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers the indexes of the signers in this simulation. Those are the indexes of the correspondent addresses in the Hardhat local chain array of addresses.
+In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers indexes for the signers in this simulation. Those are the indexes of the correspondent addresses in the Hardhat local chain array of addresses.
 
 Then, every figurative member, as well as an end customer, of this simulation in Olive Oil Trust is assigned a wallet address with fake Ether in the harhdat local chain, only for development purposes.
 
-Running `npm run hardhat:setState`, or `npm run start:setState` above instead of `npm run start`, will set a state to the local chain so that products are minted and commerced with from an imaginative olive grower to a figurative end customer.
+Running `npm run hardhat:setState`, or `npm run start:setState` above instead of `npm run start`, will set a state to the local chain to represent tokens being minted and commerced with from an imaginative olive grower to a figurative end customer.
