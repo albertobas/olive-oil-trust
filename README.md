@@ -4,7 +4,7 @@
 
 ## About
 
-[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on Ethereum that allows its members to trace and commerce with an ERC-1155 token representation of their own products, and end customers to trace and buy those tokens.
+[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on Ethereum that allows its members to trace and commerce with an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.
 
 This can be seen as a collaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers.
 
@@ -94,7 +94,7 @@ In order to simulate the work flow in an olive oil supply chain, the current ver
 
 Signer addresses from the Hardhat chain can be used to configure multiple wallets in Metamask for every single one of this members, as well as a figurative end customer, in order to sign transactions in the localhost chain.
 
-In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers indexes for the signers in this simulation. Those are the indexes of the correspondent addresses in the Hardhat local chain array of addresses.
+In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers indexes for the signers in this simulation. These are the indexes of the correspondent addresses in the Hardhat local chain array of addresses.
 
 Then, every figurative member, as well as an end customer, of this simulation in Olive Oil Trust is assigned a wallet address with fake Ether in the harhdat local chain, only for development purposes.
 
