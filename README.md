@@ -98,4 +98,4 @@ In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers inde
 
 Then, every figurative member, as well as an end customer, of this simulation in Olive Oil Trust is assigned a wallet address with fake Ether in the harhdat local chain, only for development purposes.
 
-Running `npm run hardhat:setState`, or `npm run start:setState` above instead of `npm run start`, will set a state to the local chain to represent tokens being minted and commerced with from an imaginative olive grower to a figurative end customer.
+Running `npm run hardhat:setState`, or `npm run start:setState` above instead of `npm run start`, will set a state to the local chain to represent tokens being minted and traded from an imaginative olive grower to a figurative end customer.
