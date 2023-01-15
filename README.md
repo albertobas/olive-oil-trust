@@ -43,7 +43,7 @@ Finally, data are queried from a local TheGraph node using GraphQL. The subgraph
 - `next-app/src/**/styles/*`: CSSModules files.
 - `services/*`: TheGraph graph node.
 - `subgraph/scripts/*`: script to generate a subgraph YAML file from a template, replacing keys for values from a JSON file.
-- `subgraph/src/*`: mappings, written in AssemblyScript, constants and entities used to extract data from the local Hardhat chain, process it and store it.
+- `subgraph/src/*`: mappings, written in AssemblyScript, constants and entities used to extract data from the local Hardhat chain, process them and store them.
 - `subgraph/templates/*`: a subgraph YAML template file.
 
 ## Running locally
