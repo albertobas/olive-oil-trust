@@ -8,7 +8,7 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 
 /**
  * @title DependentTokenUpgradeable contract.
- * @dev Implementation of a contract that aims to represent an dependent token in the supply chain, i.e.
+ * @dev Implementation of a contract that aims to represent a dependent token in the supply chain, i.e.
  *     a token that does require other token/s to be minted.
  *     Inherits from BaseToken, see {BaseToken}.
  *     It requires a base URI.
