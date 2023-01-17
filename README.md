@@ -22,9 +22,7 @@ The contracts are written in Solidity using Hardhat, an Ethereum development env
 
 The front-end code is mostly written in TypeScript using Next.js, a React.js framework, and it is implemented based on an hexagonal architecture in which the global state exists outside the core and persists globally using Redux.
 
-Finally, data are queried from a local TheGraph node using GraphQL.
-
-The subgraph that is used is set to support multiple networks, relevant deployment data will be shared accordingly for this purpose when the contracts are deployed to a particular chain.
+Finally, data are queried from a local TheGraph node using GraphQL. The subgraph that is used is set to support multiple networks, relevant deployment data will be shared accordingly.
 
 - **Contracts Framework**: [Hardhat](https://hardhat.org/)
 - **Front-End Framework**: [Next.js](https://nextjs.org/)
