@@ -22,7 +22,6 @@
     "hardhat:tsc": "npm run tsc --workspace=hardhat-env",
     "hardhat:setState": "npm run setState --workspace=hardhat-env",
     "subgraph:lint": "npm run lint --workspace=subgraph",
-    "subgraph:precodegen": "npm run precodegen --workspace=subgraph",
     "subgraph:codegen": "npm run codegen --workspace=subgraph",
     "subgraph:create": "npm run create --workspace=subgraph",
     "subgraph:remove": "npm run remove --workspace=subgraph",
