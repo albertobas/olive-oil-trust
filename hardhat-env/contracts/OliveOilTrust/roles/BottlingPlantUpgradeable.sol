@@ -136,6 +136,21 @@ contract BottlingPlantUpgradeable is
         super.burnBatch(tokenAddress, tokenTypeIds, tokenIds, tokenAmounts);
     }
 
+    /// @inheritdoc BaseSeller
+    function revertBeforePayment(uint256 escrowId) public override onlyOwner {
+        super.revertBeforePayment(escrowId);
+    }
+
+    /// @inheritdoc BaseSeller
+    function revertAfterPayment(uint256 escrowId) public override onlyOwner {
+        super.revertAfterPayment(escrowId);
+    }
+
+    /// @inheritdoc BaseSeller
+    function closeEscrow(uint256 escrowId) public override onlyOwner {
+        super.closeEscrow(escrowId);
+    }
+
     /// @dev See {IIndustrialUnitsEscrowUpgradeable-depositToken}
     function depositToken(
         bytes32 tokenId,
@@ -162,21 +177,6 @@ contract BottlingPlantUpgradeable is
             batchPrice,
             sellerWallet
         );
-    }
-
-    /// @inheritdoc BaseSeller
-    function revertBeforePayment(uint256 escrowId) public override onlyOwner {
-        super.revertBeforePayment(escrowId);
-    }
-
-    /// @inheritdoc BaseSeller
-    function revertAfterPayment(uint256 escrowId) public override onlyOwner {
-        super.revertAfterPayment(escrowId);
-    }
-
-    /// @inheritdoc BaseSeller
-    function closeEscrow(uint256 escrowId) public override onlyOwner {
-        super.closeEscrow(escrowId);
     }
 
     /**

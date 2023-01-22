@@ -101,6 +101,26 @@ contract DistributorUpgradeable is
         super.closeEscrow(escrowId);
     }
 
+    /// @inheritdoc BaseSeller
+    function burn(
+        address tokenAddress,
+        bytes32 tokenTypeId,
+        bytes32 tokenId,
+        uint256 tokenAmount
+    ) public override onlyOwner {
+        super.burn(tokenAddress, tokenTypeId, tokenId, tokenAmount);
+    }
+
+    /// @inheritdoc BaseSeller
+    function burnBatch(
+        address tokenAddress,
+        bytes32[] calldata tokenTypeIds,
+        bytes32[] calldata tokenIds,
+        uint256[] calldata tokenAmounts
+    ) public override onlyOwner {
+        super.burnBatch(tokenAddress, tokenTypeIds, tokenIds, tokenAmounts);
+    }
+
     /**
      * @dev See {IIndustrialUnitsEscrowUpgradeable-makePayment}
      * @param escrowAddress_ The address of the escrow.
@@ -189,26 +209,6 @@ contract DistributorUpgradeable is
     /// @dev See {IIndustrialUnitTokenUpgradeable-unpackBatch}
     function unpackBatch(address tokenAddress, bytes32[] calldata tokenIds) external {
         IIndustrialUnitTokenUpgradeable(tokenAddress).unpackBatch(address(this), tokenIds);
-    }
-
-    /// @inheritdoc BaseSeller
-    function burn(
-        address tokenAddress,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) public override onlyOwner {
-        super.burn(tokenAddress, tokenTypeId, tokenId, tokenAmount);
-    }
-
-    /// @inheritdoc BaseSeller
-    function burnBatch(
-        address tokenAddress,
-        bytes32[] calldata tokenTypeIds,
-        bytes32[] calldata tokenIds,
-        uint256[] calldata tokenAmounts
-    ) public override onlyOwner {
-        super.burnBatch(tokenAddress, tokenTypeIds, tokenIds, tokenAmounts);
     }
 
     function _setApprovals(address[] calldata tokenAddresses) private {

@@ -82,6 +82,21 @@ contract OliveGrowerUpgradeable is
     }
 
     /// @inheritdoc BaseSeller
+    function revertBeforePayment(uint256 escrowId) public override onlyOwner {
+        super.revertBeforePayment(escrowId);
+    }
+
+    /// @inheritdoc BaseSeller
+    function revertAfterPayment(uint256 escrowId) public override onlyOwner {
+        super.revertAfterPayment(escrowId);
+    }
+
+    /// @inheritdoc BaseSeller
+    function closeEscrow(uint256 escrowId) public override onlyOwner {
+        super.closeEscrow(escrowId);
+    }
+
+    /// @inheritdoc BaseSeller
     function burnBatch(
         address tokenAddress,
         bytes32[] calldata tokenTypeIds,
@@ -121,20 +136,5 @@ contract OliveGrowerUpgradeable is
             tokenAmounts,
             sellerWallet
         );
-    }
-
-    /// @inheritdoc BaseSeller
-    function revertBeforePayment(uint256 escrowId) public override onlyOwner {
-        super.revertBeforePayment(escrowId);
-    }
-
-    /// @inheritdoc BaseSeller
-    function revertAfterPayment(uint256 escrowId) public override onlyOwner {
-        super.revertAfterPayment(escrowId);
-    }
-
-    /// @inheritdoc BaseSeller
-    function closeEscrow(uint256 escrowId) public override onlyOwner {
-        super.closeEscrow(escrowId);
     }
 }
