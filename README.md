@@ -42,9 +42,9 @@ Finally, data are queried from a local TheGraph node using GraphQL. The subgraph
 - `next-app/src/**/shared/*`: user interface code and constants shared across files at the same folder level.
 - `next-app/src/**/styles/*`: CSSModules files.
 - `services/*`: TheGraph graph node.
-- `subgraph/scripts/*`: script to generate a subgraph YAML file from a template, replacing keys for values from a JSON file.
+- `subgraph/scripts/*`: script to generate a subgraph manifest from a template, replacing keys for values from a JSON file.
 - `subgraph/src/*`: mappings, written in AssemblyScript, constants and entities used to extract data from the local Hardhat chain, process them and store them.
-- `subgraph/templates/*`: a subgraph YAML template file.
+- `subgraph/templates/*`: a subgraph manifest template.
 
 ## Running locally
 
@@ -80,7 +80,7 @@ Once it is up and running, in the terminal tab or window left run:
 $ npm run start
 ```
 
-This will compile the contracts, deploy them in the local Hardhat chain, paste required info in the subgraph and front-end workspaces, generate the subgraph YAML file and finally create the subgraph and deploy it, i.e. load the subgraph, compile it, build it and upload it to IPFS.
+This will compile the contracts, deploy them in the local Hardhat chain, paste required info in the subgraph and front-end workspaces, generate the subgraph manifest and finally create the subgraph and deploy it, i.e. load the subgraph, compile it, build it and upload it to IPFS.
 
 When this is all accomplished, just run the following command to start the Next.js development server:
 
