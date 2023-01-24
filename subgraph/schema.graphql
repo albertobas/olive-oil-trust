@@ -66,10 +66,9 @@ enum MemberRole {
   Certifier
 }
 # ----------------------------------
-#              ENTITIES
+#  ENTITIES FOR HIGH-LEVEL CONCEPTS
 # ----------------------------------
 type Account @entity {
-  # account address
   id: Bytes!
   asCertificateContract: CertificateContract
   asEscrowContract: EscrowContract
@@ -90,7 +89,6 @@ type Account @entity {
   tokenTransferOperatorEvent: [TokenTransfer!] @derivedFrom(field: "operator")
 }
 type MemberContract @entity {
-  # member address
   id: Bytes!
   name: String
   owner: Account!
@@ -99,7 +97,6 @@ type MemberContract @entity {
 }
 # Due to contract aptitude to change ownership entity is mutable
 type TokenContract @entity {
-  # contract address
   id: Bytes!
   asAccount: Account!
   owner: Account
@@ -226,7 +223,6 @@ type TokenType implements IMetadata @entity {
   tokenTypeInstructionsSet: TokenTypeInstructionsSet
   uri: String
   instructions: [Instruction!] @derivedFrom(field: "tokenType")
-  # instructions: Instructions
   certificates: [TokenTypeCertificateMapping!] @derivedFrom(field: "tokenType")
   tokens: [Token!] @derivedFrom(field: "tokenType")
 }
@@ -272,7 +268,20 @@ type Transaction @entity(immutable: true) {
   timestamp: BigInt!
   events: [IEvent!]! @derivedFrom(field: "transaction")
 }
-# EVENTS
+# MAPPINGS
+type TokenEscrowMapping @entity(immutable: true) {
+  id: String!
+  token: Token!
+  escrow: Escrow!
+}
+type TokenTypeCertificateMapping @entity(immutable: true) {
+  id: String!
+  tokenType: TokenType!
+  certificate: Certificate!
+}
+# ----------------------------------
+#   ENTITIES FOR LOW-LEVEL OBJECTS
+# ----------------------------------
 type TokenCertification implements IEvent @entity(immutable: true) {
   id: String!
   certificate: Certificate!
@@ -395,17 +404,6 @@ type OwnershipTransferred implements IEvent @entity(immutable: true) {
   timestamp: BigInt!
   tokenContract: TokenContract
   transaction: Transaction!
-}
-# MAPPINGS
-type TokenEscrowMapping @entity(immutable: true) {
-  id: String!
-  token: Token!
-  escrow: Escrow!
-}
-type TokenTypeCertificateMapping @entity(immutable: true) {
-  id: String!
-  tokenType: TokenType!
-  certificate: Certificate!
 }
 # ----------------------------------
 #          FULL TEXT SEARCH
