@@ -1,5 +1,5 @@
 specVersion: 0.0.4
-description: ProductTrust for Ethereum
+description: Olive Oil Trust for Ethereum
 repository: https://github.com/albertobas/olive-oil-trust/subgraph
 schema:
   file: ./schema.graphql
