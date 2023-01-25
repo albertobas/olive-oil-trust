@@ -11,7 +11,7 @@ interface IBaseToken is IERC1155Upgradeable {
     /// @dev Invalid caller
     error BaseTokenInvalidCaller();
 
-    /// @dev Equivalent to IERC1155Upgradeable TransferSingle event but with a bytes32 id and a tokenTypeId
+    /// @dev Equivalent to IERC1155Upgradeable TransferSingle event but with a bytes32 id and tokenTypeId
     event TokenTransferred(
         address indexed operator,
         address indexed from,
