@@ -58,8 +58,8 @@ const EscrowCard = ({
 
   return (
     <div className={styles.layout}>
-      <>
-        <div className={styles.description}>
+      <div className={styles.description}>
+        <div className={styles.info}>
           <h2>{`Escrow ${identifier}`}</h2>
           {seller && (
             <p>
@@ -148,47 +148,45 @@ const EscrowCard = ({
                   <b>Ether balance:</b> {parsePrice(etherBalance.valueExact)}
                 </p>
               )}
-          {<p className={styles.date}>{getUTCFromTimestamp(tokenDeposits[0].transaction.timestamp)}</p>}
         </div>
-        <div className={styles.actionBtns}>
-          {shouldShowAction(accountContract, seller, 'revertBeforePayment', state, isSeller) && (
-            <Button
-              onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'revertBeforePayment' })}
-            >
-              Revert
-            </Button>
-          )}
-          {shouldShowAction(accountContract, seller, 'revertAfterPayment', state, isSeller) && (
-            <Button
-              onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'revertAfterPayment' })}
-            >
-              Revert
-            </Button>
-          )}
-          {shouldShowAction(accountContract, seller, 'closeEscrow', state, isSeller) && (
-            <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'closeEscrow' })}>
-              Close
-            </Button>
-          )}
-          {shouldShowAction(accountContract, seller, 'cancelPayment', state, isSeller) && (
-            <Button
-              onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'cancelPayment' })}
-            >
-              Cancel Payment
-            </Button>
-          )}
-          {shouldShowAction(accountContract, seller, 'makeOffer', state, isSeller) && (
-            <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'makeOffer' })}>
-              Make offer
-            </Button>
-          )}
-          {shouldShowAction(accountContract, seller, 'makePayment', state, isSeller) && (
-            <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'makePayment' })}>
-              Make payment
-            </Button>
-          )}
-        </div>
-      </>
+        {<p>{getUTCFromTimestamp(tokenDeposits[0].transaction.timestamp)}</p>}
+      </div>
+      <div className={styles.actionBtns}>
+        {shouldShowAction(accountContract, seller, 'revertBeforePayment', state, isSeller) && (
+          <Button
+            onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'revertBeforePayment' })}
+          >
+            Revert
+          </Button>
+        )}
+        {shouldShowAction(accountContract, seller, 'revertAfterPayment', state, isSeller) && (
+          <Button
+            onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'revertAfterPayment' })}
+          >
+            Revert
+          </Button>
+        )}
+        {shouldShowAction(accountContract, seller, 'closeEscrow', state, isSeller) && (
+          <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'closeEscrow' })}>
+            Close
+          </Button>
+        )}
+        {shouldShowAction(accountContract, seller, 'cancelPayment', state, isSeller) && (
+          <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'cancelPayment' })}>
+            Cancel Payment
+          </Button>
+        )}
+        {shouldShowAction(accountContract, seller, 'makeOffer', state, isSeller) && (
+          <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'makeOffer' })}>
+            Make offer
+          </Button>
+        )}
+        {shouldShowAction(accountContract, seller, 'makePayment', state, isSeller) && (
+          <Button onClick={() => handleClick({ escrowId: id, escrowIdentifier: identifier, action: 'makePayment' })}>
+            Make payment
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

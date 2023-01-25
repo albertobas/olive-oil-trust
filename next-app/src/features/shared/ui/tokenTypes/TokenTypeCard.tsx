@@ -26,45 +26,47 @@ const TokenTypeCard = ({ id, identifier, instructions, creationDate, metadata }:
           </ILink>
         )}
         <div className={styles.description}>
-          <h2>
-            <ILink href={href} aria-label={identifier}>
-              {metadata ? metadata.title : identifier}
-            </ILink>
-          </h2>
-          <p className={styles.tag}>{'#' + identifier}</p>
-          {metadata && metadata.description && <p>{metadata.description}</p>}
-          {instructions && (
-            <>
-              <h3>Instructions</h3>
-              <ul>
-                {instructions.map(({ amount, id, isCertificate, title, instructorModuleId }) => {
-                  const instructionHref = join(isCertificate ? pages.CERTIFICATES.url : pages.TOKEN_TYPES.url, id);
-                  const unit = instructorModuleId ? getInstuctionTokenUnitFromModule(instructorModuleId) : null;
-                  return (
-                    <li key={id}>
-                      {amount && (
-                        <>
-                          <span>
-                            {instructorModuleId
-                              ? isOliveGrower(instructorModuleId) || isOliveOilMill(instructorModuleId)
-                                ? `${amount} ${unit}`
-                                : `${amount} unit${amount > 1 ? 's' : ''}`
-                              : amount}
-                          </span>{' '}
-                          x{' '}
-                        </>
-                      )}
-                      <h4>
-                        <ILink href={instructionHref} aria-label={`Batch ${identifier.toString()}`}>
-                          {title}
-                        </ILink>
-                      </h4>
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          )}
+          <div className={styles.info}>
+            <h2>
+              <ILink href={href} aria-label={identifier}>
+                {metadata ? metadata.title : identifier}
+              </ILink>
+            </h2>
+            <p className={styles.tag}>{'#' + identifier}</p>
+            {metadata && metadata.description && <p>{metadata.description}</p>}
+            {instructions && (
+              <>
+                <h3>Instructions</h3>
+                <ul>
+                  {instructions.map(({ amount, id, isCertificate, title, instructorModuleId }) => {
+                    const instructionHref = join(isCertificate ? pages.CERTIFICATES.url : pages.TOKEN_TYPES.url, id);
+                    const unit = instructorModuleId ? getInstuctionTokenUnitFromModule(instructorModuleId) : null;
+                    return (
+                      <li key={id}>
+                        {amount && (
+                          <>
+                            <span>
+                              {instructorModuleId
+                                ? isOliveGrower(instructorModuleId) || isOliveOilMill(instructorModuleId)
+                                  ? `${amount} ${unit}`
+                                  : `${amount} unit${amount > 1 ? 's' : ''}`
+                                : amount}
+                            </span>{' '}
+                            x{' '}
+                          </>
+                        )}
+                        <h4>
+                          <ILink href={instructionHref} aria-label={`Batch ${identifier.toString()}`}>
+                            {title}
+                          </ILink>
+                        </h4>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            )}
+          </div>
           {<p>{date}</p>}
         </div>
       </>

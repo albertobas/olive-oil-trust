@@ -5,34 +5,41 @@
   background-color: #fff;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   box-shadow: var(--shadow);
-  height: fit-content;
 }
 .description {
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(50% + 1rem);
-  height: calc(100% - 14rem);
+  flex: 1;
 }
-.description > p {
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.description > p,
+.info > p {
   margin: 1rem 0 0;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
 }
-.description > h2 {
-  @mixin $text-lg;
+.description > p {
+  @mixin $text-sm;
+}
+.info > h2 {
+  @mixin $text-xl;
   margin: 0;
   width: fit-content;
 }
-.description > ul {
+.info > ul {
   margin: 0;
-  padding: 0 0 0 0.5rem;
+  padding: 0 0 0 0.6rem;
   list-style: none;
 }
-.description > ul > li {
-  @mixin $text-sm;
+.info > ul > li {
+  @mixin $text-base;
   margin: 0.75rem 0 0;
 }
 .actionBtns {
@@ -42,10 +49,7 @@
 .actionBtns > button {
   border-radius: 0;
 }
-.date {
-  @mixin $text-sm;
-}
-.description > ul > li > a:hover {
+.info > ul > li > a:hover {
   color: #000;
   text-decoration: underline;
 }

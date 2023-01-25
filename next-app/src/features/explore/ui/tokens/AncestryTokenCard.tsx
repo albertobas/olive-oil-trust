@@ -29,27 +29,29 @@ function AncestryTokenCard({ id, identifier, mintingDate, selfProduced, tokenTyp
         </div>
       )}
       <div className={styles.description}>
-        <h2>
-          <ILink href={tokenHref} aria-label={identifier}>
-            {`Batch ${identifier}`}
-          </ILink>
-        </h2>
-        {tokenType && (
-          <>
-            {tokenType.metadata && <h3>{tokenType.metadata.title}</h3>}
-            <h4 className={styles.tag}>
-              <ILink href={tokenTypeHref} aria-label={identifier}>
-                {'#' + tokenType.identifier}
-              </ILink>
-            </h4>
-          </>
-        )}
-        {!selfProduced && tokenType && tokenType.member && (
-          <p>
-            <b>Manufacturer:</b> {tokenType.member.name}
-          </p>
-        )}
-        {date && <p className={styles.date}>{date}</p>}
+        <div className={styles.info}>
+          <h2>
+            <ILink href={tokenHref} aria-label={identifier}>
+              {`Batch ${identifier}`}
+            </ILink>
+          </h2>
+          {tokenType && (
+            <>
+              {tokenType.metadata && <h3>{tokenType.metadata.title}</h3>}
+              <h4 className={styles.tag}>
+                <ILink href={tokenTypeHref} aria-label={identifier}>
+                  {'#' + tokenType.identifier}
+                </ILink>
+              </h4>
+            </>
+          )}
+          {!selfProduced && tokenType && tokenType.member && (
+            <p>
+              <b>Manufacturer:</b> {tokenType.member.name}
+            </p>
+          )}
+        </div>
+        {date && <p>{date}</p>}
       </div>
     </div>
   );

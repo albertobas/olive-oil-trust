@@ -11,17 +11,19 @@ function CertificateCard({ id, identifier, creationDate, metadata }: ICertificat
 
   return (
     <div className={styles.layout}>
-      <h2>
-        <ILink href={href} aria-label={identifier}>
-          {metadata ? metadata.title : identifier}
-        </ILink>
-      </h2>
-      <h3 className={styles.tag}>
-        <ILink href={href} aria-label={identifier}>
-          {'#' + identifier}
-        </ILink>
-      </h3>
-      {date && <p className={styles.date}>{date}</p>}
+      <div className={styles.info}>
+        <h2>
+          <ILink href={href} aria-label={identifier}>
+            {metadata ? metadata.title : identifier}
+          </ILink>
+        </h2>
+        <h3 className={styles.tag}>
+          <ILink href={href} aria-label={identifier}>
+            {'#' + identifier}
+          </ILink>
+        </h3>
+      </div>
+      {date && <p>{date}</p>}
     </div>
   );
 }

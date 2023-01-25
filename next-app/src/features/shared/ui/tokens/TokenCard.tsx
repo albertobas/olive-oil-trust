@@ -34,82 +34,84 @@ const TokenCard = ({
         />
       )}
       <div className={styles.description}>
-        <h2>
-          <ILink href={tokenHref} aria-label={identifier}>
-            {`${industrialUnitTokenInfo ? 'Pallet' : 'Batch'} ${identifier}`}
-          </ILink>
-        </h2>
-        {tokenType && (
-          <>
-            {tokenType.metadata && (
-              <h3>
-                <ILink href={tokenTypeHref} aria-label={identifier}>
-                  {tokenType.metadata.title}
-                </ILink>
-              </h3>
-            )}
-            <p className={styles.tag}>{'#' + tokenType.identifier}</p>
-          </>
-        )}
-        {!selfProduced && tokenType && tokenType.member && (
-          <p>
-            <b>Manufacturer:</b> {tokenType.member.name}
-          </p>
-        )}
-        {!selfProduced && industrialUnitTokenInfo && industrialUnitTokenInfo.member && (
-          <p>
-            <b>Packer:</b> {industrialUnitTokenInfo.member.name}
-          </p>
-        )}
-        {balance !== null && tokenType !== null && (
-          <p>
-            <b>Balance:</b>{' '}
-            {`${
-              tokenType.member
-                ? tokenType.member.role === 'OliveGrower'
-                  ? `${balance / 1000} kg`
-                  : tokenType.member.role === 'OliveOilMill'
-                  ? `${balance / 1000} l`
+        <div className={styles.info}>
+          <h2>
+            <ILink href={tokenHref} aria-label={identifier}>
+              {`${industrialUnitTokenInfo ? 'Pallet' : 'Batch'} ${identifier}`}
+            </ILink>
+          </h2>
+          {tokenType && (
+            <>
+              {tokenType.metadata && (
+                <h3>
+                  <ILink href={tokenTypeHref} aria-label={identifier}>
+                    {tokenType.metadata.title}
+                  </ILink>
+                </h3>
+              )}
+              <p className={styles.tag}>{'#' + tokenType.identifier}</p>
+            </>
+          )}
+          {!selfProduced && tokenType && tokenType.member && (
+            <p>
+              <b>Manufacturer:</b> {tokenType.member.name}
+            </p>
+          )}
+          {!selfProduced && industrialUnitTokenInfo && industrialUnitTokenInfo.member && (
+            <p>
+              <b>Packer:</b> {industrialUnitTokenInfo.member.name}
+            </p>
+          )}
+          {balance !== null && tokenType !== null && (
+            <p>
+              <b>Balance:</b>{' '}
+              {`${
+                tokenType.member
+                  ? tokenType.member.role === 'OliveGrower'
+                    ? `${balance / 1000} kg`
+                    : tokenType.member.role === 'OliveOilMill'
+                    ? `${balance / 1000} l`
+                    : `${balance} units`
                   : `${balance} units`
-                : `${balance} units`
-            }`}
-          </p>
-        )}
-        {tokenType === null && balance === 0 && (
-          <p>
-            <b>State:</b> Unpacked
-          </p>
-        )}
-        {industrialUnitTokenInfo && (
-          <>
-            <h3>Content</h3>
-            <ul>
-              {commercialUnits &&
-                Object.keys(commercialUnits).map((key) => {
-                  const { amount, token } = commercialUnits[key];
-                  const commercialUnitHref = join(pages.TOKENS.url, token.id);
-                  const title = token.tokenType?.metadata?.title
-                    ? `Batch ${token.identifier} ${token.tokenType.metadata.title}`
-                    : `Batch ${token.identifier}${token.tokenType ? ` Type ${token.tokenType.identifier}` : ''}`;
-                  return (
-                    <li key={token.id}>
-                      {amount && (
-                        <>
-                          <span>{amount}</span> x{' '}
-                        </>
-                      )}
-                      <h4>
-                        <ILink href={commercialUnitHref} aria-label={`Batch ${identifier.toString()}`}>
-                          {title}
-                        </ILink>
-                      </h4>
-                    </li>
-                  );
-                })}
-            </ul>
-          </>
-        )}
-        {date && <p className={styles.date}>{date}</p>}
+              }`}
+            </p>
+          )}
+          {tokenType === null && balance === 0 && (
+            <p>
+              <b>State:</b> Unpacked
+            </p>
+          )}
+          {industrialUnitTokenInfo && (
+            <>
+              <h3>Content</h3>
+              <ul>
+                {commercialUnits &&
+                  Object.keys(commercialUnits).map((key) => {
+                    const { amount, token } = commercialUnits[key];
+                    const commercialUnitHref = join(pages.TOKENS.url, token.id);
+                    const title = token.tokenType?.metadata?.title
+                      ? `Batch ${token.identifier} ${token.tokenType.metadata.title}`
+                      : `Batch ${token.identifier}${token.tokenType ? ` Type ${token.tokenType.identifier}` : ''}`;
+                    return (
+                      <li key={token.id}>
+                        {amount && (
+                          <>
+                            <span>{amount}</span> x{' '}
+                          </>
+                        )}
+                        <h4>
+                          <ILink href={commercialUnitHref} aria-label={`Batch ${identifier.toString()}`}>
+                            {title}
+                          </ILink>
+                        </h4>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </>
+          )}
+        </div>
+        {date && <p>{date}</p>}
       </div>
     </div>
   );
