@@ -6,7 +6,7 @@ import { providers } from 'ethers';
 import { setProvider } from 'next-app/src/app/state/providerSlice';
 import { toast } from 'react-toastify';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { pages } from 'next-app/src/shared/utils/constants';
+import { brandName, pages } from 'next-app/src/shared/utils/constants';
 import { setAccount } from 'next-app/src/shared/state/accountSlice';
 import accountsJSON from 'next-app/src/generated/contracts/accounts.json';
 import { setConnection } from 'next-app/src/shared/state/connectionSlice';
@@ -124,7 +124,7 @@ const useConnection = (): {
             dispatch(setConnection({ isConnected: false, isConnecting: false }));
           });
       } else {
-        throw new Error('You need a wallet to use Olive Oil Trust.');
+        throw new Error(`You need a wallet to use ${brandName}.`);
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -142,7 +142,7 @@ const useConnection = (): {
     web3Modal.clearCachedProvider();
     dispatch(setConnection({ isConnected: false, isConnecting: false }));
     dispatch(setProvider({ error: false, data: null }));
-    renderToast(toastId, 'You have disconnected from Olive Oil Trust');
+    renderToast(toastId, `You have disconnected from ${brandName}`);
   }, [dispatch]);
 
   const handleChange = useCallback(async () => {

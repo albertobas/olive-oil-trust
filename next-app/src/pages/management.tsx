@@ -7,7 +7,8 @@ import {
   isDistributor,
   isIndependentCreator,
   isRetailer,
-  pages
+  pages,
+  brandName
 } from 'next-app/src/shared/utils/constants';
 import Link from 'next/link';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
@@ -106,7 +107,7 @@ const Management: NextPage = () => {
     return <FallbackMessage message="Account information could not be retrieved" error />;
   }
 
-  return <FallbackMessage message="You need to connect to Olive Oil Trust to see this page" />;
+  return <FallbackMessage message={`You need to connect to ${brandName} to see this page`} />;
 };
 
 export default Management;

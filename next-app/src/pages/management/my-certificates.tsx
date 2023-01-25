@@ -25,7 +25,7 @@ const MyCertificatesPage: NextPage = () => {
           return (
             <>
               <Breadcrumbs />
-              <Intro title={'My Certificates'} description={'This is the description of my escrows'} />
+              <Intro title={'My Certificates'} description={`In this page you can manage your certificates.`} />
               <MyCertificatesByMember address={address} />
             </>
           );

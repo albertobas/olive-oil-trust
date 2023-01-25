@@ -70,6 +70,7 @@ const CertificatesControl = ({
         sort={sort}
         options={sortOptions}
         actionBtn={actionBtn}
+        searchKey={'certificates'}
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

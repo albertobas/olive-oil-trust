@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import styles from 'src/app/styles/modules/sections/Section.module.css';
-import { pages } from 'next-app/src/shared/utils/constants';
+import { brandName, pages } from 'next-app/src/shared/utils/constants';
 import Link from 'next/link';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
@@ -16,7 +16,7 @@ const Explore: NextPage = () => {
     return (
       <div className={styles.layout}>
         <h1>{pages.EXPLORE.title}</h1>
-        <p>Explore all the certificates, types of tokens, tokens and escrows in Olive Oil Trust.</p>
+        <p>Explore all the certificates, types of tokens, tokens and escrows in {brandName}.</p>
         <ul>
           <li>
             <Link href={pages.CERTIFICATES.url} title={pages.CERTIFICATES.title}>
@@ -43,7 +43,7 @@ const Explore: NextPage = () => {
     );
   }
 
-  return <FallbackMessage message="You need to connect to Olive Oil Trust to see this page" />;
+  return <FallbackMessage message={`You need to connect to ${brandName} to see this page`} />;
 };
 
 export default Explore;

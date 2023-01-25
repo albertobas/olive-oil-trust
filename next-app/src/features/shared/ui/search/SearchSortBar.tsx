@@ -20,6 +20,7 @@ type Props = {
   reverse: boolean;
   sort: IItem | null;
   options: IItem[];
+  searchKey: string;
   setQuery: Dispatch<SetStateAction<string | null>>;
   setReverse: Dispatch<SetStateAction<boolean>>;
   setSort: Dispatch<SetStateAction<IItem | null>>;
@@ -32,6 +33,7 @@ function SearchSortBar({
   reverse,
   sort,
   options,
+  searchKey,
   setQuery,
   setReverse,
   setSort,
@@ -69,7 +71,7 @@ function SearchSortBar({
           autoComplete="off"
           value={query ? query : ''}
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder={'Search token types...'}
+          placeholder={`Search ${searchKey.toLowerCase()}...`}
         />
       </div>
       <div className={styles.sort}>

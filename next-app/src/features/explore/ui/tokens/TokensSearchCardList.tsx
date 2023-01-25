@@ -59,6 +59,7 @@ function TokensSearchCardList({ tokens }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
+        searchKey={'tokens'}
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

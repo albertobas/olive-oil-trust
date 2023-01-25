@@ -20,7 +20,7 @@ const MyParticipationsPage: NextPage = () => {
       return (
         <>
           <Breadcrumbs />
-          <Intro title={'My Participations'} description={'This is the description of my participations'} />
+          <Intro title={'My Participations'} description={`In this page you can manage your participations.`} />
           <MyParticipations address={contract ? contract.address : account} />
         </>
       );

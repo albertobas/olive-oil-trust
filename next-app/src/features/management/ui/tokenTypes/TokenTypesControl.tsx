@@ -56,6 +56,7 @@ const TokenTypesControl = ({
         sort={sort}
         options={sortOptions}
         actionBtn={actionBtn}
+        searchKey={'token types'}
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

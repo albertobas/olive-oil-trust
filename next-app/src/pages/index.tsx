@@ -2,14 +2,14 @@ import type { NextPage } from 'next';
 import styles from 'src/app/styles/modules/home/Home.module.css';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { pages } from 'next-app/src/shared/utils/constants';
+import { brandName, pages } from 'next-app/src/shared/utils/constants';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 
 const Home: NextPage = () => {
   const { isConnected, isConnecting } = useAppSelector((state) => state.connection);
-  const title = 'Buy, sell and trace products in the Olive Oil Trust value chain';
+  const title = `Buy, sell and trace products in the ${brandName} value chain`;
   const paragraph =
-    'Olive Oil Trust is an olive oil traceability solution built on Ethereum that allows its members to trace and ' +
+    ` ${brandName} is an olive oil traceability solution built on Ethereum that allows its members to trace and ` +
     'trade an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.';
 
   return (

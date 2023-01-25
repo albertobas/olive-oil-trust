@@ -45,6 +45,7 @@ function CertificatesSearchCardList({ certificates }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
+        searchKey={'certificates'}
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

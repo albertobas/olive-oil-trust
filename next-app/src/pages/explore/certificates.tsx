@@ -4,6 +4,7 @@ import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs
 import Intro from 'next-app/src/features/shared/ui/intro/Intro';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 import AllCertificates from 'next-app/src/features/explore/ui/certificates/AllCertificates';
+import { brandName } from 'next-app/src/shared/utils/constants';
 
 const CertificatesPage: NextPage = () => {
   const { isConnected, isConnecting } = useAppSelector((state) => state.connection);
@@ -16,13 +17,16 @@ const CertificatesPage: NextPage = () => {
     return (
       <>
         <Breadcrumbs />
-        <Intro title={'Certificates'} description={'This is the description of my certificates'} />
+        <Intro
+          title={'Certificates'}
+          description={`In this page you can explore all the certificates that exist in ${brandName}.`}
+        />
         <AllCertificates />
       </>
     );
   }
 
-  return <FallbackMessage message="You need to connect to Olive Oil Trust to see this page" />;
+  return <FallbackMessage message={`You need to connect to ${brandName} to see this page`} />;
 };
 
 export default CertificatesPage;

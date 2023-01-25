@@ -1,5 +1,7 @@
 import { Module } from 'next-app/src/shared/utils/interfaces';
 
+export const brandName = 'Olive Oil Trust';
+
 export const roles = {
   OliveGrower: 'Olive Grower',
   BottleManufacturer: 'Bottle Manufacturer',

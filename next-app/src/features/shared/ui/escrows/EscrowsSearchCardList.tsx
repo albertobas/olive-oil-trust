@@ -57,6 +57,7 @@ function EscrowsSearchCardList({ escrows }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
+        searchKey={'escrows'}
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

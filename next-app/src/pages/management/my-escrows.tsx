@@ -25,7 +25,7 @@ const MyEscrowsPage: NextPage = () => {
           return (
             <>
               <Breadcrumbs />
-              <Intro title={'My Escrows'} description={'This is the description of my escrows'} />
+              <Intro title={'My Escrows'} description={`In this page you can manage your escrows.`} />
               <MyEscrowsByMember address={address} />
             </>
           );
