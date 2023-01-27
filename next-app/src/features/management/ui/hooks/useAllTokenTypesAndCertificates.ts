@@ -27,7 +27,7 @@ export function useAllTokenTypesAndCertificates(pollInterval?: number): {
           // if error retrieving data
           setTokenTypesState({ error: true, data: null });
           setCertificatesState({ error: true, data: null });
-        } else if (error === false) {
+        } else {
           // if error retrieving data is false
           if (data) {
             // if data have been retrieved
@@ -39,10 +39,6 @@ export function useAllTokenTypesAndCertificates(pollInterval?: number): {
             setTokenTypesState({ error: false, data: null });
             setCertificatesState({ error: false, data: null });
           }
-        } else {
-          // if data are still being retrieved
-          setTokenTypesState({ error: null, data: null });
-          setCertificatesState({ error: null, data: null });
         }
       } else {
         // there is no endpoint, data cannot be retrieved

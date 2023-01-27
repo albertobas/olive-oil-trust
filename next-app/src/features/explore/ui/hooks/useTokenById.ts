@@ -21,15 +21,12 @@ export function useTokenById(id: string, pollInterval?: number): ITokensState {
         if (error) {
           // if error retrieving data
           setTokensState({ error: true, data: null });
-        } else if (error === false) {
+        } else {
           // if error retrieving data is false
           setTokensState({
             error: false,
             data: { tokens: data ? { [data.id]: data } : null, lastUpdated: getTime() }
           });
-        } else {
-          // if data are still being retrieved
-          setTokensState({ error: null, data: null });
         }
       } else {
         // there is no endpoint, data cannot be retrieved

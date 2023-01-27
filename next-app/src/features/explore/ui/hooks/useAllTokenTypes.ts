@@ -21,12 +21,9 @@ export function useAllTokenTypes(pollInterval?: number): ITokenTypesState {
         if (error) {
           // if error retrieving data
           setTokenTypesState({ error: true, data: null });
-        } else if (error === false) {
+        } else {
           // if error retrieving data is false
           setTokenTypesState({ error: false, data: { tokenTypes: data, lastUpdated: getTime() } });
-        } else {
-          // if data are still being retrieved
-          setTokenTypesState({ error: null, data: null });
         }
       } else {
         // there is no endpoint, data cannot be retrieved

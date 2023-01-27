@@ -27,7 +27,7 @@ export function useTokensAndTokenTypesByMember(
           // if error retrieving data
           setTokensState({ error: true, data: null });
           setTokenTypesState({ error: true, data: null });
-        } else if (error === false) {
+        } else {
           // if error retrieving data is false
           if (data) {
             const { tokens, tokenTypes } = data;
@@ -39,10 +39,6 @@ export function useTokensAndTokenTypesByMember(
             setTokensState({ error: false, data: null });
             setTokenTypesState({ error: false, data: null });
           }
-        } else {
-          // if data are still being retrieved
-          setTokensState({ error: null, data: null });
-          setTokenTypesState({ error: null, data: null });
         }
       } else {
         // there is no endpoint, data cannot be retrieved

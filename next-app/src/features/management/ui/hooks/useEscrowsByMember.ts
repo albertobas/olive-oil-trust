@@ -21,12 +21,9 @@ export function useEscrowsByMember(address: string, pollInterval?: number): IEsc
         if (error) {
           // if error retrieving data
           setEscrowsState({ error: true, data: null });
-        } else if (error === false) {
+        } else {
           // if error retrieving data is false
           setEscrowsState({ error: false, data: { escrows: data, lastUpdated: getTime() } });
-        } else {
-          // if data are still being retrieved
-          setEscrowsState({ error: null, data: null });
         }
       } else {
         // there is no endpoint, data cannot be retrieved
