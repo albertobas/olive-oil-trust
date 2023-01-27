@@ -1,4 +1,4 @@
-import { gql, GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 import {
   ITokensAndTokenTypesByMemberOOT,
   ITokensByAccountOOT
@@ -43,9 +43,7 @@ class MyTokensDataSource implements MyTokensRepository {
                       }
                       ${TOKEN_FIELDS_FRAGMENT}
                       ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     }
     return client.request(getQuery(member));
   }
@@ -65,9 +63,7 @@ class MyTokensDataSource implements MyTokensRepository {
                       }
                       ${TOKEN_FIELDS_FRAGMENT}
                       ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     }
     return client.request(getQuery(account));
   }

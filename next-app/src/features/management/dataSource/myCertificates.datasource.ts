@@ -1,5 +1,5 @@
 import MyCertificatesRepository from 'next-app/src/features/management/core/repositories/MyCertificates.repository';
-import { gql, GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 import {
   CERTIFICATES_FIELDS,
   TOKEN_TYPE_FIELDS,
@@ -35,9 +35,7 @@ class MyCertificatesDataSource implements MyCertificatesRepository {
                     }
                 
                     ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     };
     return client.request(getQuery());
   }

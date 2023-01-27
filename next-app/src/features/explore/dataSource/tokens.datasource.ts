@@ -1,4 +1,4 @@
-import { gql, GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 import { IAllTokensOOT, ITokenByIdOOT } from 'next-app/src/features/explore/core/entities/TokensOOT';
 import {
   METADATA_FIELDS_FRAGMENT,
@@ -18,9 +18,7 @@ class TokensDataSource implements TokensRepository {
                       }
                       ${TOKEN_FIELDS_FRAGMENT}
                       ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     }
     return client.request(getQuery());
   }
@@ -35,9 +33,7 @@ class TokensDataSource implements TokensRepository {
                       }
                       ${TOKEN_FIELDS_FRAGMENT}
                       ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     }
     return client.request(getQuery(id));
   }

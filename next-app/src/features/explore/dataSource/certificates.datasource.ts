@@ -1,5 +1,5 @@
 import CertificatesRepository from 'next-app/src/features/explore/core/repositories/Certificates.repository';
-import { gql, GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 import { CERTIFICATES_FIELDS, METADATA_FIELDS_FRAGMENT } from 'next-app/src/features/shared/utils/constants';
 import { IAllCertificatesOOT, ICertificateByIdOOT } from 'next-app/src/features/explore/core/entities/CertificatesOOT';
 
@@ -13,9 +13,7 @@ class CertificatesDataSource implements CertificatesRepository {
                       }
                     }
                     ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     };
     return client.request(getQuery());
   }
@@ -29,9 +27,7 @@ class CertificatesDataSource implements CertificatesRepository {
                       }
                     }
                     ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     };
     return client.request(getQuery(id));
   }

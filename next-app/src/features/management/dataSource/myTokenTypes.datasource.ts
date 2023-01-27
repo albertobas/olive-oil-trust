@@ -1,5 +1,5 @@
 import MyTokenTypesRepository from 'next-app/src/features/management/core/repositories/MyTokenTypes.repository';
-import { gql, GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 import { IAllTokenTypesAndCertificatesOOT } from 'next-app/src/features/management/core/entities/MyTokenTypesOOT';
 import {
   CERTIFICATES_FIELDS,
@@ -22,9 +22,7 @@ class MyTokenTypesDataSource implements MyTokenTypesRepository {
                                               }
                                             }
                                             ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
+      return QUERY;
     };
     return client.request(getQuery());
   }
