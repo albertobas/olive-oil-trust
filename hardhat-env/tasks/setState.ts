@@ -46,16 +46,22 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   const idArbequina = utils.formatBytes32String(dictOlives.arbequina.id);
   const idPicualToken1 = utils.formatBytes32String(dictOlives.picual.tokenId1);
   const idArbequinaToken1 = utils.formatBytes32String(dictOlives.arbequina.tokenId1);
-  const idGlass = utils.formatBytes32String(dictBottle.glass.id);
-  const idPlastic = utils.formatBytes32String(dictBottle.plastic.id);
+  const idPicualToken2 = utils.formatBytes32String(dictOlives.picual.tokenId2);
+  const idArbequinaToken2 = utils.formatBytes32String(dictOlives.arbequina.tokenId2);
+  const idGlass1 = utils.formatBytes32String(dictBottle.glass.id1);
+  const idPlastic1 = utils.formatBytes32String(dictBottle.plastic.id1);
   const idGlass2 = utils.formatBytes32String(dictBottle.glass.id2);
   const idPlastic2 = utils.formatBytes32String(dictBottle.plastic.id2);
   const idGlassToken1 = utils.formatBytes32String(dictBottle.glass.tokenId1);
   const idPlasticToken1 = utils.formatBytes32String(dictBottle.plastic.tokenId1);
+  const idGlassToken2 = utils.formatBytes32String(dictBottle.glass.tokenId2);
+  const idPlasticToken2 = utils.formatBytes32String(dictBottle.plastic.tokenId2);
   const idOliveOilExtraVirginIntense = utils.formatBytes32String(dictOliveOil.extraVirginIntense.id);
   const idOliveOilExtraVirginSmooth = utils.formatBytes32String(dictOliveOil.extraVirginSmooth.id);
   const idOliveOilExtraVirginIntenseToken1 = utils.formatBytes32String(dictOliveOil.extraVirginIntense.tokenId1);
   const idOliveOilExtraVirginSmoothToken1 = utils.formatBytes32String(dictOliveOil.extraVirginSmooth.tokenId1);
+  const idOliveOilExtraVirginIntenseToken2 = utils.formatBytes32String(dictOliveOil.extraVirginIntense.tokenId2);
+  const idOliveOilExtraVirginSmoothToken2 = utils.formatBytes32String(dictOliveOil.extraVirginSmooth.tokenId2);
   const idBottlingPlantPallet1 = utils.formatBytes32String(dictPallet.bottlingPlant.id1);
   const idBottlingPlantPallet2 = utils.formatBytes32String(dictPallet.bottlingPlant.id2);
   const idDistributorPallet1 = utils.formatBytes32String(dictPallet.distributor.id1);
@@ -93,6 +99,12 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   );
   const idOliveOilExtraVirginSmoothPlasticBottleToken1 = utils.formatBytes32String(
     dictOliveOilBottle.extraVirginSmoothPlastic.tokenId1
+  );
+  const idOliveOilExtraVirginIntenseGlassBottleToken2 = utils.formatBytes32String(
+    dictOliveOilBottle.extraVirginIntenseGlass.tokenId2
+  );
+  const idOliveOilExtraVirginSmoothPlasticBottleToken2 = utils.formatBytes32String(
+    dictOliveOilBottle.extraVirginSmoothPlastic.tokenId2
   );
   const extraVirginIntenseGlassBottleOliveOilUnits = dictOliveOilBottle.extraVirginIntenseGlass.oliveOilUnits;
   const extraVirginSmoothPlasticBottleOliveOilUnits = dictOliveOilBottle.extraVirginSmoothPlastic.oliveOilUnits;
@@ -360,14 +372,18 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
 
   await oliveGrowerOne
     .connect(oliveGrowerOneAccount)
-    .mintBatch([idPicual, idArbequina], [idPicualToken1, idArbequinaToken1], [olivesUnitsToMint, olivesUnitsToMint]);
+    .mintBatch(
+      [idPicual, idPicual, idArbequina, idArbequina],
+      [idPicualToken1, idPicualToken2, idArbequinaToken1, idArbequinaToken2],
+      [olivesUnitsToMint, olivesUnitsToMint, olivesUnitsToMint, olivesUnitsToMint]
+    );
 
   await oliveGrowerOne
     .connect(oliveGrowerOneAccount)
     .depositBatch(
-      [idPicual, idArbequina],
-      [idPicualToken1, idArbequinaToken1],
-      [olivesUnitsToEscrow, olivesUnitsToEscrow],
+      [idPicual, idPicual, idArbequina, idArbequina],
+      [idPicualToken1, idPicualToken2, idArbequinaToken1, idArbequinaToken2],
+      [olivesUnitsToEscrow, olivesUnitsToEscrow, olivesUnitsToEscrow, olivesUnitsToEscrow],
       oliveGrowerOneAccount.address
     );
 
@@ -387,9 +403,19 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
     );
 
   await oliveOilMillCompany.connect(oliveOilMillCompanyAccount).mintBatch(
-    [idOliveOilExtraVirginIntense, idOliveOilExtraVirginSmooth],
-    [idOliveOilExtraVirginIntenseToken1, idOliveOilExtraVirginSmoothToken1],
-    [oliveOilUnitsToMint, oliveOilUnitsToMint],
+    [
+      idOliveOilExtraVirginIntense,
+      idOliveOilExtraVirginIntense,
+      idOliveOilExtraVirginSmooth,
+      idOliveOilExtraVirginSmooth
+    ],
+    [
+      idOliveOilExtraVirginIntenseToken1,
+      idOliveOilExtraVirginIntenseToken2,
+      idOliveOilExtraVirginSmoothToken1,
+      idOliveOilExtraVirginSmoothToken2
+    ],
+    [oliveOilUnitsToMint, oliveOilUnitsToMint, oliveOilUnitsToMint, oliveOilUnitsToMint],
     [
       {
         inputTokenAddresses: [[oliveGrowerOneOlives.address]],
@@ -399,8 +425,20 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
       },
       {
         inputTokenAddresses: [[oliveGrowerOneOlives.address]],
+        inputTokenTypeIds: [[idPicual]],
+        inputTokenIds: [[idPicualToken2]],
+        inputTokenAmounts: [[oliveOilUnitsToMint * extraVirginIntenseOlivesUnits]]
+      },
+      {
+        inputTokenAddresses: [[oliveGrowerOneOlives.address]],
         inputTokenTypeIds: [[idArbequina]],
         inputTokenIds: [[idArbequinaToken1]],
+        inputTokenAmounts: [[oliveOilUnitsToMint * extraVirginSmoothOlivesUnits]]
+      },
+      {
+        inputTokenAddresses: [[oliveGrowerOneOlives.address]],
+        inputTokenTypeIds: [[idArbequina]],
+        inputTokenIds: [[idArbequinaToken2]],
         inputTokenAmounts: [[oliveOilUnitsToMint * extraVirginSmoothOlivesUnits]]
       }
     ]
@@ -409,37 +447,55 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   await oliveOilMillCompany
     .connect(oliveOilMillCompanyAccount)
     .depositBatch(
-      [idOliveOilExtraVirginIntense, idOliveOilExtraVirginSmooth],
-      [idOliveOilExtraVirginIntenseToken1, idOliveOilExtraVirginSmoothToken1],
-      [oliveOilUnitsToEscrow, oliveOilUnitsToEscrow],
+      [
+        idOliveOilExtraVirginIntense,
+        idOliveOilExtraVirginIntense,
+        idOliveOilExtraVirginSmooth,
+        idOliveOilExtraVirginSmooth
+      ],
+      [
+        idOliveOilExtraVirginIntenseToken1,
+        idOliveOilExtraVirginIntenseToken2,
+        idOliveOilExtraVirginSmoothToken1,
+        idOliveOilExtraVirginSmoothToken2
+      ],
+      [oliveOilUnitsToEscrow, oliveOilUnitsToEscrow, oliveOilUnitsToEscrow, oliveOilUnitsToEscrow],
       oliveOilPrice,
       oliveOilMillCompanyAccount.address
     );
 
   await bottleCompany
     .connect(bottleCompanyAccount)
-    .mintBatch([idGlass, idPlastic], [idGlassToken1, idPlasticToken1], [bottlesUnitsToMint, bottlesUnitsToMint]);
+    .mintBatch(
+      [idGlass1, idGlass1, idPlastic1, idPlastic1],
+      [idGlassToken1, idGlassToken2, idPlasticToken1, idPlasticToken2],
+      [bottlesUnitsToMint, bottlesUnitsToMint, bottlesUnitsToMint, bottlesUnitsToMint]
+    );
 
   await bottleCompany
     .connect(bottleCompanyAccount)
     .depositBatch(
-      [idGlass, idPlastic],
-      [idGlassToken1, idPlasticToken1],
-      [bottlesUnitsToEscrow, bottlesUnitsToEscrow],
+      [idGlass1, idGlass1, idPlastic1, idPlastic1],
+      [idGlassToken1, idGlassToken2, idPlasticToken1, idPlasticToken2],
+      [bottlesUnitsToEscrow, bottlesUnitsToEscrow, bottlesUnitsToEscrow, bottlesUnitsToEscrow],
       bottlePrice,
       bottleCompanyAccount.address
     );
 
   await bottleCompany2
     .connect(bottleCompany2Account)
-    .mintBatch([idGlass2, idPlastic2], [idGlassToken1, idPlasticToken1], [bottlesUnitsToMint, bottlesUnitsToMint]);
+    .mintBatch(
+      [idGlass2, idGlass2, idPlastic2, idPlastic2],
+      [idGlassToken1, idGlassToken2, idPlasticToken1, idPlasticToken2],
+      [bottlesUnitsToMint, bottlesUnitsToMint, bottlesUnitsToMint, bottlesUnitsToMint]
+    );
 
   await bottleCompany2
     .connect(bottleCompany2Account)
     .depositBatch(
-      [idGlass2, idPlastic2],
-      [idGlassToken1, idPlasticToken1],
-      [bottlesUnitsToEscrow, bottlesUnitsToEscrow],
+      [idGlass2, idGlass2, idPlastic2, idPlastic2],
+      [idGlassToken1, idGlassToken2, idPlasticToken1, idPlasticToken2],
+      [bottlesUnitsToEscrow, bottlesUnitsToEscrow, bottlesUnitsToEscrow, bottlesUnitsToEscrow],
       bottlePrice,
       bottleCompany2Account.address
     );
@@ -467,7 +523,7 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
     .certifyBatch(
       [idCertificateExtraVirginIntense, idCertificateBottlesHQGlass750, idCertificateBottlesHQGlass750],
       [oliveOilMillCompanyOliveOil.address, bottleCompanyBottle.address, bottleCompany2Bottle.address],
-      [idOliveOilExtraVirginIntense, idGlass, idGlass2]
+      [idOliveOilExtraVirginIntense, idGlass1, idGlass2]
     );
 
   await bottlingCompany.connect(bottlingCompanyAccount).setTokenTypesInstructions(
@@ -478,7 +534,7 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
     ],
     [
       [idCertificateExtraVirginIntense, idCertificateBottlesHQGlass750],
-      [idOliveOilExtraVirginSmooth, idPlastic]
+      [idOliveOilExtraVirginSmooth, idPlastic1]
     ],
     [
       [extraVirginIntenseGlassBottleOliveOilUnits, extraVirginIntenseGlassBottleBottlesUnits],
@@ -487,16 +543,26 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   );
 
   await bottlingCompany.connect(bottlingCompanyAccount).mintBatch(
-    [idOliveOilExtraVirginIntenseGlassBottle, idOliveOilExtraVirginSmoothPlasticBottle],
-    [idOliveOilExtraVirginIntenseGlassBottleToken1, idOliveOilExtraVirginSmoothPlasticBottleToken1],
-    [oliveOilBottleUnitsToMint, oliveOilBottleUnitsToMint],
+    [
+      idOliveOilExtraVirginIntenseGlassBottle,
+      idOliveOilExtraVirginIntenseGlassBottle,
+      idOliveOilExtraVirginSmoothPlasticBottle,
+      idOliveOilExtraVirginSmoothPlasticBottle
+    ],
+    [
+      idOliveOilExtraVirginIntenseGlassBottleToken1,
+      idOliveOilExtraVirginIntenseGlassBottleToken2,
+      idOliveOilExtraVirginSmoothPlasticBottleToken1,
+      idOliveOilExtraVirginSmoothPlasticBottleToken2
+    ],
+    [oliveOilBottleUnitsToMint, oliveOilBottleUnitsToMint, oliveOilBottleUnitsToMint, oliveOilBottleUnitsToMint],
     [
       {
         inputTokenAddresses: [
           [oliveOilMillCompanyOliveOil.address],
           [bottleCompanyBottle.address, bottleCompany2Bottle.address]
         ],
-        inputTokenTypeIds: [[idOliveOilExtraVirginIntense], [idGlass, idGlass2]],
+        inputTokenTypeIds: [[idOliveOilExtraVirginIntense], [idGlass1, idGlass2]],
         inputTokenIds: [[idOliveOilExtraVirginIntenseToken1], [idGlassToken1, idGlassToken1]],
         inputTokenAmounts: [
           [oliveOilBottleUnitsToMint * extraVirginIntenseGlassBottleOliveOilUnits],
@@ -507,9 +573,33 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
         ]
       },
       {
+        inputTokenAddresses: [
+          [oliveOilMillCompanyOliveOil.address],
+          [bottleCompanyBottle.address, bottleCompany2Bottle.address]
+        ],
+        inputTokenTypeIds: [[idOliveOilExtraVirginIntense], [idGlass1, idGlass2]],
+        inputTokenIds: [[idOliveOilExtraVirginIntenseToken2], [idGlassToken2, idGlassToken2]],
+        inputTokenAmounts: [
+          [oliveOilBottleUnitsToMint * extraVirginIntenseGlassBottleOliveOilUnits],
+          [
+            (oliveOilBottleUnitsToMint * extraVirginIntenseGlassBottleBottlesUnits) / 2,
+            (oliveOilBottleUnitsToMint * extraVirginIntenseGlassBottleBottlesUnits) / 2
+          ]
+        ]
+      },
+      {
         inputTokenAddresses: [[oliveOilMillCompanyOliveOil.address], [bottleCompanyBottle.address]],
-        inputTokenTypeIds: [[idOliveOilExtraVirginSmooth], [idPlastic]],
+        inputTokenTypeIds: [[idOliveOilExtraVirginSmooth], [idPlastic1]],
         inputTokenIds: [[idOliveOilExtraVirginSmoothToken1], [idPlasticToken1]],
+        inputTokenAmounts: [
+          [oliveOilBottleUnitsToMint * extraVirginSmoothPlasticBottleOliveOilUnits],
+          [oliveOilBottleUnitsToMint * extraVirginSmoothPlasticBottleBottlesUnits]
+        ]
+      },
+      {
+        inputTokenAddresses: [[oliveOilMillCompanyOliveOil.address], [bottleCompanyBottle.address]],
+        inputTokenTypeIds: [[idOliveOilExtraVirginSmooth], [idPlastic1]],
+        inputTokenIds: [[idOliveOilExtraVirginSmoothToken2], [idPlasticToken2]],
         inputTokenAmounts: [
           [oliveOilBottleUnitsToMint * extraVirginSmoothPlasticBottleOliveOilUnits],
           [oliveOilBottleUnitsToMint * extraVirginSmoothPlasticBottleBottlesUnits]
@@ -521,16 +611,36 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   await bottlingCompany.connect(bottlingCompanyAccount).packBatch(
     [idBottlingPlantPallet1, idBottlingPlantPallet2],
     [
-      [idOliveOilExtraVirginIntenseGlassBottle, idOliveOilExtraVirginSmoothPlasticBottle],
-      [idOliveOilExtraVirginIntenseGlassBottle, idOliveOilExtraVirginSmoothPlasticBottle]
+      [
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle
+      ],
+      [
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle
+      ]
     ],
     [
-      [idOliveOilExtraVirginIntenseGlassBottleToken1, idOliveOilExtraVirginSmoothPlasticBottleToken1],
-      [idOliveOilExtraVirginIntenseGlassBottleToken1, idOliveOilExtraVirginSmoothPlasticBottleToken1]
+      [
+        idOliveOilExtraVirginIntenseGlassBottleToken1,
+        idOliveOilExtraVirginIntenseGlassBottleToken2,
+        idOliveOilExtraVirginSmoothPlasticBottleToken1,
+        idOliveOilExtraVirginSmoothPlasticBottleToken2
+      ],
+      [
+        idOliveOilExtraVirginIntenseGlassBottleToken1,
+        idOliveOilExtraVirginIntenseGlassBottleToken2,
+        idOliveOilExtraVirginSmoothPlasticBottleToken1,
+        idOliveOilExtraVirginSmoothPlasticBottleToken2
+      ]
     ],
     [
-      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack],
-      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack]
+      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack],
+      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack]
     ]
   );
 
@@ -551,20 +661,50 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   await distributorCompany.connect(distributorCompanyAccount).packBatch(
     [idDistributorPallet1, idDistributorPallet2],
     [
-      [bottlingCompanyOliveOilBottle.address, bottlingCompanyOliveOilBottle.address],
-      [bottlingCompanyOliveOilBottle.address, bottlingCompanyOliveOilBottle.address]
+      [
+        bottlingCompanyOliveOilBottle.address,
+        bottlingCompanyOliveOilBottle.address,
+        bottlingCompanyOliveOilBottle.address,
+        bottlingCompanyOliveOilBottle.address
+      ],
+      [
+        bottlingCompanyOliveOilBottle.address,
+        bottlingCompanyOliveOilBottle.address,
+        bottlingCompanyOliveOilBottle.address,
+        bottlingCompanyOliveOilBottle.address
+      ]
     ],
     [
-      [idOliveOilExtraVirginIntenseGlassBottle, idOliveOilExtraVirginSmoothPlasticBottle],
-      [idOliveOilExtraVirginIntenseGlassBottle, idOliveOilExtraVirginSmoothPlasticBottle]
+      [
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle
+      ],
+      [
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle
+      ]
     ],
     [
-      [idOliveOilExtraVirginIntenseGlassBottleToken1, idOliveOilExtraVirginSmoothPlasticBottleToken1],
-      [idOliveOilExtraVirginIntenseGlassBottleToken1, idOliveOilExtraVirginSmoothPlasticBottleToken1]
+      [
+        idOliveOilExtraVirginIntenseGlassBottleToken1,
+        idOliveOilExtraVirginIntenseGlassBottleToken2,
+        idOliveOilExtraVirginSmoothPlasticBottleToken1,
+        idOliveOilExtraVirginSmoothPlasticBottleToken2
+      ],
+      [
+        idOliveOilExtraVirginIntenseGlassBottleToken1,
+        idOliveOilExtraVirginIntenseGlassBottleToken2,
+        idOliveOilExtraVirginSmoothPlasticBottleToken1,
+        idOliveOilExtraVirginSmoothPlasticBottleToken2
+      ]
     ],
     [
-      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack],
-      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack]
+      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack],
+      [oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack, oliveOilBottleUnitsToPack]
     ]
   );
 
@@ -586,9 +726,19 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
     .connect(retailerCompanyAccount)
     .depositBatch(
       bottlingCompanyOliveOilBottle.address,
-      [idOliveOilExtraVirginIntenseGlassBottle, idOliveOilExtraVirginSmoothPlasticBottle],
-      [idOliveOilExtraVirginIntenseGlassBottleToken1, idOliveOilExtraVirginSmoothPlasticBottleToken1],
-      [1, 1],
+      [
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginIntenseGlassBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle,
+        idOliveOilExtraVirginSmoothPlasticBottle
+      ],
+      [
+        idOliveOilExtraVirginIntenseGlassBottleToken1,
+        idOliveOilExtraVirginIntenseGlassBottleToken2,
+        idOliveOilExtraVirginSmoothPlasticBottleToken1,
+        idOliveOilExtraVirginSmoothPlasticBottleToken2
+      ],
+      [1, 1, 1, 1],
       oliveOilBottlePrice,
       retailerCompanyAccount.address
     );
