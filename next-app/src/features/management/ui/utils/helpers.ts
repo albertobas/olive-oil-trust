@@ -126,7 +126,13 @@ export const sortTokenArray = (data: IToken[], sortValue: string | undefined, re
       );
     } else if (sortValue === 'tokenType') {
       return data.sort((a, b) =>
-        a.tokenType && b.tokenType ? (a.tokenType.id > b.identifier ? -1 : a.identifier < b.identifier ? 1 : 0) : 0
+        a.tokenType && b.tokenType
+          ? a.tokenType.id > b.tokenType.id
+            ? -1
+            : a.tokenType.id < b.tokenType.id
+            ? 1
+            : 0
+          : 0
       );
     } else return data;
   } else {
@@ -142,7 +148,13 @@ export const sortTokenArray = (data: IToken[], sortValue: string | undefined, re
       );
     } else if (sortValue === 'tokenType') {
       return data.sort((a, b) =>
-        a.tokenType && b.tokenType ? (a.identifier < b.identifier ? -1 : a.identifier > b.identifier ? 1 : 0) : 0
+        a.tokenType && b.tokenType
+          ? a.tokenType.id < b.tokenType.id
+            ? -1
+            : a.tokenType.id > b.tokenType.id
+            ? 1
+            : 0
+          : 0
       );
     } else return data;
   }
