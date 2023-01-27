@@ -90,7 +90,7 @@ contract BaseSeller is Initializable, BaseMember {
 
     /**
      * @dev Increments the balance of the contract whenever funds are received.
-     *     Emits a Receive event.
+     *     Emits a Received event.
      */
     receive() external payable {
         emit Received(msg.sender, msg.value);
