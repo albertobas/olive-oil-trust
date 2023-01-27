@@ -72,7 +72,7 @@ function NavBar(): JSX.Element {
       ? [
           {
             ...managementMenuItem,
-            submenu: [myEscrowsMenuItem, myParticipationsMenuItem, myTokensMenuItem, myTokenTypesMenuItem]
+            submenu: [myEscrowsMenuItem, myParticipationsMenuItem, myTokenTypesMenuItem, myTokensMenuItem]
           },
           exploreMenuItems
         ]
