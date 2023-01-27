@@ -1,6 +1,6 @@
 import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
 import { getEscrow } from 'next-app/src/features/shared/utils/helpers';
-import { IEscrowsByMemberOOT } from 'next-app/src/features/management/core/entities/EscrowsOOT';
+import { IEscrowsByMemberOOT } from 'next-app/src/features/management/core/entities/MyEscrowsOOT';
 
 const escrowsByMemberAdapter = (dataRaw: IEscrowsByMemberOOT | undefined): IEscrows | null => {
   if (dataRaw && dataRaw.memberContract) {

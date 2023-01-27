@@ -1,8 +1,8 @@
 import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { getToken, getTokenType } from 'next-app/src/features/shared/utils/helpers';
-import { ITokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/Tokens';
-import { ITokensAndTokenTypesByMemberOOT } from 'next-app/src/features/management/core/entities/TokensOOT';
+import { ITokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
+import { ITokensAndTokenTypesByMemberOOT } from 'next-app/src/features/management/core/entities/MyTokensOOT';
 
 const tokensAndTokenTypesByMemberAdapter = (
   dataRaw: ITokensAndTokenTypesByMemberOOT | undefined

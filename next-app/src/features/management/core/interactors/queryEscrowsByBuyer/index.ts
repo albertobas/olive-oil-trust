@@ -1,6 +1,6 @@
-import EscrowsDataSource from 'next-app/src/features/shared/dataSource/escrows.datasource';
+import MyEscrowsDataSource from 'next-app/src/features/management/dataSource/myEscrows.datasource';
 import queryEscrowsByBuyer from 'next-app/src/features/management/core/interactors/queryEscrowsByBuyer/queryEscrowsByBuyer';
 
-const repository = new EscrowsDataSource();
+const repository = new MyEscrowsDataSource();
 
 export default queryEscrowsByBuyer(repository);

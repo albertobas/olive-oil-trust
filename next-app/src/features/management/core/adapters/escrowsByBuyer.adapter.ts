@@ -1,6 +1,6 @@
 import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
 import { getEscrow } from 'next-app/src/features/shared/utils/helpers';
-import { IEscrowsByBuyerOOT } from 'next-app/src/features/management/core/entities/EscrowsOOT';
+import { IEscrowsByBuyerOOT } from 'next-app/src/features/management/core/entities/MyEscrowsOOT';
 
 const escrowsByBuyerAdapter = (dataRaw: IEscrowsByBuyerOOT | undefined): IEscrows | null => {
   if (dataRaw && dataRaw.escrows && dataRaw.escrows.length > 0) {

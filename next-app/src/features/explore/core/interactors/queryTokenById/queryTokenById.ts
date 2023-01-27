@@ -1,5 +1,5 @@
 import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
-import TokensRepository from 'next-app/src/features/shared/core/repositories/Tokens.repository';
+import TokensRepository from 'next-app/src/features/explore/core/repositories/Tokens.repository';
 import tokenByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenById.adapter';
 
 const queryTokenById =

@@ -1,5 +1,5 @@
 import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import CertificatesRepository from 'next-app/src/features/shared/core/repositories/Certificates.repository';
+import CertificatesRepository from 'next-app/src/features/explore/core/repositories/Certificates.repository';
 import certificateByIdAdapter from 'next-app/src/features/explore/core/adapters/certificateById.adapter';
 
 const queryCertificateById =

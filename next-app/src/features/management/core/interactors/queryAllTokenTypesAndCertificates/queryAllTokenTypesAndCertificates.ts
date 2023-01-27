@@ -1,9 +1,9 @@
-import TokenTypesRepository from 'next-app/src/features/shared/core/repositories/TokenTypes.repository';
+import MyTokenTypesRepository from 'next-app/src/features/management/core/repositories/MyTokenTypes.repository';
 import allTokenTypesAndCertificatesAdapter from 'next-app/src/features/management/core/adapters/allTokenTypesAndCertificates.adapter';
-import { IAllTokenTypesAndCertificates } from 'next-app/src/features/management/core/entities/TokenTypes';
+import { IAllTokenTypesAndCertificates } from 'next-app/src/features/management/core/entities/MyTokenTypes';
 
 const queryAllTokenTypesAndCertificates =
-  (repository: TokenTypesRepository) =>
+  (repository: MyTokenTypesRepository) =>
   async (
     endpoint: string
   ): Promise<{

@@ -1,5 +1,5 @@
 import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import TokenTypesRepository from 'next-app/src/features/shared/core/repositories/TokenTypes.repository';
+import TokenTypesRepository from 'next-app/src/features/explore/core/repositories/TokenTypes.repository';
 import tokenTypeByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenTypeById.adapter';
 
 const queryTokenTypeById =

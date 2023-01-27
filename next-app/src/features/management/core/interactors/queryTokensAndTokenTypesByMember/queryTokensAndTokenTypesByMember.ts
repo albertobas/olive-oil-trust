@@ -1,9 +1,9 @@
-import TokensRepository from 'next-app/src/features/shared/core/repositories/Tokens.repository';
+import MyTokensRepository from 'next-app/src/features/management/core/repositories/MyTokens.repository';
 import tokensAndTokenTypesByMemberAdapter from 'next-app/src/features/management/core/adapters/tokensAndTokenTypesByMember.adapter';
-import { ITokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/Tokens';
+import { ITokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
 
 const queryTokensAndTokenTypesByMember =
-  (repository: TokensRepository) =>
+  (repository: MyTokensRepository) =>
   async (endpoint: string, member: string): Promise<{ error: boolean; data: ITokensAndTokenTypesByMember | null }> => {
     try {
       const rawData = await repository.getTokensAndTokenTypesByMember(endpoint, member);

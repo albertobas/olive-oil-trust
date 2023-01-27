@@ -1,9 +1,9 @@
 import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import EscrowsRepository from 'next-app/src/features/shared/core/repositories/Escrows.repository';
+import MyEscrowsRepository from 'next-app/src/features/management/core/repositories/MyEscrows.repository';
 import escrowsByBuyerAdapter from 'next-app/src/features/management/core/adapters/escrowsByBuyer.adapter';
 
 const queryEscrowsByBuyer =
-  (repository: EscrowsRepository) =>
+  (repository: MyEscrowsRepository) =>
   async (endpoint: string, buyer: string): Promise<{ error: boolean; data: IEscrows | null }> => {
     try {
       const data = await repository.getByBuyer(endpoint, buyer);

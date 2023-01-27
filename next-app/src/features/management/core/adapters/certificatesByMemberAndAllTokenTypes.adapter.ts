@@ -1,8 +1,8 @@
 import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
 import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { getCertificate, getTokenType } from 'next-app/src/features/shared/utils/helpers';
-import { ICertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/Certificates';
-import { ICertificatesAndTokenTypesByMemberOOT } from 'next-app/src/features/management/core/entities/CertificatesOOT';
+import { ICertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
+import { ICertificatesAndTokenTypesByMemberOOT } from 'next-app/src/features/management/core/entities/MyCertificatesOOT';
 
 const certificatesByMemberAndAllTokenTypesAdapter = (
   dataRaw: ICertificatesAndTokenTypesByMemberOOT | undefined

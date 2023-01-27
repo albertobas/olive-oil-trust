@@ -1,6 +1,6 @@
-import CertificatesDataSource from 'next-app/src/features/shared/dataSource/certificates.datasource';
+import MyCertificatesDataSource from 'next-app/src/features/management/dataSource/myCertificates.datasource';
 import queryCertificatesByMemberAndAllTokenTypes from 'next-app/src/features/management/core/interactors/queryCertificatesByMemberAndAllTokenTypes/queryCertificatesByMemberAndAllTokenTypes';
 
-const repository = new CertificatesDataSource();
+const repository = new MyCertificatesDataSource();
 
 export default queryCertificatesByMemberAndAllTokenTypes(repository);

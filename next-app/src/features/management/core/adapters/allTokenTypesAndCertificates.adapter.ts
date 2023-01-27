@@ -1,8 +1,8 @@
 import { getCertificate, getTokenType } from 'next-app/src/features/shared/utils/helpers';
 import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { IAllTokenTypesAndCertificatesOOT } from 'next-app/src/features/management/core/entities/TokenTypesOOT';
+import { IAllTokenTypesAndCertificatesOOT } from 'next-app/src/features/management/core/entities/MyTokenTypesOOT';
+import { IAllTokenTypesAndCertificates } from 'next-app/src/features/management/core/entities/MyTokenTypes';
 import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { IAllTokenTypesAndCertificates } from 'next-app/src/features/management/core/entities/TokenTypes';
 
 const allTokenTypesAndCertificatesAdapter = (
   dataRaw: IAllTokenTypesAndCertificatesOOT | undefined

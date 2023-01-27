@@ -1,9 +1,9 @@
-import CertificatesRepository from 'next-app/src/features/shared/core/repositories/Certificates.repository';
+import MyCertificatesRepository from 'next-app/src/features/management/core/repositories/MyCertificates.repository';
 import certificatesByMemberAndAllTokenTypesAdapter from 'next-app/src/features/management/core/adapters/certificatesByMemberAndAllTokenTypes.adapter';
-import { ICertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/Certificates';
+import { ICertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
 
 const queryCertificatesByMemberAndAllTokenTypes =
-  (repository: CertificatesRepository) =>
+  (repository: MyCertificatesRepository) =>
   async (
     endpoint: string,
     member: string

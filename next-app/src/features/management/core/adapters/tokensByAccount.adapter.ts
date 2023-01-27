@@ -1,6 +1,6 @@
 import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import { getToken } from 'next-app/src/features/shared/utils/helpers';
-import { ITokensByAccountOOT } from 'next-app/src/features/management/core/entities/TokensOOT';
+import { ITokensByAccountOOT } from 'next-app/src/features/management/core/entities/MyTokensOOT';
 
 const tokensByAccountAdapter = (dataRaw: ITokensByAccountOOT | undefined): ITokens | null => {
   if (dataRaw && dataRaw.account) {

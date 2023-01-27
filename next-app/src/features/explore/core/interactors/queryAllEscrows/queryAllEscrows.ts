@@ -1,5 +1,5 @@
 import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import EscrowsRepository from 'next-app/src/features/shared/core/repositories/Escrows.repository';
+import EscrowsRepository from 'next-app/src/features/explore/core/repositories/Escrows.repository';
 import allEscrowsAdapter from 'next-app/src/features/explore/core/adapters/allEscrows.adapter';
 
 const queryAllEscrows =

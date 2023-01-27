@@ -1,52 +1,17 @@
 import { gql, GraphQLClient } from 'graphql-request';
-import { IAllTokensOOT, ITokenByIdOOT } from 'next-app/src/features/explore/core/entities/TokensOOT';
 import {
   ITokensAndTokenTypesByMemberOOT,
   ITokensByAccountOOT
-} from 'next-app/src/features/management/core/entities/TokensOOT';
+} from 'next-app/src/features/management/core/entities/MyTokensOOT';
 import {
   TOKEN_TYPE_FIELDS,
   METADATA_FIELDS_FRAGMENT,
   TOKEN_FIELDS,
   TOKEN_FIELDS_FRAGMENT
 } from 'next-app/src/features/shared/utils/constants';
-import TokensRepository from 'next-app/src/features/shared/core/repositories/Tokens.repository';
+import MyTokensRepository from 'next-app/src/features/management/core/repositories/MyTokens.repository';
 
-class TokensDataSource implements TokensRepository {
-  public async getAll(endpoint: string): Promise<IAllTokensOOT | undefined> {
-    const client = new GraphQLClient(endpoint);
-    function getQuery() {
-      const QUERY = `query AllTokens {
-                        tokens {
-                          ${TOKEN_FIELDS}
-                        }
-                      }
-                      ${TOKEN_FIELDS_FRAGMENT}
-                      ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
-    }
-    return client.request(getQuery());
-  }
-
-  public async getById(endpoint: string, id: string): Promise<ITokenByIdOOT | undefined> {
-    const client = new GraphQLClient(endpoint);
-    function getQuery(id: string) {
-      const QUERY = `query TokenById {
-                        token(id: "${id}") {
-                          ${TOKEN_FIELDS}
-                        }
-                      }
-                      ${TOKEN_FIELDS_FRAGMENT}
-                      ${METADATA_FIELDS_FRAGMENT}`;
-      return gql`
-        ${QUERY}
-      `;
-    }
-    return client.request(getQuery(id));
-  }
-
+class MyTokensDataSource implements MyTokensRepository {
   public async getTokensAndTokenTypesByMember(
     endpoint: string,
     member: string
@@ -107,4 +72,4 @@ class TokensDataSource implements TokensRepository {
     return client.request(getQuery(account));
   }
 }
-export default TokensDataSource;
+export default MyTokensDataSource;
