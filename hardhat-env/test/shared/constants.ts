@@ -24,8 +24,8 @@ export const dictBottle = {
   unitsToMint: 1500,
   unitsToBurn: 1,
   unitsToEscrow: 500,
-  glass: { id: '6219876543211', id2: '4219876543211', tokenId1: '1', tokenId2: '2' },
-  plastic: { id: '7219876543211', id2: '5219876543211', tokenId1: '1', tokenId2: '2' },
+  glass: { id1: '6219876543211', id2: '4219876543211', tokenId1: '1', tokenId2: '2' },
+  plastic: { id1: '7219876543211', id2: '5219876543211', tokenId1: '1', tokenId2: '2' },
   price: 1.0e18
 };
 

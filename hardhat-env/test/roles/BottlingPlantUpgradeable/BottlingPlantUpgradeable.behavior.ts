@@ -61,8 +61,8 @@ export function shouldBehaveLikeBottlingPlantUpgradeable(): void {
   const idOliveOilExtraVirginIntenseToken1 = utils.formatBytes32String(dictOliveOil.extraVirginIntense.tokenId1);
   const idOliveOilExtraVirginSmoothToken1 = utils.formatBytes32String(dictOliveOil.extraVirginSmooth.tokenId1);
   const idOliveOilExtraVirginMediumToken1 = utils.formatBytes32String(dictOliveOil.extraVirginMedium.tokenId1);
-  const idGlass = utils.formatBytes32String(dictBottle.glass.id);
-  const idPlastic = utils.formatBytes32String(dictBottle.plastic.id);
+  const idGlass = utils.formatBytes32String(dictBottle.glass.id1);
+  const idPlastic = utils.formatBytes32String(dictBottle.plastic.id1);
   const idGlassToken1 = utils.formatBytes32String(dictBottle.glass.tokenId1);
   const idPlasticToken1 = utils.formatBytes32String(dictBottle.plastic.tokenId1);
   const idPallet1 = utils.formatBytes32String(dictPallet.bottlingPlant.id1);

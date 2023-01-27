@@ -26,8 +26,8 @@ export function shouldBehaveLikeBottleManufacturerUpgradeable(): void {
   const contract = 'bottleManufacturer';
   const tokenContract = 'bottleToken';
   const bottleManufacturerName = dictChainActorsNames.bottleManufacturer.id1;
-  const idGlass = utils.formatBytes32String(dictBottle.glass.id);
-  const idPlastic = utils.formatBytes32String(dictBottle.plastic.id);
+  const idGlass = utils.formatBytes32String(dictBottle.glass.id1);
+  const idPlastic = utils.formatBytes32String(dictBottle.plastic.id1);
   const idGlassToken1 = utils.formatBytes32String(dictBottle.glass.tokenId1);
   const idPlasticToken1 = utils.formatBytes32String(dictBottle.plastic.tokenId1);
   const bottleUnitsToMint = dictBottle.unitsToMint;
