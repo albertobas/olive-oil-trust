@@ -13,7 +13,7 @@ export function useEscrowsByBuyer(address: string, pollInterval?: number): IEscr
     if (endpoint.error) {
       // if error retrieving endpoint
       setEscrowsState({ error: true, data: null });
-    } else if (endpoint.error === false) {
+    } else {
       // if endpoint error is false
       if (endpoint.data) {
         // if there is an endpoint
@@ -33,9 +33,6 @@ export function useEscrowsByBuyer(address: string, pollInterval?: number): IEscr
         setEscrowsState({ error: true, data: null });
         console.error('There is no endpoint, data cannot be retrieved');
       }
-    } else {
-      // endpoint error is null, still getting an endpoint
-      setEscrowsState({ error: null, data: null });
     }
   }, [address, endpoint.data, endpoint.error]);
 
