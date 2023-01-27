@@ -1,7 +1,7 @@
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 import { endpoints } from 'next-app/src/features/shared/ui/utils/constants';
 
-const useEndpoint = (): { error: boolean | null; data: string | null } => {
+const useEndpoint = (): { error: boolean; data: string | null } => {
   // get account and chain
   const { data } = useAppSelector((state) => state.account);
 
