@@ -1,6 +1,6 @@
 export const pollInterval = 2500; // undefined
 
-export const sortTokenTypeCardsRecords = { date: 'Date', tokenType: 'Token type' };
+export const sortTokenTypeCardsRecords = { date: 'Date', tokenType: 'Token type Id' };
 
 export const sortEscrowCardsRecords = { date: 'Date' };
 
