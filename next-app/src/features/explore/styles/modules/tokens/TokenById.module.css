@@ -15,6 +15,9 @@
   hyphens: auto;
   word-break: break-word;
 }
+.anchor {
+  composes: anchor from 'src/shared/styles/modules/utils.module.css';
+}
 .cardWrapper {
   max-width: 260px;
   z-index: 10;
@@ -53,6 +56,17 @@
   text-decoration: underline;
 }
 
+@media (--laptop) {
+  .ancestry {
+    gap: 2rem;
+  }
+  .ancestryLayout,
+  .firstAncestry,
+  .secondAncestry {
+    gap: 4rem;
+  }
+}
+
 @media (--mobile-xl) {
   .introLayout {
     flex-direction: column-reverse;
@@ -70,5 +84,8 @@
   }
   .description > p:last-of-type {
     margin-bottom: 0;
+  }
+  .cardWrapper {
+    max-width: 100%;
   }
 }

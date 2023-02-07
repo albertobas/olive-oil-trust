@@ -10,6 +10,9 @@
   hyphens: auto;
   word-break: break-word;
 }
+.anchor {
+  composes: anchor from 'src/shared/styles/modules/utils.module.css';
+}
 .listMargin {
   list-style-type: disc;
 }

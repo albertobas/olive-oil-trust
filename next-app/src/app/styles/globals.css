@@ -2,6 +2,7 @@
   /* Dimensions */
   --max-width: 2560px;
   /* Colors */
+  --blue: #0969da;
   --gray-100: #f2f2f2;
   --gray-200: #eaeaea;
   --gray-300: #d7d7d7;
@@ -12,6 +13,7 @@
   --gray-800: #444444;
   --green-200: #6f8e4d; /* #18a055;*/
   --green-300: #485c32; /*#003500 #137e43;*/
+  --purple: #bb2bb9;
   --red: #c9302c;
   /* Others */
   --text-global: var(--gray-800);
@@ -47,7 +49,6 @@ body {
   color: var(--text-global);
   background-color: #fff;
 }
-
 ::selection {
   background-color: #0969da;
   color: #fff;
@@ -93,6 +94,9 @@ p {
 }
 ul {
   list-style-type: none;
+}
+button {
+  font-family: inherit;
 }
 .overlay {
   position: fixed;

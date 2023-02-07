@@ -1,6 +1,9 @@
 .list {
   padding: 0;
 }
+.anchor {
+  composes: anchor from 'src/shared/styles/modules/utils.module.css';
+}
 .listMargin {
   list-style-type: disc;
 }

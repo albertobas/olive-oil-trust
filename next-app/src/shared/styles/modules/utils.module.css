@@ -25,6 +25,18 @@
 .modalSm {
   width: fit-content;
 }
+.anchor {
+  color: var(--blue);
+}
+.anchor:active {
+  color: #000;
+}
+.anchor:hover {
+  text-decoration: underline;
+}
+.anchor:visited {
+  color: var(--purple);
+}
 
 @media (--mobile-s) {
   .container {
