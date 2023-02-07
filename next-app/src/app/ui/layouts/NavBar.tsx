@@ -13,6 +13,7 @@ import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { BiCommand } from 'react-icons/bi';
 import { MdOutlineExplore } from 'react-icons/md';
+import { Fragment } from 'react';
 
 export interface IMenuItem {
   title: string;
@@ -48,7 +49,7 @@ const basicMenuItems = [
   exploreMenuItems
 ];
 
-function NavBar(): JSX.Element {
+function NavBar({ isConnected }: { isConnected: boolean }): JSX.Element {
   const { data } = useAppSelector((state) => state.account);
   const moduleId = data && data.contract && data.contract.moduleId;
   const menuItems: IMenuItemExtended[] | null = moduleId
@@ -91,17 +92,23 @@ function NavBar(): JSX.Element {
     <nav>
       <ul className={styles.menuList}>
         {menuItems &&
-          menuItems.map((menuItem, index) => {
-            return <MenuItem key={index} menuItem={menuItem} />;
+          menuItems.map((menuItem) => {
+            return !isConnected && menuItem.title === pages.MANAGEMENT.title ? (
+              <Fragment key={menuItem.title}></Fragment>
+            ) : (
+              <MenuItem key={menuItem.title} menuItem={menuItem} />
+            );
           })}
       </ul>
       <ul className={styles.menuListSm}>
-        <li>
-          <ILink href={pages.MANAGEMENT.url} title={pages.MANAGEMENT.title}>
-            <SVG icon={BiCommand} />
-          </ILink>
-        </li>
-        <li>
+        {isConnected && (
+          <li key={pages.MANAGEMENT.title}>
+            <ILink href={pages.MANAGEMENT.url} title={pages.MANAGEMENT.title}>
+              <SVG icon={BiCommand} />
+            </ILink>
+          </li>
+        )}
+        <li key={pages.EXPLORE.title}>
           <ILink href={pages.EXPLORE.url} title={pages.EXPLORE.title}>
             <SVG icon={MdOutlineExplore} />
           </ILink>

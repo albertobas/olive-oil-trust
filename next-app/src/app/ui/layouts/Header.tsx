@@ -17,7 +17,7 @@ export default function Header(): JSX.Element {
         </ILink>
       </div>
       <div className={styles.options}>
-        {isConnected && <NavBar />}
+        <NavBar isConnected={isConnected} />
         <div className={styles.connect}>
           {isConnected ? (
             <button onClick={disconnectWallet}>Disconnect</button>
