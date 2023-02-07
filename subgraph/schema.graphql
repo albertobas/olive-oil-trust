@@ -2,20 +2,20 @@
 #             INTERFACES
 # ----------------------------------
 interface IEvent {
-  id: String!
+  id: ID!
   emitter: Account!
   timestamp: BigInt!
   transaction: Transaction!
 }
 interface IEscrow {
-  id: String!
+  id: ID!
   escrow: Escrow!
   escrowContract: EscrowContract!
   seller: Account!
   tokenContract: TokenContract!
 }
 interface IEscrowDepositor {
-  id: String!
+  id: ID!
   buyer: Account!
   escrow: Escrow!
   escrowContract: EscrowContract!
@@ -40,7 +40,7 @@ interface IMetadata {
   title: String
 }
 interface ITokenInfo {
-  id: String!
+  id: ID!
   contract: TokenContract!
   emitter: Account!
   transaction: Transaction!
@@ -133,7 +133,7 @@ type CertificateContract @entity {
   tokenCertification: [TokenCertification!] @derivedFrom(field: "certificateContract")
 }
 type Certificate implements IMetadata @entity {
-  id: String!
+  id: ID!
   identifier: String!
   bottleQuality: String
   bottleMaterial: String
@@ -159,7 +159,7 @@ type Certificate implements IMetadata @entity {
   tokenTypes: [TokenTypeCertificateMapping!] @derivedFrom(field: "certificate")
 }
 type Escrow @entity {
-  id: String!
+  id: ID!
   buyer: Account
   buyerWallet: Bytes
   contract: EscrowContract!
@@ -180,7 +180,7 @@ type Escrow @entity {
   tokens: [TokenEscrowMapping!]! @derivedFrom(field: "escrow")
 }
 type Token @entity {
-  id: String!
+  id: ID!
   contract: TokenContract!
   tokenType: TokenType
   identifier: String!
@@ -193,13 +193,13 @@ type Token @entity {
   transfers: [TokenTransfer!]! @derivedFrom(field: "token")
 }
 type Ancestor @entity(immutable: true) {
-  id: String!
+  id: ID!
   token: Token!
   amount: BigInt!
   descendant: Token!
 }
 type TokenType implements IMetadata @entity {
-  id: String!
+  id: ID!
   bottleQuality: String
   bottleMaterial: String
   bottleSize: BigInt
@@ -227,7 +227,7 @@ type TokenType implements IMetadata @entity {
   tokens: [Token!] @derivedFrom(field: "tokenType")
 }
 type Instruction @entity(immutable: true) {
-  id: String!
+  id: ID!
   instructedCertificate: Certificate
   instructedTokenAmount: BigInt!
   instructedTokenType: TokenType
@@ -235,7 +235,7 @@ type Instruction @entity(immutable: true) {
   tokenType: TokenType!
 }
 type Balance @entity {
-  id: String!
+  id: ID!
   escrowEscrowContract: EscrowContract
   escrowEscrow: Escrow
   escrowAccount: Account
@@ -250,32 +250,32 @@ type Balance @entity {
   tokenTransferToEvent: [TokenTransfer!] @derivedFrom(field: "toBalance")
 }
 type TokenOperator @entity {
-  id: String!
+  id: ID!
   approved: Boolean!
   contract: TokenContract!
   operator: Account!
   owner: Account!
 }
 type IndustrialUnitTokenInfo @entity(immutable: true) {
-  id: String!
+  id: ID!
   amounts: [BigInt!]
   industrialUnit: Token!
   commercialUnits: [Token!]!
 }
 type Transaction @entity(immutable: true) {
-  id: String!
+  id: ID!
   blockNumber: BigInt!
   timestamp: BigInt!
   events: [IEvent!]! @derivedFrom(field: "transaction")
 }
 # MAPPINGS
 type TokenEscrowMapping @entity(immutable: true) {
-  id: String!
+  id: ID!
   token: Token!
   escrow: Escrow!
 }
 type TokenTypeCertificateMapping @entity(immutable: true) {
-  id: String!
+  id: ID!
   tokenType: TokenType!
   certificate: Certificate!
 }
@@ -283,7 +283,7 @@ type TokenTypeCertificateMapping @entity(immutable: true) {
 #   ENTITIES FOR LOW-LEVEL OBJECTS
 # ----------------------------------
 type TokenCertification implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   certificate: Certificate!
   certificateContract: CertificateContract!
   emitter: Account!
@@ -292,7 +292,7 @@ type TokenCertification implements IEvent @entity(immutable: true) {
   transaction: Transaction!
 }
 type TokenTransfer implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   contract: TokenContract!
   emitter: Account!
   from: Account
@@ -307,7 +307,7 @@ type TokenTransfer implements IEvent @entity(immutable: true) {
   valueExact: BigInt!
 }
 type TokenTypeInstructionsSet implements IEvent & ITokenInfo @entity(immutable: true) {
-  id: String!
+  id: ID!
   contract: TokenContract!
   emitter: Account!
   tokenType: TokenType!
@@ -316,7 +316,7 @@ type TokenTypeInstructionsSet implements IEvent & ITokenInfo @entity(immutable: 
   instructions: [Instruction!] @derivedFrom(field: "tokenTypeInstructionsSet")
 }
 type IndustrialUnitPackaging implements IEvent & ITokenInfo @entity(immutable: true) {
-  id: String!
+  id: ID!
   idustrialUnitTokenInfo: IndustrialUnitTokenInfo!
   contract: TokenContract!
   emitter: Account!
@@ -326,7 +326,7 @@ type IndustrialUnitPackaging implements IEvent & ITokenInfo @entity(immutable: t
   transaction: Transaction!
 }
 type IndustrialUnitUnpackaging implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   contract: TokenContract!
   emitter: Account!
   owner: Account!
@@ -335,7 +335,7 @@ type IndustrialUnitUnpackaging implements IEvent @entity(immutable: true) {
   transaction: Transaction!
 }
 type EscrowClosure implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   emitter: Account!
   escrow: Escrow!
   escrowContract: EscrowContract!
@@ -343,7 +343,7 @@ type EscrowClosure implements IEvent @entity(immutable: true) {
   transaction: Transaction!
 }
 type AfterDepositReversal implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   emitter: Account!
   escrow: Escrow!
   escrowContract: EscrowContract!
@@ -351,7 +351,7 @@ type AfterDepositReversal implements IEvent @entity(immutable: true) {
   transaction: Transaction!
 }
 type EtherDepositCancellation implements IEvent & IEscrowDepositor @entity(immutable: true) {
-  id: String!
+  id: ID!
   buyer: Account!
   buyerWallet: Bytes!
   emitter: Account!
@@ -361,7 +361,7 @@ type EtherDepositCancellation implements IEvent & IEscrowDepositor @entity(immut
   transaction: Transaction!
 }
 type EtherDeposit implements IEvent & IEscrowDepositor @entity(immutable: true) {
-  id: String!
+  id: ID!
   buyer: Account!
   buyerWallet: Bytes!
   emitter: Account!
@@ -373,7 +373,7 @@ type EtherDeposit implements IEvent & IEscrowDepositor @entity(immutable: true) 
   valueExact: BigInt!
 }
 type BeforeDepositReversal implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   emitter: Account!
   escrow: Escrow!
   escrowContract: EscrowContract!
@@ -381,7 +381,7 @@ type BeforeDepositReversal implements IEvent @entity(immutable: true) {
   transaction: Transaction!
 }
 type TokenDeposit implements IEvent & IEscrow @entity(immutable: true) {
-  id: String!
+  id: ID!
   amount: BigInt
   emitter: Account!
   escrow: Escrow!
@@ -394,7 +394,7 @@ type TokenDeposit implements IEvent & IEscrow @entity(immutable: true) {
   transaction: Transaction!
 }
 type OwnershipTransferred implements IEvent @entity(immutable: true) {
-  id: String!
+  id: ID!
   certificateContract: CertificateContract
   emitter: Account!
   escrowContract: EscrowContract
