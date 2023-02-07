@@ -2,6 +2,6 @@
   composes: container from 'src/shared/styles/modules/utils.module.css';
 }
 
-.lastUpdated {
+.textSm {
   @mixin $text-sm;
 }
