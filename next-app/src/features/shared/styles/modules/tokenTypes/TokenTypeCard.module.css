@@ -5,6 +5,10 @@
   background-color: #fff;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  word-break: break-word;
 }
 .img {
   border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -51,11 +55,6 @@
   width: fit-content;
   display: inline;
 }
-.tag {
-  font-style: italic;
-  color: var(--gray-600);
-  @mixin $text-base;
-}
 .info > ul {
   margin: 0;
   padding: 0 0 0 0.5rem;
@@ -65,14 +64,11 @@
   @mixin $text-base;
   margin: 0.75rem 0 0;
 }
-.info > ul > li > span {
-  font-weight: bold;
-}
 .img:hover {
   transform: scale(1.03);
 }
 .info > h2 > a:hover,
 .info > h3 > a:hover,
-.info > ul > li > h4 > a:hover {
+.info > ul > li > span > a:hover {
   text-decoration: underline;
 }

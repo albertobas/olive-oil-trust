@@ -1,13 +1,13 @@
 import styles from 'next-app/src/features/shared/styles/modules/tokenTypes/TokenTypeCard.module.css';
-import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/ui/utils/helpers';
+import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/utils/helpers';
 import Image from 'next/image';
 import { join } from 'path';
 import { isOliveGrower, isOliveOilMill, pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-const TokenTypeCard = ({ id, identifier, instructions, creationDate, metadata }: ITokenType): JSX.Element => {
+const TokenTypeCard = ({ id, identifier, instructions, creationDate, member, metadata }: ITokenType): JSX.Element => {
   const href = join(pages.TOKEN_TYPES.url, id);
   const date = getUTCFromTimestamp(creationDate);
   return (
@@ -32,7 +32,14 @@ const TokenTypeCard = ({ id, identifier, instructions, creationDate, metadata }:
                 {metadata ? metadata.title : identifier}
               </ILink>
             </h2>
-            <p className={styles.tag}>{'#' + identifier}</p>
+            <p>
+              <b>Identifier:</b> {identifier}
+            </p>
+            {member && (
+              <p>
+                <b>Creator:</b> {member.name}
+              </p>
+            )}
             {metadata && metadata.description && <p>{metadata.description}</p>}
             {instructions && (
               <>
@@ -55,11 +62,11 @@ const TokenTypeCard = ({ id, identifier, instructions, creationDate, metadata }:
                             x{' '}
                           </>
                         )}
-                        <h4>
-                          <ILink href={instructionHref} aria-label={`Batch ${identifier.toString()}`}>
-                            {title}
+                        <span>
+                          <ILink href={instructionHref} aria-label={title ?? `Token type ${id}`}>
+                            {title ?? id}
                           </ILink>
-                        </h4>
+                        </span>
                       </li>
                     );
                   })}

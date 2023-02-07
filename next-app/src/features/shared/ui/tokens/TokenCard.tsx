@@ -3,7 +3,7 @@ import { join } from 'path';
 import { pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import Image from 'next/image';
 
 const TokenCard = ({
@@ -13,6 +13,7 @@ const TokenCard = ({
   industrialUnitTokenInfo,
   mintingDate,
   selfProduced,
+  title,
   tokenType
 }: IToken): JSX.Element => {
   const tokenHref = join(pages.TOKENS.url, id);
@@ -28,29 +29,29 @@ const TokenCard = ({
           src={metadata.image.path}
           className={styles.img}
           alt={metadata.title ? metadata.title : undefined}
-          height={400}
           width={400}
+          height={400}
           quality={100}
         />
       )}
       <div className={styles.description}>
         <div className={styles.info}>
           <h2>
-            <ILink href={tokenHref} aria-label={identifier}>
-              {`${industrialUnitTokenInfo ? 'Pallet' : 'Batch'} ${identifier}`}
+            <ILink href={tokenHref} aria-label={title}>
+              {title}
             </ILink>
           </h2>
+          {tokenType?.metadata && (
+            <h3>
+              <ILink href={tokenTypeHref} aria-label={identifier}>
+                {tokenType.metadata.title}
+              </ILink>
+            </h3>
+          )}
           {tokenType && (
-            <>
-              {tokenType.metadata && (
-                <h3>
-                  <ILink href={tokenTypeHref} aria-label={identifier}>
-                    {tokenType.metadata.title}
-                  </ILink>
-                </h3>
-              )}
-              <p className={styles.tag}>{'#' + tokenType.identifier}</p>
-            </>
+            <p>
+              <b>Type Identifier:</b> {tokenType.identifier}
+            </p>
           )}
           {!selfProduced && tokenType && tokenType.member && (
             <p>
@@ -89,8 +90,8 @@ const TokenCard = ({
                   Object.keys(commercialUnits).map((key) => {
                     const { amount, token } = commercialUnits[key];
                     const commercialUnitHref = join(pages.TOKENS.url, token.id);
-                    const title = token.tokenType?.metadata?.title
-                      ? `Batch ${token.identifier} ${token.tokenType.metadata.title}`
+                    const liTitle = token.tokenType?.metadata?.title
+                      ? `${token.title} ${token.tokenType.metadata.title}`
                       : `Batch ${token.identifier}${token.tokenType ? ` Type ${token.tokenType.identifier}` : ''}`;
                     return (
                       <li key={token.id}>
@@ -99,11 +100,11 @@ const TokenCard = ({
                             <span>{amount}</span> x{' '}
                           </>
                         )}
-                        <h4>
-                          <ILink href={commercialUnitHref} aria-label={`Batch ${identifier.toString()}`}>
-                            {title}
+                        <span>
+                          <ILink href={commercialUnitHref} aria-label={liTitle}>
+                            {liTitle}
                           </ILink>
-                        </h4>
+                        </span>
                       </li>
                     );
                   })}

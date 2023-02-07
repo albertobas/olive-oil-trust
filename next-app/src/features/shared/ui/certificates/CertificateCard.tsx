@@ -3,9 +3,9 @@ import { join } from 'path';
 import { pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-function CertificateCard({ id, identifier, creationDate, metadata }: ICertificate): JSX.Element {
+function CertificateCard({ id, identifier, member, creationDate, metadata }: ICertificate): JSX.Element {
   const href = join(pages.CERTIFICATES.url, id);
   const date = getUTCFromTimestamp(creationDate);
 
@@ -17,11 +17,15 @@ function CertificateCard({ id, identifier, creationDate, metadata }: ICertificat
             {metadata ? metadata.title : identifier}
           </ILink>
         </h2>
-        <h3 className={styles.tag}>
-          <ILink href={href} aria-label={identifier}>
-            {'#' + identifier}
-          </ILink>
-        </h3>
+        <p>
+          <b>Identifier:</b> {identifier}
+        </p>
+        {member && (
+          <p>
+            <b>Certifier:</b> {member.name}
+          </p>
+        )}
+        {metadata && metadata.description && <p>{metadata.description}</p>}
       </div>
       {date && <p>{date}</p>}
     </div>

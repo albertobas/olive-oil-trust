@@ -6,9 +6,9 @@ import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
 import { shouldShowAction } from 'next-app/src/features/shared/ui/utils/helpers';
 import { Button } from 'next-app/src/features/shared/ui/buttons/Button';
-import { getEscrowState, getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getEscrowState, getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { IContract } from 'next-app/src/features/shared/utils/interfaces';
-import { getModuleFromRole } from 'next-app/src/features/management/ui/utils/helpers';
+import { getModuleFromRole } from 'next-app/src/features/management/utils/helpers';
 import { formatEther, formatUnits } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';
 import { Dispatch, SetStateAction } from 'react';
@@ -33,6 +33,7 @@ const EscrowCard = ({
   userAddress,
   accountContract,
   price,
+  title,
   setIsModalOpen,
   setModalInfo
 }: Props): JSX.Element => {
@@ -60,7 +61,7 @@ const EscrowCard = ({
     <div className={styles.layout}>
       <div className={styles.description}>
         <div className={styles.info}>
-          <h2>{`Escrow ${identifier}`}</h2>
+          <h2>{title}</h2>
           {seller && (
             <p>
               <b>Seller:</b> {seller.name}
@@ -68,8 +69,7 @@ const EscrowCard = ({
           )}
           {buyer ? (
             <p>
-              <b>{`${state === 'Closed' ? 'Buyer' : 'Buyer candidate'}`}:</b>{' '}
-              {buyer.member ? buyer.member.name ?? buyer.id : buyer.id}
+              <b>{`${state === 'Closed' ? 'Buyer' : 'Buyer candidate'}`}:</b> {buyer.name ?? buyer.id}
             </p>
           ) : buyerWallet ? (
             <p>
@@ -104,7 +104,7 @@ const EscrowCard = ({
                               <span>{amount}</span> x{' '}
                             </>
                           )}
-                          <ILink href={tokenHref} aria-label={`Batch ${identifier.toString()}`}>
+                          <ILink href={tokenHref} aria-label={`Batch ${identifier}`}>
                             {`Pallet ${identifier}${
                               tokenType
                                 ? ` (${tokenType.metadata ? tokenType.metadata.title : `#${tokenType.identifier}`})`
@@ -122,7 +122,7 @@ const EscrowCard = ({
                               : `${amount} units`
                           }`}</span>{' '}
                           x{' '}
-                          <ILink href={tokenHref} aria-label={`Batch ${identifier.toString()}`}>
+                          <ILink href={tokenHref} aria-label={`Batch ${identifier}`}>
                             {`Batch ${identifier}${
                               tokenType
                                 ? ` (${tokenType.metadata ? tokenType.metadata.title : `#${tokenType.identifier}`})`

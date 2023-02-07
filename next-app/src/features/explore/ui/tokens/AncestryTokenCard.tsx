@@ -2,7 +2,7 @@ import styles from 'next-app/src/features/shared/styles/modules/tokens/TokenCard
 import { pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import { ITokenFields } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import Image from 'next/image';
 import { join } from 'path';
 
@@ -17,16 +17,14 @@ function AncestryTokenCard({ id, identifier, mintingDate, selfProduced, tokenTyp
   return (
     <div className={styles.layout}>
       {metadata && metadata.image && metadata.image.path && (
-        <div className={styles.imgWrapper}>
-          <Image
-            src={metadata.image.path}
-            className={styles.img}
-            alt={metadata.title ? metadata.title : undefined}
-            width={400}
-            height={400}
-            quality={100}
-          />
-        </div>
+        <Image
+          src={metadata.image.path}
+          className={styles.img}
+          alt={metadata.title ? metadata.title : undefined}
+          width={400}
+          height={400}
+          quality={100}
+        />
       )}
       <div className={styles.description}>
         <div className={styles.info}>
@@ -35,15 +33,17 @@ function AncestryTokenCard({ id, identifier, mintingDate, selfProduced, tokenTyp
               {`Batch ${identifier}`}
             </ILink>
           </h2>
+          {tokenType?.metadata && (
+            <h3>
+              <ILink href={tokenTypeHref} aria-label={identifier}>
+                {tokenType.metadata.title}
+              </ILink>
+            </h3>
+          )}
           {tokenType && (
-            <>
-              {tokenType.metadata && <h3>{tokenType.metadata.title}</h3>}
-              <h4 className={styles.tag}>
-                <ILink href={tokenTypeHref} aria-label={identifier}>
-                  {'#' + tokenType.identifier}
-                </ILink>
-              </h4>
-            </>
+            <p>
+              <b>Type Identifier:</b> {tokenType.identifier}
+            </p>
           )}
           {!selfProduced && tokenType && tokenType.member && (
             <p>

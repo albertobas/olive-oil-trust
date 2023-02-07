@@ -5,7 +5,6 @@
   overflow: hidden;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  /* height: fit-content; */
 }
 .layout {
   background-color: var(--gray-200);
@@ -65,16 +64,8 @@
   margin: 0.75rem 0 0;
   @mixin $text-base;
 }
-.info > ul > li > span {
-  font-weight: bold;
-}
-.tag {
-  font-style: italic;
-  color: var(--gray-500);
-  @mixin $text-base;
-}
 .info > h2 > a:hover,
 .info > h3 > a:hover,
-.info > ul > li > h4 > a:hover {
+.info > ul > li > span > a:hover {
   text-decoration: underline;
 }

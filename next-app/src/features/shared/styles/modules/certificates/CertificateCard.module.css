@@ -29,17 +29,10 @@
   margin: 1rem 0 0;
   width: fit-content;
 }
-.tag {
-  font-style: italic;
-  color: var(--gray-600);
-  margin: 0;
-  @mixin $text-base;
-}
 .layout > p {
   margin: 1rem 0 0;
   @mixin $text-sm;
 }
-.info > h2 > a:hover,
-.info > h3 > a:hover {
+.info > h2 > a:hover {
   text-decoration: underline;
 }
