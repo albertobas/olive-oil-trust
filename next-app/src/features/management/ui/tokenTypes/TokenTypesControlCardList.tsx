@@ -2,7 +2,7 @@ import { memo, useMemo, useState } from 'react';
 import TokenTypesControl from 'next-app/src/features/management/ui/tokenTypes/TokenTypesControl';
 import TokenTypesCardList from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesCardList';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers';
+import { tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { isIndependentCreator } from 'next-app/src/shared/utils/constants';
 import { Module } from 'next-app/src/shared/utils/interfaces';
@@ -80,7 +80,7 @@ function TokenTypesControlCardList({ memberAddress, moduleId, previousRoles, ...
             <TokenTypesCardList data={filteredTokenTypes} reverse={reverse} sort={sort} />
           </>
         ) : (
-          <FallbackMessage message={'There are no types to show'} />
+          <FallbackMessage message="There are no types to show" />
         )
       ) : rest.tokenTypes || rest.certificates ? (
         <>
@@ -99,14 +99,14 @@ function TokenTypesControlCardList({ memberAddress, moduleId, previousRoles, ...
           {filteredTokenTypes ? (
             <TokenTypesCardList data={filteredTokenTypes} reverse={reverse} sort={sort} />
           ) : (
-            <FallbackMessage message={'There are no types to show'} />
+            <FallbackMessage message="There are no types to show" />
           )}
         </>
       ) : (
         <FallbackMessage
           message={
             'There are no types to show and new types cannot be created since other types or certificates' +
-            ' from previous members have still not been created. Those previous types or certificates are' +
+            ' from previous members have still not been created. These previous types or certificates are' +
             ' needed to create instructions for your types.'
           }
         />

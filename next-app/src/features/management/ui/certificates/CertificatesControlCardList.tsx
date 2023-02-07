@@ -2,7 +2,7 @@ import { memo, useMemo, useState } from 'react';
 import CertificatesCardList from 'next-app/src/features/shared/ui/certificates/CertificatesCardList';
 import CertificatesControl from 'next-app/src/features/management/ui/certificates/CertificatesControl';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { certificateSearch } from 'next-app/src/features/shared/utils/helpers';
+import { certificateSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
 import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
@@ -36,7 +36,7 @@ function CertificatesControlCardList(props: Props): JSX.Element {
   return (
     <>
       {memoizedTokenTypes === null ? (
-        <FallbackMessage message={'Creator members have to create types of tokens first so they can be certified'} />
+        <FallbackMessage message="Creator members have to create types of tokens first so that the types can be certified" />
       ) : (
         <>
           <CertificatesControl
@@ -52,7 +52,7 @@ function CertificatesControlCardList(props: Props): JSX.Element {
           {filteredCertificates ? (
             <CertificatesCardList data={filteredCertificates} reverse={reverse} sort={sort} />
           ) : (
-            <FallbackMessage message={'There are no certificates to show'} />
+            <FallbackMessage message="There are no certificates to show" />
           )}
         </>
       )}

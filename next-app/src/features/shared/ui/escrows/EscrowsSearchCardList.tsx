@@ -2,7 +2,7 @@ import { memo, useMemo, useState } from 'react';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
 import { sortEscrowCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import { escrowFilter, escrowSearch } from 'next-app/src/features/shared/utils/helpers';
+import { escrowFilter, escrowSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import EscrowsCardList from 'next-app/src/features/shared/ui/escrows/EscrowsCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
@@ -57,7 +57,7 @@ function EscrowsSearchCardList({ escrows }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
-        searchKey={'escrows'}
+        searchKey="escrows"
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

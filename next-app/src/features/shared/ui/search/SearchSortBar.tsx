@@ -82,13 +82,13 @@ function SearchSortBar({
             value={sort}
             options={options}
             handleOnChange={handleSort}
-            placeholder={'Sort by...'}
-            borderColor={'var(--gray-200)'}
+            placeholder="Sort by..."
+            borderColor="var(--gray-200)"
             placeholderFontSize="0.925rem"
-            placeholderColor={'var(--gray-400)'}
+            placeholderColor="var(--gray-400)"
           />
         </div>
-        <button aria-label={'Reverse'} disabled={!sort} onClick={handleReverse}>
+        <button aria-label="Reverse" disabled={!sort} onClick={handleReverse}>
           <SVG
             icon={
               sort
@@ -110,7 +110,7 @@ function SearchSortBar({
           />
         </button>
         {setFilters && (
-          <button aria-label={'Filters'} onClick={handleFilters}>
+          <button aria-label="Filters" onClick={handleFilters}>
             <SVG icon={FiSliders} />
           </button>
         )}

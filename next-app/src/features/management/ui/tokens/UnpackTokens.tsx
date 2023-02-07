@@ -14,7 +14,7 @@ import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import TokensDropdownMulti from 'next-app/src/features/shared/ui/tokens/TokensDropdownMulti';
 import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
-import { transferUnpackTokens } from 'next-app/src/features/management/ui/utils/helpers';
+import { transferUnpackTokens } from 'next-app/src/features/management/utils/helpers';
 
 type Props = {
   industrialUnitTokens: IToken[];
@@ -133,18 +133,18 @@ function UnpackTokens({ industrialUnitTokens, unpacker, setIsUnpackingTokens }: 
             {({ values, resetForm }) => (
               <Form>
                 <div className={styles.field}>
-                  <Label htmlFor={`ids`}>Pallets</Label>
+                  <Label htmlFor="ids">Pallets</Label>
                   <div className={styles.fieldBtnPair}>
                     <div>
                       <Field
-                        name={`ids`}
+                        name="ids"
                         component={TokensDropdownMulti}
                         options={tokensOptions}
                         validate={(value: string | null) => handleSelectValidation(value, 'pallet id')}
                       />
                     </div>
                   </div>
-                  <ErrorMessage name={`ids`} component="div" className={styles.fieldError} />
+                  <ErrorMessage name="ids" component="div" className={styles.fieldError} />
                 </div>
                 <div className={styles.formSubmit}>
                   <button type="reset" onClick={() => resetForm()}>

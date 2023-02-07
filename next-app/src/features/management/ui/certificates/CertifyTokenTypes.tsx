@@ -11,13 +11,13 @@ import { toast } from 'react-toastify';
 import {
   getGroupedTokenTypesByRole,
   transferCertifiedTokenTypes
-} from 'next-app/src/features/management/ui/utils/helpers';
+} from 'next-app/src/features/management/utils/helpers';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import Carousel from 'react-multi-carousel';
 import CertifyTokenTypesCard from 'next-app/src/features/management/ui/certificates/CertifyTokenTypesCard';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
-import { carouselResponsive } from 'next-app/src/features/management/ui/utils/constants';
+import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
 import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 import TokenTypesDropdownMulti from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesDropdownMulti';
 
@@ -163,23 +163,23 @@ function CertifyTokenTypes({ tokenTypes, setIsAddingCertificates }: Props): JSX.
             return (
               <Form>
                 <div className={styles.field}>
-                  <Label htmlFor={'certificateId'}>Certificate Id *</Label>
-                  <Field name={'certificateId'} />
-                  <ErrorMessage name={'certificateId'} component="div" className={styles.fieldError} />
+                  <Label htmlFor="certificateId">Certificate Id *</Label>
+                  <Field name="certificateId" />
+                  <ErrorMessage name="certificateId" component="div" className={styles.fieldError} />
                 </div>
                 <div className={styles.field}>
-                  <Label htmlFor={`ids`}>Token types *</Label>
+                  <Label htmlFor="ids">Token types *</Label>
                   <div className={styles.fieldBtnPair}>
                     <div>
                       <Field
-                        name={`ids`}
+                        name="ids"
                         component={TokenTypesDropdownMulti}
                         options={options}
                         validate={(value: string | null) => handleSelectValidation(value, 'Token type')}
                       />
                     </div>
                   </div>
-                  <ErrorMessage name={`ids`} component="div" className={styles.fieldError} />
+                  <ErrorMessage name="ids" component="div" className={styles.fieldError} />
                 </div>
                 <div className={styles.formSubmit}>
                   <button type="submit">Add to the list</button>

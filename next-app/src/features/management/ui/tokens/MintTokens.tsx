@@ -16,7 +16,7 @@ import {
   getTokenNameFromModule,
   getTokenUnitFromModule,
   transferMintedTokens
-} from 'next-app/src/features/management/ui/utils/helpers';
+} from 'next-app/src/features/management/utils/helpers';
 import Carousel from 'react-multi-carousel';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
@@ -28,7 +28,7 @@ import { Module } from 'next-app/src/shared/utils/interfaces';
 import { isOliveGrower, isOliveOilMill } from 'next-app/src/shared/utils/constants';
 import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import { carouselResponsive } from 'next-app/src/features/management/ui/utils/constants';
+import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
 
 type Props = {
   previousMemberTokens: IToken[] | null;
@@ -320,7 +320,7 @@ function MintTokens({
                   <div className={styles.field}>
                     {isDependentCreator && tokenTypeOptions ? (
                       <>
-                        <Label htmlFor={'tokenTypeId'}>Type Id *</Label>
+                        <Label htmlFor="tokenTypeId">Type Id *</Label>
                         <Dropdown
                           instanceId="tokenTypeId"
                           handleOnChange={(option: IItem | null) =>
@@ -340,7 +340,7 @@ function MintTokens({
                       </>
                     ) : (
                       <>
-                        <Label htmlFor={'tokenTypeId'}>Type Id *</Label>
+                        <Label htmlFor="tokenTypeId">Type Id *</Label>
                         <Field
                           name="tokenTypeId"
                           validate={(value: string) => handleStringValidation(value, 'type id')}
@@ -350,7 +350,7 @@ function MintTokens({
                     )}
                   </div>
                   <div className={styles.fieldSm}>
-                    <Label htmlFor={'tokenId'}>Batch Id *</Label>
+                    <Label htmlFor="tokenId">Batch Id *</Label>
                     {isDependentCreator ? (
                       <input
                         name="tokenId"
@@ -362,7 +362,7 @@ function MintTokens({
                     ) : (
                       <>
                         <Field name="tokenId" validate={(value: string) => handleStringValidation(value, 'batch id')} />
-                        <ErrorMessage name={'tokenId'} component="div" className={styles.fieldError} />
+                        <ErrorMessage name="tokenId" component="div" className={styles.fieldError} />
                       </>
                     )}
                   </div>
@@ -378,8 +378,8 @@ function MintTokens({
                       />
                     ) : (
                       <>
-                        <Field name={'tokenAmount'} validate={handleAmountValidation} />
-                        <ErrorMessage name={'tokenAmount'} component="div" className={styles.fieldError} />
+                        <Field name="tokenAmount" validate={handleAmountValidation} />
+                        <ErrorMessage name="tokenAmount" component="div" className={styles.fieldError} />
                       </>
                     )}
                   </div>

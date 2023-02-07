@@ -13,7 +13,7 @@ import {
   getTokenNameFromModule,
   getTokenUnitFromModule,
   transferDepositTokens
-} from 'next-app/src/features/management/ui/utils/helpers';
+} from 'next-app/src/features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { BsTrash } from 'react-icons/bs';
@@ -242,10 +242,10 @@ function DepositTokens({ tokens, moduleId, setIsDepositingTokens }: Props): JSX.
                 <div>
                   <div className={styles.fieldBtnPair}>
                     <div className={styles.field}>
-                      <Label htmlFor={'sellerWallet'}>Seller wallet *</Label>
-                      <Field name={'sellerWallet'} validate={handleAddressValidation} />
+                      <Label htmlFor="sellerWallet">Seller wallet *</Label>
+                      <Field name="sellerWallet" validate={handleAddressValidation} />
                     </div>
-                    <ErrorMessage name={'sellerWallet'} component="div" className={styles.fieldError} />
+                    <ErrorMessage name="sellerWallet" component="div" className={styles.fieldError} />
                     {account && (
                       <button
                         type="button"
@@ -259,24 +259,24 @@ function DepositTokens({ tokens, moduleId, setIsDepositingTokens }: Props): JSX.
                   {!isOliveGrower_ && (
                     <div className={styles.field}>
                       <PriceLabel priceUnit={priceUnit} handlePriceUnitClick={handlePriceUnitClick} />
-                      <Field name={'price'} validate={handlePriceValidation} />
-                      <ErrorMessage name={'price'} component="div" className={styles.fieldError} />
+                      <Field name="price" validate={handlePriceValidation} />
+                      <ErrorMessage name="price" component="div" className={styles.fieldError} />
                     </div>
                   )}
                   {isIndustrialUnitSeller_ ? (
                     <div className={styles.field}>
-                      <Label htmlFor={`ids`}>Pallets *</Label>
+                      <Label htmlFor="ids">Pallets *</Label>
                       <div className={styles.fieldBtnPair}>
                         <div>
                           <Field
-                            name={`ids`}
+                            name="ids"
                             component={TokensDropdownMulti}
                             options={tokensOptions}
                             validate={(value: string | null) => handleSelectValidation(value, 'batch id')}
                           />
                         </div>
                       </div>
-                      <ErrorMessage name={`ids`} component="div" className={styles.fieldError} />
+                      <ErrorMessage name="ids" component="div" className={styles.fieldError} />
                     </div>
                   ) : (
                     <FieldArray name="fieldArray">

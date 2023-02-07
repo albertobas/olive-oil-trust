@@ -2,7 +2,7 @@ import { useMemo, useState, memo } from 'react';
 import TokensCardList from 'next-app/src/features/shared/ui/tokens/TokensCardList';
 import TokensControl from 'next-app/src/features/management/ui/tokens/TokensControl';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers';
+import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { Module } from 'next-app/src/shared/utils/interfaces';
 import {
@@ -121,7 +121,7 @@ function TokensControlCardList({ moduleId, ...rest }: Props): JSX.Element {
           <TokensCardList data={filteredTokens} reverse={reverse} sort={sort} />
         </>
       ) : (
-        <FallbackMessage message={'There are no tokens to show'} />
+        <FallbackMessage message="There are no tokens to show" />
       )}
     </>
   );

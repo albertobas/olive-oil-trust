@@ -11,7 +11,7 @@ import useSignedContract from 'next-app/src/features/shared/ui/hooks/useSignedCo
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
-import { transferMakePayment } from 'next-app/src/features/management/ui/utils/helpers';
+import { transferMakePayment } from 'next-app/src/features/management/utils/helpers';
 import { handleAddressValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
@@ -96,10 +96,10 @@ function MakePayment({ escrow, moduleId, setModalInfo, setIsModalOpen }: Props):
             <Form>
               <div className={styles.fieldBtnPair}>
                 <div className={styles.field}>
-                  <Label htmlFor={'buyerWallet'}>Buyer wallet *</Label>
-                  <Field name={'buyerWallet'} validate={handleAddressValidation} />
+                  <Label htmlFor="buyerWallet">Buyer wallet *</Label>
+                  <Field name="buyerWallet" validate={handleAddressValidation} />
                 </div>
-                <ErrorMessage name={'buyerWallet'} component="div" className={styles.fieldError} />
+                <ErrorMessage name="buyerWallet" component="div" className={styles.fieldError} />
                 {account && (
                   <button
                     type="button"

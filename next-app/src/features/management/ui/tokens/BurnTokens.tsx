@@ -8,7 +8,7 @@ import { Root as Label } from '@radix-ui/react-label';
 import { Formik, Form, Field, ErrorMessage, FieldArray, useFormikContext, FieldProps } from 'formik';
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { getGroupedTokensByType, transferBurnTokens } from 'next-app/src/features/management/ui/utils/helpers';
+import { getGroupedTokensByType, transferBurnTokens } from 'next-app/src/features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
@@ -157,7 +157,7 @@ function BurnTokens({ commercialTokens, moduleId, accountAddress, setIsBurningTo
                                     <Label htmlFor={`fieldArray.${index}.id`}>{`Id *`}</Label>
                                     <Field
                                       name={`fieldArray.${index}.id`}
-                                      placeholder={'placeholder'}
+                                      placeholder="placeholder"
                                       type="text"
                                       component={BurnDropdown}
                                       options={contentOptions}

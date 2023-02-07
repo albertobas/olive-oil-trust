@@ -16,7 +16,7 @@ import {
   getModuleFromRole,
   getTokenNameFromModule,
   transferTokenTypes
-} from 'next-app/src/features/management/ui/utils/helpers';
+} from 'next-app/src/features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { BsTrash } from 'react-icons/bs';
@@ -26,7 +26,7 @@ import { renderToast } from 'next-app/src/shared/utils/helpers';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 import { handleAmountValidation } from 'next-app/src/features/management/utils/helpers';
 import { Module } from 'next-app/src/shared/utils/interfaces';
-import { carouselResponsive } from 'next-app/src/features/management/ui/utils/constants';
+import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
 
 type Props = {
   previousTokenTypes: ITokenType[] | null;
@@ -246,9 +246,9 @@ function AddTokenTypes({ previousTokenTypes, certificates, setIsAddingTokenTypes
                 return (
                   <Form>
                     <div className={styles.field}>
-                      <Label htmlFor={'id'}>Token Type Id *</Label>
-                      <Field name={'id'} validate={handleTokenTypeIdValidation} />
-                      <ErrorMessage name={'id'} component="div" className={styles.fieldError} />
+                      <Label htmlFor="id">Token Type Id *</Label>
+                      <Field name="id" validate={handleTokenTypeIdValidation} />
+                      <ErrorMessage name="id" component="div" className={styles.fieldError} />
                     </div>
                     {values.fieldArray.length > 0 && (
                       <FieldArray name="fieldArray">

@@ -5,7 +5,7 @@ type Props = { priceUnit: 'ether' | 'gwei' | 'wei'; handlePriceUnitClick(newUnit
 function PriceLabel({ priceUnit, handlePriceUnitClick }: Props): JSX.Element {
   return (
     <div>
-      <Label htmlFor={'price'}>Price *</Label>
+      <Label htmlFor="price">Price *</Label>
       <button disabled={priceUnit === 'ether'} type="button" onClick={() => handlePriceUnitClick('ether')}>
         Ether
       </button>

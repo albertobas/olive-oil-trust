@@ -1,10 +1,10 @@
 import { memo, useMemo, useState } from 'react';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { sortEscrowCardsRecords } from 'next-app/src/features/shared/utils/constants';
+import { sortTokenCardsRecords } from 'next-app/src/features/shared/utils/constants';
 import TokensCardList from 'next-app/src/features/shared/ui/tokens/TokensCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers';
+import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import FiltersToken from 'next-app/src/features/shared/ui/tokens/FiltersToken';
 
@@ -30,8 +30,8 @@ function TokensSearchCardList({ tokens }: Props): JSX.Element {
   }, [tokens]);
 
   const sortOptions = useMemo(() => {
-    return Object.keys(sortEscrowCardsRecords).map((key) => {
-      return { label: sortEscrowCardsRecords[key as keyof typeof sortEscrowCardsRecords], value: key } as IItem;
+    return Object.keys(sortTokenCardsRecords).map((key) => {
+      return { label: sortTokenCardsRecords[key as keyof typeof sortTokenCardsRecords], value: key } as IItem;
     });
   }, []);
 
@@ -59,7 +59,7 @@ function TokensSearchCardList({ tokens }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
-        searchKey={'tokens'}
+        searchKey="tokens"
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

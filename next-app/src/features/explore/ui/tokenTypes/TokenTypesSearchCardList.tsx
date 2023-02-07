@@ -4,7 +4,7 @@ import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar'
 import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/constants';
 import TokenTypesCardList from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { tokenTypeFilter, tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers';
+import { tokenTypeFilter, tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import FiltersTokenType from 'next-app/src/features/management/ui/tokenTypes/FiltersTokenType';
 
@@ -51,7 +51,7 @@ function TokenTypesSearchCardList({ tokenTypes }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
-        searchKey={'token types'}
+        searchKey="token types"
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

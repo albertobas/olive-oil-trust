@@ -7,7 +7,7 @@ import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage, useFormikContext, FieldProps } from 'formik';
 import PackTokenCard from 'next-app/src/features/management/ui/tokens/PackTokenCard';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { getGroupedTokensByType, transferPackTokens } from 'next-app/src/features/management/ui/utils/helpers';
+import { getGroupedTokensByType, transferPackTokens } from 'next-app/src/features/management/utils/helpers';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
 import { Root as Label } from '@radix-ui/react-label';
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
@@ -17,7 +17,7 @@ import { BsTrash } from 'react-icons/bs';
 import Carousel from 'react-multi-carousel';
 import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import { carouselResponsive } from 'next-app/src/features/management/ui/utils/constants';
+import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
 
 type Props = {
   commercialTokens: IToken[];
@@ -166,9 +166,9 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
               return (
                 <Form>
                   <div className={styles.field}>
-                    <Label htmlFor={'packId'}>Pallet Id *</Label>
-                    <Field name={'packId'} />
-                    <ErrorMessage name={'packId'} component="div" className={styles.fieldError} />
+                    <Label htmlFor="packId">Pallet Id *</Label>
+                    <Field name="packId" />
+                    <ErrorMessage name="packId" component="div" className={styles.fieldError} />
                   </div>
                   {fieldArray.length > 0 && (
                     <FieldArray name="fieldArray">
@@ -182,7 +182,7 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
                                   <Label htmlFor={`fieldArray.${index}.id`}>{`Batch Id *`}</Label>
                                   <Field
                                     name={`fieldArray.${index}.id`}
-                                    placeholder={'placeholder'}
+                                    placeholder="placeholder"
                                     type="text"
                                     component={PackDropdown}
                                     options={contentOptions}

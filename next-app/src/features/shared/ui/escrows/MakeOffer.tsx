@@ -10,7 +10,7 @@ import { IFormikMakeOffer } from 'next-app/src/features/management/utils/interfa
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
-import { transferMakeOffer } from 'next-app/src/features/management/ui/utils/helpers';
+import { transferMakeOffer } from 'next-app/src/features/management/utils/helpers';
 import { handleAddressValidation, handlePriceValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 import { ImPaste } from 'react-icons/im';
@@ -123,10 +123,10 @@ function MakeOffer({ escrow, setModalInfo, setIsModalOpen }: Props): JSX.Element
               <Form>
                 <div className={styles.fieldBtnPair}>
                   <div className={styles.field}>
-                    <Label htmlFor={'buyerWallet'}>Buyer wallet *</Label>
-                    <Field name={'buyerWallet'} validate={handleAddressValidation} />
+                    <Label htmlFor="buyerWallet">Buyer wallet *</Label>
+                    <Field name="buyerWallet" validate={handleAddressValidation} />
                   </div>
-                  <ErrorMessage name={'buyerWallet'} component="div" className={styles.fieldError} />
+                  <ErrorMessage name="buyerWallet" component="div" className={styles.fieldError} />
                   {account && (
                     <button
                       type="button"
@@ -139,8 +139,8 @@ function MakeOffer({ escrow, setModalInfo, setIsModalOpen }: Props): JSX.Element
                 </div>
                 <div className={styles.field}>
                   <PriceLabel priceUnit={priceUnit} handlePriceUnitClick={handlePriceUnitClick} />
-                  <Field name={'price'} validate={handlePriceValidation} />
-                  <ErrorMessage name={'price'} component="div" className={styles.fieldError} />
+                  <Field name="price" validate={handlePriceValidation} />
+                  <ErrorMessage name="price" component="div" className={styles.fieldError} />
                 </div>
                 <div className={styles.formSubmit}>
                   <button type="submit" onClick={() => resetForm()}>

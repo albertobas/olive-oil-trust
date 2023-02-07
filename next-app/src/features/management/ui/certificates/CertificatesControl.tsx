@@ -18,14 +18,6 @@ type Props = {
   setSort: Dispatch<SetStateAction<IItem | null>>;
 };
 
-export interface ICertificateState {
-  id: string;
-  instructedAddresses: string[];
-  instructedIds: string[];
-  instructedAmounts: number[];
-  instructedTitles: (string | null)[];
-}
-
 const CertificatesControl = ({
   tokenTypes,
   reverse,
@@ -56,7 +48,7 @@ const CertificatesControl = ({
     disabled: isActionBtnDisabled,
     title: isActionBtnDisabled
       ? 'Certify Token Types'
-      : 'Creators have to create token types first in order to certifying them'
+      : 'Creator members have to create types of tokens first so that the types can be certified'
   };
 
   if (!tokenTypes && !contract) {
@@ -70,7 +62,7 @@ const CertificatesControl = ({
         sort={sort}
         options={sortOptions}
         actionBtn={actionBtn}
-        searchKey={'certificates'}
+        searchKey="certificates"
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

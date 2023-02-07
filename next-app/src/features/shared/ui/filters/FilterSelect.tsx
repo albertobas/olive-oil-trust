@@ -19,9 +19,9 @@ export default memo(function FilterSelect({ options, title, handleOnChange, valu
       <div className={styles.dd}>
         <Dropdown
           instanceId={'select_' + title}
-          borderColor={'var(--gray-200)'}
+          borderColor="var(--gray-200)"
           placeholderFontSize="0.925rem"
-          placeholderColor={'var(--gray-400)'}
+          placeholderColor="var(--gray-400)"
           isClearable={true}
           isMulti={isMulti}
           handleOnChange={handleOnChange}
