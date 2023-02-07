@@ -1,0 +1,157 @@
+query EscrowsByBuyer($member: String!) {
+  escrows(where: { buyer: $member }) {
+    id
+    buyer {
+      id
+      asMemberContract {
+        id
+        name
+        role
+      }
+    }
+    buyerWallet
+    contract {
+      id
+      owner {
+        asMemberContract {
+          id
+          name
+          role
+        }
+      }
+    }
+    escrowId
+    escrowBalance {
+      id
+      escrowAccount {
+        id
+      }
+      escrowAmounts
+      escrowTokens {
+        id
+        contract {
+          id
+        }
+        tokenType {
+          id
+          identifier
+          creationDate
+          ...metadataFields
+          instructions {
+            id
+            instructedTokenAmount
+            instructedCertificate {
+              id
+              title
+              tokenTypes {
+                tokenType {
+                  id
+                  title
+                  contract {
+                    owner {
+                      asMemberContract {
+                        role
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            instructedTokenType {
+              id
+              title
+              contract {
+                owner {
+                  asMemberContract {
+                    role
+                  }
+                }
+              }
+            }
+          }
+          tokenTypeInstructionsSet {
+            id
+            emitter {
+              id
+            }
+            timestamp
+            transaction {
+              id
+              blockNumber
+              events {
+                id
+              }
+              timestamp
+            }
+          }
+          uri
+        }
+        identifier
+        industrialUnitTokenInfo {
+          id
+          amounts
+          industrialUnit {
+            id
+            identifier
+          }
+          commercialUnits {
+            id
+            identifier
+          }
+        }
+        mintingDate
+        totalSupply {
+          id
+          value
+          valueExact
+        }
+      }
+    }
+    etherBalance {
+      id
+      value
+      valueExact
+    }
+    identifier
+    price
+    seller {
+      id
+      asMemberContract {
+        id
+        name
+        role
+      }
+    }
+    sellerWallet
+    state
+    tokenDeposits {
+      transaction {
+        id
+        blockNumber
+        events {
+          id
+        }
+        timestamp
+      }
+    }
+  }
+}
+fragment metadataFields on IMetadata {
+  bottleQuality
+  bottleMaterial
+  bottleSize
+  description
+  imageHeight
+  imagePath
+  imageWidth
+  oliveQuality
+  oliveOilAcidity
+  oliveOilAroma
+  oliveOilBitterness
+  oliveOilColour
+  oliveOilFruitness
+  oliveOilIntensity
+  oliveOilItching
+  oliveOrigin
+  title
+}

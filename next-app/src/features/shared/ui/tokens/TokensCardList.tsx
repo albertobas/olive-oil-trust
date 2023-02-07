@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import TokenCard from 'next-app/src/features/shared/ui/tokens/TokenCard';
 import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
-import { sortTokenArray } from 'next-app/src/features/management/ui/utils/helpers';
+import { sortTokenArray } from 'next-app/src/features/shared/utils/helpers/token';
 
 type Props = {
   data: IToken[];

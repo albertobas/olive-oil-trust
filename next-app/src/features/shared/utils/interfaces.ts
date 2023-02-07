@@ -9,10 +9,26 @@ import { BottlingCompanyEscrow } from 'next-app/src/generated/types/contracts/es
 import { BottlingCompanyOliveOilBottle } from 'next-app/src/generated/types/contracts/tokens/BottlingCompanyOliveOilBottle';
 import { roles } from 'next-app/src/shared/utils/constants';
 import { Module } from 'next-app/src/shared/utils/interfaces';
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { ICertificate, ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
 import { IEscrow, IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
+import { IToken, ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import { ITokenType, ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import {
+  AllCertificatesQuery,
+  AllEscrowsQuery,
+  AllTokensQuery,
+  AllTokenTypesAndCertificatesQuery,
+  AllTokenTypesQuery,
+  CertificateByIdQuery,
+  CertificatesByMemberQuery,
+  EscrowsByBuyerQuery,
+  EscrowsByMemberQuery,
+  MemberContract,
+  TokenByIdQuery,
+  TokensAndTokenTypesByMemberQuery,
+  TokensByAccountQuery,
+  TokenTypeByIdQuery
+} from 'next-app/.graphclient';
 
 export interface IItem {
   label: string;
@@ -98,6 +114,12 @@ export interface ICertificatesState {
   error: boolean | null;
   data: ICertificatesStateData | null;
 }
+
+export interface ICertificateState {
+  error: boolean | null;
+  data: ICertificate | null;
+}
+
 export interface IEscrowsStateData {
   escrows: IEscrows | null;
   lastUpdated: number;
@@ -117,6 +139,11 @@ export interface ITokensState {
   data: ITokensStateData | null;
 }
 
+export interface ITokenState {
+  error: boolean | null;
+  data: IToken | null;
+}
+
 export interface ITokenTypesStateData {
   tokenTypes: ITokenTypes | null;
   lastUpdated: number;
@@ -127,7 +154,87 @@ export interface ITokenTypesState {
   data: ITokenTypesStateData | null;
 }
 
+export interface ITokenTypeState {
+  error: boolean | null;
+  data: ITokenType | null;
+}
+
 export type FilterOption = {
   key: keyof ITokenType | 'packer' | 'manufacturer' | 'selfProduced' | 'type' | keyof IEscrow;
   items: IItem[] | IItem | null;
 };
+
+export type CertificateRawType =
+  | AllCertificatesQuery['certificates'][0]
+  | NonNullable<AllTokenTypesQuery['tokenTypes'][0]['certificates']>[0]['certificate']
+  | NonNullable<CertificateByIdQuery['certificate']>
+  | NonNullable<NonNullable<TokenTypeByIdQuery['tokenType']>['certificates']>[0]['certificate']
+  | NonNullable<AllTokenTypesAndCertificatesQuery['tokenTypes'][0]['certificates']>[0]['certificate']
+  | AllTokenTypesAndCertificatesQuery['certificates'][0]
+  | NonNullable<
+      NonNullable<
+        CertificatesByMemberQuery['memberContract']
+      >['asAccount']['ownerOfCertificateContract'][0]['certificates']
+    >[0]
+  | NonNullable<CertificatesByMemberQuery['tokenTypes'][0]['certificates']>[0]['certificate']
+  | NonNullable<
+      NonNullable<
+        NonNullable<
+          TokensAndTokenTypesByMemberQuery['memberContract']
+        >['asAccount']['ownerOfTokenContract'][0]['tokenTypes']
+      >[0]['certificates']
+    >[0]['certificate'];
+
+export type EscrowRawType =
+  | AllEscrowsQuery['escrows'][0]
+  | NonNullable<TokenRawType['escrows']>[0]['escrow']
+  | EscrowsByBuyerQuery['escrows'][0]
+  | NonNullable<
+      NonNullable<EscrowsByMemberQuery['memberContract']>['asAccount']['ownerOfEscrowContract'][0]['escrows']
+    >[0];
+
+export type MemberRawType = Pick<MemberContract, 'id' | 'name' | 'role'>;
+
+export type MetadataRawType = CertificateRawType | TokenTypeRawType;
+
+export type TokenTypeRawType =
+  | AllTokenTypesQuery['tokenTypes'][0]
+  | NonNullable<AllCertificatesQuery['certificates'][0]['tokenTypes']>[0]['tokenType']
+  | NonNullable<NonNullable<CertificateByIdQuery['certificate']>['tokenTypes']>[0]['tokenType']
+  | NonNullable<TokenTypeByIdQuery['tokenType']>
+  | NonNullable<NonNullable<NonNullable<EscrowRawType['escrowBalance']['escrowTokens']>[0]>['tokenType']>
+  | NonNullable<NonNullable<NonNullable<TokenRawType['ancestry']>[0]['token']['ancestry']>[0]['token']['tokenType']>
+  | AllTokenTypesAndCertificatesQuery['tokenTypes'][0]
+  | NonNullable<AllTokenTypesAndCertificatesQuery['certificates'][0]['tokenTypes']>[0]['tokenType']
+  | NonNullable<TokenRawType['tokenType']>
+  | CertificatesByMemberQuery['tokenTypes'][0]
+  | NonNullable<
+      NonNullable<
+        NonNullable<
+          CertificatesByMemberQuery['memberContract']
+        >['asAccount']['ownerOfCertificateContract'][0]['certificates']
+      >[0]['tokenTypes']
+    >[0]['tokenType']
+  | NonNullable<
+      NonNullable<
+        TokensAndTokenTypesByMemberQuery['memberContract']
+      >['asAccount']['ownerOfTokenContract'][0]['tokenTypes']
+    >[0];
+
+export type TokenRawType =
+  | AllTokensQuery['tokens'][0]
+  | NonNullable<TokenByIdQuery['token']>
+  | NonNullable<
+      NonNullable<
+        NonNullable<TokensAndTokenTypesByMemberQuery['memberContract']>['asAccount']['tokenBalances']
+      >[0]['tokenToken']
+    >
+  | NonNullable<NonNullable<NonNullable<TokensByAccountQuery['account']>['tokenBalances']>[0]['tokenToken']>;
+
+export type TokenInfoRawType = NonNullable<TokenRawType['industrialUnitTokenInfo']>;
+
+export type EventRawType =
+  | NonNullable<TokenTypeRawType['tokenTypeInstructionsSet']>
+  | NonNullable<CertificateRawType['certification']>[0];
+
+export type TransactionRawType = EscrowRawType['tokenDeposits'][0]['transaction'];

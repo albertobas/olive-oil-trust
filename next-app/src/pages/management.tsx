@@ -48,17 +48,10 @@ const Management: NextPage = () => {
                   </Link>
                 </li>
               )}
-              {(isIndependentCreator(moduleId) || isDependentCreator(moduleId)) && (
+              {isSeller(moduleId) && (
                 <li>
-                  <Link href={pages.MY_TOKEN_TYPES.url} title={pages.MY_TOKEN_TYPES.title}>
-                    {pages.MY_TOKEN_TYPES.title}
-                  </Link>
-                </li>
-              )}
-              {!isCertifier(moduleId) && (
-                <li>
-                  <Link href={pages.MY_TOKENS.url} title={pages.MY_TOKENS.title}>
-                    {pages.MY_TOKENS.title}
+                  <Link href={pages.MY_ESCROWS.url} title={pages.MY_ESCROWS.title}>
+                    {pages.MY_ESCROWS.title}
                   </Link>
                 </li>
               )}
@@ -69,10 +62,17 @@ const Management: NextPage = () => {
                   </Link>
                 </li>
               )}
-              {isSeller(moduleId) && (
+              {!isCertifier(moduleId) && (
                 <li>
-                  <Link href={pages.MY_ESCROWS.url} title={pages.MY_ESCROWS.title}>
-                    {pages.MY_ESCROWS.title}
+                  <Link href={pages.MY_TOKENS.url} title={pages.MY_TOKENS.title}>
+                    {pages.MY_TOKENS.title}
+                  </Link>
+                </li>
+              )}
+              {(isIndependentCreator(moduleId) || isDependentCreator(moduleId)) && (
+                <li>
+                  <Link href={pages.MY_TOKEN_TYPES.url} title={pages.MY_TOKEN_TYPES.title}>
+                    {pages.MY_TOKEN_TYPES.title}
                   </Link>
                 </li>
               )}
@@ -89,13 +89,13 @@ const Management: NextPage = () => {
             </p>
             <ul>
               <li>
-                <Link href={pages.MY_TOKENS.url} title={pages.MY_TOKENS.title}>
-                  {pages.MY_TOKENS.title}
+                <Link href={pages.MY_PARTICIPATIONS.url} title={pages.MY_PARTICIPATIONS.title}>
+                  {pages.MY_PARTICIPATIONS.title}
                 </Link>
               </li>
               <li>
-                <Link href={pages.MY_PARTICIPATIONS.url} title={pages.MY_PARTICIPATIONS.title}>
-                  {pages.MY_PARTICIPATIONS.title}
+                <Link href={pages.MY_TOKENS.url} title={pages.MY_TOKENS.title}>
+                  {pages.MY_TOKENS.title}
                 </Link>
               </li>
             </ul>

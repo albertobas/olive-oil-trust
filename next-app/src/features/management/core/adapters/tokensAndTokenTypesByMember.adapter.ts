@@ -1,13 +1,14 @@
 import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { getToken, getTokenType } from 'next-app/src/features/shared/utils/helpers';
+import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
+import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
 import { ITokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
-import { ITokensAndTokenTypesByMemberOOT } from 'next-app/src/features/management/core/entities/MyTokensOOT';
+import { TokensAndTokenTypesByMemberQuery } from 'next-app/.graphclient';
 
 const tokensAndTokenTypesByMemberAdapter = (
-  dataRaw: ITokensAndTokenTypesByMemberOOT | undefined
+  dataRaw: TokensAndTokenTypesByMemberQuery
 ): ITokensAndTokenTypesByMember | null => {
-  if (dataRaw && dataRaw.memberContract) {
+  if (dataRaw.memberContract) {
     const { ownerOfTokenContract, tokenBalances } = dataRaw.memberContract.asAccount;
     let tokens: ITokens | null = null;
     let tokenTypes: ITokenTypes | null = null;
@@ -20,28 +21,26 @@ const tokensAndTokenTypesByMemberAdapter = (
             mintedTokenIds.push(mintedTokens[j].id);
           }
         }
-        const tokenTypesOOT = ownerOfTokenContract[i].tokenTypes;
-        if (tokenTypesOOT && tokenTypesOOT.length > 0) {
+        const tokenTypesRaw = ownerOfTokenContract[i].tokenTypes;
+        if (tokenTypesRaw && tokenTypesRaw.length > 0) {
           tokenTypes = {};
-          for (let i = 0; i < tokenTypesOOT.length; i++) {
-            const tokenTypeOOT = tokenTypesOOT[i];
-            tokenTypes[tokenTypeOOT.id] = getTokenType(tokenTypeOOT);
+          for (let i = 0; i < tokenTypesRaw.length; i++) {
+            const tokenTypeRaw = tokenTypesRaw[i];
+            tokenTypes[tokenTypeRaw.id] = getTokenType(tokenTypeRaw);
           }
         }
       }
     }
-
-    if (tokenBalances) {
+    if (tokenBalances && tokenBalances.length > 0) {
       tokens = {};
       for (let i = 0; i < tokenBalances.length; i++) {
         const { tokenToken, valueExact } = tokenBalances[i];
-        tokens[tokenToken.id] = getToken(tokenToken, valueExact, mintedTokenIds);
+        if (tokenToken) {
+          tokens[tokenToken.id] = getToken(tokenToken, valueExact, mintedTokenIds);
+        }
       }
     }
-    return {
-      tokens: tokens ? (Object.keys(tokens).length > 0 ? tokens : null) : null,
-      tokenTypes: tokenTypes ? (Object.keys(tokenTypes).length > 0 ? tokenTypes : null) : null
-    };
+    return { tokens, tokenTypes };
   }
   return null;
 };

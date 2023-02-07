@@ -27,12 +27,15 @@
     "subgraph:remove": "npm run remove --workspace=subgraph",
     "subgraph:deploy": "npm run deploy --workspace=subgraph",
     "subgraph:build": "npm run build --workspace=subgraph",
+    "next-app:codegen": "npm run codegen --workspace=next-app",
+    "next-app:build": "npm run build --workspace=next-app",
     "next-app:dev": "npm run dev --workspace=next-app",
+    "next-app:start": "npm run start --workspace=next-app",
     "next-app:lint": "npm run lint --workspace=next-app",
     "next-app:tsc": "npm run tsc --workspace=next-app",
     "services:start": "npm run clean:graph-node --workspace=services & npm run start:graph-node --workspace=services",
-    "start": "npm run hardhat:deploy && npm run hardhat:share && npm run subgraph:codegen && npm run subgraph:create && npm run subgraph:deploy",
-    "start:setState": "npm run hardhat:deploy && npm run hardhat:setState && npm run hardhat:share && npm run subgraph:codegen && npm run subgraph:create && npm run subgraph:deploy"
+    "start": "npm run hardhat:deploy && npm run hardhat:share && npm run subgraph:codegen && npm run subgraph:create && npm run subgraph:deploy && npm run next-app:codegen ",
+    "start:setState": "npm run start && npm run hardhat:setState"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,9 @@
-import { IAllCertificatesOOT, ICertificateByIdOOT } from 'next-app/src/features/explore/core/entities/CertificatesOOT';
+import { AllCertificatesQuery, CertificateByIdQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface CertificatesRepository {
-  getById(endpoint: string, id: string): Promise<ICertificateByIdOOT | undefined>;
-  getAll(endpoint: string): Promise<IAllCertificatesOOT | undefined>;
+  getAll(): Promise<ExecutionResult<AllCertificatesQuery>>;
+  getById(id: string): Promise<ExecutionResult<CertificateByIdQuery>>;
 }
 
 export default CertificatesRepository;

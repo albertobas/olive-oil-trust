@@ -80,7 +80,14 @@ Once it is up and running, in the terminal tab or window left run:
 $ npm run start
 ```
 
-This will compile the contracts, deploy them in the local Hardhat chain, paste required info in the subgraph and front-end workspaces, generate the subgraph manifest and finally create the subgraph and deploy it, i.e. load the subgraph, compile it, build it and upload it to IPFS.
+This command will run multiple commands sequentially in order to do the following tasks:
+
+- compile the contracts.
+- deploy them in the local Hardhat chain.
+- create files with the required data in both subgraph and front-end workspaces.
+- generate the subgraph manifest.
+- create the subgraph and deploy it, i.e. load it, compile it, build it and upload it to IPFS.
+- create a `graphclient` runtime artifact so that we can execute queries to the subgraph.
 
 When this is all accomplished, just run the following command to start the Next.js development server:
 

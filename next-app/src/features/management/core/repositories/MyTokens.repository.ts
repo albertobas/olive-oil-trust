@@ -1,14 +1,9 @@
-import {
-  ITokensAndTokenTypesByMemberOOT,
-  ITokensByAccountOOT
-} from 'next-app/src/features/management/core/entities/MyTokensOOT';
+import { TokensAndTokenTypesByMemberQuery, TokensByAccountQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface MyTokensRepository {
-  getTokensAndTokenTypesByMember(
-    endpoint: string,
-    member: string
-  ): Promise<ITokensAndTokenTypesByMemberOOT | undefined>;
-  getTokensByAccount(endpoint: string, account: string): Promise<ITokensByAccountOOT | undefined>;
+  getTokensAndTokenTypesByMember(member: string): Promise<ExecutionResult<TokensAndTokenTypesByMemberQuery>>;
+  getTokensByAccount(account: string): Promise<ExecutionResult<TokensByAccountQuery>>;
 }
 
 export default MyTokensRepository;

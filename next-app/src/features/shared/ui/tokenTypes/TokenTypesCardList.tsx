@@ -1,6 +1,6 @@
 import styles from 'next-app/src/features/shared/styles/modules/tokenTypes/TokenTypesCardList.module.css';
 import React, { useEffect, useState } from 'react';
-import { sortTokenTypeArray } from 'next-app/src/features/management/ui/utils/helpers';
+import { sortTokenTypeArray } from 'next-app/src/features/shared/utils/helpers/tokenType';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import TokenTypeCard from 'next-app/src/features/shared/ui/tokenTypes/TokenTypeCard';
 import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';

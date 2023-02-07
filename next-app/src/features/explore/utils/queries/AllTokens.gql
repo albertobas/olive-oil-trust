@@ -1,0 +1,185 @@
+query AllTokens {
+  tokens {
+    ...tokenFields
+    escrows {
+      escrow {
+        id
+        buyer {
+          id
+        }
+        buyerWallet
+        contract {
+          id
+          owner {
+            asMemberContract {
+              id
+              name
+              role
+            }
+          }
+        }
+        escrowId
+        escrowBalance {
+          id
+          escrowAccount {
+            id
+          }
+          escrowAmounts
+          escrowTokens {
+            ...tokenFields
+          }
+        }
+        etherBalance {
+          id
+          value
+          valueExact
+        }
+        identifier
+        price
+        seller {
+          id
+        }
+        sellerWallet
+        state
+        tokenDeposits {
+          transaction {
+            id
+            blockNumber
+            events {
+              id
+            }
+            timestamp
+          }
+        }
+      }
+    }
+    ancestry {
+      amount
+      token {
+        ...tokenFields
+        ancestry {
+          amount
+          token {
+            ...tokenFields
+          }
+        }
+      }
+    }
+  }
+}
+fragment tokenFields on Token {
+  ...basicTokenFields
+  industrialUnitTokenInfo {
+    id
+    amounts
+    industrialUnit {
+      ...basicTokenFields
+    }
+    commercialUnits {
+      ...basicTokenFields
+    }
+  }
+}
+fragment basicTokenFields on Token {
+  id
+  identifier
+  contract {
+    id
+    owner {
+      asMemberContract {
+        id
+        name
+        role
+      }
+    }
+  }
+  tokenType {
+    id
+    identifier
+    contract {
+      id
+      owner {
+        asMemberContract {
+          id
+          name
+          role
+        }
+      }
+    }
+    creationDate
+    instructions {
+      id
+      instructedTokenAmount
+      instructedCertificate {
+        id
+        title
+        tokenTypes {
+          tokenType {
+            id
+            title
+            contract {
+              owner {
+                asMemberContract {
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+      instructedTokenType {
+        id
+        title
+        contract {
+          owner {
+            asMemberContract {
+              role
+            }
+          }
+        }
+      }
+    }
+    tokenTypeInstructionsSet {
+      id
+      emitter {
+        id
+      }
+      timestamp
+      transaction {
+        id
+        blockNumber
+        events {
+          id
+        }
+        timestamp
+      }
+    }
+    uri
+    ...metadataFields
+  }
+  mintingDate
+  totalSupply {
+    id
+    value
+    valueExact
+  }
+}
+fragment metadataFields on IMetadata {
+  bottleQuality
+  bottleMaterial
+  bottleSize
+  description
+  imageHeight
+  imagePath
+  imageWidth
+  oliveQuality
+  oliveOilAcidity
+  oliveOilAroma
+  oliveOilBitterness
+  oliveOilColour
+  oliveOilFruitness
+  oliveOilIntensity
+  oliveOilItching
+  oliveOrigin
+  title
+}

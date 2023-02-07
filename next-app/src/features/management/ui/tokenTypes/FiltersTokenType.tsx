@@ -3,7 +3,7 @@ import { useMemo, Dispatch, SetStateAction } from 'react';
 import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import FilterSelect from 'next-app/src/features/shared/ui/filters/FilterSelect';
-import { getItemsFromTypes } from 'next-app/src/features/shared/utils/helpers';
+import { getItemsFromTypes } from 'next-app/src/features/shared/utils/helpers/helpers';
 
 interface Props {
   data: ITokenType[] | null;

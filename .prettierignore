@@ -3,9 +3,12 @@
 hardhat-env/.openzeppelin
 hardhat-env/artifacts
 hardhat-env/cache
-hardhat-env/types
 hardhat-env/coverage
+hardhat-env/deployments
+hardhat-env/types
+next-app/.graphclient
 next-app/.next
+next-app/public
 next-app/src/generated
 services/graph-node
 subgraph/build

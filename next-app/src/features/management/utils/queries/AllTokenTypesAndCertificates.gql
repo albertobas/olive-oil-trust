@@ -1,0 +1,225 @@
+query AllTokenTypesAndCertificates {
+  tokenTypes {
+    id
+    identifier
+    certificates {
+      certificate {
+        id
+        identifier
+        certification {
+          id
+          emitter {
+            id
+          }
+          timestamp
+          transaction {
+            id
+            blockNumber
+            timestamp
+            events {
+              id
+              emitter {
+                id
+              }
+              timestamp
+            }
+          }
+        }
+        contract {
+          id
+          owner {
+            asMemberContract {
+              id
+              name
+              role
+            }
+          }
+        }
+        creationDate
+        uri
+        ...metadataFields
+      }
+    }
+    contract {
+      id
+      owner {
+        asMemberContract {
+          id
+          name
+          role
+        }
+      }
+    }
+    creationDate
+    instructions {
+      id
+      instructedTokenAmount
+      instructedCertificate {
+        id
+        title
+        tokenTypes {
+          tokenType {
+            id
+            title
+            contract {
+              owner {
+                asMemberContract {
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+      instructedTokenType {
+        id
+        title
+        contract {
+          owner {
+            asMemberContract {
+              role
+            }
+          }
+        }
+      }
+    }
+    tokenTypeInstructionsSet {
+      id
+      emitter {
+        id
+      }
+      timestamp
+      transaction {
+        id
+        blockNumber
+        events {
+          id
+        }
+        timestamp
+      }
+    }
+    uri
+    ...metadataFields
+  }
+  certificates {
+    id
+    identifier
+    certification {
+      id
+      emitter {
+        id
+      }
+      timestamp
+      transaction {
+        id
+        blockNumber
+        timestamp
+        events {
+          id
+          emitter {
+            id
+          }
+          timestamp
+        }
+      }
+    }
+    contract {
+      id
+      owner {
+        asMemberContract {
+          id
+          name
+          role
+        }
+      }
+    }
+    creationDate
+    tokenTypes {
+      tokenType {
+        id
+        identifier
+        contract {
+          id
+          owner {
+            asMemberContract {
+              id
+              name
+              role
+            }
+          }
+        }
+        creationDate
+        instructions {
+          id
+          instructedTokenAmount
+          instructedCertificate {
+            id
+            title
+            tokenTypes {
+              tokenType {
+                id
+                title
+                contract {
+                  owner {
+                    asMemberContract {
+                      role
+                    }
+                  }
+                }
+              }
+            }
+          }
+          instructedTokenType {
+            id
+            title
+            contract {
+              owner {
+                asMemberContract {
+                  role
+                }
+              }
+            }
+          }
+        }
+        tokenTypeInstructionsSet {
+          id
+          emitter {
+            id
+          }
+          timestamp
+          transaction {
+            id
+            blockNumber
+            events {
+              id
+            }
+            timestamp
+          }
+        }
+        uri
+        ...metadataFields
+      }
+    }
+    uri
+    ...metadataFields
+  }
+}
+fragment metadataFields on IMetadata {
+  bottleQuality
+  bottleMaterial
+  bottleSize
+  description
+  imageHeight
+  imagePath
+  imageWidth
+  oliveQuality
+  oliveOilAcidity
+  oliveOilAroma
+  oliveOilBitterness
+  oliveOilColour
+  oliveOilFruitness
+  oliveOilIntensity
+  oliveOilItching
+  oliveOrigin
+  title
+}

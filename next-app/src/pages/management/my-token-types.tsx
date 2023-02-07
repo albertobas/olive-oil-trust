@@ -31,7 +31,7 @@ const MyTokenTypesPage: NextPage = () => {
           return (
             <>
               <Breadcrumbs />
-              <Intro title={'My Token Types'} description={`In this page you can manage your token types.`} />
+              <Intro title="My Token Types" description="In this page you can manage your token types." />
               <MyTokenTypes memberAddress={address} moduleId={moduleId} previousRoles={previousRoles} />
             </>
           );

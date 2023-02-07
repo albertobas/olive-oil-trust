@@ -4,8 +4,8 @@ import { ITokensInfo } from 'next-app/src/features/shared/core/entities/Tokens';
 
 export interface IEscrow {
   id: string;
-  identifier: number;
-  buyer: { member: IMember | null; id: string } | null;
+  identifier: string;
+  buyer: IMember | null;
   buyerWallet: string | null;
   contract: string;
   escrowBalance: {
@@ -22,6 +22,7 @@ export interface IEscrow {
   seller: IMember | null;
   sellerWallet: string | null;
   state: EscrowSate | null;
+  title: string;
   tokenDeposits: { transaction: ITransaction }[];
 }
 

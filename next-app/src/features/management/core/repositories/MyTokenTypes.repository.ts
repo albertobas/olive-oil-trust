@@ -1,7 +1,8 @@
-import { IAllTokenTypesAndCertificatesOOT } from 'next-app/src/features/management/core/entities/MyTokenTypesOOT';
+import { AllTokenTypesAndCertificatesQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface MyTokenTypesRepository {
-  getAllTokenTypesAndCertificates(endpoint: string): Promise<IAllTokenTypesAndCertificatesOOT | undefined>;
+  getAllTokenTypesAndCertificates(): Promise<ExecutionResult<AllTokenTypesAndCertificatesQuery>>;
 }
 
 export default MyTokenTypesRepository;

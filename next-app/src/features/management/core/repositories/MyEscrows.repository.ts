@@ -1,13 +1,9 @@
-import {
-  IEscrowsByAccountOOT,
-  IEscrowsByBuyerOOT,
-  IEscrowsByMemberOOT
-} from 'next-app/src/features/management/core/entities/MyEscrowsOOT';
+import { EscrowsByBuyerQuery, EscrowsByMemberQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface MyEscrowsRepository {
-  getByAccount(endpoint: string, account: string): Promise<IEscrowsByAccountOOT | undefined>;
-  getByBuyer(endpoint: string, member: string): Promise<IEscrowsByBuyerOOT | undefined>;
-  getByMember(endpoint: string, member: string): Promise<IEscrowsByMemberOOT | undefined>;
+  getByBuyer(member: string): Promise<ExecutionResult<EscrowsByBuyerQuery>>;
+  getByMember(member: string): Promise<ExecutionResult<EscrowsByMemberQuery>>;
 }
 
 export default MyEscrowsRepository;

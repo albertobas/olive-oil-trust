@@ -10,7 +10,7 @@ export type EscrowCardAction =
 
 export interface IModalInfo {
   escrowId: string;
-  escrowIdentifier: number;
+  escrowIdentifier: string;
   action: EscrowCardAction;
 }
 

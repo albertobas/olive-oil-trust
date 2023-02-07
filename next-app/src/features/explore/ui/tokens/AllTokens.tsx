@@ -1,33 +1,26 @@
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { useAllTokens } from 'next-app/src/features/explore/ui/hooks/useAllTokens';
 import TokensSearchCardList from 'next-app/src/features/explore/ui/tokens/TokensSearchCardList';
-import { pollInterval } from 'next-app/src/features/shared/utils/constants';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import styles from 'src/features/shared/styles/modules/page/Page.module.css';
+import { ITokensState } from 'next-app/src/features/shared/utils/interfaces';
+import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 
-const AllTokens = (): JSX.Element => {
-  const { error, data } = useAllTokens(pollInterval);
-
-  if (error) {
-    return <FallbackMessage message="Tokens could not be retrieved" error />;
-  }
-
-  if (error === false) {
-    return (
-      <>
-        {data && (
-          <div className={styles.layout}>
-            <p className={styles.lastUpdated}>
-              <b>Last updated:</b> {getUTCFromTimestamp(data.lastUpdated)}
-            </p>
-          </div>
-        )}
+const AllTokens = ({ error, data }: ITokensState): JSX.Element => {
+  return (
+    <>
+      <div className={styles.layout}>
+        <p className={styles.textSm}>
+          <b>Last updated:</b> {data ? getUTCFromTimestamp(data?.lastUpdated) : 'loading...'}
+        </p>
+      </div>
+      {error ? (
+        <FallbackMessage message="Tokens could not be retrieved" error />
+      ) : error === false ? (
         <TokensSearchCardList tokens={data?.tokens ?? null} />
-      </>
-    );
-  }
-
-  return <FallbackMessage />;
+      ) : (
+        <FallbackMessage />
+      )}
+    </>
+  );
 };
 
 export default AllTokens;

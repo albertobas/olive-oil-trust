@@ -1,9 +1,9 @@
 import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getToken } from 'next-app/src/features/shared/utils/helpers';
-import { ITokenByIdOOT } from 'next-app/src/features/explore/core/entities/TokensOOT';
+import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
+import { TokenByIdQuery } from 'next-app/.graphclient';
 
-const tokenByIdAdapter = (dataRaw: ITokenByIdOOT | undefined): IToken | null => {
-  if (dataRaw && dataRaw.token) {
+const tokenByIdAdapter = (dataRaw: TokenByIdQuery): IToken | null => {
+  if (dataRaw.token) {
     return getToken(dataRaw.token, null, null);
   }
   return null;

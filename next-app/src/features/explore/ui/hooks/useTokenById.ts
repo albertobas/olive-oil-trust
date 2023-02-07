@@ -1,48 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
-import useEndpoint from 'next-app/src/features/shared/ui/hooks/useEndpoint';
-import queryTokenById from 'next-app/src/features/explore/core/interactors/queryTokenById';
-import { getTime } from 'next-app/src/features/shared/utils/helpers';
-import { ITokensState } from 'next-app/src/features/shared/utils/interfaces';
+import { queryTokenByIdWithDep } from 'next-app/src/features/explore/core/interactors';
+import { ITokenState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useTokenById(id: string, pollInterval?: number): ITokensState {
-  const [tokensState, setTokensState] = useState<ITokensState>({ error: null, data: null });
-  const endpoint = useEndpoint();
+export function useTokenById(id: string, pollInterval?: number): ITokenState {
+  const [tokensState, setTokensState] = useState<ITokenState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {
-    if (endpoint.error) {
-      // if error retrieving endpoint
-      setTokensState({ error: true, data: null });
-    } else {
-      // if endpoint error is false
-      if (endpoint.data) {
-        // if there is an endpoint
-        const { error, data } = await queryTokenById(endpoint.data, id);
-        if (error) {
-          // if error retrieving data
-          setTokensState({ error: true, data: null });
-        } else {
-          // if error retrieving data is false
-          setTokensState({
-            error: false,
-            data: { tokens: data ? { [data.id]: data } : null, lastUpdated: getTime() }
-          });
-        }
-      } else {
-        // there is no endpoint, data cannot be retrieved
-        setTokensState({ error: true, data: null });
-        console.error('There is no endpoint, data cannot be retrieved');
-      }
-    }
-  }, [endpoint.data, endpoint.error, id]);
+    const { error, data } = await queryTokenByIdWithDep(id);
+    setTokensState({ error, data });
+  }, [id]);
 
   useEffect(() => {
-    fetchData();
-
     let t: NodeJS.Timer | null = null;
 
     if (pollInterval) {
       t = setInterval(fetchData, pollInterval);
+    } else {
+      fetchData();
     }
 
     return () => {

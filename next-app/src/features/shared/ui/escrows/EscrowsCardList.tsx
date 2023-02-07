@@ -1,6 +1,6 @@
 import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowsCardList.module.css';
 import { useEffect, useMemo, useState } from 'react';
-import { sortEscrowArray } from 'next-app/src/features/management/ui/utils/helpers';
+import { sortEscrowArray } from 'next-app/src/features/shared/utils/helpers/escrow';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import EscrowCard from 'next-app/src/features/shared/ui/escrows/EscrowCard';
 import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';

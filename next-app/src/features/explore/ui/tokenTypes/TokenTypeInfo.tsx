@@ -5,9 +5,9 @@ import { IEvent } from 'next-app/src/features/shared/core/entities/Events';
 import { IMetadata } from 'next-app/src/features/shared/core/entities/Metadata';
 import { ITokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers';
+import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import styles from 'next-app/src/features/explore/styles/modules/tokenTypes/TokenTypeInfo.module.css';
-import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/ui/utils/helpers';
+import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/utils/helpers';
 
 type Props = {
   identifier: string;
@@ -153,8 +153,9 @@ function TokenTypeInfo({ identifier, metadata, instructions, instructionsSetEven
                     </>
                   )}
                   <ILink
+                    className={styles.anchor}
                     href={instructionHref}
-                    aria-label={`${instruction.isCertificate ? 'Certificate' : 'Token type'} ${identifier.toString()}`}
+                    aria-label={`${instruction.isCertificate ? 'Certificate' : 'Token type'} ${identifier}`}
                   >
                     {instruction.title ?? instruction.id}
                   </ILink>

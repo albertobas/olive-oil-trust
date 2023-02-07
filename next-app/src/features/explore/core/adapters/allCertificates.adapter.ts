@@ -1,16 +1,13 @@
-import { getCertificate } from 'next-app/src/features/shared/utils/helpers';
+import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
 import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { IAllCertificatesOOT } from 'next-app/src/features/explore/core/entities/CertificatesOOT';
+import { AllCertificatesQuery } from 'next-app/.graphclient';
 
-function allCertificatesAdapter(dataRaw: IAllCertificatesOOT | undefined): ICertificates | null {
-  if (dataRaw && dataRaw.certificates) {
-    let certificates: ICertificates | null = null;
-    if (dataRaw.certificates.length > 0) {
-      certificates = {};
-      for (let i = 0; i < dataRaw.certificates.length; i++) {
-        const certificateOOT = dataRaw.certificates[i];
-        certificates[certificateOOT.id] = getCertificate(certificateOOT);
-      }
+function allCertificatesAdapter(dataRaw: AllCertificatesQuery): ICertificates | null {
+  if (dataRaw.certificates.length > 0) {
+    const certificates: ICertificates = {};
+    for (let i = 0; i < dataRaw.certificates.length; i++) {
+      const certificateRaw = dataRaw.certificates[i];
+      certificates[certificateRaw.id] = getCertificate(certificateRaw);
     }
     return certificates;
   }

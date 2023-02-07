@@ -1,7 +1,8 @@
-import { ICertificatesAndTokenTypesByMemberOOT } from 'next-app/src/features/management/core/entities/MyCertificatesOOT';
+import { CertificatesByMemberQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface MyCertificatesRepository {
-  getByMember(endpoint: string, member: string): Promise<ICertificatesAndTokenTypesByMemberOOT | undefined>;
+  getByMember(member: string): Promise<ExecutionResult<CertificatesByMemberQuery>>;
 }
 
 export default MyCertificatesRepository;

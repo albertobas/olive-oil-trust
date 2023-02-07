@@ -12,7 +12,7 @@ function MyTokensLayout({ children }: { children: React.ReactNode }): JSX.Elemen
   return (
     <>
       <Breadcrumbs />
-      <Intro title={'My Tokens'} description={`In this page you can manage your tokens.`} />
+      <Intro title="My Tokens" description="In this page you can manage your tokens." />
       <Fragment>{children}</Fragment>
     </>
   );

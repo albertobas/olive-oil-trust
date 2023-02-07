@@ -1,7 +1,8 @@
-import { IAllEscrowsOOT } from 'next-app/src/features/explore/core/entities/EscrowsOOT';
+import { AllEscrowsQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface EscrowsRepository {
-  getAll(endpoint: string): Promise<IAllEscrowsOOT | undefined>;
+  getAll(): Promise<ExecutionResult<AllEscrowsQuery>>;
 }
 
 export default EscrowsRepository;

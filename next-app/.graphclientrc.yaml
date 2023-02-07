@@ -1,0 +1,8 @@
+sources:
+  - name: olive-oil-trust
+    handler:
+      graphql:
+        endpoint: http://127.0.0.1:8000/subgraphs/name/olive-oil-trust
+
+documents:
+  - ./src/features/**/queries/*.gql

@@ -1,8 +1,9 @@
-import { IAllTokensOOT, ITokenByIdOOT } from 'next-app/src/features/explore/core/entities/TokensOOT';
+import { AllTokensQuery, TokenByIdQuery } from 'next-app/.graphclient';
+import { ExecutionResult } from 'graphql';
 
 interface TokensRepository {
-  getById(endpoint: string, id: string): Promise<ITokenByIdOOT | undefined>;
-  getAll(endpoint: string): Promise<IAllTokensOOT | undefined>;
+  getAll(): Promise<ExecutionResult<AllTokensQuery>>;
+  getById(id: string): Promise<ExecutionResult<TokenByIdQuery>>;
 }
 
 export default TokensRepository;

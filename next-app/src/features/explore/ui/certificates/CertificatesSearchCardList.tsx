@@ -1,10 +1,10 @@
 import { memo, useMemo, useState } from 'react';
 import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { certificateSearch } from 'next-app/src/features/shared/utils/helpers';
+import { certificateSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import CertificatesCardList from 'next-app/src/features/shared/ui/certificates/CertificatesCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { sortEscrowCardsRecords } from 'next-app/src/features/shared/utils/constants';
+import { sortCertificateCardsRecords } from 'next-app/src/features/shared/utils/constants';
 import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
 
 type Props = { certificates: ICertificates | null };
@@ -22,8 +22,11 @@ function CertificatesSearchCardList({ certificates }: Props): JSX.Element {
   }, [certificates]);
 
   const sortOptions = useMemo(() => {
-    return Object.keys(sortEscrowCardsRecords).map((key) => {
-      return { label: sortEscrowCardsRecords[key as keyof typeof sortEscrowCardsRecords], value: key } as IItem;
+    return Object.keys(sortCertificateCardsRecords).map((key) => {
+      return {
+        label: sortCertificateCardsRecords[key as keyof typeof sortCertificateCardsRecords],
+        value: key
+      } as IItem;
     });
   }, []);
 
@@ -45,7 +48,7 @@ function CertificatesSearchCardList({ certificates }: Props): JSX.Element {
         reverse={reverse}
         sort={sort}
         options={sortOptions}
-        searchKey={'certificates'}
+        searchKey="certificates"
         setReverse={setReverse}
         setQuery={setQuery}
         setSort={setSort}

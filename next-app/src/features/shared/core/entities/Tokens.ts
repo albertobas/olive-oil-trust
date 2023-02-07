@@ -24,6 +24,7 @@ export interface ITokenFields {
   mintingDate: number | null;
   selfProduced: boolean | null;
   tokenType: ITokenType | null;
+  title: string;
   totalSupply: {
     id: string;
     value: number | null;

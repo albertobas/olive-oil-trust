@@ -1,47 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
-import useEndpoint from 'next-app/src/features/shared/ui/hooks/useEndpoint';
-import queryTokenTypeById from 'next-app/src/features/explore/core/interactors/queryTokenTypeById';
-import { getTime } from 'next-app/src/features/shared/utils/helpers';
-import { ITokenTypesState } from 'next-app/src/features/shared/utils/interfaces';
+import { queryTokenTypeByIdWithDep } from 'next-app/src/features/explore/core/interactors';
+import { ITokenTypeState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useTokenTypeById(id: string, pollInterval?: number): ITokenTypesState {
-  const [tokenTypesState, setTokenTypesState] = useState<ITokenTypesState>({ error: null, data: null });
-  const endpoint = useEndpoint();
+export function useTokenTypeById(id: string, pollInterval?: number): ITokenTypeState {
+  const [tokenTypesState, setTokenTypesState] = useState<ITokenTypeState>({ error: null, data: null });
+
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {
-    if (endpoint.error) {
-      // if error retrieving endpoint
-      setTokenTypesState({ error: true, data: null });
-    } else {
-      // if endpoint error is false
-      if (endpoint.data) {
-        // if there is an endpoint
-        const { error, data } = await queryTokenTypeById(endpoint.data, id);
-        if (error) {
-          // if error retrieving data
-          setTokenTypesState({ error: true, data: null });
-        } else {
-          // if error retrieving data is false
-          setTokenTypesState({
-            error: false,
-            data: { tokenTypes: data ? { [data.id]: data } : null, lastUpdated: getTime() }
-          });
-        }
-      } else {
-        // there is no endpoint, data cannot be retrieved
-        setTokenTypesState({ error: true, data: null });
-        console.error('There is no endpoint, data cannot be retrieved');
-      }
-    }
-  }, [endpoint.data, endpoint.error, id]);
+    const { error, data } = await queryTokenTypeByIdWithDep(id);
+    setTokenTypesState({ error, data });
+  }, [id]);
 
   useEffect(() => {
-    fetchData();
-
     let t: NodeJS.Timer | null = null;
 
     if (pollInterval) {
       t = setInterval(fetchData, pollInterval);
+    } else {
+      fetchData();
     }
 
     return () => {

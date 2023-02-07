@@ -1,0 +1,123 @@
+query AllTokenTypes {
+  tokenTypes {
+    id
+    identifier
+    ...metadataFields
+    certificates {
+      certificate {
+        id
+        contract {
+          id
+          owner {
+            asMemberContract {
+              id
+              name
+              role
+            }
+          }
+        }
+        creationDate
+        identifier
+        ...metadataFields
+        certification {
+          id
+          emitter {
+            id
+          }
+          timestamp
+          transaction {
+            id
+            blockNumber
+            timestamp
+            events {
+              id
+              emitter {
+                id
+              }
+              timestamp
+            }
+          }
+        }
+        uri
+      }
+    }
+    contract {
+      id
+      owner {
+        asMemberContract {
+          id
+          name
+          role
+        }
+      }
+    }
+    creationDate
+    instructions {
+      id
+      instructedTokenAmount
+      instructedCertificate {
+        id
+        title
+        tokenTypes {
+          tokenType {
+            id
+            title
+            contract {
+              owner {
+                asMemberContract {
+                  role
+                }
+              }
+            }
+          }
+        }
+      }
+      instructedTokenType {
+        id
+        title
+        contract {
+          owner {
+            asMemberContract {
+              role
+            }
+          }
+        }
+      }
+    }
+    tokenTypeInstructionsSet {
+      id
+      emitter {
+        id
+      }
+      timestamp
+      transaction {
+        id
+        blockNumber
+        events {
+          id
+        }
+        timestamp
+      }
+    }
+    uri
+  }
+}
+fragment metadataFields on IMetadata {
+  bottleQuality
+  bottleMaterial
+  bottleSize
+  description
+  imageHeight
+  imagePath
+  imageWidth
+  oliveQuality
+  oliveOilAcidity
+  oliveOilAroma
+  oliveOilBitterness
+  oliveOilColour
+  oliveOilFruitness
+  oliveOilIntensity
+  oliveOilItching
+  oliveOrigin
+  title
+}

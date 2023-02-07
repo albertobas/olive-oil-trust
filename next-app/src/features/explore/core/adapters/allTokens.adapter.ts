@@ -1,21 +1,15 @@
 import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { ITokenOOT } from 'next-app/src/features/shared/core/entities/TokensOOT';
-import { getToken } from 'next-app/src/features/shared/utils/helpers';
-import { IAllTokensOOT } from 'next-app/src/features/explore/core/entities/TokensOOT';
+import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
+import { AllTokensQuery } from 'next-app/.graphclient';
 
-function allTokensAdapter(dataRaw: IAllTokensOOT | undefined): ITokens | null {
-  if (dataRaw && dataRaw.tokens) {
-    let tokens: ITokens | null = null;
-
-    if (dataRaw.tokens.length > 0) {
-      tokens = {};
-      for (let i = 0; i < dataRaw.tokens.length; i++) {
-        const tokenOOT: ITokenOOT = dataRaw.tokens[i];
-        tokens[tokenOOT.id] = getToken(tokenOOT, null, null);
-      }
-      return tokens;
+function allTokensAdapter(dataRaw: AllTokensQuery): ITokens | null {
+  if (dataRaw.tokens.length > 0) {
+    const tokens: ITokens = {};
+    for (let i = 0; i < dataRaw.tokens.length; i++) {
+      const tokenRaw = dataRaw.tokens[i];
+      tokens[tokenRaw.id] = getToken(tokenRaw, null, null);
     }
-    return null;
+    return tokens;
   }
   return null;
 }

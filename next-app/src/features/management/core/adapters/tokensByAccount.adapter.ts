@@ -1,20 +1,20 @@
 import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getToken } from 'next-app/src/features/shared/utils/helpers';
-import { ITokensByAccountOOT } from 'next-app/src/features/management/core/entities/MyTokensOOT';
+import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
+import { TokensByAccountQuery } from 'next-app/.graphclient';
 
-const tokensByAccountAdapter = (dataRaw: ITokensByAccountOOT | undefined): ITokens | null => {
-  if (dataRaw && dataRaw.account) {
-    let tokens: ITokens | null = null;
+const tokensByAccountAdapter = (dataRaw: TokensByAccountQuery): ITokens | null => {
+  if (dataRaw.account) {
     const { tokenBalances } = dataRaw.account;
     if (tokenBalances) {
-      tokens = {};
+      const tokens: ITokens | null = {};
       for (let i = 0; i < tokenBalances.length; i++) {
         const { valueExact, tokenToken } = tokenBalances[i];
-        tokens[tokenToken.id] = getToken(tokenToken, valueExact, null);
+        if (tokenToken) {
+          tokens[tokenToken.id] = getToken(tokenToken, valueExact, null);
+        }
       }
       return tokens;
     }
-    return null;
   }
   return null;
 };
