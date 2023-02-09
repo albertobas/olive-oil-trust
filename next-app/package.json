@@ -16,9 +16,6 @@
   "dependencies": {
     "@radix-ui/react-label": "^2.0.0",
     "@reduxjs/toolkit": "^1.8.5",
-    "@web3-react/core": "^8.0.35-beta.0",
-    "@web3-react/metamask": "^8.0.28-beta.0",
-    "@web3-react/walletconnect": "^8.0.36-beta.0",
     "ethers": "^5.7.1",
     "formik": "^2.2.9",
     "next": "^12.3.1",
