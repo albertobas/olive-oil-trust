@@ -38,7 +38,7 @@ const TokenCard = ({
         <div className={styles.info}>
           <h2>
             <ILink href={tokenHref} aria-label={title}>
-              {title}
+              {identifier}
             </ILink>
           </h2>
           {tokenType?.metadata && (
@@ -56,11 +56,6 @@ const TokenCard = ({
           {!selfProduced && tokenType && tokenType.member && (
             <p>
               <b>Manufacturer:</b> {tokenType.member.name}
-            </p>
-          )}
-          {!selfProduced && industrialUnitTokenInfo && industrialUnitTokenInfo.member && (
-            <p>
-              <b>Packer:</b> {industrialUnitTokenInfo.member.name}
             </p>
           )}
           {balance !== null && tokenType !== null && (
@@ -84,6 +79,11 @@ const TokenCard = ({
           )}
           {industrialUnitTokenInfo && (
             <>
+              {!selfProduced && industrialUnitTokenInfo.member && (
+                <p>
+                  <b>Packer:</b> {industrialUnitTokenInfo.member.name}
+                </p>
+              )}
               <h3>Content</h3>
               <ul>
                 {commercialUnits &&
