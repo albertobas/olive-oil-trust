@@ -1,7 +1,16 @@
 .layout {
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  max-height: 90vh;
+}
+.minH30 {
+  min-height: 30vh;
+}
+.minH40 {
+  min-height: 40vh;
+}
+.minH60 {
+  min-height: 65vh;
 }
 .layoutFit {
   height: fit-content;
@@ -30,26 +39,16 @@
   flex-grow: 1;
   justify-content: space-between;
 }
-.form,
-.formFlex {
+.form {
   height: 100%;
-}
-.formFlex form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
 }
 .header,
 .form,
-.formFlex,
 .actionBtns {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 .form,
-.formFlex,
 .actionBtns,
 .carousel {
   margin-top: 2rem;
