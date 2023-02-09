@@ -150,7 +150,7 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
   };
 
   return (
-    <div className={styles.layoutFit}>
+    <div className={`${styles.layout} ${styles.minH40}`}>
       <div className={styles.header}>
         <h1>Pack Tokens</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
@@ -212,7 +212,9 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
                             <button
                               type="button"
                               onClick={() => push({ id: null, amount: '' })}
-                              disabled={Boolean(contentOptions && contentOptions.length === fieldArray.length)}
+                              disabled={Boolean(
+                                contentOptions?.map((options) => options.options).flat().length === fieldArray.length
+                              )}
                             >
                               Add token
                             </button>

@@ -221,7 +221,7 @@ function AddTokenTypes({ previousTokenTypes, certificates, setIsAddingTokenTypes
   };
 
   return (
-    <div className={styles.layoutFit}>
+    <div className={`${styles.layout} ${styles.minH40}`}>
       <div className={styles.header}>
         <h1>{`Add ${getTokenNameFromModule(moduleId)} Types`}</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>

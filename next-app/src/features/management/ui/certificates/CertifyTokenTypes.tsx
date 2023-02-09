@@ -150,64 +150,67 @@ function CertifyTokenTypes({ tokenTypes, setIsAddingCertificates }: Props): JSX.
   };
 
   return (
-    <div className={styles.layoutFit}>
+    <div className={`${styles.layout} ${styles.minH40}`}>
       <div className={styles.header}>
         <h1>Certify Token Types</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
           <SVG icon={FaTimes} />
         </button>
       </div>
-      <div className={styles.form}>
-        <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleFormSubmit(values, resetForm)}>
-          {({ resetForm }) => {
-            return (
-              <Form>
-                <div className={styles.field}>
-                  <Label htmlFor="certificateId">Certificate Id *</Label>
-                  <Field name="certificateId" />
-                  <ErrorMessage name="certificateId" component="div" className={styles.fieldError} />
-                </div>
-                <div className={styles.field}>
-                  <Label htmlFor="ids">Token types *</Label>
-                  <div className={styles.fieldBtnPair}>
-                    <div>
-                      <Field
-                        name="ids"
-                        component={TokenTypesDropdownMulti}
-                        options={options}
-                        validate={(value: string | null) => handleSelectValidation(value, 'Token type')}
-                      />
+      <div className={styles.content}>
+        <div>
+          <div className={styles.form}>
+            <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleFormSubmit(values, resetForm)}>
+              {({ resetForm }) => {
+                return (
+                  <Form>
+                    <div className={styles.field}>
+                      <Label htmlFor="certificateId">Certificate Id *</Label>
+                      <Field name="certificateId" />
+                      <ErrorMessage name="certificateId" component="div" className={styles.fieldError} />
                     </div>
-                  </div>
-                  <ErrorMessage name="ids" component="div" className={styles.fieldError} />
-                </div>
-                <div className={styles.formSubmit}>
-                  <button type="submit">Add to the list</button>
-                  <button type="submit" onClick={() => resetForm()}>
-                    Reset form
-                  </button>
-                </div>
-              </Form>
-            );
-          }}
-        </Formik>
-      </div>
-      {certificates && certificates.length > 0 && (
-        <div className={styles.carousel}>
-          <Carousel responsive={carouselResponsive}>
-            {certificates.map((certificate) => {
-              return (
-                <CertifyTokenTypesCard
-                  key={certificate.certificateId}
-                  handleDelCertificate={handleDelCertificate}
-                  {...certificate}
-                />
-              );
-            })}
-          </Carousel>
+                    <div className={styles.field}>
+                      <Label htmlFor="ids">Token types *</Label>
+                      <div className={styles.fieldBtnPair}>
+                        <div>
+                          <Field
+                            name="ids"
+                            component={TokenTypesDropdownMulti}
+                            options={options}
+                            validate={(value: string | null) => handleSelectValidation(value, 'Token type')}
+                          />
+                        </div>
+                      </div>
+                      <ErrorMessage name="ids" component="div" className={styles.fieldError} />
+                    </div>
+                    <div className={styles.formSubmit}>
+                      <button type="submit">Add to the list</button>
+                      <button type="submit" onClick={() => resetForm()}>
+                        Reset form
+                      </button>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
+          </div>
+          {certificates && certificates.length > 0 && (
+            <div className={styles.carousel}>
+              <Carousel responsive={carouselResponsive}>
+                {certificates.map((certificate) => {
+                  return (
+                    <CertifyTokenTypesCard
+                      key={certificate.certificateId}
+                      handleDelCertificate={handleDelCertificate}
+                      {...certificate}
+                    />
+                  );
+                })}
+              </Carousel>
+            </div>
+          )}
         </div>
-      )}
-
+      </div>
       <div className={styles.actionBtns}>
         <button
           className={styles.submitBtn}

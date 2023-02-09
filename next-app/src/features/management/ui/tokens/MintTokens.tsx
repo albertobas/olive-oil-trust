@@ -273,7 +273,7 @@ function MintTokens({
   }
 
   return (
-    <div className={styles.layoutFit}>
+    <div className={`${styles.layout}${isDependentCreator ? ` ${styles.minH60}` : ''}`}>
       <div className={styles.header}>
         <h1>{`Mint${tokenName ? ' '.concat(tokenName) : ''}`}</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
@@ -493,7 +493,8 @@ function MintTokens({
                                       Boolean(
                                         batchIdOpts &&
                                           Object.keys(fields).includes(id) &&
-                                          fields[id].data.length === batchIdOpts.length
+                                          fields[id].data.length ===
+                                            batchIdOpts.map((options) => options.options).flat().length
                                       ) || neededAmount === totalAmount
                                     }
                                   >

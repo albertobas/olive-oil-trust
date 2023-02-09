@@ -120,55 +120,57 @@ function UnpackTokens({ industrialUnitTokens, unpacker, setIsUnpackingTokens }: 
   };
 
   return (
-    <>
-      <div className={styles.layoutFlex}>
-        <div className={styles.header}>
-          <h1>Unpack Pallets</h1>
-          <button className={styles.closeBtn} onClick={handleCancel}>
-            <SVG icon={FaTimes} />
-          </button>
-        </div>
-        <div className={styles.formFlex}>
-          <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleSubmit(values, resetForm)}>
-            {({ values, resetForm }) => (
-              <Form>
-                <div className={styles.field}>
-                  <Label htmlFor="ids">Pallets</Label>
-                  <div className={styles.fieldBtnPair}>
-                    <div>
-                      <Field
-                        name="ids"
-                        component={TokensDropdownMulti}
-                        options={tokensOptions}
-                        validate={(value: string | null) => handleSelectValidation(value, 'pallet id')}
-                      />
-                    </div>
-                  </div>
-                  <ErrorMessage name="ids" component="div" className={styles.fieldError} />
-                </div>
-                <div className={styles.formSubmit}>
-                  <button type="reset" onClick={() => resetForm()}>
-                    Reset form
-                  </button>
-                </div>
-                <div className={styles.actionBtns}>
-                  <button
-                    className={styles.submitBtn}
-                    type="submit"
-                    disabled={!(values && values.ids && values.ids.length > 0)}
-                  >
-                    Unpack
-                  </button>
-                  <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
-                    Cancel
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+    <div className={`${styles.layout} ${styles.minH30}`}>
+      <div className={styles.header}>
+        <h1>Unpack Pallets</h1>
+        <button className={styles.closeBtn} onClick={handleCancel}>
+          <SVG icon={FaTimes} />
+        </button>
       </div>
-    </>
+      <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleSubmit(values, resetForm)}>
+        {({ values, resetForm }) => (
+          <div className={styles.content}>
+            <div>
+              <div className={styles.form}>
+                <Form>
+                  <div className={styles.field}>
+                    <Label htmlFor="ids">Pallets</Label>
+                    <div className={styles.fieldBtnPair}>
+                      <div>
+                        <Field
+                          name="ids"
+                          component={TokensDropdownMulti}
+                          options={tokensOptions}
+                          validate={(value: string | null) => handleSelectValidation(value, 'pallet id')}
+                        />
+                      </div>
+                    </div>
+                    <ErrorMessage name="ids" component="div" className={styles.fieldError} />
+                  </div>
+                  <div className={styles.formSubmit}>
+                    <button type="reset" onClick={() => resetForm()}>
+                      Reset form
+                    </button>
+                  </div>
+                </Form>
+              </div>
+            </div>
+            <div className={styles.actionBtns}>
+              <button
+                className={styles.submitBtn}
+                type="submit"
+                disabled={!(values && values.ids && values.ids.length > 0)}
+              >
+                Unpack
+              </button>
+              <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+      </Formik>
+    </div>
   );
 }
 

@@ -130,7 +130,7 @@ function BurnTokens({ commercialTokens, moduleId, accountAddress, setIsBurningTo
   };
 
   return (
-    <div className={styles.layoutFlex}>
+    <div className={`${styles.layout} ${styles.minH30}`}>
       <div className={styles.header}>
         <h1>Burn Tokens</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
@@ -187,7 +187,9 @@ function BurnTokens({ commercialTokens, moduleId, accountAddress, setIsBurningTo
                               <button
                                 type="button"
                                 onClick={() => push({ id: null, amount: '' })}
-                                disabled={Boolean(contentOptions && contentOptions.length === fieldArray.length)}
+                                disabled={Boolean(
+                                  contentOptions?.map((options) => options.options).flat().length === fieldArray.length
+                                )}
                               >
                                 Add token
                               </button>
@@ -201,19 +203,19 @@ function BurnTokens({ commercialTokens, moduleId, accountAddress, setIsBurningTo
                         Reset form
                       </button>
                     </div>
-                    <div className={styles.actionBtns}>
-                      <button type="submit" className={styles.submitBtn}>
-                        Burn
-                      </button>
-                      <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
-                        Cancel
-                      </button>
-                    </div>
                   </Form>
                 );
               }}
             </Formik>
           </div>
+        </div>
+        <div className={styles.actionBtns}>
+          <button type="submit" className={styles.submitBtn}>
+            Burn
+          </button>
+          <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

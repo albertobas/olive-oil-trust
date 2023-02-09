@@ -209,159 +209,168 @@ function DepositTokens({ tokens, moduleId, setIsDepositingTokens }: Props): JSX.
   };
 
   return (
-    <div className={isIndustrialUnitSeller_ ? styles.layoutFit : styles.layout}>
+    <div className={styles.layout} style={{ minHeight: '45vh' }}>
       <div className={styles.header}>
         <h1>{`Deposit${tokenName ? ' '.concat(tokenName) : ''}`}</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
           <SVG icon={FaTimes} />
         </button>
       </div>
-      <div className={styles.formFlex}>
-        <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleSubmit(values, resetForm)}>
-          {({ values: { price, fieldArray }, resetForm, setFieldValue }) => {
-            function handlePriceUnitClick(newUnit: 'ether' | 'gwei' | 'wei') {
-              setPriceUnit(newUnit);
-              if (price.length > 0) {
-                let newPrice;
-                if (priceUnit === 'ether') {
-                  newPrice = parseInt(
-                    formatUnits(BigNumber.from((parseFloat(price) * 1.0e18).toString()), newUnit)
-                  ).toString();
-                } else if (priceUnit === 'gwei') {
-                  newPrice = parseInt(
-                    formatUnits(BigNumber.from((parseFloat(price) * 1.0e9).toString()), newUnit)
-                  ).toString();
-                } else {
-                  newPrice = parseInt(formatUnits(BigNumber.from(price), newUnit)).toString();
+      <div className={styles.content}>
+        <div>
+          <div className={styles.form}>
+            <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleSubmit(values, resetForm)}>
+              {({ values: { price, fieldArray }, resetForm, setFieldValue }) => {
+                function handlePriceUnitClick(newUnit: 'ether' | 'gwei' | 'wei') {
+                  setPriceUnit(newUnit);
+                  if (price.length > 0) {
+                    let newPrice;
+                    if (priceUnit === 'ether') {
+                      newPrice = parseInt(
+                        formatUnits(BigNumber.from((parseFloat(price) * 1.0e18).toString()), newUnit)
+                      ).toString();
+                    } else if (priceUnit === 'gwei') {
+                      newPrice = parseInt(
+                        formatUnits(BigNumber.from((parseFloat(price) * 1.0e9).toString()), newUnit)
+                      ).toString();
+                    } else {
+                      newPrice = parseInt(formatUnits(BigNumber.from(price), newUnit)).toString();
+                    }
+                    setFieldValue('price', newPrice);
+                  }
                 }
-                setFieldValue('price', newPrice);
-              }
-            }
-            return (
-              <Form>
-                <div>
-                  <div className={styles.fieldBtnPair}>
-                    <div className={styles.field}>
-                      <Label htmlFor="sellerWallet">Seller wallet *</Label>
-                      <Field name="sellerWallet" validate={handleAddressValidation} />
-                    </div>
-                    <ErrorMessage name="sellerWallet" component="div" className={styles.fieldError} />
-                    {account && (
-                      <button
-                        type="button"
-                        title="Paste wallet address"
-                        onClick={() => setFieldValue('sellerWallet', account)}
-                      >
-                        <SVG icon={ImPaste} />
-                      </button>
-                    )}
-                  </div>
-                  {!isOliveGrower_ && (
-                    <div className={styles.field}>
-                      <PriceLabel priceUnit={priceUnit} handlePriceUnitClick={handlePriceUnitClick} />
-                      <Field name="price" validate={handlePriceValidation} />
-                      <ErrorMessage name="price" component="div" className={styles.fieldError} />
-                    </div>
-                  )}
-                  {isIndustrialUnitSeller_ ? (
-                    <div className={styles.field}>
-                      <Label htmlFor="ids">Pallets *</Label>
+                return (
+                  <Form>
+                    <div>
                       <div className={styles.fieldBtnPair}>
-                        <div>
-                          <Field
-                            name="ids"
-                            component={TokensDropdownMulti}
-                            options={tokensOptions}
-                            validate={(value: string | null) => handleSelectValidation(value, 'batch id')}
-                          />
+                        <div className={styles.field}>
+                          <Label htmlFor="sellerWallet">Seller wallet *</Label>
+                          <Field name="sellerWallet" validate={handleAddressValidation} />
                         </div>
+                        <ErrorMessage name="sellerWallet" component="div" className={styles.fieldError} />
+                        {account && (
+                          <button
+                            type="button"
+                            title="Paste wallet address"
+                            onClick={() => setFieldValue('sellerWallet', account)}
+                          >
+                            <SVG icon={ImPaste} />
+                          </button>
+                        )}
                       </div>
-                      <ErrorMessage name="ids" component="div" className={styles.fieldError} />
-                    </div>
-                  ) : (
-                    <FieldArray name="fieldArray">
-                      {({ remove, push }) => {
-                        const isAddBatchDisabled = Boolean(
-                          fieldArrayIdGroupOpts &&
-                            fieldArray.length ===
-                              fieldArrayIdGroupOpts
-                                .map((group) => group.options.length)
-                                .reduce((acc, current) => acc + current, 0)
-                        );
-                        return (
-                          <div className={styles.fieldArray}>
-                            {<p className={styles.title}>{tokenName ? ' '.concat(tokenName) : 'Tokens'}</p>}
-                            {fieldArray.length > 0 &&
-                              fieldArray.map(({}, index) => (
-                                <div key={index} className={styles.fieldBtnPair}>
-                                  <div className={styles.fieldArrayMultiInputMargin}>
-                                    <div className={styles.field}>
-                                      <Label htmlFor={`fieldArray.${index}.id`}>{`Batch Id *`}</Label>
-                                      <Field
-                                        name={`fieldArray.${index}.id`}
-                                        component={DepositDropdown}
-                                        options={fieldArrayIdGroupOpts}
-                                        validate={(value: string | null) => handleSelectValidation(value, 'batch id')}
-                                      />
-                                      <ErrorMessage
-                                        name={`fieldArray.${index}.id`}
-                                        component="div"
-                                        className={styles.fieldError}
-                                      />
-                                    </div>
-                                    <div className={styles.field}>
-                                      <Label htmlFor={`fieldArray.${index}.amount`}>
-                                        {`Amount (${getTokenUnitFromModule(moduleId)}) *`}
-                                      </Label>
-                                      <Field name={`fieldArray.${index}.amount`} validate={handleAmountValidation} />
-                                      <ErrorMessage
-                                        name={`fieldArray.${index}.amount`}
-                                        component="div"
-                                        className={styles.fieldError}
-                                      />
-                                    </div>
-                                  </div>
-                                  <button
-                                    type="button"
-                                    disabled={fieldArray.length === 1}
-                                    onClick={() => remove(index)}
-                                  >
-                                    <SVG icon={BsTrash} />
-                                  </button>
-                                </div>
-                              ))}
-                            <div className={styles.addField}>
-                              <button
-                                type="button"
-                                onClick={() => push({ id: null, amount: '' })}
-                                disabled={isAddBatchDisabled}
-                              >
-                                Add batch
-                              </button>
+                      {!isOliveGrower_ && (
+                        <div className={styles.field}>
+                          <PriceLabel priceUnit={priceUnit} handlePriceUnitClick={handlePriceUnitClick} />
+                          <Field name="price" validate={handlePriceValidation} />
+                          <ErrorMessage name="price" component="div" className={styles.fieldError} />
+                        </div>
+                      )}
+                      {isIndustrialUnitSeller_ ? (
+                        <div className={styles.field}>
+                          <Label htmlFor="ids">Pallets *</Label>
+                          <div className={styles.fieldBtnPair}>
+                            <div>
+                              <Field
+                                name="ids"
+                                component={TokensDropdownMulti}
+                                options={tokensOptions}
+                                validate={(value: string | null) => handleSelectValidation(value, 'batch id')}
+                              />
                             </div>
                           </div>
-                        );
-                      }}
-                    </FieldArray>
-                  )}
-                  <div className={styles.formSubmit}>
-                    <button type="submit" onClick={() => resetForm()}>
-                      Reset form
-                    </button>
-                  </div>
-                </div>
-                <div className={styles.actionBtns}>
-                  <button className={styles.submitBtn} type="submit">
-                    Deposit
-                  </button>
-                  <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
-                    Cancel
-                  </button>
-                </div>
-              </Form>
-            );
-          }}
-        </Formik>
+                          <ErrorMessage name="ids" component="div" className={styles.fieldError} />
+                        </div>
+                      ) : (
+                        <FieldArray name="fieldArray">
+                          {({ remove, push }) => {
+                            const isAddBatchDisabled = Boolean(
+                              fieldArrayIdGroupOpts &&
+                                fieldArray.length ===
+                                  fieldArrayIdGroupOpts
+                                    .map((group) => group.options.length)
+                                    .reduce((acc, current) => acc + current, 0)
+                            );
+                            return (
+                              <div className={styles.fieldArray}>
+                                {<p className={styles.title}>{tokenName ? ' '.concat(tokenName) : 'Tokens'}</p>}
+                                {fieldArray.length > 0 &&
+                                  fieldArray.map(({}, index) => (
+                                    <div key={index} className={styles.fieldBtnPair}>
+                                      <div className={styles.fieldArrayMultiInputMargin}>
+                                        <div className={styles.field}>
+                                          <Label htmlFor={`fieldArray.${index}.id`}>{`Batch Id *`}</Label>
+                                          <Field
+                                            name={`fieldArray.${index}.id`}
+                                            component={DepositDropdown}
+                                            options={fieldArrayIdGroupOpts}
+                                            validate={(value: string | null) =>
+                                              handleSelectValidation(value, 'batch id')
+                                            }
+                                          />
+                                          <ErrorMessage
+                                            name={`fieldArray.${index}.id`}
+                                            component="div"
+                                            className={styles.fieldError}
+                                          />
+                                        </div>
+                                        <div className={styles.field}>
+                                          <Label htmlFor={`fieldArray.${index}.amount`}>
+                                            {`Amount (${getTokenUnitFromModule(moduleId)}) *`}
+                                          </Label>
+                                          <Field
+                                            name={`fieldArray.${index}.amount`}
+                                            validate={handleAmountValidation}
+                                          />
+                                          <ErrorMessage
+                                            name={`fieldArray.${index}.amount`}
+                                            component="div"
+                                            className={styles.fieldError}
+                                          />
+                                        </div>
+                                      </div>
+                                      <button
+                                        type="button"
+                                        disabled={fieldArray.length === 1}
+                                        onClick={() => remove(index)}
+                                      >
+                                        <SVG icon={BsTrash} />
+                                      </button>
+                                    </div>
+                                  ))}
+                                <div className={styles.addField}>
+                                  <button
+                                    type="button"
+                                    onClick={() => push({ id: null, amount: '' })}
+                                    disabled={isAddBatchDisabled}
+                                  >
+                                    Add batch
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          }}
+                        </FieldArray>
+                      )}
+                      <div className={styles.formSubmit}>
+                        <button type="submit" onClick={() => resetForm()}>
+                          Reset form
+                        </button>
+                      </div>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
+          </div>
+        </div>
+        <div className={styles.actionBtns}>
+          <button className={styles.submitBtn} type="submit">
+            Deposit
+          </button>
+          <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
