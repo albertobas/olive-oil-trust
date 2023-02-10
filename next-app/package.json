@@ -16,7 +16,7 @@
   "dependencies": {
     "@radix-ui/react-label": "^2.0.0",
     "@reduxjs/toolkit": "^1.8.5",
-    "ethers": "^5.7.2",
+    "ethers": "^5.7.1",
     "formik": "^2.2.9",
     "next": "^12.3.1",
     "react": "^18.2.0",
@@ -28,7 +28,7 @@
     "react-select": "^5.5.7",
     "react-toastify": "^9.1.0",
     "react-xarrows": "^2.0.2",
-    "web3modal": "^1.9.12"
+    "web3modal": "^1.9.9"
   },
   "devDependencies": {
     "@graphprotocol/client-cli": "^2.2.16",
