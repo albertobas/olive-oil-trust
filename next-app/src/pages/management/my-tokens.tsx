@@ -39,11 +39,7 @@ const MyTokensPage: NextPage = () => {
 
         return (
           <MyTokensLayout>
-            {isSeller(moduleId) ? (
-              <MyTokensByMember address={address} moduleId={moduleId} />
-            ) : (
-              <MyTokensByAccount address={account} />
-            )}
+            <MyTokensByMember address={address} moduleId={moduleId} />
           </MyTokensLayout>
         );
       }
