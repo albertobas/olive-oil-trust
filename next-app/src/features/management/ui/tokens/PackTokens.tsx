@@ -22,7 +22,7 @@ import Carousel from 'react-multi-carousel';
 import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
 import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
-import { handleSelectValidation } from '../../../shared/ui/utils/helpers';
+import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 
 type Props = {
   commercialTokens: IToken[];

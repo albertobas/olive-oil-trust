@@ -22,7 +22,7 @@ import { isSeller } from 'next-app/src/shared/utils/constants';
 import { OptionProps } from 'react-select';
 import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
 import { BsTrash } from 'react-icons/bs';
-import { handleSelectValidation } from '../../../shared/ui/utils/helpers';
+import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 
 type Props = {
   commercialTokens: IToken[];
