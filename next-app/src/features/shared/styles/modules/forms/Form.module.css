@@ -9,6 +9,9 @@
 .minH40 {
   min-height: 40vh;
 }
+.minH50 {
+  min-height: 50vh;
+}
 .minH60 {
   min-height: 65vh;
 }
