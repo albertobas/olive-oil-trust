@@ -7,7 +7,11 @@ import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage, useFormikContext, FieldProps } from 'formik';
 import PackTokenCard from 'next-app/src/features/management/ui/tokens/PackTokenCard';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { getGroupedTokensByType, transferPackTokens } from 'next-app/src/features/management/utils/helpers';
+import {
+  getGroupedTokensByType,
+  handleAmountValidation,
+  transferPackTokens
+} from 'next-app/src/features/management/utils/helpers';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
 import { Root as Label } from '@radix-ui/react-label';
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
@@ -18,6 +22,7 @@ import Carousel from 'react-multi-carousel';
 import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
 import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
+import { handleSelectValidation } from '../../../shared/ui/utils/helpers';
 
 type Props = {
   commercialTokens: IToken[];
@@ -150,7 +155,7 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
   };
 
   return (
-    <div className={`${styles.layout} ${styles.minH40}`}>
+    <div className={`${styles.layout} ${styles.minH60}`}>
       <div className={styles.header}>
         <h1>Pack Tokens</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
@@ -186,6 +191,7 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
                                     type="text"
                                     component={PackDropdown}
                                     options={contentOptions}
+                                    validate={(value: string | null) => handleSelectValidation(value, 'batch id')}
                                   />
                                   <ErrorMessage
                                     name={`fieldArray.${index}.id`}
@@ -195,7 +201,7 @@ function PackTokens({ isDistributor, commercialTokens, setIsPackingTokens }: Pro
                                 </div>
                                 <div className={styles.field}>
                                   <Label htmlFor={`fieldArray.${index}.amount`}>Amount *</Label>
-                                  <Field name={`fieldArray.${index}.amount`} />
+                                  <Field name={`fieldArray.${index}.amount`} validate={handleAmountValidation} />
                                   <ErrorMessage
                                     name={`fieldArray.${index}.amount`}
                                     component="div"

@@ -272,7 +272,9 @@ function AddTokenTypes({ previousTokenTypes, certificates, setIsAddingTokenTypes
                                         name={`fieldArray.${index}.id`}
                                         component={TokenTypesDropdownFiltered}
                                         options={options}
-                                        validate={handleSelectValidation}
+                                        validate={(value: string | null) =>
+                                          handleSelectValidation(value, 'token type id')
+                                        }
                                       />
                                       <ErrorMessage
                                         name={`fieldArray.${index}.id`}

@@ -445,7 +445,10 @@ function MintTokens({
                                             Amount
                                             {instructorModuleId && ` (${getTokenUnitFromModule(instructorModuleId)})`} *
                                           </Label>
-                                          <Field name={`fields.${id}.data.${index}.amount`} />
+                                          <Field
+                                            name={`fields.${id}.data.${index}.amount`}
+                                            validate={handleAmountValidation}
+                                          />
                                           <ErrorMessage
                                             name={`fields.${id}.data.${index}.amount`}
                                             component="div"

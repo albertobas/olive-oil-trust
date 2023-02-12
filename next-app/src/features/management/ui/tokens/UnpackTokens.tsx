@@ -129,30 +129,26 @@ function UnpackTokens({ industrialUnitTokens, unpacker, setIsUnpackingTokens }: 
       </div>
       <Formik initialValues={initialValues} onSubmit={(values, resetForm) => handleSubmit(values, resetForm)}>
         {({ values, resetForm }) => (
-          <div className={styles.content}>
-            <div>
-              <div className={styles.form}>
-                <Form>
-                  <div className={styles.field}>
-                    <Label htmlFor="ids">Pallets</Label>
-                    <div className={styles.fieldBtnPair}>
-                      <div>
-                        <Field
-                          name="ids"
-                          component={TokensDropdownMulti}
-                          options={tokensOptions}
-                          validate={(value: string | null) => handleSelectValidation(value, 'pallet id')}
-                        />
-                      </div>
-                    </div>
-                    <ErrorMessage name="ids" component="div" className={styles.fieldError} />
+          <Form className={styles.content}>
+            <div className={styles.form}>
+              <div className={styles.field}>
+                <Label htmlFor="ids">Pallets</Label>
+                <div className={styles.fieldBtnPair}>
+                  <div>
+                    <Field
+                      name="ids"
+                      component={TokensDropdownMulti}
+                      options={tokensOptions}
+                      validate={(value: string | null) => handleSelectValidation(value, 'pallet id')}
+                    />
                   </div>
-                  <div className={styles.formSubmit}>
-                    <button type="reset" onClick={() => resetForm()}>
-                      Reset form
-                    </button>
-                  </div>
-                </Form>
+                </div>
+                <ErrorMessage name="ids" component="div" className={styles.fieldError} />
+              </div>
+              <div className={styles.formSubmit}>
+                <button type="reset" onClick={() => resetForm()}>
+                  Reset form
+                </button>
               </div>
             </div>
             <div className={styles.actionBtns}>
@@ -167,7 +163,7 @@ function UnpackTokens({ industrialUnitTokens, unpacker, setIsUnpackingTokens }: 
                 Cancel
               </button>
             </div>
-          </div>
+          </Form>
         )}
       </Formik>
     </div>

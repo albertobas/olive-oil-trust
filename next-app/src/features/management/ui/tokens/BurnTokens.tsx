@@ -8,7 +8,11 @@ import { Root as Label } from '@radix-ui/react-label';
 import { Formik, Form, Field, ErrorMessage, FieldArray, useFormikContext, FieldProps } from 'formik';
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { getGroupedTokensByType, transferBurnTokens } from 'next-app/src/features/management/utils/helpers';
+import {
+  getGroupedTokensByType,
+  handleAmountValidation,
+  transferBurnTokens
+} from 'next-app/src/features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
@@ -18,6 +22,7 @@ import { isSeller } from 'next-app/src/shared/utils/constants';
 import { OptionProps } from 'react-select';
 import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
 import { BsTrash } from 'react-icons/bs';
+import { handleSelectValidation } from '../../../shared/ui/utils/helpers';
 
 type Props = {
   commercialTokens: IToken[];
@@ -130,94 +135,91 @@ function BurnTokens({ commercialTokens, moduleId, accountAddress, setIsBurningTo
   };
 
   return (
-    <div className={`${styles.layout} ${styles.minH30}`}>
+    <div className={`${styles.layout} ${styles.minH50}`}>
       <div className={styles.header}>
         <h1>Burn Tokens</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
           <SVG icon={FaTimes} />
         </button>
       </div>
-      <div className={styles.content}>
-        <div>
-          <div className={styles.form}>
-            <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values)}>
-              {({ values, resetForm }) => {
-                const { fieldArray } = values;
-                return (
-                  <Form>
-                    {fieldArray.length > 0 && (
-                      <FieldArray name="fieldArray">
-                        {({ remove, push }) => (
-                          <div className={styles.fieldArray}>
-                            <p className={styles.title}>Tokens</p>
-                            {fieldArray.map(({}, index) => (
-                              <div key={index} className={styles.fieldBtnPair}>
-                                <div className={styles.fieldArrayMultiInputMargin}>
-                                  <div className={styles.field}>
-                                    <Label htmlFor={`fieldArray.${index}.id`}>{`Id *`}</Label>
-                                    <Field
-                                      name={`fieldArray.${index}.id`}
-                                      placeholder="placeholder"
-                                      type="text"
-                                      component={BurnDropdown}
-                                      options={contentOptions}
-                                    />
-                                    <ErrorMessage
-                                      name={`fieldArray.${index}.id`}
-                                      component="div"
-                                      className={styles.fieldError}
-                                    />
-                                  </div>
-                                  <div className={styles.field}>
-                                    <Label htmlFor={`fieldArray.${index}.amount`}>Amount *</Label>
-                                    <Field name={`fieldArray.${index}.amount`} />
-                                    <ErrorMessage
-                                      name={`fieldArray.${index}.amount`}
-                                      component="div"
-                                      className={styles.fieldError}
-                                    />
-                                  </div>
-                                </div>
-                                <button type="button" onClick={() => remove(index)} disabled={fieldArray.length === 1}>
-                                  <SVG icon={BsTrash} />
-                                </button>
+      <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values)}>
+        {({ values, resetForm }) => {
+          const { fieldArray } = values;
+          return (
+            <Form className={styles.content}>
+              <div className={styles.form}>
+                {fieldArray.length > 0 && (
+                  <FieldArray name="fieldArray">
+                    {({ remove, push }) => (
+                      <div className={styles.fieldArray}>
+                        <p className={styles.title}>Tokens</p>
+                        {fieldArray.map(({}, index) => (
+                          <div key={index} className={styles.fieldBtnPair}>
+                            <div className={styles.fieldArrayMultiInputMargin}>
+                              <div className={styles.field}>
+                                <Label htmlFor={`fieldArray.${index}.id`}>{`Id *`}</Label>
+                                <Field
+                                  name={`fieldArray.${index}.id`}
+                                  placeholder="placeholder"
+                                  type="text"
+                                  component={BurnDropdown}
+                                  options={contentOptions}
+                                  validate={(value: string | null) => handleSelectValidation(value, 'batch id')}
+                                />
+                                <ErrorMessage
+                                  name={`fieldArray.${index}.id`}
+                                  component="div"
+                                  className={styles.fieldError}
+                                />
                               </div>
-                            ))}
-                            <div className={styles.addField}>
-                              <button
-                                type="button"
-                                onClick={() => push({ id: null, amount: '' })}
-                                disabled={Boolean(
-                                  contentOptions?.map((options) => options.options).flat().length === fieldArray.length
-                                )}
-                              >
-                                Add token
-                              </button>
+                              <div className={styles.field}>
+                                <Label htmlFor={`fieldArray.${index}.amount`}>Amount *</Label>
+                                <Field name={`fieldArray.${index}.amount`} validate={handleAmountValidation} />
+                                <ErrorMessage
+                                  name={`fieldArray.${index}.amount`}
+                                  component="div"
+                                  className={styles.fieldError}
+                                />
+                              </div>
                             </div>
+                            <button type="button" onClick={() => remove(index)} disabled={fieldArray.length === 1}>
+                              <SVG icon={BsTrash} />
+                            </button>
                           </div>
-                        )}
-                      </FieldArray>
+                        ))}
+                        <div className={styles.addField}>
+                          <button
+                            type="button"
+                            onClick={() => push({ id: null, amount: '' })}
+                            disabled={Boolean(
+                              contentOptions?.map((options) => options.options).flat().length === fieldArray.length
+                            )}
+                          >
+                            Add token
+                          </button>
+                        </div>
+                      </div>
                     )}
-                    <div className={styles.formSubmit}>
-                      <button type="reset" onClick={() => resetForm()}>
-                        Reset form
-                      </button>
-                    </div>
-                  </Form>
-                );
-              }}
-            </Formik>
-          </div>
-        </div>
-        <div className={styles.actionBtns}>
-          <button type="submit" className={styles.submitBtn}>
-            Burn
-          </button>
-          <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
-      </div>
+                  </FieldArray>
+                )}
+                <div className={styles.formSubmit}>
+                  <button type="reset" onClick={() => resetForm()}>
+                    Reset form
+                  </button>
+                </div>
+              </div>
+              <div className={styles.actionBtns}>
+                <button type="submit" className={styles.submitBtn}>
+                  Burn
+                </button>
+                <button className={styles.cancelBtn} type="button" onClick={handleCancel}>
+                  Cancel
+                </button>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
     </div>
   );
 }
