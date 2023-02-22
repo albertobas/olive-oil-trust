@@ -209,7 +209,7 @@ function DepositTokens({ tokens, moduleId, setIsDepositingTokens }: Props): JSX.
   };
 
   return (
-    <div className={`${styles.layout} ${styles.minH60}`}>
+    <div className={`${styles.layout} ${styles.minH40}`}>
       <div className={styles.header}>
         <h1>{`Deposit${tokenName ? ' '.concat(tokenName) : ''}`}</h1>
         <button className={styles.closeBtn} onClick={handleCancel}>
