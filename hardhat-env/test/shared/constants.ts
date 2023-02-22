@@ -17,16 +17,30 @@ export const dictOlives = {
     tokenId3: '1107'
   },
   hojiblanca: { id: '9219876543400', tokenId1: '1000581', tokenId2: '1000582' },
-  price: 10.0e18
+  price: 1.0e18
 };
 
 export const dictBottle = {
   unitsToMint: 1500,
   unitsToBurn: 1,
   unitsToEscrow: 500,
-  glass: { id1: '6219876543211', id2: '4219876543211', tokenId1: '1023584', tokenId2: '1023585' },
-  plastic: { id1: '7219876543211', id2: '5219876543211', tokenId1: '1023574', tokenId2: '1023575' },
-  price: 1.0e18
+  glass: {
+    id1: '6219876543211',
+    id2: '4219876543211',
+    tokenId1: '1023584',
+    tokenId2: '1023585',
+    tokenId3: '1023586',
+    tokenId4: '1023587'
+  },
+  plastic: {
+    id1: '7219876543211',
+    id2: '5219876543211',
+    tokenId1: '1023574',
+    tokenId2: '1023575',
+    tokenId3: '1023576',
+    tokenId4: '1023577'
+  },
+  price: 1.0e16
 };
 
 export const dictOliveOil = {
@@ -50,7 +64,7 @@ export const dictOliveOil = {
     tokenId1: '1011583',
     tokenId2: '1011584'
   },
-  price: 100.0e18
+  price: 1.0e17
 };
 
 export const dictOliveOilBottle = {
@@ -58,7 +72,7 @@ export const dictOliveOilBottle = {
   unitsToBurn: 1,
   unitsToEscrow: 30,
   unitsToPack: 30,
-  price: 25000,
+  price: 1.0e15,
   extraVirginIntenseGlass: {
     oliveOilUnits: 750,
     bottleUnits: 1,
@@ -76,7 +90,7 @@ export const dictOliveOilBottle = {
 };
 
 export const dictPallet = {
-  price: 110.0e18,
+  price: 1.0e17,
   bottlingPlant: {
     id1: '(01)0123456388125',
     id2: '(01)0123456387126',
