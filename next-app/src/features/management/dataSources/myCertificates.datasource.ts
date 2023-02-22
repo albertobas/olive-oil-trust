@@ -7,4 +7,5 @@ class MyCertificatesDataSource implements MyCertificatesRepository {
     return execute(CertificatesByMemberDocument, { member });
   }
 }
+
 export default MyCertificatesDataSource;

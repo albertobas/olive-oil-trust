@@ -11,4 +11,5 @@ class TokensDataSource implements TokensRepository {
     return execute(TokenByIdDocument, { id });
   }
 }
+
 export default TokensDataSource;

@@ -17,4 +17,5 @@ class MyEscrowsDataSource implements MyEscrowsRepository {
     return execute(EscrowsByMemberDocument, { member });
   }
 }
+
 export default MyEscrowsDataSource;

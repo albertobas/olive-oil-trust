@@ -19,4 +19,5 @@ class MyTokensDataSource implements MyTokensRepository {
     return execute(TokensByAccountDocument, { account });
   }
 }
+
 export default MyTokensDataSource;

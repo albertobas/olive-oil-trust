@@ -7,4 +7,5 @@ class EscrowsDataSource implements EscrowsRepository {
     return execute(AllEscrowsDocument, {});
   }
 }
+
 export default EscrowsDataSource;

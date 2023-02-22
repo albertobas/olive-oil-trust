@@ -17,4 +17,5 @@ class CertificatesDataSource implements CertificatesRepository {
     return execute(CertificateByIdDocument, { id });
   }
 }
+
 export default CertificatesDataSource;
