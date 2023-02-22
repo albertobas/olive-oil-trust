@@ -4,11 +4,11 @@
 
 ## About
 
-[Olive Oil Trust](https://github.com/albertobas/olive-oil-trust 'https://github.com/albertobas/olive-oil-trust') is an olive oil traceability solution built on Ethereum that allows its members to trace and trade an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.
+Olive Oil Trust is an olive oil traceability solution built on Ethereum that allows its members to trace and trade an ERC-1155 token representation of their own products, and end customers to trace and buy these tokens.
 
 This can be seen as a collaboration network of olive growers, olive oil mills, bottle manufacturers, bottling plants, distributors, retailers and certifiers.
 
-For this, they agree to follow the same rules, i.e. to abide by the same smart contracts to trade their tokens or to certify the types of the tokens.
+Members of Olive Oil Trust implicitly agree to follow the same rules, i.e. to abide by the same smart contracts to trade their tokens or to certify the types of the tokens.
 
 Whenever a token is minted, it can be deposited in an escrow, which is the mechanism that another actor in the chain can use to acquire the ownership of this token after the correspondent payment to the escrow and approval from the seller.
 
@@ -50,7 +50,7 @@ Finally, data are queried from a local TheGraph node using GraphQL. The subgraph
 
 First of all, a TheGraph node has to be configured in `services/graph-node`.
 
-> Visit the TheGrpah [graph node repo](https://github.com/graphprotocol/graph-node/tree/f5e18bfdce700892e412096c26ec06090852a251) for more information about the TheGraph node.
+> Visit the TheGraph [graph node repo](https://github.com/graphprotocol/graph-node/tree/f5e18bfdce700892e412096c26ec06090852a251) for more information about the TheGraph node.
 
 The npm script to run this service currently runs the Docker image of the node, but this may well be changed as per your preference.
 
@@ -103,6 +103,15 @@ Signer addresses from the Hardhat chain can be used to configure multiple wallet
 
 In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers indexes for the signers in this simulation. These are the indexes of the correspondent addresses in the Hardhat local chain array of addresses.
 
-Then, every figurative member, as well as an end customer, of this simulation in Olive Oil Trust is assigned a wallet address with fake Ether in the harhdat local chain, only for development purposes.
+Every figurative member, as well as an end customer, of this simulation in Olive Oil Trust is then assigned a wallet address with fake Ether in the harhdat local chain, only for development purposes.
 
 Running `npm run hardhat:setState`, or `npm run start:setState` above instead of `npm run start`, will set a state to the local chain to represent tokens being minted and traded from an imaginative olive grower to a figurative end customer.
+
+## Related posts
+
+I have written the following posts to explain in detail this project:
+
+- [Introducing Olive Oil Trust](https://www.albertobas.com/blog/intro-olive-oil-trust 'Introducing Olive Oil Trust')
+- [Introducing Olive Oil Trust: smart contracts](https://www.albertobas.com/blog/intro-olive-oil-trust-contracts 'Introducing Olive Oil Trust: smart contracts')
+- [Introducing Olive Oil Trust: subgraph](https://www.albertobas.com/blog/intro-olive-oil-trust-subgraph 'Introducing Olive Oil Trust: subgraph')
+- [Introducing Olive Oil Trust: front-end](https://www.albertobas.com/blog/intro-olive-oil-trust-front-end 'Introducing Olive Oil Trust: front-end')
