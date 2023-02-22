@@ -56,6 +56,10 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
   const idPlasticToken1 = utils.formatBytes32String(dictBottle.plastic.tokenId1);
   const idGlassToken2 = utils.formatBytes32String(dictBottle.glass.tokenId2);
   const idPlasticToken2 = utils.formatBytes32String(dictBottle.plastic.tokenId2);
+  const idGlassToken3 = utils.formatBytes32String(dictBottle.glass.tokenId3);
+  const idPlasticToken3 = utils.formatBytes32String(dictBottle.plastic.tokenId3);
+  const idGlassToken4 = utils.formatBytes32String(dictBottle.glass.tokenId4);
+  const idPlasticToken4 = utils.formatBytes32String(dictBottle.plastic.tokenId4);
   const idOliveOilExtraVirginIntense = utils.formatBytes32String(dictOliveOil.extraVirginIntense.id);
   const idOliveOilExtraVirginSmooth = utils.formatBytes32String(dictOliveOil.extraVirginSmooth.id);
   const idOliveOilExtraVirginIntenseToken1 = utils.formatBytes32String(dictOliveOil.extraVirginIntense.tokenId1);
@@ -486,7 +490,7 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
     .connect(bottleCompany2Account)
     .mintBatch(
       [idGlass2, idGlass2, idPlastic2, idPlastic2],
-      [idGlassToken1, idGlassToken2, idPlasticToken1, idPlasticToken2],
+      [idGlassToken3, idGlassToken4, idPlasticToken3, idPlasticToken4],
       [bottlesUnitsToMint, bottlesUnitsToMint, bottlesUnitsToMint, bottlesUnitsToMint]
     );
 
@@ -494,7 +498,7 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
     .connect(bottleCompany2Account)
     .depositBatch(
       [idGlass2, idGlass2, idPlastic2, idPlastic2],
-      [idGlassToken1, idGlassToken2, idPlasticToken1, idPlasticToken2],
+      [idGlassToken3, idGlassToken4, idPlasticToken3, idPlasticToken4],
       [bottlesUnitsToEscrow, bottlesUnitsToEscrow, bottlesUnitsToEscrow, bottlesUnitsToEscrow],
       bottlePrice,
       bottleCompany2Account.address
@@ -563,7 +567,7 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
           [bottleCompanyBottle.address, bottleCompany2Bottle.address]
         ],
         inputTokenTypeIds: [[idOliveOilExtraVirginIntense], [idGlass1, idGlass2]],
-        inputTokenIds: [[idOliveOilExtraVirginIntenseToken1], [idGlassToken1, idGlassToken1]],
+        inputTokenIds: [[idOliveOilExtraVirginIntenseToken1], [idGlassToken1, idGlassToken3]],
         inputTokenAmounts: [
           [oliveOilBottleUnitsToMint * extraVirginIntenseGlassBottleOliveOilUnits],
           [
@@ -578,7 +582,7 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
           [bottleCompanyBottle.address, bottleCompany2Bottle.address]
         ],
         inputTokenTypeIds: [[idOliveOilExtraVirginIntense], [idGlass1, idGlass2]],
-        inputTokenIds: [[idOliveOilExtraVirginIntenseToken2], [idGlassToken2, idGlassToken2]],
+        inputTokenIds: [[idOliveOilExtraVirginIntenseToken2], [idGlassToken2, idGlassToken4]],
         inputTokenAmounts: [
           [oliveOilBottleUnitsToMint * extraVirginIntenseGlassBottleOliveOilUnits],
           [
