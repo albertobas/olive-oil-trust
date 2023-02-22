@@ -177,7 +177,7 @@ const getSelectMenu = () => {
 const getSelectMenuList = (placeholderFontSize: string | undefined) => {
   return (base: any) => ({
     ...base,
-    maxHeight: '15rem',
+    maxHeight: '30rem',
     paddingBottom: 0,
     paddingTop: 0,
     borderRadius: 'var(--border-radius)',
