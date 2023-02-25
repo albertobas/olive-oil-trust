@@ -5,8 +5,8 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 
 /**
  * @title Member base contract.
- * @dev Implementation of a base contract that implements a function to retrieve the name and
- *     a receive function, which are common to all members through the supply chain.
+ * @dev Implementation of a base contract that implements a function to retrieve the name
+ *     which is common to all members through the supply chain.
  */
 contract BaseMember is Initializable {
     /// @dev Name of the member
