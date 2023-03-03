@@ -2,7 +2,7 @@ import styles from 'next-app/src/features/shared/styles/modules/tokens/TokenCard
 import { join } from 'path';
 import { pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import Image from 'next/image';
 
@@ -15,7 +15,7 @@ const TokenCard = ({
   selfProduced,
   title,
   tokenType
-}: IToken): JSX.Element => {
+}: Token): JSX.Element => {
   const tokenHref = join(pages.TOKENS.url, id);
   const tokenTypeHref = tokenType ? join(pages.TOKEN_TYPES.url, tokenType.id) : undefined;
   const date = mintingDate ? getUTCFromTimestamp(mintingDate) : null;

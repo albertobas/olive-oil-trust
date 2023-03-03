@@ -1,10 +1,10 @@
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import TokenTypesRepository from 'next-app/src/features/explore/core/repositories/TokenTypes.repository';
 import tokenTypeByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenTypeById.adapter';
 
 const queryTokenTypeById =
   (repository: TokenTypesRepository) =>
-  async (id: string): Promise<{ error: boolean; data: ITokenType | null }> => {
+  async (id: string): Promise<{ error: boolean; data: TokenType | null }> => {
     try {
       const { errors, data } = await repository.getById(id);
       if (errors) {

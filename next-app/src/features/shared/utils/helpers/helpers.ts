@@ -1,10 +1,10 @@
 import { roles } from 'next-app/src/shared/utils/constants';
 import { Module } from 'next-app/src/shared/utils/interfaces';
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { IEvent, ITransaction } from 'next-app/src/features/shared/core/entities/Events';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Event, Transaction } from 'next-app/src/features/shared/core/entities/Events';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import {
   Role,
   EscrowSate,
@@ -85,7 +85,7 @@ export const getUTCFromTimestamp = (date: number): string => {
   return new Date(date * 1000).toUTCString();
 };
 
-export function parseEvent({ id, emitter, transaction }: EventRawType): IEvent {
+export function parseEvent({ id, emitter, transaction }: EventRawType): Event {
   return {
     id,
     emitter: emitter.id,
@@ -93,11 +93,11 @@ export function parseEvent({ id, emitter, transaction }: EventRawType): IEvent {
   };
 }
 
-export function parseTransaction({ id, blockNumber, timestamp }: TransactionRawType): ITransaction {
+export function parseTransaction({ id, blockNumber, timestamp }: TransactionRawType): Transaction {
   return { id, blockNumber: parseInt(blockNumber), timestamp: parseInt(timestamp) };
 }
 
-export function tokenTypeFilter(types: ITokenType[] | null, options: FilterOption[]): ITokenType[] | null {
+export function tokenTypeFilter(types: TokenType[] | null, options: FilterOption[]): TokenType[] | null {
   function booleanFilter(value: string | undefined, filter: IItem | IItem[]) {
     const itemsArray: boolean[] = [];
     value &&
@@ -109,7 +109,7 @@ export function tokenTypeFilter(types: ITokenType[] | null, options: FilterOptio
         : itemsArray.push(value === filter.value));
     return itemsArray;
   }
-  function typeMap({ member }: ITokenType) {
+  function typeMap({ member }: TokenType) {
     return options.map((option) => {
       return (
         Boolean(
@@ -133,7 +133,7 @@ export function tokenTypeFilter(types: ITokenType[] | null, options: FilterOptio
     : null;
 }
 
-export function tokenFilter(tokens: IToken[] | null, options: FilterOption[]): IToken[] | null {
+export function tokenFilter(tokens: Token[] | null, options: FilterOption[]): Token[] | null {
   function booleanFilter(value: string | undefined, filter: IItem | IItem[]) {
     const itemsArray: boolean[] = [];
     value &&
@@ -145,7 +145,7 @@ export function tokenFilter(tokens: IToken[] | null, options: FilterOption[]): I
         : itemsArray.push(value === filter.value));
     return itemsArray;
   }
-  function tokenMap({ industrialUnitTokenInfo, tokenType, selfProduced }: IToken) {
+  function tokenMap({ industrialUnitTokenInfo, tokenType, selfProduced }: Token) {
     return options.map((option) => {
       return (
         Boolean(
@@ -182,7 +182,7 @@ export function tokenFilter(tokens: IToken[] | null, options: FilterOption[]): I
     : null;
 }
 
-export function escrowFilter(escrows: IEscrow[] | null, options: FilterOption[]): IEscrow[] | null {
+export function escrowFilter(escrows: Escrow[] | null, options: FilterOption[]): Escrow[] | null {
   function booleanFilter(value: string | undefined, filter: IItem | IItem[]) {
     const itemsArray: boolean[] = [];
     value &&
@@ -194,7 +194,7 @@ export function escrowFilter(escrows: IEscrow[] | null, options: FilterOption[])
         : itemsArray.push(value === filter.value));
     return itemsArray;
   }
-  function escrowMap({ buyer, seller, state }: IEscrow) {
+  function escrowMap({ buyer, seller, state }: Escrow) {
     return options.map((option) => {
       return (
         Boolean(
@@ -224,7 +224,7 @@ export function escrowFilter(escrows: IEscrow[] | null, options: FilterOption[])
     : null;
 }
 
-export function tokenSearch(data: IToken[] | null, query: string | null): IToken[] | null {
+export function tokenSearch(data: Token[] | null, query: string | null): Token[] | null {
   if (data) {
     if (query) {
       const query_ = query.toLowerCase();
@@ -237,7 +237,7 @@ export function tokenSearch(data: IToken[] | null, query: string | null): IToken
   return null;
 }
 
-export function certificateSearch(data: ICertificate[] | null, query: string | null): ICertificate[] | null {
+export function certificateSearch(data: Certificate[] | null, query: string | null): Certificate[] | null {
   if (data) {
     if (query) {
       const query_ = query.toLowerCase();
@@ -251,7 +251,7 @@ export function certificateSearch(data: ICertificate[] | null, query: string | n
   return null;
 }
 
-export function tokenTypeSearch(data: ITokenType[] | null, query: string | null): ITokenType[] | null {
+export function tokenTypeSearch(data: TokenType[] | null, query: string | null): TokenType[] | null {
   if (data) {
     if (query) {
       const query_ = query.toLowerCase();
@@ -290,7 +290,7 @@ export function tokenTypeSearch(data: ITokenType[] | null, query: string | null)
   return null;
 }
 
-export function escrowSearch(data: IEscrow[] | null, query: string | null): IEscrow[] | null {
+export function escrowSearch(data: Escrow[] | null, query: string | null): Escrow[] | null {
   if (data) {
     if (query) {
       const query_ = query.toLowerCase();
@@ -317,11 +317,11 @@ const sortItemArray = (a: IItem, b: IItem) => {
 };
 
 export function getItemsFromTokens(
-  data: IToken[] | string,
+  data: Token[] | string,
   key: 'selfProduced' | 'manufacturer' | 'packer' | 'type'
 ): IItem[] | null {
   const getKeySet = (
-    data: IToken[] | string,
+    data: Token[] | string,
     key: 'selfProduced' | 'manufacturer' | 'packer' | 'type'
   ): string[] | null => {
     const keySet = [];
@@ -360,8 +360,8 @@ export function getItemsFromTokens(
   return typeItemsArray.length ? typeItemsArray.sort(sortItemArray) : null;
 }
 
-export function getItemsFromEscrows(data: IEscrow[] | string, key: keyof IEscrow): IItem[] | null {
-  const getKeySet = (data: IEscrow[] | string, key: keyof IEscrow): string[] | null => {
+export function getItemsFromEscrows(data: Escrow[] | string, key: keyof Escrow): IItem[] | null {
+  const getKeySet = (data: Escrow[] | string, key: keyof Escrow): string[] | null => {
     const keySet = [];
     if (typeof data === 'string') {
       keySet.push(...new Set(data.split(',').flat()));
@@ -395,8 +395,8 @@ export function getItemsFromEscrows(data: IEscrow[] | string, key: keyof IEscrow
   return typeItemsArray.length ? typeItemsArray.sort(sortItemArray) : null;
 }
 
-export function getItemsFromTypes(data: ITokenType[] | string, key: keyof ITokenType): IItem[] | null {
-  const getKeySet = (data: ITokenType[] | string, key: keyof ITokenType): string[] | null => {
+export function getItemsFromTypes(data: TokenType[] | string, key: keyof TokenType): IItem[] | null {
+  const getKeySet = (data: TokenType[] | string, key: keyof TokenType): string[] | null => {
     const keySet = [];
     if (typeof data === 'string') {
       keySet.push(...new Set(data.split(',').flat()));

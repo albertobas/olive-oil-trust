@@ -1,32 +1,32 @@
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import {
-  IFirstAncestry,
-  IIndustrialUnitTokenInfo,
-  ISecondAncestry,
-  IToken,
-  ITokenFields,
-  ITokenFirstAncestry,
-  ITokensInfo
+  FirstAncestry,
+  IndustrialUnitTokenInfo,
+  SecondAncestry,
+  Token,
+  TokenFields,
+  TokenFirstAncestry,
+  TokensInfo
 } from 'next-app/src/features/shared/core/entities/Tokens';
 import { getEscrow } from 'next-app/src/features/shared/utils/helpers/escrow';
 import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
 import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
 import { EscrowRawType, TokenInfoRawType, TokenRawType } from 'next-app/src/features/shared/utils/interfaces';
 
-export function getToken(token: TokenRawType, balanceValue: string | null, selfProducedIds: string[] | null): IToken {
+export function getToken(token: TokenRawType, balanceValue: string | null, selfProducedIds: string[] | null): Token {
   const { ancestry } = token;
-  let firstAncestry: IFirstAncestry[] | null = null;
+  let firstAncestry: FirstAncestry[] | null = null;
   if (ancestry && ancestry.length > 0) {
     firstAncestry = [];
     for (let j = 0; j < ancestry.length; j++) {
       const secondAncestryRaw = ancestry[j].token.ancestry;
-      let secondAncestry: ISecondAncestry[] | null = null;
+      let secondAncestry: SecondAncestry[] | null = null;
       if (secondAncestryRaw && secondAncestryRaw.length > 0) {
         secondAncestry = [];
         for (let k = 0; k < secondAncestryRaw.length; k++) {
           const secondAncestorRaw = secondAncestryRaw[k].token;
           const tokenType = secondAncestorRaw.tokenType;
-          const ancestor: ITokenFields = {
+          const ancestor: TokenFields = {
             id: secondAncestorRaw.id,
             contract: secondAncestorRaw.contract.id,
             tokenType: tokenType ? getTokenType(tokenType) : null,
@@ -48,7 +48,7 @@ export function getToken(token: TokenRawType, balanceValue: string | null, selfP
       }
       const ancestorRaw = ancestry[j].token;
       const tokenType = ancestorRaw.tokenType;
-      const ancestor: ITokenFirstAncestry = {
+      const ancestor: TokenFirstAncestry = {
         id: ancestorRaw.id,
         ancestry: secondAncestry,
         contract: ancestorRaw.contract.id,
@@ -68,7 +68,7 @@ export function getToken(token: TokenRawType, balanceValue: string | null, selfP
     }
   }
   const escrowsRaw = token.escrows ? token.escrows.map((escrow) => escrow.escrow) : null;
-  let escrows: IEscrow[] | null = null;
+  let escrows: Escrow[] | null = null;
   if (escrowsRaw) {
     escrows = [];
     for (let j = 0; j < escrowsRaw.length; j++) {
@@ -102,7 +102,7 @@ export function getToken(token: TokenRawType, balanceValue: string | null, selfP
 function getTokenFields(
   token: NonNullable<EscrowRawType['escrowBalance']['escrowTokens']>[0],
   selfProducedIds: string[] | null
-): ITokenFields {
+): TokenFields {
   return {
     id: token.id,
     contract: token.contract.id,
@@ -123,7 +123,7 @@ function getTokenFields(
 function getIndustrialUnitTokenInfo(
   tokenInfo: TokenInfoRawType,
   selfProducedIds: string[] | null
-): IIndustrialUnitTokenInfo {
+): IndustrialUnitTokenInfo {
   const { amounts, commercialUnits } = tokenInfo;
   return {
     id: tokenInfo.id,
@@ -140,8 +140,8 @@ export function getTokensInfo(
   amounts: string[],
   tokens: NonNullable<EscrowRawType['escrowBalance']['escrowTokens']>,
   selfProducedIds: string[] | null
-): ITokensInfo | null {
-  let tokensInfo: ITokensInfo | null = null;
+): TokensInfo | null {
+  let tokensInfo: TokensInfo | null = null;
   tokensInfo = {};
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
@@ -153,7 +153,7 @@ export function getTokensInfo(
   return tokensInfo;
 }
 
-export const sortTokenArray = (data: IToken[], sortValue: string | undefined, reverse: boolean): IToken[] => {
+export const sortTokenArray = (data: Token[], sortValue: string | undefined, reverse: boolean): Token[] => {
   if (reverse) {
     if (sortValue === 'date') {
       return data.sort((a, b) =>

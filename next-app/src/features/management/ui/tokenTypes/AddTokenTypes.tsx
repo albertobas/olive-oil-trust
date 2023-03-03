@@ -2,8 +2,8 @@ import { useState, useMemo, Dispatch, SetStateAction, useCallback } from 'react'
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
 import { IGroupedItems, IItem, Role } from 'next-app/src/features/shared/utils/interfaces';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage } from 'formik';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
 import { Root as Label } from '@radix-ui/react-label';
 import TokenTypesDropdownFiltered from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesDropdownFiltered';
 import { IAddTokenTypeState, IFormikTokenType } from 'next-app/src/features/management/utils/interfaces';
@@ -29,8 +29,8 @@ import { Module } from 'next-app/src/shared/utils/interfaces';
 import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
 
 type Props = {
-  previousTokenTypes: ITokenType[] | null;
-  certificates: ICertificate[] | null;
+  previousTokenTypes: TokenType[] | null;
+  certificates: Certificate[] | null;
   setIsAddingTokenTypes: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -75,7 +75,7 @@ function AddTokenTypes({ previousTokenTypes, certificates, setIsAddingTokenTypes
   }, [certificates, previousTokenTypes]);
 
   const options = useMemo<IGroupedItems[] | null>(() => {
-    const getItems = (data: (ITokenType | ICertificate)[]): IItem[] => {
+    const getItems = (data: (TokenType | Certificate)[]): IItem[] => {
       return data.map(({ metadata, id, identifier }) => {
         return { label: `${identifier}${metadata && metadata.title && ` - ${metadata.title}`}`, value: id };
       });

@@ -1,18 +1,18 @@
 import styles from 'src/features/shared/styles/modules/filters/Filters.module.css';
 import { useMemo, Dispatch, SetStateAction } from 'react';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import FilterSelect from 'next-app/src/features/shared/ui/filters/FilterSelect';
 import { getItemsFromTypes } from 'next-app/src/features/shared/utils/helpers/helpers';
 
 interface Props {
-  data: ITokenType[] | null;
+  data: TokenType[] | null;
   roleItems: IItem[] | null;
   setRoleItems: Dispatch<SetStateAction<IItem[] | null>>;
 }
 
 const FiltersTokenType = ({ roleItems, setRoleItems, data }: Props): JSX.Element => {
-  const typeRole: keyof ITokenType = 'member';
+  const typeRole: keyof TokenType = 'member';
   const optionsRole = useMemo(() => {
     return data ? getItemsFromTypes(data, typeRole) : null;
   }, [data, typeRole]);

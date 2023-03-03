@@ -1,4 +1,4 @@
-import { IMetadata } from 'next-app/src/features/shared/core/entities/Metadata';
+import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
 import { MetadataRawType } from 'next-app/src/features/shared/utils/interfaces';
 
 export function getMetadata({
@@ -19,7 +19,7 @@ export function getMetadata({
   oliveOilItching,
   oliveOrigin,
   title
-}: MetadataRawType): IMetadata | null {
+}: MetadataRawType): Metadata | null {
   if (
     bottleQuality ||
     bottleMaterial ||

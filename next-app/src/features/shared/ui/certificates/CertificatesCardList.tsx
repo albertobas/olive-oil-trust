@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import { sortCertificateArray } from 'next-app/src/features/shared/utils/helpers/certificate';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import CertificateCard from 'next-app/src/features/shared/ui/certificates/CertificateCard';
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
 
 type Props = {
-  data: ICertificate[] | null;
+  data: Certificate[] | null;
   reverse: boolean;
   sort: IItem | null;
 };
 
 function CertificatesCardList({ data, reverse, sort }: Props): JSX.Element {
-  const [stateData, setStateData] = useState<ICertificate[] | null>(
+  const [stateData, setStateData] = useState<Certificate[] | null>(
     data ? (sort ? sortCertificateArray(data.slice(), sort?.value, reverse) : data) : null
   );
   useEffect(() => {

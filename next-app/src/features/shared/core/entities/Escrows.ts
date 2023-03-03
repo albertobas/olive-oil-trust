@@ -1,8 +1,8 @@
 import { EscrowSate, IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { ITransaction } from 'next-app/src/features/shared/core/entities/Events';
-import { ITokensInfo } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Transaction } from 'next-app/src/features/shared/core/entities/Events';
+import { TokensInfo } from 'next-app/src/features/shared/core/entities/Tokens';
 
-export interface IEscrow {
+export interface Escrow {
   id: string;
   identifier: string;
   buyer: IMember | null;
@@ -11,7 +11,7 @@ export interface IEscrow {
   escrowBalance: {
     id: string;
     escrowAccount: string | null;
-    tokensInfo: ITokensInfo | null;
+    tokensInfo: TokensInfo | null;
   };
   etherBalance: {
     id: string;
@@ -23,9 +23,9 @@ export interface IEscrow {
   sellerWallet: string | null;
   state: EscrowSate | null;
   title: string;
-  tokenDeposits: { transaction: ITransaction }[];
+  tokenDeposits: { transaction: Transaction }[];
 }
 
-export interface IEscrows {
-  [escrowId: string]: IEscrow;
+export interface Escrows {
+  [escrowId: string]: Escrow;
 }

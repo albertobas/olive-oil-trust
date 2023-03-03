@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { queryAllEscrowsWithDep } from 'next-app/src/features/explore/core/interactors';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { IEscrowsState } from 'next-app/src/features/shared/utils/interfaces';
+import { EscrowsState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useAllEscrows(pollInterval?: number): IEscrowsState {
-  const [escrowsState, setEscrowsState] = useState<IEscrowsState>({ error: null, data: null });
+export function useAllEscrows(pollInterval?: number): EscrowsState {
+  const [escrowsState, setEscrowsState] = useState<EscrowsState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {

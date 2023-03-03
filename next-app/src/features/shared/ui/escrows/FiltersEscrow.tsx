@@ -2,11 +2,11 @@ import styles from 'src/features/shared/styles/modules/filters/Filters.module.cs
 import { Dispatch, SetStateAction, useMemo } from 'react';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import FilterSelect from 'next-app/src/features/shared/ui/filters/FilterSelect';
-import { IEscrow } from 'next-app/src/features/shared//core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared//core/entities/Escrows';
 import { getItemsFromEscrows } from 'next-app/src/features/shared/utils/helpers/helpers';
 
 interface Props {
-  data: IEscrow[] | null;
+  data: Escrow[] | null;
   stateItems: IItem[] | null;
   buyerItems: IItem[] | null;
   sellerItems: IItem[] | null;

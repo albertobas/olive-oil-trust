@@ -1,9 +1,9 @@
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
 import CertificatesRepository from 'next-app/src/features/explore/core/repositories/Certificates.repository';
 import allCertificatesAdapter from 'next-app/src/features/explore/core/adapters/allCertificates.adapter';
 
 const queryAllCertificates =
-  (repository: CertificatesRepository) => async (): Promise<{ error: boolean; data: ICertificates | null }> => {
+  (repository: CertificatesRepository) => async (): Promise<{ error: boolean; data: Certificates | null }> => {
     try {
       const { errors, data } = await repository.getAll();
       if (errors) {

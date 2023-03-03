@@ -1,29 +1,29 @@
 import { IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 
-export interface ITokensInfo {
+export interface TokensInfo {
   [tokenId: string]: {
     amount: number;
-    token: ITokenFields;
+    token: TokenFields;
   };
 }
 
-export interface IIndustrialUnitTokenInfo {
+export interface IndustrialUnitTokenInfo {
   id: string;
-  commercialUnits: ITokensInfo | null;
-  industrialUnit: ITokenFields;
+  commercialUnits: TokensInfo | null;
+  industrialUnit: TokenFields;
   member: IMember | null;
 }
 
-export interface ITokenFields {
+export interface TokenFields {
   id: string;
   identifier: string;
   contract: string;
-  industrialUnitTokenInfo: IIndustrialUnitTokenInfo | null;
+  industrialUnitTokenInfo: IndustrialUnitTokenInfo | null;
   mintingDate: number | null;
   selfProduced: boolean | null;
-  tokenType: ITokenType | null;
+  tokenType: TokenType | null;
   title: string;
   totalSupply: {
     id: string;
@@ -32,26 +32,26 @@ export interface ITokenFields {
   };
 }
 
-export interface ITokens {
-  [tokenId: string]: IToken;
+export interface Tokens {
+  [tokenId: string]: Token;
 }
 
-export interface IToken extends ITokenFields {
-  ancestry: IFirstAncestry[] | null;
-  escrows: IEscrow[] | null;
+export interface Token extends TokenFields {
+  ancestry: FirstAncestry[] | null;
+  escrows: Escrow[] | null;
   balance: number | null;
 }
 
-export interface IFirstAncestry {
+export interface FirstAncestry {
   amount: number;
-  token: ITokenFirstAncestry;
+  token: TokenFirstAncestry;
 }
 
-export interface ITokenFirstAncestry extends ITokenFields {
-  ancestry: ISecondAncestry[] | null;
+export interface TokenFirstAncestry extends TokenFields {
+  ancestry: SecondAncestry[] | null;
 }
 
-export interface ISecondAncestry {
+export interface SecondAncestry {
   amount: number;
-  token: ITokenFields;
+  token: TokenFields;
 }

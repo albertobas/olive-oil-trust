@@ -4,12 +4,12 @@ import { transferEscrowActions } from 'next-app/src/features/shared/ui/utils/hel
 import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
 import useSignedContract from 'next-app/src/features/shared/ui/hooks/useSignedContract';
 import { Dispatch, SetStateAction } from 'react';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import { renderToast } from 'next-app/src/shared/utils/helpers';
 import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowActionsConfirmation.module.css';
 
 type Props = {
-  escrow: IEscrow;
+  escrow: Escrow;
   modalInfo: IModalInfo;
   isMember: boolean;
   setModalInfo: Dispatch<SetStateAction<IModalInfo | null>>;

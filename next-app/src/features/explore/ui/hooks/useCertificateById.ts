@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { queryCertificateByIdWithDep } from 'next-app/src/features/explore/core/interactors';
-import { ICertificateState } from 'next-app/src/features/shared/utils/interfaces';
+import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useCertificateById(id: string, pollInterval?: number): ICertificateState {
-  const [certificatesState, setCertificatesState] = useState<ICertificateState>({ error: null, data: null });
+export function useCertificateById(id: string, pollInterval?: number): CertificateState {
+  const [certificatesState, setCertificatesState] = useState<CertificateState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {

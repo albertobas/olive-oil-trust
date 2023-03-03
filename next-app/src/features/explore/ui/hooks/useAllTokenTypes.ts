@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { queryAllTokenTypesWithDep } from 'next-app/src/features/explore/core/interactors';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { ITokenTypesState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenTypesState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useAllTokenTypes(pollInterval?: number): ITokenTypesState {
-  const [tokenTypesState, setTokenTypesState] = useState<ITokenTypesState>({ error: null, data: null });
+export function useAllTokenTypes(pollInterval?: number): TokenTypesState {
+  const [tokenTypesState, setTokenTypesState] = useState<TokenTypesState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {

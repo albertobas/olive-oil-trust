@@ -1,8 +1,8 @@
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { BigNumber, Contract } from 'ethers';
 import { formatBytes32String } from 'ethers/lib/utils';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import {
   BottlingPlant,
   Certifier,
@@ -195,7 +195,7 @@ export async function transferCertifiedTokenTypes(
 
 export async function transferMakeOffer(
   contract: Contract | null,
-  escrow: IEscrow,
+  escrow: Escrow,
   price: string,
   buyerWallet: string
 ): Promise<void> {
@@ -213,7 +213,7 @@ export async function transferMakeOffer(
 export async function transferMakePayment(
   signedMemberContract: Contract | null,
   signedEscrowContract: Contract | null,
-  escrow: IEscrow,
+  escrow: Escrow,
   moduleId: Module | null,
   { buyerWallet }: IFormikMakePayment
 ): Promise<void> {
@@ -493,7 +493,7 @@ export async function transferDepositTokens(
   }
 }
 
-export function getGroupedTokensByType(tokens: IToken[], filter?: string[]): IGroupedItems[] | null {
+export function getGroupedTokensByType(tokens: Token[], filter?: string[]): IGroupedItems[] | null {
   const groupedItems: IGroupedItems[] = [];
   const tokensByType = tokens.reduce((acc, { id, identifier, tokenType }) => {
     if (tokenType) {
@@ -523,7 +523,7 @@ export function getGroupedTokensByType(tokens: IToken[], filter?: string[]): IGr
   return groupedItems.length ? groupedItems : null;
 }
 
-export function getGroupedTokenTypesByRole(tokenTypes: ITokenType[]): IGroupedItems[] {
+export function getGroupedTokenTypesByRole(tokenTypes: TokenType[]): IGroupedItems[] {
   const groupedItems: IGroupedItems[] = [];
   const tokenTypesByRole = tokenTypes.reduce((acc, { id, identifier, metadata, member }) => {
     if (member && member.role) {

@@ -1,15 +1,15 @@
 import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
 import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { IAllTokenTypesAndCertificates } from 'next-app/src/features/management/core/entities/MyTokenTypes';
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
 import { AllTokenTypesAndCertificatesQuery } from 'next-app/.graphclient';
 
 const allTokenTypesAndCertificatesAdapter = (
   dataRaw: AllTokenTypesAndCertificatesQuery
 ): IAllTokenTypesAndCertificates | null => {
-  let tokenTypes: ITokenTypes | null = null;
-  let certificates: ICertificates | null = null;
+  let tokenTypes: TokenTypes | null = null;
+  let certificates: Certificates | null = null;
   if (dataRaw.tokenTypes.length > 0) {
     tokenTypes = {};
     for (let i = 0; i < dataRaw.tokenTypes.length; i++) {

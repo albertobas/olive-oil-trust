@@ -1,10 +1,10 @@
 import MyCertificatesRepository from 'next-app/src/features/management/core/repositories/MyCertificates.repository';
 import certificatesByMemberAndAllTokenTypesAdapter from 'next-app/src/features/management/core/adapters/certificatesByMemberAndAllTokenTypes.adapter';
-import { ICertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
+import { CertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
 
 const queryCertificatesByMemberAndAllTokenTypes =
   (repository: MyCertificatesRepository) =>
-  async (member: string): Promise<{ error: boolean; data: ICertificatesByMemberAndAllTokenTypes | null }> => {
+  async (member: string): Promise<{ error: boolean; data: CertificatesByMemberAndAllTokenTypes | null }> => {
     try {
       const { errors, data } = await repository.getByMember(member);
       if (errors) {

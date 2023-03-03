@@ -1,9 +1,9 @@
 import { join } from 'path';
 import React from 'react';
 import { isOliveGrower, isOliveOilMill, pages } from 'next-app/src/shared/utils/constants';
-import { IEvent } from 'next-app/src/features/shared/core/entities/Events';
-import { IMetadata } from 'next-app/src/features/shared/core/entities/Metadata';
-import { ITokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Event } from 'next-app/src/features/shared/core/entities/Events';
+import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
+import { TokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import styles from 'next-app/src/features/explore/styles/modules/tokenTypes/TokenTypeInfo.module.css';
@@ -11,9 +11,9 @@ import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/manageme
 
 type Props = {
   identifier: string;
-  instructions: ITokenTypeInstruction[] | null;
-  metadata: IMetadata | null;
-  instructionsSetEvent?: IEvent | null;
+  instructions: TokenTypeInstruction[] | null;
+  metadata: Metadata | null;
+  instructionsSetEvent?: Event | null;
 };
 
 function TokenTypeInfo({ identifier, metadata, instructions, instructionsSetEvent }: Props): JSX.Element {

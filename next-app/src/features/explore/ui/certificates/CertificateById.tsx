@@ -3,10 +3,10 @@ import styles from 'next-app/src/features/explore/styles/modules/certificates/Ce
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
 import { pages } from 'next-app/src/shared/utils/constants';
 import { join } from 'path';
-import { ICertificateState } from 'next-app/src/features/shared/utils/interfaces';
+import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 
-function CertificateById({ error, data, id }: ICertificateState & { id: string }): JSX.Element {
+function CertificateById({ error, data, id }: CertificateState & { id: string }): JSX.Element {
   if (error) {
     return <FallbackMessage message={`The certificate ${id + (id.length ? ' ' : '')}could not be retrieved`} error />;
   }

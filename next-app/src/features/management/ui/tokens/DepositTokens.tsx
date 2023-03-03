@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
 import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import { toast } from 'react-toastify';
 import { ErrorMessage, Field, FieldArray, FieldProps, Form, Formik, FormikHelpers, useFormikContext } from 'formik';
 import { IFormikDepositToken } from 'next-app/src/features/management/utils/interfaces';
@@ -42,7 +42,7 @@ import { BigNumber } from 'ethers';
 import PriceLabel from 'next-app/src/features/shared/ui/forms/PriceLabel';
 
 type Props = {
-  tokens: IToken[] | null;
+  tokens: Token[] | null;
   moduleId: Module;
   setIsDepositingTokens: Dispatch<SetStateAction<boolean>>;
 };

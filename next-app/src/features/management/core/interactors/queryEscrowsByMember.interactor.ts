@@ -1,10 +1,10 @@
-import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
 import MyEscrowsRepository from 'next-app/src/features/management/core/repositories/MyEscrows.repository';
 import escrowsByMemberAdapter from 'next-app/src/features/management/core/adapters/escrowsByMember.adapter';
 
 const queryEscrowsByMember =
   (repository: MyEscrowsRepository) =>
-  async (member: string): Promise<{ error: boolean; data: IEscrows | null }> => {
+  async (member: string): Promise<{ error: boolean; data: Escrows | null }> => {
     try {
       const { errors, data } = await repository.getByMember(member);
       if (errors) {

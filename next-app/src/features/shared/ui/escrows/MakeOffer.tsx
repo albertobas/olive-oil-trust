@@ -5,7 +5,7 @@ import { Root as Label } from '@radix-ui/react-label';
 import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { toast } from 'react-toastify';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import { IFormikMakeOffer } from 'next-app/src/features/management/utils/interfaces';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
@@ -20,7 +20,7 @@ import { BigNumber } from 'ethers';
 import { formatUnits } from 'ethers/lib/utils';
 
 type Props = {
-  escrow: IEscrow;
+  escrow: Escrow;
   setModalInfo: Dispatch<SetStateAction<IModalInfo | null>>;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 };

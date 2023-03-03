@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import AddTokenTypes from 'next-app/src/features/management/ui/tokenTypes/AddTokenTypes';
 import styles from 'next-app/src/features/management/styles/modules/tokenTypes/TokenTypesControl.module.css';
@@ -9,8 +9,8 @@ import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/co
 import ReactModal from 'react-modal';
 
 type Props = {
-  previousTokenTypes: ITokenType[] | null;
-  certificates: ICertificate[] | null;
+  previousTokenTypes: TokenType[] | null;
+  certificates: Certificate[] | null;
   reverse: boolean;
   sort: IItem | null;
   query: string | null;

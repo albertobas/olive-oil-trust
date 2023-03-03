@@ -9,10 +9,10 @@ import { pages, roles } from 'next-app/src/shared/utils/constants';
 import Xarrow, { Xwrapper } from 'react-xarrows';
 import TokenTypeInfo from 'next-app/src/features/explore/ui/tokenTypes/TokenTypeInfo';
 import { join } from 'path';
-import { ITokenState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 
-function TokenById({ error, data, id }: ITokenState & { id: string }): JSX.Element {
+function TokenById({ error, data, id }: TokenState & { id: string }): JSX.Element {
   if (error) {
     return <FallbackMessage message={`The token ${id + (id.length ? ' ' : '')}could not be retrieved`} error />;
   }

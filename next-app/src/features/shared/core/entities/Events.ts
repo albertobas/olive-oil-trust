@@ -1,10 +1,10 @@
-export interface IEvent {
+export interface Event {
   id: string;
   emitter: string;
-  transaction: ITransaction;
+  transaction: Transaction;
 }
 
-export interface ITransaction {
+export interface Transaction {
   id: string;
   blockNumber: number;
   timestamp: number;

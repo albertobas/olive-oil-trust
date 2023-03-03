@@ -1,10 +1,10 @@
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import { checkEscrowState, parseTransaction } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
 import { getTokensInfo } from 'next-app/src/features/shared/utils/helpers/token';
 import { EscrowRawType } from 'next-app/src/features/shared/utils/interfaces';
 
-export function getEscrow(escrow: EscrowRawType, selfProducedIds: string[] | null): IEscrow {
+export function getEscrow(escrow: EscrowRawType, selfProducedIds: string[] | null): Escrow {
   const {
     escrowBalance: { escrowAmounts, escrowTokens }
   } = escrow;
@@ -39,7 +39,7 @@ export function getEscrow(escrow: EscrowRawType, selfProducedIds: string[] | nul
   };
 }
 
-export const sortEscrowArray = (data: IEscrow[], sortValue: string | undefined, reverse: boolean): IEscrow[] => {
+export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, reverse: boolean): Escrow[] => {
   if (reverse) {
     if (sortValue === 'date') {
       return data.sort((a, b) =>

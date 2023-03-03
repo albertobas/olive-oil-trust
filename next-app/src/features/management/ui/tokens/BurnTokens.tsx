@@ -3,7 +3,7 @@ import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSi
 import useSignedContract from 'next-app/src/features/shared/ui/hooks/useSignedContract';
 import { IBurnTokenState, IFormikBurnToken } from 'next-app/src/features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import { Root as Label } from '@radix-ui/react-label';
 import { Formik, Form, Field, ErrorMessage, FieldArray, useFormikContext, FieldProps } from 'formik';
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
@@ -25,7 +25,7 @@ import { BsTrash } from 'react-icons/bs';
 import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 
 type Props = {
-  commercialTokens: IToken[];
+  commercialTokens: Token[];
   accountAddress?: string;
   moduleId?: Module;
   setIsBurningTokens: Dispatch<SetStateAction<boolean>>;

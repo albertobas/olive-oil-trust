@@ -10,10 +10,10 @@ import CertificateById from 'next-app/src/features/explore/ui/certificates/Certi
 import { getBuiltGraphSDK } from 'next-app/.graphclient';
 import certificateByIdAdapter from 'next-app/src/features/explore/core/adapters/certificateById.adapter';
 import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
-import { ICertificateState } from 'next-app/src/features/shared/utils/interfaces';
+import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
 import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
 
-function DynamicCertificatePageISR(props: ICertificateState & { id: string }): JSX.Element {
+function DynamicCertificatePageISR(props: CertificateState & { id: string }): JSX.Element {
   return (
     <>
       <Breadcrumbs />
@@ -55,9 +55,9 @@ export default DynamicCertificatePageISR;
 // import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
 // import { getBuiltGraphSDK } from 'next-app/.graphclient';
 // import certificateByIdAdapter from 'next-app/src/features/explore/core/adapters/certificateById.adapter';
-// import { ICertificateState } from 'next-app/src/features/shared/utils/interfaces';
+// import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
 
-// function DynamicCertificatePageSSR(props: ICertificateState & { id: string }): JSX.Element {
+// function DynamicCertificatePageSSR(props: CertificateState & { id: string }): JSX.Element {
 //   return (
 //     <>
 //       <Breadcrumbs />

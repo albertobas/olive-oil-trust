@@ -5,11 +5,11 @@ import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/co
 import TokenTypesCardList from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { tokenTypeFilter, tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import FiltersTokenType from 'next-app/src/features/management/ui/tokenTypes/FiltersTokenType';
 
 type Props = {
-  tokenTypes: ITokenTypes | null;
+  tokenTypes: TokenTypes | null;
 };
 
 function TokenTypesSearchCardList({ tokenTypes }: Props): JSX.Element {

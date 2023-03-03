@@ -2,14 +2,14 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, SetStateAction, useM
 import CertifyTokenTypes from 'next-app/src/features/management/ui/certificates/CertifyTokenTypes';
 import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
 import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { sortCertificateCardsRecords } from 'next-app/src/features/shared/utils/constants';
 import ReactModal from 'react-modal';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import styles from 'next-app/src/features/management/styles/modules/certificates/CertificatesControl.module.css';
 
 type Props = {
-  tokenTypes: ITokenType[] | null;
+  tokenTypes: TokenType[] | null;
   reverse: boolean;
   sort: IItem | null;
   query: string | null;

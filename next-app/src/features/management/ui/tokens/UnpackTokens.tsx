@@ -3,7 +3,7 @@ import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSi
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import { IFormikUnpackToken } from 'next-app/src/features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import styles from 'src/features/shared/styles/modules/forms/Form.module.css';
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { Root as Label } from '@radix-ui/react-label';
@@ -17,7 +17,7 @@ import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/he
 import { transferUnpackTokens } from 'next-app/src/features/management/utils/helpers';
 
 type Props = {
-  industrialUnitTokens: IToken[];
+  industrialUnitTokens: Token[];
   unpacker: 'BottlingPlant' | 'Distributor' | 'Retailer';
   setIsUnpackingTokens: Dispatch<SetStateAction<boolean>>;
 };

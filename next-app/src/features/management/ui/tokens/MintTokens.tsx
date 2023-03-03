@@ -3,8 +3,8 @@ import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSi
 import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
 import { IFormikMintToken, IMintTokenState } from 'next-app/src/features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
 import IdentifierTypeAmountCard from 'next-app/src/features/management/ui/tokens/IdentifierTypeAmountCard';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
@@ -31,8 +31,8 @@ import { OptionProps } from 'react-select';
 import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
 
 type Props = {
-  previousMemberTokens: IToken[] | null;
-  tokenTypes: ITokenType[] | null;
+  previousMemberTokens: Token[] | null;
+  tokenTypes: TokenType[] | null;
   isDependentCreator: boolean;
   moduleId: Module;
   setIsMintingTokens: Dispatch<SetStateAction<boolean>>;
@@ -71,7 +71,7 @@ function MintTokens({
 
   const tokenTypesRecords = useMemo(() => {
     if (tokenTypes && tokenTypes.length) {
-      const types: Record<string, ITokenType> = {};
+      const types: Record<string, TokenType> = {};
       tokenTypes.forEach((type) => (types[type.identifier] = type));
       return types;
     }

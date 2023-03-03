@@ -2,7 +2,7 @@ import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowCa
 import { join } from 'path';
 import { isIndustrialUnitSeller, pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
 import { shouldShowAction } from 'next-app/src/features/shared/ui/utils/helpers';
 import { Button } from 'next-app/src/features/shared/ui/buttons/Button';
@@ -13,7 +13,7 @@ import { formatEther, formatUnits } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';
 import { Dispatch, SetStateAction } from 'react';
 
-type Props = IEscrow & {
+type Props = Escrow & {
   userAddress: string | null;
   accountContract: IContract | null;
   setModalInfo: Dispatch<SetStateAction<IModalInfo | null>>;

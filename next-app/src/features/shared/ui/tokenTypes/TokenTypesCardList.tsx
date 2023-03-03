@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { sortTokenTypeArray } from 'next-app/src/features/shared/utils/helpers/tokenType';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import TokenTypeCard from 'next-app/src/features/shared/ui/tokenTypes/TokenTypeCard';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 
 type Props = {
-  data: ITokenType[];
+  data: TokenType[];
   reverse: boolean;
   sort: IItem | null;
 };
 function TokenTypesCardList({ data, reverse, sort }: Props): JSX.Element {
-  const [stateData, setStateData] = useState<ITokenType[] | null>(
+  const [stateData, setStateData] = useState<TokenType[] | null>(
     sort ? sortTokenTypeArray(data.slice(), sort?.value, reverse) : data
   );
   useEffect(() => {

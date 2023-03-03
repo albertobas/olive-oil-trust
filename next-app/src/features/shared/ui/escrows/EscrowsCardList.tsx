@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { sortEscrowArray } from 'next-app/src/features/shared/utils/helpers/escrow';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import EscrowCard from 'next-app/src/features/shared/ui/escrows/EscrowCard';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 import ReactModal from 'react-modal';
 import MakePayment from 'next-app/src/features/shared/ui/escrows/MakePayment';
@@ -12,7 +12,7 @@ import EscrowActionsConfirmation from 'next-app/src/features/shared/ui/escrows/E
 import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
 
 type Props = {
-  escrows: IEscrow[] | null;
+  escrows: Escrow[] | null;
   reverse: boolean;
   sort: IItem | null;
 };
@@ -20,7 +20,7 @@ type Props = {
 function EscrowsCardList({ escrows, reverse, sort }: Props): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalInfo, setModalInfo] = useState<IModalInfo | null>(null);
-  const [stateData, setStateData] = useState<IEscrow[] | null>(
+  const [stateData, setStateData] = useState<Escrow[] | null>(
     escrows ? (sort ? sortEscrowArray(escrows.slice(), sort.value, reverse) : escrows) : null
   );
   const escrow = useMemo(() => {

@@ -4,10 +4,10 @@ import Image from 'next/image';
 import styles from 'next-app/src/features/explore/styles/modules/tokenTypes/TokenTypeById.module.css';
 import { Role } from 'next-app/src/features/shared/utils/interfaces';
 import TokenTypeInfo from 'next-app/src/features/explore/ui/tokenTypes/TokenTypeInfo';
-import { ITokenTypeState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenTypeState } from 'next-app/src/features/shared/utils/interfaces';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 
-function TokenTypeById({ error, data, id }: ITokenTypeState & { id: string }): JSX.Element {
+function TokenTypeById({ error, data, id }: TokenTypeState & { id: string }): JSX.Element {
   if (error) {
     return <FallbackMessage message={`The token type ${id + (id.length ? ' ' : '')}could not be retrieved`} error />;
   }

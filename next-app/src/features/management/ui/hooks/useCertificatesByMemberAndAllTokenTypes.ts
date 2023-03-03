@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { queryCertificatesByMemberAndAllTokenTypesWithDep } from 'next-app/src/features/management/core/interactors';
-import { ITokenTypesState, ICertificatesState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenTypesState, CertificatesState } from 'next-app/src/features/shared/utils/interfaces';
 
 export function useCertificatesByMemberAndAllTokenTypes(
   address: string,
   pollInterval?: number
-): { certificatesState: ICertificatesState; tokenTypesState: ITokenTypesState } {
-  const [certificatesState, setCertificatesState] = useState<ICertificatesState>({ error: null, data: null });
-  const [tokenTypesState, setTokenTypesState] = useState<ITokenTypesState>({ error: null, data: null });
+): { certificatesState: CertificatesState; tokenTypesState: TokenTypesState } {
+  const [certificatesState, setCertificatesState] = useState<CertificatesState>({ error: null, data: null });
+  const [tokenTypesState, setTokenTypesState] = useState<TokenTypesState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {

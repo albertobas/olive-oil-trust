@@ -1,16 +1,16 @@
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
 import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { ICertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
+import { CertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
 import { CertificatesByMemberQuery } from 'next-app/.graphclient';
 
 const certificatesByMemberAndAllTokenTypesAdapter = (
   dataRaw: CertificatesByMemberQuery
-): ICertificatesByMemberAndAllTokenTypes | null => {
+): CertificatesByMemberAndAllTokenTypes | null => {
   const { memberContract, tokenTypes } = dataRaw;
-  const certificates_: ICertificates = {};
-  let tokenTypes_: ITokenTypes | null = null;
+  const certificates_: Certificates = {};
+  let tokenTypes_: TokenTypes | null = null;
   if (memberContract) {
     for (let i = 0; i < memberContract.asAccount.ownerOfCertificateContract.length; i++) {
       const { certificates } = memberContract.asAccount.ownerOfCertificateContract[i];

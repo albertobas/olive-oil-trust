@@ -5,11 +5,11 @@ import { sortEscrowCardsRecords } from 'next-app/src/features/shared/utils/const
 import { escrowFilter, escrowSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
 import EscrowsCardList from 'next-app/src/features/shared/ui/escrows/EscrowsCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
 import FiltersEscrow from 'next-app/src/features/shared/ui/escrows/FiltersEscrow';
 
 type Props = {
-  escrows: IEscrows | null;
+  escrows: Escrows | null;
 };
 
 function EscrowsSearchCardList({ escrows }: Props): JSX.Element {

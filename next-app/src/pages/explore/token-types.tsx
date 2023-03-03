@@ -12,10 +12,10 @@ import Intro from 'next-app/src/features/shared/ui/intro/Intro';
 import AllTokenTypes from 'next-app/src/features/explore/ui/tokenTypes/AllTokenTypes';
 import { brandName } from 'next-app/src/shared/utils/constants';
 import allTokenTypesAdapter from 'next-app/src/features/explore/core/adapters/allTokenTypes.adapter';
-import { ITokenTypesState, ITokenTypesStateData } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenTypesState, TokenTypesStateData } from 'next-app/src/features/shared/utils/interfaces';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-function TokenTypesPageSSR(state: ITokenTypesState): JSX.Element {
+function TokenTypesPageSSR(state: TokenTypesState): JSX.Element {
   return (
     <>
       <Breadcrumbs />
@@ -35,10 +35,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const lastUpdated = getTime();
   try {
     const dataRaw = await sdk.AllTokenTypes();
-    const data: ITokenTypesStateData = { tokenTypes: allTokenTypesAdapter(dataRaw), lastUpdated };
+    const data: TokenTypesStateData = { tokenTypes: allTokenTypesAdapter(dataRaw), lastUpdated };
     return { props: { error: false, data } };
   } catch (e) {
-    const data: ITokenTypesStateData = { tokenTypes: null, lastUpdated };
+    const data: TokenTypesStateData = { tokenTypes: null, lastUpdated };
     return { props: { error: true, data } };
   }
 };
@@ -76,11 +76,11 @@ export default TokenTypesPageSSR;
 // import AllTokenTypes from 'next-app/src/features/explore/ui/tokenTypes/AllTokenTypes';
 // import { brandName } from 'next-app/src/shared/utils/constants';
 // import allTokenTypesAdapter from 'next-app/src/features/explore/core/adapters/allTokenTypes.adapter';
-// import { ITokenTypesState, ITokenTypesStateData } from 'next-app/src/features/shared/utils/interfaces';
+// import { TokenTypesState, TokenTypesStateData } from 'next-app/src/features/shared/utils/interfaces';
 // import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 // import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
 
-// function TokenTypesPageISR(state: ITokenTypesState): JSX.Element {
+// function TokenTypesPageISR(state: TokenTypesState): JSX.Element {
 //   return (
 //     <>
 //       <Breadcrumbs />
@@ -100,10 +100,10 @@ export default TokenTypesPageSSR;
 //   const lastUpdated = getTime();
 //   try {
 //     const dataRaw = await sdk.AllTokenTypes();
-//     const data: ITokenTypesStateData = { tokenTypes: allTokenTypesAdapter(dataRaw), lastUpdated };
+//     const data: TokenTypesStateData = { tokenTypes: allTokenTypesAdapter(dataRaw), lastUpdated };
 //     return { props: { error: false, data }, revalidate: revalidateInterval };
 //   } catch (e) {
-//     const data: ITokenTypesStateData = { tokenTypes: null, lastUpdated };
+//     const data: TokenTypesStateData = { tokenTypes: null, lastUpdated };
 //     return { props: { error: true, data }, revalidate: revalidateInterval };
 //   }
 // };

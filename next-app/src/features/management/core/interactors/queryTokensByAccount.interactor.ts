@@ -1,10 +1,10 @@
-import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import MyTokensRepository from 'next-app/src/features/management/core/repositories/MyTokens.repository';
 import tokensByAccountAdapter from 'next-app/src/features/management/core/adapters/tokensByAccount.adapter';
 
 const queryTokensByAccount =
   (repository: MyTokensRepository) =>
-  async (account: string): Promise<{ error: boolean; data: ITokens | null }> => {
+  async (account: string): Promise<{ error: boolean; data: Tokens | null }> => {
     try {
       const { errors, data } = await repository.getTokensByAccount(account);
       if (errors) {

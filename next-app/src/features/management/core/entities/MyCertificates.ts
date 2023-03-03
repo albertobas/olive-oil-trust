@@ -1,7 +1,7 @@
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 
-export interface ICertificatesByMemberAndAllTokenTypes {
-  certificates: ICertificates | null;
-  tokenTypes: ITokenTypes | null;
+export interface CertificatesByMemberAndAllTokenTypes {
+  certificates: Certificates | null;
+  tokenTypes: TokenTypes | null;
 }

@@ -1,10 +1,10 @@
 import EscrowsSearchCardList from 'next-app/src/features/shared/ui/escrows/EscrowsSearchCardList';
 import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import styles from 'src/features/shared/styles/modules/page/Page.module.css';
-import { IEscrowsState } from 'next-app/src/features/shared/utils/interfaces';
+import { EscrowsState } from 'next-app/src/features/shared/utils/interfaces';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 
-const AllEscrows = ({ error, data }: IEscrowsState): JSX.Element => {
+const AllEscrows = ({ error, data }: EscrowsState): JSX.Element => {
   return (
     <>
       <div className={styles.layout}>

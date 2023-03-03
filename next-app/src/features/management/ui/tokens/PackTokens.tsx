@@ -3,7 +3,7 @@ import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSi
 import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
 import { IFormikPackToken, IPackTokenState } from 'next-app/src/features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage, useFormikContext, FieldProps } from 'formik';
 import PackTokenCard from 'next-app/src/features/management/ui/tokens/PackTokenCard';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
@@ -25,7 +25,7 @@ import { carouselResponsive } from 'next-app/src/features/management/utils/const
 import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
 
 type Props = {
-  commercialTokens: IToken[];
+  commercialTokens: Token[];
   isDistributor: boolean;
   setIsPackingTokens: Dispatch<SetStateAction<boolean>>;
 };

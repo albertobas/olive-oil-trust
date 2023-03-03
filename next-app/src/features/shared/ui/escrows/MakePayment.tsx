@@ -5,7 +5,7 @@ import { Root as Label } from '@radix-ui/react-label';
 import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { toast } from 'react-toastify';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 import { IFormikMakePayment } from 'next-app/src/features/management/utils/interfaces';
 import useSignedContract from 'next-app/src/features/shared/ui/hooks/useSignedContract';
 import SVG from 'next-app/src/features/shared/ui/svg/SVG';
@@ -21,7 +21,7 @@ import { isMember } from 'next-app/src/shared/utils/constants';
 import { Module } from 'next-app/src/shared/utils/interfaces';
 
 type Props = {
-  escrow: IEscrow;
+  escrow: Escrow;
   moduleId: Module | null;
   setModalInfo: Dispatch<SetStateAction<IModalInfo | null>>;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;

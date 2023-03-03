@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { queryTokenTypeByIdWithDep } from 'next-app/src/features/explore/core/interactors';
-import { ITokenTypeState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenTypeState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useTokenTypeById(id: string, pollInterval?: number): ITokenTypeState {
-  const [tokenTypesState, setTokenTypesState] = useState<ITokenTypeState>({ error: null, data: null });
+export function useTokenTypeById(id: string, pollInterval?: number): TokenTypeState {
+  const [tokenTypesState, setTokenTypesState] = useState<TokenTypeState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {

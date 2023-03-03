@@ -9,7 +9,7 @@ import {
   Seller
 } from 'next-app/src/features/shared/utils/interfaces';
 import { EscrowCardAction, IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
-import { IEscrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
 
 export function handleAddressValidation(value: string): string | null {
   if (!value) {
@@ -39,7 +39,7 @@ export function handleSelectValidation(value: string | null, subject: string): s
 export async function transferEscrowActions(
   signedMemberContract: Contract | null,
   signedEscrowContract: Contract | null,
-  escrow: IEscrow,
+  escrow: Escrow,
   modalInfo: IModalInfo | null,
   isMember: boolean
 ): Promise<void> {

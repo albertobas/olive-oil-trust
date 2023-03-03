@@ -11,13 +11,13 @@ import {
   isOliveOilMill,
   isBottlingPlant
 } from 'next-app/src/shared/utils/constants';
-import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
+import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import FiltersToken from 'next-app/src/features/shared/ui/tokens/FiltersToken';
 
 type Props = {
-  tokens: ITokens | null;
-  tokenTypes?: ITokenTypes | null;
+  tokens: Tokens | null;
+  tokenTypes?: TokenTypes | null;
   moduleId?: Module;
 };
 

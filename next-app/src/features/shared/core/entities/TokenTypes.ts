@@ -1,10 +1,10 @@
 import { Module } from 'next-app/src/shared/utils/interfaces';
 import { IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { IEvent } from 'next-app/src/features/shared/core/entities/Events';
-import { IMetadata } from 'next-app/src/features/shared/core/entities/Metadata';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Event } from 'next-app/src/features/shared/core/entities/Events';
+import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
 
-export interface ITokenTypeInstruction {
+export interface TokenTypeInstruction {
   id: string;
   amount: number | null;
   certifiedTokenTypes: { id: string; title: string | null }[] | null;
@@ -13,19 +13,19 @@ export interface ITokenTypeInstruction {
   instructorModuleId: Module | null;
 }
 
-export interface ITokenType {
+export interface TokenType {
   id: string;
-  certificates: ICertificate[] | null;
+  certificates: Certificate[] | null;
   contract: string | null;
   creationDate: number;
   identifier: string;
-  instructions: ITokenTypeInstruction[] | null;
-  instructionsSetEvent: IEvent | null;
+  instructions: TokenTypeInstruction[] | null;
+  instructionsSetEvent: Event | null;
   member: IMember | null;
-  metadata: IMetadata | null;
+  metadata: Metadata | null;
   uri: string | null;
 }
 
-export interface ITokenTypes {
-  [tokenTypeId: string]: ITokenType;
+export interface TokenTypes {
+  [tokenTypeId: string]: TokenType;
 }

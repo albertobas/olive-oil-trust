@@ -4,7 +4,7 @@ import { IGroupedItems } from 'next-app/src/features/shared/utils/interfaces';
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from 'formik';
 import { Root as Label } from '@radix-ui/react-label';
 import { ICertifyTokenTypeState, IFormikCertificate } from 'next-app/src/features/management/utils/interfaces';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { toast } from 'react-toastify';
@@ -22,7 +22,7 @@ import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/he
 import TokenTypesDropdownMulti from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesDropdownMulti';
 
 type Props = {
-  tokenTypes: ITokenType[];
+  tokenTypes: TokenType[];
   setIsAddingCertificates: Dispatch<SetStateAction<boolean>>;
 };
 

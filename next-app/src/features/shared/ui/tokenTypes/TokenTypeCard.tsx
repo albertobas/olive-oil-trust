@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { join } from 'path';
 import { isOliveGrower, isOliveOilMill, pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-const TokenTypeCard = ({ id, identifier, instructions, creationDate, member, metadata }: ITokenType): JSX.Element => {
+const TokenTypeCard = ({ id, identifier, instructions, creationDate, member, metadata }: TokenType): JSX.Element => {
   const href = join(pages.TOKEN_TYPES.url, id);
   const date = getUTCFromTimestamp(creationDate);
   return (

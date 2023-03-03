@@ -1,14 +1,14 @@
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { AllCertificatesQuery, AllTokenTypesQuery, TokenTypeByIdQuery } from 'next-app/.graphclient';
 import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
 import { parseEvent } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { getMetadata } from 'next-app/src/features/shared/utils/helpers/metadata';
 import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
-import { ITokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { checkModule } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { TokenTypeRawType } from 'next-app/src/features/shared/utils/interfaces';
 
-export function getTokenType(type: TokenTypeRawType): ITokenType {
+export function getTokenType(type: TokenTypeRawType): TokenType {
   return {
     id: type.id,
     certificates:
@@ -37,9 +37,9 @@ function getTokenTypeInstructions(
     | NonNullable<AllCertificatesQuery['certificates'][0]['tokenTypes']>[0]['tokenType']['instructions']
     | AllTokenTypesQuery['tokenTypes'][0]['instructions']
     | NonNullable<TokenTypeByIdQuery['tokenType']>['instructions']
-): ITokenTypeInstruction[] | null {
+): TokenTypeInstruction[] | null {
   if (instructionsOOT && instructionsOOT.length > 0) {
-    const instructions: ITokenTypeInstruction[] = [];
+    const instructions: TokenTypeInstruction[] = [];
     for (let i = 0; i < instructionsOOT.length; i++) {
       const instruction = instructionsOOT[i];
       const tokenTypeOrCertificateId = instruction.instructedCertificate
@@ -84,11 +84,7 @@ function getTokenTypeInstructions(
   return null;
 }
 
-export const sortTokenTypeArray = (
-  data: ITokenType[],
-  sortValue: string | undefined,
-  reverse: boolean
-): ITokenType[] => {
+export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefined, reverse: boolean): TokenType[] => {
   if (reverse) {
     if (sortValue === 'date') {
       return data.sort((a, b) =>

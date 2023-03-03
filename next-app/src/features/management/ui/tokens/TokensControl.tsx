@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
 import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 import MintTokens from 'next-app/src/features/management/ui/tokens/MintTokens';
 import {
   isBottlingPlant,
@@ -30,10 +30,10 @@ import { Button } from 'next-app/src/features/shared/ui/buttons/Button';
 import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
 
 type Props = {
-  previousMemberTokens: IToken[] | null;
-  commercialTokens: IToken[] | null;
-  industrialUnitTokens: IToken[] | null;
-  tokenTypes: ITokenType[] | null;
+  previousMemberTokens: Token[] | null;
+  commercialTokens: Token[] | null;
+  industrialUnitTokens: Token[] | null;
+  tokenTypes: TokenType[] | null;
   reverse: boolean;
   sort: IItem | null;
   query: string | null;

@@ -9,10 +9,10 @@ import { BottlingCompanyEscrow } from 'next-app/src/generated/types/contracts/es
 import { BottlingCompanyOliveOilBottle } from 'next-app/src/generated/types/contracts/tokens/BottlingCompanyOliveOilBottle';
 import { roles } from 'next-app/src/shared/utils/constants';
 import { Module } from 'next-app/src/shared/utils/interfaces';
-import { ICertificate, ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { IEscrow, IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import { IToken, ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { ITokenType, ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificate, Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Escrow, Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Token, Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
+import { TokenType, TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
 import {
   AllCertificatesQuery,
   AllEscrowsQuery,
@@ -105,62 +105,62 @@ export interface IContract {
   name: string;
 }
 
-export interface ICertificatesStateData {
-  certificates: ICertificates | null;
+export interface CertificatesStateData {
+  certificates: Certificates | null;
   lastUpdated: number;
 }
 
-export interface ICertificatesState {
+export interface CertificatesState {
   error: boolean | null;
-  data: ICertificatesStateData | null;
+  data: CertificatesStateData | null;
 }
 
-export interface ICertificateState {
+export interface CertificateState {
   error: boolean | null;
-  data: ICertificate | null;
+  data: Certificate | null;
 }
 
-export interface IEscrowsStateData {
-  escrows: IEscrows | null;
+export interface EscrowsStateData {
+  escrows: Escrows | null;
   lastUpdated: number;
 }
 
-export interface IEscrowsState {
+export interface EscrowsState {
   error: boolean | null;
-  data: IEscrowsStateData | null;
+  data: EscrowsStateData | null;
 }
-export interface ITokensStateData {
-  tokens: ITokens | null;
+export interface TokensStateData {
+  tokens: Tokens | null;
   lastUpdated: number;
 }
 
-export interface ITokensState {
+export interface TokensState {
   error: boolean | null;
-  data: ITokensStateData | null;
+  data: TokensStateData | null;
 }
 
-export interface ITokenState {
+export interface TokenState {
   error: boolean | null;
-  data: IToken | null;
+  data: Token | null;
 }
 
-export interface ITokenTypesStateData {
-  tokenTypes: ITokenTypes | null;
+export interface TokenTypesStateData {
+  tokenTypes: TokenTypes | null;
   lastUpdated: number;
 }
 
-export interface ITokenTypesState {
+export interface TokenTypesState {
   error: boolean | null;
-  data: ITokenTypesStateData | null;
+  data: TokenTypesStateData | null;
 }
 
-export interface ITokenTypeState {
+export interface TokenTypeState {
   error: boolean | null;
-  data: ITokenType | null;
+  data: TokenType | null;
 }
 
 export type FilterOption = {
-  key: keyof ITokenType | 'packer' | 'manufacturer' | 'selfProduced' | 'type' | keyof IEscrow;
+  key: keyof TokenType | 'packer' | 'manufacturer' | 'selfProduced' | 'type' | keyof Escrow;
   items: IItem[] | IItem | null;
 };
 

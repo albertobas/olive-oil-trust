@@ -12,10 +12,10 @@ import Intro from 'next-app/src/features/shared/ui/intro/Intro';
 import AllCertificates from 'next-app/src/features/explore/ui/certificates/AllCertificates';
 import { brandName } from 'next-app/src/shared/utils/constants';
 import allCertificatesAdapter from 'next-app/src/features/explore/core/adapters/allCertificates.adapter';
-import { ICertificatesState, ICertificatesStateData } from 'next-app/src/features/shared/utils/interfaces';
+import { CertificatesState, CertificatesStateData } from 'next-app/src/features/shared/utils/interfaces';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-function CertificatesPageSSR(state: ICertificatesState): JSX.Element {
+function CertificatesPageSSR(state: CertificatesState): JSX.Element {
   return (
     <>
       <Breadcrumbs />
@@ -35,10 +35,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const lastUpdated = getTime();
   try {
     const dataRaw = await sdk.AllCertificates();
-    const data: ICertificatesStateData = { certificates: allCertificatesAdapter(dataRaw), lastUpdated };
+    const data: CertificatesStateData = { certificates: allCertificatesAdapter(dataRaw), lastUpdated };
     return { props: { error: false, data } };
   } catch (e) {
-    const data: ICertificatesStateData = { certificates: null, lastUpdated };
+    const data: CertificatesStateData = { certificates: null, lastUpdated };
     return { props: { error: true, data } };
   }
 };
@@ -77,11 +77,11 @@ export default CertificatesPageSSR;
 // import AllCertificates from 'next-app/src/features/explore/ui/certificates/AllCertificates';
 // import { brandName } from 'next-app/src/shared/utils/constants';
 // import allCertificatesAdapter from 'next-app/src/features/explore/core/adapters/allCertificates.adapter';
-// import { ICertificatesState, ICertificatesStateData } from 'next-app/src/features/shared/utils/interfaces';
+// import { CertificatesState, CertificatesStateData } from 'next-app/src/features/shared/utils/interfaces';
 // import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 // import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
 
-// function CertificatesPageISR(state: ICertificatesState): JSX.Element {
+// function CertificatesPageISR(state: CertificatesState): JSX.Element {
 //   return (
 //     <>
 //       <Breadcrumbs />
@@ -101,10 +101,10 @@ export default CertificatesPageSSR;
 //   const lastUpdated = getTime();
 //   try {
 //     const dataRaw = await sdk.AllCertificates();
-//     const data: ICertificatesStateData = { certificates: allCertificatesAdapter(dataRaw), lastUpdated };
+//     const data: CertificatesStateData = { certificates: allCertificatesAdapter(dataRaw), lastUpdated };
 //     return { props: { error: false, data }, revalidate: revalidateInterval };
 //   } catch (e) {
-//     const data: ICertificatesStateData = { certificates: null, lastUpdated };
+//     const data: CertificatesStateData = { certificates: null, lastUpdated };
 //     return { props: { error: true, data }, revalidate: revalidateInterval };
 //   }
 // };

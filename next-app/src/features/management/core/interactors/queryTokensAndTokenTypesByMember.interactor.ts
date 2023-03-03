@@ -1,10 +1,10 @@
 import MyTokensRepository from 'next-app/src/features/management/core/repositories/MyTokens.repository';
 import tokensAndTokenTypesByMemberAdapter from 'next-app/src/features/management/core/adapters/tokensAndTokenTypesByMember.adapter';
-import { ITokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
+import { TokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
 
 const queryTokensAndTokenTypesByMember =
   (repository: MyTokensRepository) =>
-  async (member: string): Promise<{ error: boolean; data: ITokensAndTokenTypesByMember | null }> => {
+  async (member: string): Promise<{ error: boolean; data: TokensAndTokenTypesByMember | null }> => {
     try {
       const { errors, data } = await repository.getTokensAndTokenTypesByMember(member);
       if (errors) {

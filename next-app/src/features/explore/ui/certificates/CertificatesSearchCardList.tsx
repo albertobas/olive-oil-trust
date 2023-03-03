@@ -5,9 +5,9 @@ import { certificateSearch } from 'next-app/src/features/shared/utils/helpers/he
 import CertificatesCardList from 'next-app/src/features/shared/ui/certificates/CertificatesCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { sortCertificateCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
 
-type Props = { certificates: ICertificates | null };
+type Props = { certificates: Certificates | null };
 
 function CertificatesSearchCardList({ certificates }: Props): JSX.Element {
   const [sort, setSort] = useState<IItem | null>(null);

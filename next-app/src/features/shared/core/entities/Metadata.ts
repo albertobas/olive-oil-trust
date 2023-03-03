@@ -1,4 +1,4 @@
-export interface IMetadata {
+export interface Metadata {
   bottle: {
     quality: string | null;
     material: string | null;

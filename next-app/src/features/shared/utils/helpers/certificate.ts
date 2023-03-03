@@ -1,11 +1,11 @@
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
 import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
 import { parseEvent } from 'next-app/src/features/shared/utils/helpers/helpers';
 import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
 import { getMetadata } from 'next-app/src/features/shared/utils/helpers/metadata';
 import { CertificateRawType } from 'next-app/src/features/shared/utils/interfaces';
 
-export function getCertificate(certificate: CertificateRawType): ICertificate {
+export function getCertificate(certificate: CertificateRawType): Certificate {
   return {
     id: certificate.id,
     contract: certificate.contract.id,
@@ -23,10 +23,10 @@ export function getCertificate(certificate: CertificateRawType): ICertificate {
 }
 
 export const sortCertificateArray = (
-  data: ICertificate[],
+  data: Certificate[],
   sortValue: string | undefined,
   reverse: boolean
-): ICertificate[] => {
+): Certificate[] => {
   if (reverse) {
     if (sortValue === 'certificateId') {
       return data.sort((a, b) => (a.identifier > b.identifier ? -1 : a.identifier < b.identifier ? 1 : 0));

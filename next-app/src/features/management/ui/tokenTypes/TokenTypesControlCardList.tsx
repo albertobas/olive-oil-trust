@@ -6,12 +6,12 @@ import { tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers/help
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { isIndependentCreator } from 'next-app/src/shared/utils/constants';
 import { Module } from 'next-app/src/shared/utils/interfaces';
-import { ITokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { ICertificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
 
 type Props = {
-  tokenTypes: ITokenTypes | null;
-  certificates: ICertificates | null;
+  tokenTypes: TokenTypes | null;
+  certificates: Certificates | null;
   memberAddress: string;
   moduleId: Module;
   previousRoles?: string[];

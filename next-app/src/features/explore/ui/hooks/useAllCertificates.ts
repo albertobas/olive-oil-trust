@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { queryAllCertificatesWithDep } from 'next-app/src/features/explore/core/interactors';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { ICertificatesState } from 'next-app/src/features/shared/utils/interfaces';
+import { CertificatesState } from 'next-app/src/features/shared/utils/interfaces';
 
-export function useAllCertificates(pollInterval?: number): ICertificatesState {
-  const [certificatesState, setCertificatesState] = useState<ICertificatesState>({ error: null, data: null });
+export function useAllCertificates(pollInterval?: number): CertificatesState {
+  const [certificatesState, setCertificatesState] = useState<CertificatesState>({ error: null, data: null });
 
   // create a callback function with the use cases
   const fetchData = useCallback(async () => {

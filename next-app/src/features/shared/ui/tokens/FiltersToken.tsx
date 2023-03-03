@@ -3,10 +3,10 @@ import { Dispatch, SetStateAction, useMemo } from 'react';
 import { IItem } from 'next-app/src/features/shared/utils/interfaces';
 import FilterSelect from 'next-app/src/features/shared/ui/filters/FilterSelect';
 import { getItemsFromTokens } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { IToken } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
 
 interface Props {
-  data: IToken[] | null;
+  data: Token[] | null;
   typeItems: IItem[] | null;
   manufacturerItems: IItem[] | null;
   packerItems: IItem[] | null;

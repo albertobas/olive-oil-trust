@@ -5,11 +5,11 @@ import { sortTokenCardsRecords } from 'next-app/src/features/shared/utils/consta
 import TokensCardList from 'next-app/src/features/shared/ui/tokens/TokensCardList';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { ITokens } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
 import FiltersToken from 'next-app/src/features/shared/ui/tokens/FiltersToken';
 
 type Props = {
-  tokens: ITokens | null;
+  tokens: Tokens | null;
 };
 
 function TokensSearchCardList({ tokens }: Props): JSX.Element {

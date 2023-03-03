@@ -11,9 +11,9 @@ import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs
 import { getBuiltGraphSDK } from 'next-app/.graphclient';
 import tokenByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenById.adapter';
 import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
-import { ITokenState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
 
-function DynamicTokenPageISR(props: ITokenState & { id: string }): JSX.Element {
+function DynamicTokenPageISR(props: TokenState & { id: string }): JSX.Element {
   return (
     <>
       <Breadcrumbs />
@@ -55,9 +55,9 @@ export default DynamicTokenPageISR;
 // import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
 // import { getBuiltGraphSDK } from 'next-app/.graphclient';
 // import tokenByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenById.adapter';
-// import { ITokenState } from 'next-app/src/features/shared/utils/interfaces';
+// import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
 
-// function DynamicTokenPageSSR(props: ITokenState & { id: string }): JSX.Element {
+// function DynamicTokenPageSSR(props: TokenState & { id: string }): JSX.Element {
 //   return (
 //     <>
 //       <Breadcrumbs />

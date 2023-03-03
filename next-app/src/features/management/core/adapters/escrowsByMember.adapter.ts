@@ -1,11 +1,11 @@
-import { IEscrows } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
 import { getEscrow } from 'next-app/src/features/shared/utils/helpers/escrow';
 import { EscrowsByMemberQuery } from 'next-app/.graphclient';
 
-const escrowsByMemberAdapter = (dataRaw: EscrowsByMemberQuery): IEscrows | null => {
+const escrowsByMemberAdapter = (dataRaw: EscrowsByMemberQuery): Escrows | null => {
   if (dataRaw.memberContract) {
     const { ownerOfEscrowContract } = dataRaw.memberContract.asAccount;
-    const data: IEscrows = {};
+    const data: Escrows = {};
     for (let i = 0; i < ownerOfEscrowContract.length; i++) {
       const { escrows } = ownerOfEscrowContract[i];
       if (escrows && escrows.length > 0) {

@@ -2,10 +2,10 @@ import styles from 'next-app/src/features/shared/styles/modules/certificates/Cer
 import { join } from 'path';
 import { pages } from 'next-app/src/shared/utils/constants';
 import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { ICertificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
 import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-function CertificateCard({ id, identifier, member, creationDate, metadata }: ICertificate): JSX.Element {
+function CertificateCard({ id, identifier, member, creationDate, metadata }: Certificate): JSX.Element {
   const href = join(pages.CERTIFICATES.url, id);
   const date = getUTCFromTimestamp(creationDate);
 

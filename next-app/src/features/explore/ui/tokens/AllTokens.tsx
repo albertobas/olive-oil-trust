@@ -1,10 +1,10 @@
 import TokensSearchCardList from 'next-app/src/features/explore/ui/tokens/TokensSearchCardList';
 import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
 import styles from 'src/features/shared/styles/modules/page/Page.module.css';
-import { ITokensState } from 'next-app/src/features/shared/utils/interfaces';
+import { TokensState } from 'next-app/src/features/shared/utils/interfaces';
 import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
 
-const AllTokens = ({ error, data }: ITokensState): JSX.Element => {
+const AllTokens = ({ error, data }: TokensState): JSX.Element => {
   return (
     <>
       <div className={styles.layout}>

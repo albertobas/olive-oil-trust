@@ -1,20 +1,20 @@
 import { IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { IEvent } from 'next-app/src/features/shared/core/entities/Events';
-import { IMetadata } from 'next-app/src/features/shared/core/entities/Metadata';
-import { ITokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { Event } from 'next-app/src/features/shared/core/entities/Events';
+import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
+import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
 
-export interface ICertificate {
+export interface Certificate {
   id: string;
   identifier: string;
   contract: string;
-  certification: IEvent[] | null;
+  certification: Event[] | null;
   creationDate: number;
   member: IMember | null;
-  metadata: IMetadata | null;
-  tokenTypes: ITokenType[] | null;
+  metadata: Metadata | null;
+  tokenTypes: TokenType[] | null;
   uri: string;
 }
 
-export interface ICertificates {
-  [certificateId: string]: ICertificate;
+export interface Certificates {
+  [certificateId: string]: Certificate;
 }

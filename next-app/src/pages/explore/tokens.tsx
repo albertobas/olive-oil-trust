@@ -12,10 +12,10 @@ import Intro from 'next-app/src/features/shared/ui/intro/Intro';
 import AllTokens from 'next-app/src/features/explore/ui/tokens/AllTokens';
 import { brandName } from 'next-app/src/shared/utils/constants';
 import allTokensAdapter from 'next-app/src/features/explore/core/adapters/allTokens.adapter';
-import { ITokensState, ITokensStateData } from 'next-app/src/features/shared/utils/interfaces';
+import { TokensState, TokensStateData } from 'next-app/src/features/shared/utils/interfaces';
 import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 
-function TokensPageSSR(state: ITokensState): JSX.Element {
+function TokensPageSSR(state: TokensState): JSX.Element {
   return (
     <>
       <Breadcrumbs />
@@ -35,10 +35,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const lastUpdated = getTime();
   try {
     const dataRaw = await sdk.AllTokens();
-    const data: ITokensStateData = { tokens: allTokensAdapter(dataRaw), lastUpdated };
+    const data: TokensStateData = { tokens: allTokensAdapter(dataRaw), lastUpdated };
     return { props: { error: false, data } };
   } catch (e) {
-    const data: ITokensStateData = { tokens: null, lastUpdated };
+    const data: TokensStateData = { tokens: null, lastUpdated };
     return { props: { error: true, data } };
   }
 };
@@ -74,11 +74,11 @@ export default TokensPageSSR;
 // import AllTokens from 'next-app/src/features/explore/ui/tokens/AllTokens';
 // import { brandName } from 'next-app/src/shared/utils/constants';
 // import allTokensAdapter from 'next-app/src/features/explore/core/adapters/allTokens.adapter';
-// import { ITokensState, ITokensStateData } from 'next-app/src/features/shared/utils/interfaces';
+// import { TokensState, TokensStateData } from 'next-app/src/features/shared/utils/interfaces';
 // import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
 // import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
 
-// function TokensPageISR(state: ITokensState): JSX.Element {
+// function TokensPageISR(state: TokensState): JSX.Element {
 //   return (
 //     <>
 //       <Breadcrumbs />
@@ -98,10 +98,10 @@ export default TokensPageSSR;
 //   const lastUpdated = getTime();
 //   try {
 //     const dataRaw = await sdk.AllTokens();
-//     const data: ITokensStateData = { tokens: allTokensAdapter(dataRaw), lastUpdated };
+//     const data: TokensStateData = { tokens: allTokensAdapter(dataRaw), lastUpdated };
 //     return { props: { error: false, data }, revalidate: revalidateInterval };
 //   } catch (e) {
-//     const data: ITokensStateData = { tokens: null, lastUpdated };
+//     const data: TokensStateData = { tokens: null, lastUpdated };
 //     return { props: { error: true, data }, revalidate: revalidateInterval };
 //   }
 // };
