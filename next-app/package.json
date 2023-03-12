@@ -1,8 +1,8 @@
 {
   "name": "next-app",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,8 +11,6 @@
     "lint": "next lint",
     "tsc": "tsc --pretty --noEmit"
   },
-  "keywords": [],
-  "author": "",
   "dependencies": {
     "@radix-ui/react-label": "^2.0.0",
     "@reduxjs/toolkit": "^1.8.5",

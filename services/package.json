@@ -1,7 +1,7 @@
 {
   "name": "services",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
     "start:graph-node": "cd graph-node/docker && docker-compose up",
     "stop:graph-node": "cd graph-node/docker && docker-compose down",

@@ -1,7 +1,7 @@
 {
   "name": "hardhat-env",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
     "test": "hardhat test --network hardhat",
     "node": "hardhat node --hostname 0.0.0.0",

@@ -1,7 +1,7 @@
 {
   "name": "subgraph",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
     "precodegen": "ts-node scripts generateSubgraph --deployment localhost",
     "codegen": "graph codegen subgraph.yaml --output-dir src/generated/types/",
@@ -11,8 +11,6 @@
     "build": "graph build",
     "lint": "eslint . --ext .ts"
   },
-  "keywords": [],
-  "author": "",
   "devDependencies": {
     "@amxx/graphprotocol-utils": "^1.1.0",
     "@graphprotocol/graph-cli": "^0.34.0",
