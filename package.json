@@ -13,7 +13,6 @@
     "hardhat:clean": "npm run clean --workspace=hardhat-env",
     "hardhat:coverage": "npm run coverage --workspace=hardhat-env",
     "hardhat:deploy": "npm run deploy --workspace=hardhat-env",
-    "hardhat:deploy-former": "npm run compile --workspace=hardhat-env && npm run share --workspace=hardhat-env && npm run deploy --workspace=hardhat-env",
     "hardhat:share": "npm run share --workspace=hardhat-env",
     "hardhat:size-contracts": "npm run size-contracts --workspace=hardhat-env",
     "hardhat:lint": "npm run lint --workspace=hardhat-env",
