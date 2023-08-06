@@ -3,6 +3,7 @@
 **/node_modules
 **/generated
 **/coverage
+dist
 hardhat-env/.openzeppelin
 hardhat-env/artifacts
 hardhat-env/cache
