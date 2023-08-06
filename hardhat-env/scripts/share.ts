@@ -27,7 +27,7 @@ async function share(): Promise<void> {
   const reactContractsTypesPath = join(__dirname, '../../next-app/src/generated/types');
   const subgraphAbisPath = join(__dirname, '../../subgraph/src/generated/abis');
   const subgraphConfigPath = join(__dirname, '../../subgraph/src/generated/config');
-  const typesList = await globby([
+  const typesList = globby.sync([
     hardhatContractsTypePath + '/contracts/members/*.ts',
     hardhatContractsTypePath + '/contracts/certificates/*.ts',
     hardhatContractsTypePath + '/contracts/escrows/*.ts',
