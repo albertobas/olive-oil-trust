@@ -15,6 +15,6 @@
     "sourceMap": true
   },
   "exclude": ["node_modules"],
-  "include": ["./test/**/*", "./scripts/**/*", "./tasks/**/*", "./types/**/*", "helpers/**/*"],
+  "include": ["./test/**/*", "./scripts/**/*", "./tasks/**/*", "helpers/**/*"],
   "files": ["./hardhat.config.ts"]
 }
