@@ -6,15 +6,14 @@
     "esModuleInterop": true,
     "outDir": "dist",
     "resolveJsonModule": true,
-    "typeRoots": ["./types", "/node_modules/@types"],
-    "types": ["@nomiclabs/hardhat-ethers", "@nomiclabs/hardhat-waffle"],
     "forceConsistentCasingInFileNames": true,
     "lib": ["es6", "ESNext"],
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["**/node_modules"],
   "include": ["./test/**/*", "./scripts/**/*", "./tasks/**/*", "helpers/**/*"],
   "files": ["./hardhat.config.ts"]
 }
