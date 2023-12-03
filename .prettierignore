@@ -5,6 +5,7 @@ hardhat-env/artifacts
 hardhat-env/cache
 hardhat-env/coverage
 hardhat-env/deployments
+hardhat-env/dist
 hardhat-env/types
 next-app/.graphclient
 next-app/.next
