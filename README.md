@@ -20,7 +20,7 @@ This is due to the immutability characteristics of this technology, which then m
 
 The contracts are written in Solidity using Hardhat, an Ethereum development environment. All the contracts are upgradeable and most of them are UUPS compliant.
 
-The front-end code is mostly written in TypeScript using Next.js, a React.js framework, and it is implemented based on an hexagonal architecture in which the global state exists outside the core and persists globally using Redux.
+The front-end code is mostly written in TypeScript using Next.js, a React.js framework, and it is implemented based on a hexagonal architecture in which the global state exists outside the core and persists globally using Redux.
 
 Finally, data are queried from a local TheGraph node using GraphQL. The subgraph that is used is set to support multiple networks, relevant deployment data will be shared accordingly.
 
