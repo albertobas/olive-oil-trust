@@ -5,22 +5,22 @@ import {
   activeBottleManufacturerFixture,
   depositedBottleManufacturerFixture,
   mintedBottleManufacturerFixture
-} from 'hardhat-env/test/shared/fixtures';
-import { dictBottle } from 'hardhat-env/test/shared/constants';
-import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from 'hardhat-env/shared/constants';
-import shouldBehaveLikeMint from 'hardhat-env/test/shared/base/IndependentCreator/effects/mint';
-import shouldBehaveLikeMintBatch from 'hardhat-env/test/shared/base/IndependentCreator/effects/mintBatch';
-import shouldBehaveLikeCloseEscrow from 'hardhat-env/test/shared/base/BaseSeller/effects/closeEscrow';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/shared/base/ManufacturedUnitsSeller/effects/depositBatch';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/shared/base/ManufacturedUnitsSeller/effects/depositToken';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/shared/base/BaseSeller/effects/revertAfterPayment';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/shared/base/BaseSeller/effects/revertBeforePayment';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/roles/BottleManufacturerUpgradeable/effects/initialize';
-import shouldUpgrade from 'hardhat-env/test/roles/BottleManufacturerUpgradeable/effects/upgrade';
-import shouldBehaveLikeName from 'hardhat-env/test/shared/base/BaseMember/view/name';
-import shouldBehaveLikeReceive from 'hardhat-env/test/shared/base/BaseSeller/effects/receive';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseSeller/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseSeller/effects/burnBatch';
+} from '@test/shared/fixtures';
+import { dictBottle } from '@test/shared/constants';
+import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from '@shared/constants';
+import shouldBehaveLikeMint from '@test/shared/base/IndependentCreator/effects/mint';
+import shouldBehaveLikeMintBatch from '@test/shared/base/IndependentCreator/effects/mintBatch';
+import shouldBehaveLikeCloseEscrow from '@test/shared/base/BaseSeller/effects/closeEscrow';
+import shouldBehaveLikeDepositBatch from '@test/shared/base/ManufacturedUnitsSeller/effects/depositBatch';
+import shouldBehaveLikeDepositToken from '@test/shared/base/ManufacturedUnitsSeller/effects/depositToken';
+import shouldBehaveLikeRevertAfterPayment from '@test/shared/base/BaseSeller/effects/revertAfterPayment';
+import shouldBehaveLikeRevertBeforePayment from '@test/shared/base/BaseSeller/effects/revertBeforePayment';
+import shouldBehaveLikeInitialize from '@test/roles/BottleManufacturerUpgradeable/effects/initialize';
+import shouldUpgrade from '@test/roles/BottleManufacturerUpgradeable/effects/upgrade';
+import shouldBehaveLikeName from '@test/shared/base/BaseMember/view/name';
+import shouldBehaveLikeReceive from '@test/shared/base/BaseSeller/effects/receive';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseSeller/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseSeller/effects/burnBatch';
 
 export function shouldBehaveLikeBottleManufacturerUpgradeable(): void {
   const contract = 'bottleManufacturer';

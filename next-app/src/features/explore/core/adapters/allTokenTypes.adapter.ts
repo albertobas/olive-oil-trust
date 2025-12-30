@@ -1,6 +1,6 @@
-import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { AllTokenTypesQuery } from 'next-app/.graphclient';
+import { getTokenType } from '@features/shared/utils/helpers/tokenType';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
+import { AllTokenTypesQuery } from '.graphclient';
 
 const allTokenTypesAdapter = (dataRaw: AllTokenTypesQuery): TokenTypes | null => {
   if (dataRaw.tokenTypes.length > 0) {

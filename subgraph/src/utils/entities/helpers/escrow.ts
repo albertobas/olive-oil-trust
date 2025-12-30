@@ -1,9 +1,9 @@
 import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts';
-import { ensureEscrowContract } from 'subgraph/src/utils/entities/EscrowContract';
-import { ensureEscrow } from 'subgraph/src/utils/entities/Escrow';
-import { ensureEscrowBalance, ensureEtherBalance } from 'subgraph/src/utils/entities/Balance';
-import { decreaseBalance } from 'subgraph/src/utils/entities/helpers/balance';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
+import { ensureEscrowContract } from '../../../utils/entities/EscrowContract';
+import { ensureEscrow } from '../../../utils/entities/Escrow';
+import { ensureEscrowBalance, ensureEtherBalance } from '../../../utils/entities/Balance';
+import { decreaseBalance } from '../../../utils/entities/helpers/balance';
+import { ensureAccount } from '../../../utils/entities/Account';
 
 export function handleEtherWithdrawal(event: ethereum.Event, escrowId: BigInt, amount: BigInt): void {
   let escrow = ensureEscrow(escrowId, event.address);

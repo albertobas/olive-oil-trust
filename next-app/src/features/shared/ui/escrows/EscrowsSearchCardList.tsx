@@ -1,12 +1,12 @@
 import { memo, useMemo, useState } from 'react';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { sortEscrowCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import { escrowFilter, escrowSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import EscrowsCardList from 'next-app/src/features/shared/ui/escrows/EscrowsCardList';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import FiltersEscrow from 'next-app/src/features/shared/ui/escrows/FiltersEscrow';
+import { IItem } from '@features/shared/utils/interfaces';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { sortEscrowCardsRecords } from '@features/shared/utils/constants';
+import { escrowFilter, escrowSearch } from '@features/shared/utils/helpers/helpers';
+import EscrowsCardList from '@features/shared/ui/escrows/EscrowsCardList';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { Escrows } from '@features/shared/core/entities/Escrows';
+import FiltersEscrow from '@features/shared/ui/escrows/FiltersEscrow';
 
 type Props = {
   escrows: Escrows | null;

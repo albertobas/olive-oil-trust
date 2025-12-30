@@ -1,6 +1,6 @@
-import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import { getEscrow } from 'next-app/src/features/shared/utils/helpers/escrow';
-import { EscrowsByBuyerQuery } from 'next-app/.graphclient';
+import { Escrows } from '@features/shared/core/entities/Escrows';
+import { getEscrow } from '@features/shared/utils/helpers/escrow';
+import { EscrowsByBuyerQuery } from '.graphclient';
 
 const escrowsByBuyerAdapter = (dataRaw: EscrowsByBuyerQuery): Escrows | null => {
   if (dataRaw.escrows && dataRaw.escrows.length > 0) {

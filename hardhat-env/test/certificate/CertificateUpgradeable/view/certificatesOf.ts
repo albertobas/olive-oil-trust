@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsCertificate } from 'hardhat-env/test/shared/errors';
-import { CreationTokenContract } from 'hardhat-env/test/shared/types';
+import { ErrorsCertificate } from '@test/shared/errors';
+import { CreationTokenContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeCertificatesOf(
   tokenContract: CreationTokenContract,

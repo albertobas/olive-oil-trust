@@ -1,9 +1,9 @@
-import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
-import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { TokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
-import { TokensAndTokenTypesByMemberQuery } from 'next-app/.graphclient';
+import { Tokens } from '@features/shared/core/entities/Tokens';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
+import { getToken } from '@features/shared/utils/helpers/token';
+import { getTokenType } from '@features/shared/utils/helpers/tokenType';
+import { TokensAndTokenTypesByMember } from '@features/management/core/entities/MyTokens';
+import { TokensAndTokenTypesByMemberQuery } from '.graphclient';
 
 const tokensAndTokenTypesByMemberAdapter = (
   dataRaw: TokensAndTokenTypesByMemberQuery

@@ -1,18 +1,18 @@
 import { utils } from 'ethers';
 import { hexDataSlice, keccak256, toUtf8Bytes } from 'ethers/lib/utils';
-import { dictOliveOilBottle, dictPallet } from 'hardhat-env/test/shared/constants';
-import { baseUri } from 'hardhat-env/shared/constants';
-import { palletTokenFixture, packedPalletFixture } from 'hardhat-env/test/shared/fixtures';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/effects/initialize';
-import shouldBehaveLikePack from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/effects/pack';
-import shouldBehaveLikePackBatch from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/effects/packBatch';
-import shouldBehaveLikeUnpack from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/effects/unpack';
-import shouldBehaveLikeUnpackBatch from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/effects/unpackBatch';
-import shouldBehaveLikeBytesToIntId from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/view/bytesToIntId';
-import shouldBehaveLikeGetTokens from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/view/getTokens';
-import shouldBehaveLikeSupportsInterface from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/view/supportsInterface';
-import shouldBehaveLikeIntToBytesId from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/view/intToBytesId';
-import shouldUpgrade from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/effects/upgrade';
+import { dictOliveOilBottle, dictPallet } from '@test/shared/constants';
+import { baseUri } from '@shared/constants';
+import { palletTokenFixture, packedPalletFixture } from '@test/shared/fixtures';
+import shouldBehaveLikeInitialize from '@test/tokens/IndustrialUnitTokenUpgradeable/effects/initialize';
+import shouldBehaveLikePack from '@test/tokens/IndustrialUnitTokenUpgradeable/effects/pack';
+import shouldBehaveLikePackBatch from '@test/tokens/IndustrialUnitTokenUpgradeable/effects/packBatch';
+import shouldBehaveLikeUnpack from '@test/tokens/IndustrialUnitTokenUpgradeable/effects/unpack';
+import shouldBehaveLikeUnpackBatch from '@test/tokens/IndustrialUnitTokenUpgradeable/effects/unpackBatch';
+import shouldBehaveLikeBytesToIntId from '@test/tokens/IndustrialUnitTokenUpgradeable/view/bytesToIntId';
+import shouldBehaveLikeGetTokens from '@test/tokens/IndustrialUnitTokenUpgradeable/view/getTokens';
+import shouldBehaveLikeSupportsInterface from '@test/tokens/IndustrialUnitTokenUpgradeable/view/supportsInterface';
+import shouldBehaveLikeIntToBytesId from '@test/tokens/IndustrialUnitTokenUpgradeable/view/intToBytesId';
+import shouldUpgrade from '@test/tokens/IndustrialUnitTokenUpgradeable/effects/upgrade';
 
 export function shouldBehaveLikeIndustrialUnitTokenUpgradeable(): void {
   const idPallet1 = utils.formatBytes32String(dictPallet.default.id1);

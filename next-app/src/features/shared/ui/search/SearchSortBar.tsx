@@ -1,8 +1,8 @@
-import styles from 'next-app/src/features/shared/styles/modules/searchSortBar/SearchSortBar.module.css';
+import styles from '@features/shared/styles/modules/searchSortBar/SearchSortBar.module.css';
 import { GoSearch } from 'react-icons/go';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import { IItem } from '@features/shared/utils/interfaces';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
+import SVG from '@features/shared/ui/svg/SVG';
 import {
   BsSortAlphaDown,
   BsSortAlphaUp,
@@ -12,7 +12,7 @@ import {
   BsSortUp
 } from 'react-icons/bs';
 import { FiSliders } from 'react-icons/fi';
-import { Button } from 'next-app/src/features/shared/ui/buttons/Button';
+import { Button } from '@features/shared/ui/buttons/Button';
 import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, SetStateAction, useCallback } from 'react';
 
 type Props = {
@@ -97,15 +97,15 @@ function SearchSortBar({
                     ? BsSortNumericUp
                     : BsSortNumericDown
                   : sort.value === 'date'
-                  ? reverse
-                    ? BsSortUp
-                    : BsSortDown
-                  : reverse
-                  ? BsSortAlphaUp
-                  : BsSortAlphaDown
+                    ? reverse
+                      ? BsSortUp
+                      : BsSortDown
+                    : reverse
+                      ? BsSortAlphaUp
+                      : BsSortAlphaDown
                 : reverse
-                ? BsSortUp
-                : BsSortDown
+                  ? BsSortUp
+                  : BsSortDown
             }
           />
         </button>

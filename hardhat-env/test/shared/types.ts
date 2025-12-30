@@ -35,7 +35,7 @@ import {
   BottlingCompanyOliveOilBottle,
   BottlingCompanyPallet,
   DistributorCompanyPallet
-} from 'hardhat-env/types';
+} from '@types';
 
 declare module 'mocha' {
   export interface Context {

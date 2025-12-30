@@ -1,9 +1,9 @@
-import styles from 'next-app/src/features/shared/styles/modules/certificates/CertificateCard.module.css';
+import styles from '@features/shared/styles/modules/certificates/CertificateCard.module.css';
 import { join } from 'path';
-import { pages } from 'next-app/src/shared/utils/constants';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { pages } from '@shared/utils/constants';
+import ILink from '@features/shared/ui/links/ILink';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
 
 function CertificateCard({ id, identifier, member, creationDate, metadata }: Certificate): JSX.Element {
   const href = join(pages.CERTIFICATES.url, id);

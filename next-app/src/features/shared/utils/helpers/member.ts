@@ -1,5 +1,5 @@
-import { IMember, MemberRawType } from 'next-app/src/features/shared/utils/interfaces';
-import { checkRole } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { IMember, MemberRawType } from '@features/shared/utils/interfaces';
+import { checkRole } from '@features/shared/utils/helpers/helpers';
 
 export function getMember(member: MemberRawType): IMember {
   return {

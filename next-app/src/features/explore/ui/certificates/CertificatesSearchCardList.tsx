@@ -1,11 +1,11 @@
 import { memo, useMemo, useState } from 'react';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { certificateSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import CertificatesCardList from 'next-app/src/features/shared/ui/certificates/CertificatesCardList';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { sortCertificateCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { IItem } from '@features/shared/utils/interfaces';
+import { certificateSearch } from '@features/shared/utils/helpers/helpers';
+import CertificatesCardList from '@features/shared/ui/certificates/CertificatesCardList';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { sortCertificateCardsRecords } from '@features/shared/utils/constants';
+import { Certificates } from '@features/shared/core/entities/Certificates';
 
 type Props = { certificates: Certificates | null };
 

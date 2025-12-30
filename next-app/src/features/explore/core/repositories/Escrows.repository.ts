@@ -1,4 +1,4 @@
-import { AllEscrowsQuery } from 'next-app/.graphclient';
+import { AllEscrowsQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 interface EscrowsRepository {

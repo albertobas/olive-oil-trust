@@ -1,10 +1,10 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import MintTokens from 'next-app/src/features/management/ui/tokens/MintTokens';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { IItem } from '@features/shared/utils/interfaces';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { sortTokenTypeCardsRecords } from '@features/shared/utils/constants';
+import { Token } from '@features/shared/core/entities/Tokens';
+import MintTokens from '@features/management/ui/tokens/MintTokens';
 import {
   isBottlingPlant,
   isCreator,
@@ -19,15 +19,15 @@ import {
   isRetailer,
   isSeller,
   isUnpacker
-} from 'next-app/src/shared/utils/constants';
-import PackTokens from 'next-app/src/features/management/ui/tokens/PackTokens';
-import UnpackTokens from 'next-app/src/features/management/ui/tokens/UnpackTokens';
-import BurnTokens from 'next-app/src/features/management/ui/tokens/BurnTokens';
-import DepositTokens from 'next-app/src/features/management/ui/tokens/DepositTokens';
+} from '@shared/utils/constants';
+import PackTokens from '@features/management/ui/tokens/PackTokens';
+import UnpackTokens from '@features/management/ui/tokens/UnpackTokens';
+import BurnTokens from '@features/management/ui/tokens/BurnTokens';
+import DepositTokens from '@features/management/ui/tokens/DepositTokens';
 import ReactModal from 'react-modal';
-import styles from 'next-app/src/features/management/styles/modules/tokens/TokensControl.module.css';
-import { Button } from 'next-app/src/features/shared/ui/buttons/Button';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
+import styles from '@features/management/styles/modules/tokens/TokensControl.module.css';
+import { Button } from '@features/shared/ui/buttons/Button';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
 
 type Props = {
   previousMemberTokens: Token[] | null;
@@ -201,28 +201,28 @@ const TokensControl = ({
   const isDepositDisabled = isIndependentCreator(moduleId)
     ? isDepositingTokens || !commercialTokens
     : isOliveOilMill(moduleId)
-    ? isDepositingTokens ||
-      (commercialTokens ? commercialTokens.filter((token) => token.selfProduced).length === 0 : true)
-    : isPacker(moduleId)
-    ? isDepositingTokens ||
-      (industrialUnitTokens ? industrialUnitTokens.filter((token) => token.selfProduced).length === 0 : true)
-    : isRetailer(moduleId)
-    ? isDepositingTokens || !commercialTokens
-    : true;
+      ? isDepositingTokens ||
+        (commercialTokens ? commercialTokens.filter((token) => token.selfProduced).length === 0 : true)
+      : isPacker(moduleId)
+        ? isDepositingTokens ||
+          (industrialUnitTokens ? industrialUnitTokens.filter((token) => token.selfProduced).length === 0 : true)
+        : isRetailer(moduleId)
+          ? isDepositingTokens || !commercialTokens
+          : true;
 
   const unpacker = isBottlingPlant(moduleId)
     ? 'BottlingPlant'
     : isDistributor(moduleId)
-    ? 'Distributor'
-    : isRetailer(moduleId)
-    ? 'Retailer'
-    : null;
+      ? 'Distributor'
+      : isRetailer(moduleId)
+        ? 'Retailer'
+        : null;
   const depositTokens =
     isOliveGrower(moduleId) || isManufacturedUnitSeller(moduleId) || isRetailer(moduleId)
       ? commercialTokens
       : isIndustrialUnitSeller(moduleId)
-      ? industrialUnitTokens
-      : null;
+        ? industrialUnitTokens
+        : null;
 
   return (
     <>

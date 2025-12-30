@@ -1,6 +1,6 @@
-import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
-import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { AllCertificatesQuery } from 'next-app/.graphclient';
+import { getCertificate } from '@features/shared/utils/helpers/certificate';
+import { Certificates } from '@features/shared/core/entities/Certificates';
+import { AllCertificatesQuery } from '.graphclient';
 
 function allCertificatesAdapter(dataRaw: AllCertificatesQuery): Certificates | null {
   if (dataRaw.certificates.length > 0) {

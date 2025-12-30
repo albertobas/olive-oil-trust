@@ -1,10 +1,10 @@
-import { roles } from 'next-app/src/shared/utils/constants';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { Event, Transaction } from 'next-app/src/features/shared/core/entities/Events';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { roles } from '@shared/utils/constants';
+import { Module } from '@shared/utils/interfaces';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { Event, Transaction } from '@features/shared/core/entities/Events';
+import { Token } from '@features/shared/core/entities/Tokens';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
 import {
   Role,
   EscrowSate,
@@ -12,69 +12,69 @@ import {
   FilterOption,
   EventRawType,
   TransactionRawType
-} from 'next-app/src/features/shared/utils/interfaces';
+} from '@features/shared/utils/interfaces';
 
 export function checkRole(role: string): Role | null {
   return role === 'OliveGrower'
     ? 'OliveGrower'
     : role === 'BottleManufacturer'
-    ? 'BottleManufacturer'
-    : role === 'OliveOilMill'
-    ? 'OliveOilMill'
-    : role === 'BottlingPlant'
-    ? 'BottlingPlant'
-    : role === 'Distributor'
-    ? 'Distributor'
-    : role === 'Retailer'
-    ? 'Retailer'
-    : null;
+      ? 'BottleManufacturer'
+      : role === 'OliveOilMill'
+        ? 'OliveOilMill'
+        : role === 'BottlingPlant'
+          ? 'BottlingPlant'
+          : role === 'Distributor'
+            ? 'Distributor'
+            : role === 'Retailer'
+              ? 'Retailer'
+              : null;
 }
 
 export function checkModule(role: string): Module | null {
   return role === 'OliveGrower'
     ? 'OliveGrowerUpgradeable'
     : role === 'BottleManufacturer'
-    ? 'BottleManufacturerUpgradeable'
-    : role === 'OliveOilMill'
-    ? 'OliveOilMillUpgradeable'
-    : role === 'BottlingPlant'
-    ? 'BottlingPlantUpgradeable'
-    : role === 'Distributor'
-    ? 'DistributorUpgradeable'
-    : role === 'Retailer'
-    ? 'RetailerUpgradeable'
-    : null;
+      ? 'BottleManufacturerUpgradeable'
+      : role === 'OliveOilMill'
+        ? 'OliveOilMillUpgradeable'
+        : role === 'BottlingPlant'
+          ? 'BottlingPlantUpgradeable'
+          : role === 'Distributor'
+            ? 'DistributorUpgradeable'
+            : role === 'Retailer'
+              ? 'RetailerUpgradeable'
+              : null;
 }
 export function checkEscrowState(state: string): EscrowSate | null {
   return state === 'NonActive'
     ? 'NonActive'
     : state === 'Active'
-    ? 'Active'
-    : state === 'RevertedBeforePayment'
-    ? 'RevertedBeforePayment'
-    : state === 'EtherDeposited'
-    ? 'EtherDeposited'
-    : state === 'RevertedAfterPayment'
-    ? 'RevertedAfterPayment'
-    : state === 'Closed'
-    ? 'Closed'
-    : null;
+      ? 'Active'
+      : state === 'RevertedBeforePayment'
+        ? 'RevertedBeforePayment'
+        : state === 'EtherDeposited'
+          ? 'EtherDeposited'
+          : state === 'RevertedAfterPayment'
+            ? 'RevertedAfterPayment'
+            : state === 'Closed'
+              ? 'Closed'
+              : null;
 }
 
 export function getEscrowState(state: EscrowSate): string | null {
   return state === 'NonActive'
     ? 'Non Active'
     : state === 'Active'
-    ? 'Active'
-    : state === 'RevertedBeforePayment'
-    ? 'Reverted Before Payment'
-    : state === 'EtherDeposited'
-    ? 'Ether Deposited'
-    : state === 'RevertedAfterPayment'
-    ? 'Reverted After Payment'
-    : state === 'Closed'
-    ? 'Closed'
-    : null;
+      ? 'Active'
+      : state === 'RevertedBeforePayment'
+        ? 'Reverted Before Payment'
+        : state === 'EtherDeposited'
+          ? 'Ether Deposited'
+          : state === 'RevertedAfterPayment'
+            ? 'Reverted After Payment'
+            : state === 'Closed'
+              ? 'Closed'
+              : null;
 }
 export const getTime = (): number => {
   // return time in seconds
@@ -114,12 +114,12 @@ export function tokenTypeFilter(types: TokenType[] | null, options: FilterOption
       return (
         Boolean(
           option.items &&
-            (Array.isArray(option.items) ? option.items.length > 0 : true) &&
-            option.key === 'member' &&
-            member &&
-            booleanFilter(member.role ?? '', option.items).reduce((a, b) => {
-              return a || b;
-            }, false)
+          (Array.isArray(option.items) ? option.items.length > 0 : true) &&
+          option.key === 'member' &&
+          member &&
+          booleanFilter(member.role ?? '', option.items).reduce((a, b) => {
+            return a || b;
+          }, false)
         ) || !option.items
       );
     });
@@ -150,25 +150,25 @@ export function tokenFilter(tokens: Token[] | null, options: FilterOption[]): To
       return (
         Boolean(
           option.items &&
-            (Array.isArray(option.items) ? option.items.length > 0 : true) &&
-            (option.key === 'packer' ||
-              option.key === 'type' ||
-              option.key === 'manufacturer' ||
-              option.key === 'selfProduced') &&
-            booleanFilter(
-              option.key === 'packer'
-                ? industrialUnitTokenInfo?.member?.name ?? ''
-                : option.key === 'type'
-                ? tokenType?.identifier ?? ''
+          (Array.isArray(option.items) ? option.items.length > 0 : true) &&
+          (option.key === 'packer' ||
+            option.key === 'type' ||
+            option.key === 'manufacturer' ||
+            option.key === 'selfProduced') &&
+          booleanFilter(
+            option.key === 'packer'
+              ? (industrialUnitTokenInfo?.member?.name ?? '')
+              : option.key === 'type'
+                ? (tokenType?.identifier ?? '')
                 : option.key === 'manufacturer'
-                ? tokenType?.member?.name ?? ''
-                : selfProduced
-                ? 'yes'
-                : 'no',
-              option.items
-            ).reduce((a, b) => {
-              return a || b;
-            }, false)
+                  ? (tokenType?.member?.name ?? '')
+                  : selfProduced
+                    ? 'yes'
+                    : 'no',
+            option.items
+          ).reduce((a, b) => {
+            return a || b;
+          }, false)
         ) || !option.items
       );
     });
@@ -199,18 +199,18 @@ export function escrowFilter(escrows: Escrow[] | null, options: FilterOption[]):
       return (
         Boolean(
           option.items &&
-            (Array.isArray(option.items) ? option.items.length > 0 : true) &&
-            (option.key === 'buyer' || option.key === 'seller' || option.key === 'state') &&
-            booleanFilter(
-              option.key === 'buyer'
-                ? buyer?.name ?? buyer?.id ?? ''
-                : option.key === 'seller'
-                ? seller?.name ?? ''
-                : state ?? '',
-              option.items
-            ).reduce((a, b) => {
-              return a || b;
-            }, false)
+          (Array.isArray(option.items) ? option.items.length > 0 : true) &&
+          (option.key === 'buyer' || option.key === 'seller' || option.key === 'state') &&
+          booleanFilter(
+            option.key === 'buyer'
+              ? (buyer?.name ?? buyer?.id ?? '')
+              : option.key === 'seller'
+                ? (seller?.name ?? '')
+                : (state ?? ''),
+            option.items
+          ).reduce((a, b) => {
+            return a || b;
+          }, false)
         ) || !option.items
       );
     });
@@ -373,7 +373,7 @@ export function getItemsFromEscrows(data: Escrow[] | string, key: keyof Escrow):
         } else if (key === 'seller') {
           source.push(escrow.seller?.name ?? '');
         } else if (key === 'buyer') {
-          source.push(escrow.buyer ? escrow.buyer.name ?? escrow.buyer.id : '');
+          source.push(escrow.buyer ? (escrow.buyer.name ?? escrow.buyer.id) : '');
         }
       });
       keySet.push(...new Set(source.flat()));

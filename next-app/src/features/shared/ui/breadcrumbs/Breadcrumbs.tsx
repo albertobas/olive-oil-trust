@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import styles from 'next-app/src/features/shared/styles/modules/breadcrumbs/Breadcrumbs.module.css';
-import { useBreadcrumbs } from 'next-app/src/features/shared/ui/hooks/useBreadcrumbs';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
+import styles from '@features/shared/styles/modules/breadcrumbs/Breadcrumbs.module.css';
+import { useBreadcrumbs } from '@features/shared/ui/hooks/useBreadcrumbs';
+import ILink from '@features/shared/ui/links/ILink';
 
 export default function Breadcrumbs({ pageTitle }: { pageTitle?: string }): JSX.Element {
   const router = useRouter();

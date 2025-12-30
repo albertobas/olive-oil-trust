@@ -6,12 +6,12 @@
  */
 
 import { GetStaticProps, GetStaticPaths } from 'next';
-import CertificateById from 'next-app/src/features/explore/ui/certificates/CertificateById';
-import { getBuiltGraphSDK } from 'next-app/.graphclient';
-import certificateByIdAdapter from 'next-app/src/features/explore/core/adapters/certificateById.adapter';
-import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
-import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
+import CertificateById from '@features/explore/ui/certificates/CertificateById';
+import { getBuiltGraphSDK } from '.graphclient';
+import certificateByIdAdapter from '@features/explore/core/adapters/certificateById.adapter';
+import { revalidateInterval } from '@features/shared/utils/constants';
+import { CertificateState } from '@features/shared/utils/interfaces';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
 
 function DynamicCertificatePageISR(props: CertificateState & { id: string }): JSX.Element {
   return (
@@ -51,11 +51,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default DynamicCertificatePageISR;
 
 // import { GetServerSideProps } from 'next';
-// import CertificateById from 'next-app/src/features/explore/ui/certificates/CertificateById';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import { getBuiltGraphSDK } from 'next-app/.graphclient';
-// import certificateByIdAdapter from 'next-app/src/features/explore/core/adapters/certificateById.adapter';
-// import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
+// import CertificateById from '@features/explore/ui/certificates/CertificateById';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import { getBuiltGraphSDK } from '.graphclient';
+// import certificateByIdAdapter from '@features/explore/core/adapters/certificateById.adapter';
+// import { CertificateState } from '@features/shared/utils/interfaces';
 
 // function DynamicCertificatePageSSR(props: CertificateState & { id: string }): JSX.Element {
 //   return (
@@ -83,9 +83,9 @@ export default DynamicCertificatePageISR;
 
 // import { NextPage } from 'next';
 // import { useRouter } from 'next/router';
-// import CertificateByIdCSR from 'next-app/src/features/explore/ui/certificates/CertificateByIdCSR';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+// import CertificateByIdCSR from '@features/explore/ui/certificates/CertificateByIdCSR';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 // const DynamicCertificatePageCSR: NextPage = () => {
 //   const { query, isReady } = useRouter();

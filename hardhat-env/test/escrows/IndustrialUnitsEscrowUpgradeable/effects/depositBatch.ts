@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsIndustrialUnitsEscrowUpgradeable, ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsERC1155, EventsEscrow, EventsIndustrialUnitToken } from 'hardhat-env/test/shared/events';
+import { ErrorsIndustrialUnitsEscrowUpgradeable, ErrorsOwnable } from '@test/shared/errors';
+import { EventsERC1155, EventsEscrow, EventsIndustrialUnitToken } from '@test/shared/events';
 
 export default function shouldBehaveLikeDepositBatch(
   escrowId: number,

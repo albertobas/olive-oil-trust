@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { BigNumber, constants } from 'ethers';
-import { DependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
-import { ErrorsDependentTokenUpgradeable, ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsDependentTokenUpgradeable } from 'hardhat-env/test/shared/events';
+import { DependentTokenUpgradeableContract } from '@test/shared/types';
+import { ErrorsDependentTokenUpgradeable, ErrorsOwnable } from '@test/shared/errors';
+import { EventsDependentTokenUpgradeable } from '@test/shared/events';
 
 export default function shouldBehaveLikeSetTokenTypesInstructions(
   contract: DependentTokenUpgradeableContract,

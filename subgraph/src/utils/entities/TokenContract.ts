@@ -1,5 +1,5 @@
 import { Address } from '@graphprotocol/graph-ts';
-import { Account, TokenContract } from 'subgraph/src/generated/types/schema';
+import { Account, TokenContract } from '../../generated/types/schema';
 
 export function ensureTokenContract(addr: Address): TokenContract {
   let contract = TokenContract.load(addr);

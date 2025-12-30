@@ -1,0 +1,5 @@
+packages:
+  - "hardhat-env"
+  - "subgraph"
+  - "next-app"
+  - "graph-node"

@@ -3,15 +3,15 @@ import {
   BatchCertified,
   OwnershipTransferred,
   TokenCertified
-} from 'subgraph/src/generated/types/CertificateUpgradeableDataSource/CertificateUpgradeable';
-import { Certificate } from 'subgraph/src/generated/types/schema';
-import { ensureCertificate } from 'subgraph/src/utils/entities/Certificate';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { registerTokenCertification } from 'subgraph/src/utils/entities/TokenCertification';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { ensureCertificateContract } from 'subgraph/src/utils/entities/CertificateContract';
-import { getTokenTypeId } from 'subgraph/src/utils/entities/TokenType';
-import { registerTokenTypeCertificateMapping } from 'subgraph/src/utils/entities/TokenTypeCertificateMapping';
+} from '../generated/types/CertificateUpgradeableDataSource/CertificateUpgradeable';
+import { Certificate } from '../generated/types/schema';
+import { ensureCertificate } from '../utils/entities/Certificate';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { registerTokenCertification } from '../utils/entities/TokenCertification';
+import { ensureAccount } from '../utils/entities/Account';
+import { ensureCertificateContract } from '../utils/entities/CertificateContract';
+import { getTokenTypeId } from '../utils/entities/TokenType';
+import { registerTokenTypeCertificateMapping } from '../utils/entities/TokenTypeCertificateMapping';
 
 function handleCertified(
   event: ethereum.Event,

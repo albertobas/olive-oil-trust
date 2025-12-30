@@ -1,4 +1,4 @@
-import { deployDistributorAndDeps } from 'hardhat-env/shared/helpers';
+import { deployDistributorAndDeps } from '@shared/helpers';
 import { upgrades } from 'hardhat';
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 

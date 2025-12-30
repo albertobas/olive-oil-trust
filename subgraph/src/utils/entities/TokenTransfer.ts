@@ -1,10 +1,10 @@
 import { decimals } from '@amxx/graphprotocol-utils';
 import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { Token, TokenTransfer } from 'subgraph/src/generated/types/schema';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { ensureTokenBalance } from 'subgraph/src/utils/entities/Balance';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { decreaseBalance, increaseBalance } from 'subgraph/src/utils/entities/helpers/balance';
+import { Token, TokenTransfer } from '../../generated/types/schema';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { ensureTokenBalance } from '../../utils/entities/Balance';
+import { eventId } from '../../utils/helpers';
+import { decreaseBalance, increaseBalance } from '../../utils/entities/helpers/balance';
 
 export function registerTokenTransfer(
   event: ethereum.Event,

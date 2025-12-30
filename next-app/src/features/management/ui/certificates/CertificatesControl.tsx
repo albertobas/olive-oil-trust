@@ -1,12 +1,12 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, SetStateAction, useMemo, useState } from 'react';
-import CertifyTokenTypes from 'next-app/src/features/management/ui/certificates/CertifyTokenTypes';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { sortCertificateCardsRecords } from 'next-app/src/features/shared/utils/constants';
+import CertifyTokenTypes from '@features/management/ui/certificates/CertifyTokenTypes';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { sortCertificateCardsRecords } from '@features/shared/utils/constants';
 import ReactModal from 'react-modal';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import styles from 'next-app/src/features/management/styles/modules/certificates/CertificatesControl.module.css';
+import { IItem } from '@features/shared/utils/interfaces';
+import styles from '@features/management/styles/modules/certificates/CertificatesControl.module.css';
 
 type Props = {
   tokenTypes: TokenType[] | null;

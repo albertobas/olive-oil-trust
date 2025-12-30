@@ -2,17 +2,16 @@ import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
 import {
   ApprovalForAll,
   BatchTransferred,
-  IndependentTokenUpgradeable,
   OwnershipTransferred,
   TokenTransferred
-} from 'subgraph/src/generated/types/IndependentTokenUpgradeableDataSource/IndependentTokenUpgradeable';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { registerTokenTransfer } from 'subgraph/src/utils/entities/TokenTransfer';
-import { ensureToken } from 'subgraph/src/utils/entities/Token';
-import { registerApproval } from 'subgraph/src/utils/entities/TokenOperator';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
-import { ensureTokenType } from 'subgraph/src/utils/entities/TokenType';
+} from '../generated/types/IndependentTokenUpgradeableDataSource/IndependentTokenUpgradeable';
+import { ensureAccount } from '../utils/entities/Account';
+import { registerTokenTransfer } from '../utils/entities/TokenTransfer';
+import { ensureToken } from '../utils/entities/Token';
+import { registerApproval } from '../utils/entities/TokenOperator';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { ensureTokenContract } from '../utils/entities/TokenContract';
+import { ensureTokenType } from '../utils/entities/TokenType';
 
 function handleTransferred(
   event: ethereum.Event,
@@ -30,10 +29,6 @@ function handleTransferred(
   registerTokenTransfer(event, token, operator.id, from.id, to.id, value);
   if (from.id == Address.zero()) {
     let tokenType = ensureTokenType(token.contract, tokenTypeId, event.block.timestamp);
-    let dependentTokenUpgradeable = IndependentTokenUpgradeable.bind(event.address);
-    let uriRes = dependentTokenUpgradeable.try_uri(BigInt.fromI32(1));
-    tokenType.uri = uriRes.reverted ? 'null' : uriRes.value.replaceAll('{id}', tokenTypeId.toString());
-    tokenType.save();
     token.tokenType = tokenType.id;
     token.mintingDate = event.block.timestamp;
     token.save();

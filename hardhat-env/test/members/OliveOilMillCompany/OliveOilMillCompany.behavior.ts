@@ -1,7 +1,7 @@
-import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from 'hardhat-env/shared/constants';
-import { OliveOilMillCompany, OliveOilMillCompanyEscrow, OliveOilMillCompanyOliveOil } from 'hardhat-env/types';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/members/OliveOilMillCompany/effects/initialize';
-import { deployOliveOilMillAndDeps } from 'hardhat-env/shared/helpers';
+import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from '@shared/constants';
+import { OliveOilMillCompany, OliveOilMillCompanyEscrow, OliveOilMillCompanyOliveOil } from '@types';
+import shouldBehaveLikeInitialize from '@test/members/OliveOilMillCompany/effects/initialize';
+import { deployOliveOilMillAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeOliveOilMillCompany(): void {
   const oliveOilMillId = dictChainActorsNames.oliveOilMill.id1;

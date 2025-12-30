@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { EventsBaseToken, EventsERC1155, EventsIndustrialUnitToken } from 'hardhat-env/test/shared/events';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
+import { EventsBaseToken, EventsERC1155, EventsIndustrialUnitToken } from '@test/shared/events';
+import { ErrorsOwnable } from '@test/shared/errors';
 
 export default function shouldBehaveLikePackBatch(
   palletsIds: string[],

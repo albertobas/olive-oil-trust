@@ -9,9 +9,9 @@ import {
   dictCertificate,
   dictOliveOilBottle,
   dictPallet
-} from 'hardhat-env/test/shared/constants';
+} from '@test/shared/constants';
 import { utils } from 'ethers';
-import { dictAccounts, dictContracts } from 'hardhat-env/shared/constants';
+import { dictAccounts, dictContracts } from '@shared/constants';
 import {
   BottleCompany,
   BottleCompanyBottle,
@@ -33,9 +33,9 @@ import {
   OliveOilMillCompanyOliveOil,
   RetailerCompany,
   RetailerCompanyEscrow
-} from 'hardhat-env/types';
+} from '@types';
 
-task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
+task('set-state', 'Perform all the transactions').setAction(async (_, hre) => {
   if (hre.network.name === 'hardhat') {
     console.warn(
       'The faucet has been run to the Hardhat Network, so it got automatically created ' +
@@ -753,5 +753,5 @@ task('setState', 'Perform all the transactions').setAction(async (_, hre) => {
 
   await retailerCompany.connect(retailerCompanyAccount).closeEscrow(0);
 
-  console.log("The local chain has reached the state specified in the task 'setState'");
+  console.log("The local chain has reached the state specified in the task 'set-state'");
 });

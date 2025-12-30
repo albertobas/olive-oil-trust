@@ -1,9 +1,9 @@
 import { Address, Bytes } from '@graphprotocol/graph-ts';
-import { Token } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { ensureTokenBalance } from 'subgraph/src/utils/entities/Balance';
+import { Token } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
+import { ensureTokenContract } from '../../utils/entities/TokenContract';
+import { ensureAccount } from '../../utils/entities/Account';
+import { ensureTokenBalance } from '../../utils/entities/Balance';
 
 export function getTokenId(eventTokenTypeId: Bytes, eventTokenId: Bytes, contractId: Bytes): string {
   return contractId

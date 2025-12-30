@@ -1,6 +1,6 @@
-import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import CertificatesRepository from 'next-app/src/features/explore/core/repositories/Certificates.repository';
-import allCertificatesAdapter from 'next-app/src/features/explore/core/adapters/allCertificates.adapter';
+import { Certificates } from '@features/shared/core/entities/Certificates';
+import CertificatesRepository from '@features/explore/core/repositories/Certificates.repository';
+import allCertificatesAdapter from '@features/explore/core/adapters/allCertificates.adapter';
 
 const queryAllCertificates =
   (repository: CertificatesRepository) => async (): Promise<{ error: boolean; data: Certificates | null }> => {

@@ -1,5 +1,5 @@
-import { useCertificateById } from 'next-app/src/features/explore/ui/hooks/useCertificateById';
-import CertificateById from 'next-app/src/features/explore/ui/certificates/CertificateById';
+import { useCertificateById } from '@features/explore/ui/hooks/useCertificateById';
+import CertificateById from '@features/explore/ui/certificates/CertificateById';
 
 function CertificateByIdCSR({ id }: { id: string }): JSX.Element {
   const state = useCertificateById(id);

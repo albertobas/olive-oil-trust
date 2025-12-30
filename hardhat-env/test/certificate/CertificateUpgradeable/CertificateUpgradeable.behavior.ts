@@ -1,19 +1,15 @@
-import {
-  certificateFixture,
-  certifiedPicualCertificateFixture,
-  olivesCertificateFixture
-} from 'hardhat-env/test/shared/fixtures';
-import { dictCertificate, dictOlives } from 'hardhat-env/test/shared/constants';
+import { certificateFixture, certifiedPicualCertificateFixture, olivesCertificateFixture } from '@test/shared/fixtures';
+import { dictCertificate, dictOlives } from '@test/shared/constants';
 import { utils } from 'ethers';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/certificate/CertificateUpgradeable/effects/initialize';
-import shouldBehaveLikeCertifyToken from 'hardhat-env/test/certificate/CertificateUpgradeable/effects/certifyToken';
-import shouldBehaveLikeCertifyBatch from 'hardhat-env/test/certificate/CertificateUpgradeable/effects/certifyBatch';
-import shouldBehaveLikeUri from 'hardhat-env/test/certificate/CertificateUpgradeable/view/uri';
-import shouldBehaveLikeIsCertified from 'hardhat-env/test/certificate/CertificateUpgradeable/view/isCertified';
-import shouldBehaveLikeCertificatesOf from 'hardhat-env/test/certificate/CertificateUpgradeable/view/certificatesOf';
-import shouldBehaveLikeCertificatesOfBatch from 'hardhat-env/test/certificate/CertificateUpgradeable/view/certificatesOfBatch';
-import shouldUpgrade from 'hardhat-env/test/certificate/CertificateUpgradeable/effects/upgrade';
-import { baseUri } from 'hardhat-env/shared/constants';
+import shouldBehaveLikeInitialize from '@test/certificate/CertificateUpgradeable/effects/initialize';
+import shouldBehaveLikeCertifyToken from '@test/certificate/CertificateUpgradeable/effects/certifyToken';
+import shouldBehaveLikeCertifyBatch from '@test/certificate/CertificateUpgradeable/effects/certifyBatch';
+import shouldBehaveLikeUri from '@test/certificate/CertificateUpgradeable/view/uri';
+import shouldBehaveLikeIsCertified from '@test/certificate/CertificateUpgradeable/view/isCertified';
+import shouldBehaveLikeCertificatesOf from '@test/certificate/CertificateUpgradeable/view/certificatesOf';
+import shouldBehaveLikeCertificatesOfBatch from '@test/certificate/CertificateUpgradeable/view/certificatesOfBatch';
+import shouldUpgrade from '@test/certificate/CertificateUpgradeable/effects/upgrade';
+import { baseUri } from '@shared/constants';
 
 export function shouldBehaveLikeCertificateUpgradeable(): void {
   const tokenContract = 'olivesToken';

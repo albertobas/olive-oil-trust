@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { StatesEscrow } from '@test/shared/states';
 
 export default function shouldBehaveLikeState(escrowId: number): void {
   context('succeeds', function () {

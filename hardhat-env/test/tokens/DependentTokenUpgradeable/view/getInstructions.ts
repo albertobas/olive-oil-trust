@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { BigNumber } from 'ethers';
-import { DependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
+import { DependentTokenUpgradeableContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeGetInstructions(
   contract: DependentTokenUpgradeableContract,

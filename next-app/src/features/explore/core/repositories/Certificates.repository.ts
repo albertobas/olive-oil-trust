@@ -1,4 +1,4 @@
-import { AllCertificatesQuery, CertificateByIdQuery } from 'next-app/.graphclient';
+import { AllCertificatesQuery, CertificateByIdQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 interface CertificatesRepository {

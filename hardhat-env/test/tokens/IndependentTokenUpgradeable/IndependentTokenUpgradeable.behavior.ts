@@ -1,16 +1,16 @@
 import { utils } from 'ethers';
-import { dictOlives } from 'hardhat-env/test/shared/constants';
-import { baseUri } from 'hardhat-env/shared/constants';
-import { olivesTokenFixture, mintedOlivesFixture } from 'hardhat-env/test/shared/fixtures';
-import shouldUpgrade from 'hardhat-env/test/tokens/IndependentTokenUpgradeable/effects/upgrade';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/tokens/IndependentTokenUpgradeable/effects/initialize';
-import shouldBehaveLikeMint from 'hardhat-env/test/tokens/IndependentTokenUpgradeable/effects/mint';
-import shouldBehaveLikeMintBatch from 'hardhat-env/test/tokens/IndependentTokenUpgradeable/effects/mintBatch';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseToken/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseToken/effects/burnBatch';
-import shouldBehaveLikeBytesToIntTokenTypeId from 'hardhat-env/test/shared/base/BaseToken/view/bytesToIntTokenTypeId';
-import shouldBehaveLikeBytesToIntTokenId from 'hardhat-env/test/shared/base/BaseToken/view/bytesToIntTokenId';
-import shouldBehaveLikeIntToBytesTokenId from 'hardhat-env/test/shared/base/BaseToken/view/intToBytesTokenId';
+import { dictOlives } from '@test/shared/constants';
+import { baseUri } from '@shared/constants';
+import { olivesTokenFixture, mintedOlivesFixture } from '@test/shared/fixtures';
+import shouldUpgrade from '@test/tokens/IndependentTokenUpgradeable/effects/upgrade';
+import shouldBehaveLikeInitialize from '@test/tokens/IndependentTokenUpgradeable/effects/initialize';
+import shouldBehaveLikeMint from '@test/tokens/IndependentTokenUpgradeable/effects/mint';
+import shouldBehaveLikeMintBatch from '@test/tokens/IndependentTokenUpgradeable/effects/mintBatch';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseToken/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseToken/effects/burnBatch';
+import shouldBehaveLikeBytesToIntTokenTypeId from '@test/shared/base/BaseToken/view/bytesToIntTokenTypeId';
+import shouldBehaveLikeBytesToIntTokenId from '@test/shared/base/BaseToken/view/bytesToIntTokenId';
+import shouldBehaveLikeIntToBytesTokenId from '@test/shared/base/BaseToken/view/intToBytesTokenId';
 
 export function shouldBehaveLikeIndependentTokenUpgradeable(): void {
   const contract = 'olivesToken';

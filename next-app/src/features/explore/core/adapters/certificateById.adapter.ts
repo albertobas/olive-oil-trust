@@ -1,6 +1,6 @@
-import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { CertificateByIdQuery } from 'next-app/.graphclient';
+import { getCertificate } from '@features/shared/utils/helpers/certificate';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import { CertificateByIdQuery } from '.graphclient';
 
 function certificateByIdAdapter(dataRaw: CertificateByIdQuery): Certificate | null {
   if (dataRaw.certificate) {

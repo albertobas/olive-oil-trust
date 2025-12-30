@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { IMenuItemExtended } from 'next-app/src/app/ui/layouts/NavBar';
-import styles from 'src/app/styles/modules/layout/MenuItem.module.css';
-import MenuDropdown from 'next-app/src/app/ui/layouts/MenuDropdown';
+import ILink from '@features/shared/ui/links/ILink';
+import { IMenuItemExtended } from '@app/ui/layouts/NavBar';
+import styles from '@app/styles/modules/layout/MenuItem.module.css';
+import MenuDropdown from '@app/ui/layouts/MenuDropdown';
 
 type Props = { menuItem: IMenuItemExtended };
 

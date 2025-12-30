@@ -1,6 +1,6 @@
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 import { upgrades } from 'hardhat';
-import { deployRetailerAndDeps } from 'hardhat-env/shared/helpers';
+import { deployRetailerAndDeps } from '@shared/helpers';
 
 export default function shouldUpgrade(actor: string, escrow: string, opts: DeployProxyOptions): void {
   context('succeeds', function () {

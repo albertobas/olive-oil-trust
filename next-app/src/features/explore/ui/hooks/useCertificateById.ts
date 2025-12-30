@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { queryCertificateByIdWithDep } from 'next-app/src/features/explore/core/interactors';
-import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
+import { queryCertificateByIdWithDep } from '@features/explore/core/interactors';
+import { CertificateState } from '@features/shared/utils/interfaces';
 
 export function useCertificateById(id: string, pollInterval?: number): CertificateState {
   const [certificatesState, setCertificatesState] = useState<CertificateState>({ error: null, data: null });

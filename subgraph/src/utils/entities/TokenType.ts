@@ -1,7 +1,7 @@
 import { BigInt, Bytes, BigDecimal } from '@graphprotocol/graph-ts';
-import { TokenType } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
-import { getMetadata } from 'subgraph/src/utils/helpers';
+import { TokenType } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
+import { getMetadata } from '../../utils/helpers';
 
 export function getTokenTypeId(contractId: Bytes, tokenTypeId: Bytes): string {
   return contractId.toHex().concat(separator).concat(tokenTypeId.toString());
@@ -20,20 +20,20 @@ export function ensureTokenType(contractId: Bytes, tokenTypeId: Bytes, timestamp
     if (metadata) {
       tokenType.bottleQuality = metadata.bottleQuality;
       tokenType.bottleMaterial = metadata.bottleMaterial;
-      if (metadata.bottleSize) {
-        tokenType.bottleSize = BigInt.fromString(metadata.bottleSize!);
+      if (metadata.bottleSize != '') {
+        tokenType.bottleSize = BigInt.fromString(metadata.bottleSize);
       }
-      if (metadata.imageHeight) {
-        tokenType.imageHeight = BigInt.fromString(metadata.imageHeight!);
+      if (metadata.imageHeight != '') {
+        tokenType.imageHeight = BigInt.fromString(metadata.imageHeight);
       }
       tokenType.imagePath = metadata.imagePath;
-      if (metadata.imageWidth) {
-        tokenType.imageWidth = BigInt.fromString(metadata.imageWidth!);
+      if (metadata.imageWidth != '') {
+        tokenType.imageWidth = BigInt.fromString(metadata.imageWidth);
       }
       tokenType.description = metadata.description;
       tokenType.oliveQuality = metadata.oliveQuality;
-      if (metadata.oliveOilAcidity) {
-        tokenType.oliveOilAcidity = BigDecimal.fromString(metadata.oliveOilAcidity!);
+      if (metadata.oliveOilAcidity != '') {
+        tokenType.oliveOilAcidity = BigDecimal.fromString(metadata.oliveOilAcidity);
       }
       tokenType.oliveOilAroma = metadata.oliveOilAroma;
       tokenType.oliveOilBitterness = metadata.oliveOilBitterness;

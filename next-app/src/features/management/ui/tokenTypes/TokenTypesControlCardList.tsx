@@ -1,13 +1,13 @@
 import { memo, useMemo, useState } from 'react';
-import TokenTypesControl from 'next-app/src/features/management/ui/tokenTypes/TokenTypesControl';
-import TokenTypesCardList from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesCardList';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { isIndependentCreator } from 'next-app/src/shared/utils/constants';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
+import TokenTypesControl from '@features/management/ui/tokenTypes/TokenTypesControl';
+import TokenTypesCardList from '@features/shared/ui/tokenTypes/TokenTypesCardList';
+import { IItem } from '@features/shared/utils/interfaces';
+import { tokenTypeSearch } from '@features/shared/utils/helpers/helpers';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { isIndependentCreator } from '@shared/utils/constants';
+import { Module } from '@shared/utils/interfaces';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
+import { Certificates } from '@features/shared/core/entities/Certificates';
 
 type Props = {
   tokenTypes: TokenTypes | null;

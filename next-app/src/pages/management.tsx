@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import styles from 'src/app/styles/modules/sections/Section.module.css';
+import styles from '@app/styles/modules/sections/Section.module.css';
 import {
   isSeller,
   isCertifier,
@@ -9,10 +9,10 @@ import {
   isRetailer,
   pages,
   brandName
-} from 'next-app/src/shared/utils/constants';
+} from '@shared/utils/constants';
 import Link from 'next/link';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 const Management: NextPage = () => {
   const { isConnected, isConnecting } = useAppSelector((state) => state.connection);
@@ -33,12 +33,12 @@ const Management: NextPage = () => {
               isCertifier(moduleId)
                 ? 'Certify token types.'
                 : isIndependentCreator(moduleId)
-                ? 'Create your token types. Mint, burn or deposit your tokens. Manage your escrows.'
-                : isDependentCreator(moduleId)
-                ? 'Create your token types. Mint, burn or deposit your tokens. Manage your escrows and participations, i.e., the escrows you have interacted with.'
-                : isDistributor(moduleId) || isRetailer(moduleId)
-                ? 'Mint, burn or deposit your tokens. Manage your escrows and participations, i.e., the escrows you have interacted with.'
-                : ''
+                  ? 'Create your token types. Mint, burn or deposit your tokens. Manage your escrows.'
+                  : isDependentCreator(moduleId)
+                    ? 'Create your token types. Mint, burn or deposit your tokens. Manage your escrows and participations, i.e., the escrows you have interacted with.'
+                    : isDistributor(moduleId) || isRetailer(moduleId)
+                      ? 'Mint, burn or deposit your tokens. Manage your escrows and participations, i.e., the escrows you have interacted with.'
+                      : ''
             }`}</p>
             <ul>
               {isCertifier(moduleId) && (

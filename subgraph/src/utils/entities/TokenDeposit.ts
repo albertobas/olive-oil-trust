@@ -1,12 +1,12 @@
 import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { Escrow, TokenDeposit, Account } from 'subgraph/src/generated/types/schema';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { ensureEscrowBalance } from 'subgraph/src/utils/entities/Balance';
-import { registerTokenEscrowMapping } from 'subgraph/src/utils/entities/TokenEscrowMapping';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { getIndustrialUnitTokenId, getTokenId } from 'subgraph/src/utils/entities/Token';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
-import { ensureEscrowContract } from 'subgraph/src/utils/entities/EscrowContract';
+import { Escrow, TokenDeposit, Account } from '../../generated/types/schema';
+import { eventId } from '../../utils/helpers';
+import { ensureEscrowBalance } from '../../utils/entities/Balance';
+import { registerTokenEscrowMapping } from '../../utils/entities/TokenEscrowMapping';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { getIndustrialUnitTokenId, getTokenId } from '../../utils/entities/Token';
+import { ensureTokenContract } from '../../utils/entities/TokenContract';
+import { ensureEscrowContract } from '../../utils/entities/EscrowContract';
 
 export function registerTokenDeposit(
   event: ethereum.Event,

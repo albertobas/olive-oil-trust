@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
+import { EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
+import { ErrorsOwnable } from '@test/shared/errors';
 
 export default function shouldBehaveLikeMakeOffer(escrowId: number, tokenPrice: string): void {
   const options = { value: tokenPrice };

@@ -1,11 +1,11 @@
-import CertificatesRepository from 'next-app/src/features/explore/core/repositories/Certificates.repository';
+import CertificatesRepository from '@features/explore/core/repositories/Certificates.repository';
 import {
   execute,
   AllCertificatesDocument,
   AllCertificatesQuery,
   CertificateByIdDocument,
   CertificateByIdQuery
-} from 'next-app/.graphclient';
+} from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 class CertificatesDataSource implements CertificatesRepository {

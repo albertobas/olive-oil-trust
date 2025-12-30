@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowActionsConfirmation.module.css';
+import styles from '@features/shared/styles/modules/escrows/EscrowActionsConfirmation.module.css';
 
 type Props = {
   error: string;

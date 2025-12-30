@@ -1,6 +1,6 @@
 import { ethers, waffle } from 'hardhat';
 import { Wallet } from 'ethers';
-import { Contracts, Tokens } from 'hardhat-env/test/shared/types';
+import { Contracts, Tokens } from '@test/shared/types';
 
 export function baseContext(description: string, hooks: () => void): void {
   describe(description, function () {

@@ -1,12 +1,12 @@
 import { artifacts, network, upgrades } from 'hardhat';
-import { deployCertifierCompanyAndDeps } from 'hardhat-env/scripts/deploy/deployCertifierCompanyAndDeps';
-import { deployOliveGrowerOneAndDeps } from 'hardhat-env/scripts/deploy/deployOliveGrowerOneAndDeps';
-import { deployBottleCompanyAndDeps } from 'hardhat-env/scripts/deploy/deployBottleCompanyAndDeps';
-import { deployOliveOilMillCompanyAndDeps } from 'hardhat-env/scripts/deploy/deployOliveOilMillCompanyAndDeps';
-import { deployBottlingCompanyAndDeps } from 'hardhat-env/scripts/deploy/deployBottlingCompanyAndDeps';
-import { deployDistributorCompanyAndDeps } from 'hardhat-env/scripts/deploy/deployDistributorCompanyAndDeps';
-import { deployRetailerCompanyAndDeps } from 'hardhat-env/scripts/deploy/deployRetailerCompanyAndDeps';
-import { deployBottleCompany2AndDeps } from 'hardhat-env/scripts/deploy/deployBottleCompany2AndDeps';
+import { deployCertifierCompanyAndDeps } from './deploy/deployCertifierCompanyAndDeps';
+import { deployOliveGrowerOneAndDeps } from './deploy/deployOliveGrowerOneAndDeps';
+import { deployBottleCompanyAndDeps } from './deploy/deployBottleCompanyAndDeps';
+import { deployOliveOilMillCompanyAndDeps } from './deploy/deployOliveOilMillCompanyAndDeps';
+import { deployBottlingCompanyAndDeps } from './deploy/deployBottlingCompanyAndDeps';
+import { deployDistributorCompanyAndDeps } from './deploy/deployDistributorCompanyAndDeps';
+import { deployRetailerCompanyAndDeps } from './deploy/deployRetailerCompanyAndDeps';
+import { deployBottleCompany2AndDeps } from './deploy/deployBottleCompany2AndDeps';
 import { join } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
@@ -37,11 +37,12 @@ async function main(): Promise<void> {
     .then((deploymentArray) => {
       const deployments = deploymentArray.flat();
       for (let i = 0; i < deployments.length; i++) {
+        const { id, address } = deployments[i];
         if (network.name !== 'hardhat') {
-          const deploymentPath = join(deploymentsPath, deployments[i].id + '.json');
+          const deploymentPath = join(deploymentsPath, `${id}.json`);
           const artifact = artifacts.readArtifactSync(deployments[i].id);
           const deployment = {
-            address: deployments[i].address,
+            address,
             contractName: artifact.contractName,
             module: deployments[i].module,
             startBlock: deployments[i].blockNumber,
@@ -54,7 +55,7 @@ async function main(): Promise<void> {
           }
           writeFileSync(deploymentPath, JSON.stringify(deployment, undefined, 2));
         }
-        console.log(`  ✓ ${deployments[i].id} deployed at: ${deployments[i].address}`);
+        console.log(`  ✓ ${id} deployed at: ${address}`);
       }
     })
     .catch((error) => {

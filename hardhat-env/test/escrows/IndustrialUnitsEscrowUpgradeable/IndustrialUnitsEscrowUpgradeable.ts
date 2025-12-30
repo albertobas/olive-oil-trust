@@ -1,5 +1,5 @@
-import { shouldBehaveLikeIndustrialUnitsEscrowUpgradeable } from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/IndustrialUnitsEscrowUpgradeable.behavior';
-import { dictContracts } from 'hardhat-env/shared/constants';
+import { shouldBehaveLikeIndustrialUnitsEscrowUpgradeable } from '@test/escrows/IndustrialUnitsEscrowUpgradeable/IndustrialUnitsEscrowUpgradeable.behavior';
+import { dictContracts } from '@shared/constants';
 
 export function testIndustrialUnitsEscrowUpgradeable(): void {
   describe(dictContracts.industrialUnitsEscrowWithInit.v1, function () {

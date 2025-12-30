@@ -1,8 +1,8 @@
 import { BigInt, Bytes } from '@graphprotocol/graph-ts';
-import { CertificateContract, Instruction, TokenContract, TokenType } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
-import { getCertificateId } from 'subgraph/src/utils/entities/Certificate';
-import { getTokenTypeId } from 'subgraph/src/utils/entities/TokenType';
+import { CertificateContract, Instruction, TokenContract, TokenType } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
+import { getCertificateId } from '../../utils/entities/Certificate';
+import { getTokenTypeId } from '../../utils/entities/TokenType';
 
 export function registerInstruction(
   index: number,

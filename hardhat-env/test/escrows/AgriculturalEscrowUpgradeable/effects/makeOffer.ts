@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsAgriculturalEscrowUpgradeable } from 'hardhat-env/test/shared/errors';
-import { EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { ErrorsAgriculturalEscrowUpgradeable } from '@test/shared/errors';
+import { EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
 
 export default function shouldBehaveLikeMakeOffer(escrowId: number, tokenPrice: string): void {
   const options = { value: tokenPrice };

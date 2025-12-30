@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { BigNumber, constants } from 'ethers';
-import { ErrorsBaseEscrow } from 'hardhat-env/test/shared/errors';
-import { EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { ErrorsBaseEscrow } from '@test/shared/errors';
+import { EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
 
 export default function shouldBehaveLikeCancelPayment(escrowId: number, tokenPrice: string): void {
   context('succeeds', function () {

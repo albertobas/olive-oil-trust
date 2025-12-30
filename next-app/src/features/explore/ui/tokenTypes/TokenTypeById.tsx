@@ -1,11 +1,11 @@
-import { roles } from 'next-app/src/shared/utils/constants';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { roles } from '@shared/utils/constants';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
 import Image from 'next/image';
-import styles from 'next-app/src/features/explore/styles/modules/tokenTypes/TokenTypeById.module.css';
-import { Role } from 'next-app/src/features/shared/utils/interfaces';
-import TokenTypeInfo from 'next-app/src/features/explore/ui/tokenTypes/TokenTypeInfo';
-import { TokenTypeState } from 'next-app/src/features/shared/utils/interfaces';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import styles from '@features/explore/styles/modules/tokenTypes/TokenTypeById.module.css';
+import { Role } from '@features/shared/utils/interfaces';
+import TokenTypeInfo from '@features/explore/ui/tokenTypes/TokenTypeInfo';
+import { TokenTypeState } from '@features/shared/utils/interfaces';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 function TokenTypeById({ error, data, id }: TokenTypeState & { id: string }): JSX.Element {
   if (error) {

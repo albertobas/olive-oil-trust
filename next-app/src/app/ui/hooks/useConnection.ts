@@ -1,16 +1,16 @@
 import { useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import useAppDispatch from 'next-app/src/shared/ui/hooks/useAppDispatch';
+import useAppDispatch from '@shared/ui/hooks/useAppDispatch';
 import Web3Modal from 'web3modal';
 import { providers } from 'ethers';
-import { setProvider } from 'next-app/src/app/state/providerSlice';
+import { setProvider } from '@app/state/providerSlice';
 import { toast } from 'react-toastify';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { brandName, pages } from 'next-app/src/shared/utils/constants';
-import { setAccount } from 'next-app/src/shared/state/accountSlice';
-import accountsJSON from 'next-app/src/generated/contracts/accounts.json';
-import { setConnection } from 'next-app/src/shared/state/connectionSlice';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import { brandName, pages } from '@shared/utils/constants';
+import { setAccount } from '@shared/state/accountSlice';
+import accountsJSON from '@generated/contracts/accounts.json';
+import { setConnection } from '@shared/state/connectionSlice';
+import { renderToast } from '@shared/utils/helpers';
 
 const useConnection = (): {
   connectWallet: () => void;
@@ -55,18 +55,18 @@ const useConnection = (): {
                             data.moduleId === 'BottleManufacturerUpgradeable'
                               ? 'BottleManufacturerUpgradeable'
                               : data.moduleId === 'BottlingPlantUpgradeable'
-                              ? 'BottlingPlantUpgradeable'
-                              : data.moduleId === 'CertifierUpgradeable'
-                              ? 'CertifierUpgradeable'
-                              : data.moduleId === 'DistributorUpgradeable'
-                              ? 'DistributorUpgradeable'
-                              : data.moduleId === 'OliveGrowerUpgradeable'
-                              ? 'OliveGrowerUpgradeable'
-                              : data.moduleId === 'OliveOilMillUpgradeable'
-                              ? 'OliveOilMillUpgradeable'
-                              : data.moduleId === 'RetailerUpgradeable'
-                              ? 'RetailerUpgradeable'
-                              : null,
+                                ? 'BottlingPlantUpgradeable'
+                                : data.moduleId === 'CertifierUpgradeable'
+                                  ? 'CertifierUpgradeable'
+                                  : data.moduleId === 'DistributorUpgradeable'
+                                    ? 'DistributorUpgradeable'
+                                    : data.moduleId === 'OliveGrowerUpgradeable'
+                                      ? 'OliveGrowerUpgradeable'
+                                      : data.moduleId === 'OliveOilMillUpgradeable'
+                                        ? 'OliveOilMillUpgradeable'
+                                        : data.moduleId === 'RetailerUpgradeable'
+                                          ? 'RetailerUpgradeable'
+                                          : null,
                           name: data.name
                         }
                       : null

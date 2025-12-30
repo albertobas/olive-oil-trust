@@ -1,8 +1,8 @@
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { checkEscrowState, parseTransaction } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
-import { getTokensInfo } from 'next-app/src/features/shared/utils/helpers/token';
-import { EscrowRawType } from 'next-app/src/features/shared/utils/interfaces';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { checkEscrowState, parseTransaction } from '@features/shared/utils/helpers/helpers';
+import { getMember } from '@features/shared/utils/helpers/member';
+import { getTokensInfo } from '@features/shared/utils/helpers/token';
+import { EscrowRawType } from '@features/shared/utils/interfaces';
 
 export function getEscrow(escrow: EscrowRawType, selfProducedIds: string[] | null): Escrow {
   const {
@@ -46,8 +46,8 @@ export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, r
         a.tokenDeposits[0].transaction.timestamp < b.tokenDeposits[0].transaction.timestamp
           ? -1
           : a.tokenDeposits[0].transaction.timestamp > b.tokenDeposits[0].transaction.timestamp
-          ? 1
-          : 0
+            ? 1
+            : 0
       );
     } else if (sortValue === 'etherBalance') {
       return data.sort((a, b) => {
@@ -55,8 +55,8 @@ export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, r
           ? a.etherBalance.value > b.etherBalance.value
             ? -1
             : a.etherBalance.value < b.etherBalance.value
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0;
       });
     } else if (sortValue === 'seller') {
@@ -65,8 +65,8 @@ export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, r
           ? a.seller.name > b.seller.name
             ? -1
             : a.seller.name < b.seller.name
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'state') {
@@ -82,8 +82,8 @@ export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, r
         a.tokenDeposits[0].transaction.timestamp > b.tokenDeposits[0].transaction.timestamp
           ? -1
           : a.tokenDeposits[0].transaction.timestamp < b.tokenDeposits[0].transaction.timestamp
-          ? 1
-          : 0
+            ? 1
+            : 0
       );
     } else if (sortValue === 'etherBalance') {
       return data.sort((a, b) => {
@@ -91,8 +91,8 @@ export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, r
           ? a.etherBalance.value < b.etherBalance.value
             ? -1
             : a.etherBalance.value > b.etherBalance.value
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0;
       });
     } else if (sortValue === 'seller') {
@@ -101,8 +101,8 @@ export const sortEscrowArray = (data: Escrow[], sortValue: string | undefined, r
           ? a.seller.name < b.seller.name
             ? -1
             : a.seller.name > b.seller.name
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'state') {

@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
-import { ErrorsOwnable } from 'hardhat-env/test/shared//errors';
+import { EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
+import { ErrorsOwnable } from '@test/shared//errors';
 import {
   IndustrialOrCommercialUnitsEscrowContract,
   IndustrialOrCommercialUnitsPaymentGatewayContract
-} from 'hardhat-env/test/shared//types';
+} from '@test/shared//types';
 
 export default function shouldBehaveLikeMakePayment(
   contract: IndustrialOrCommercialUnitsPaymentGatewayContract,

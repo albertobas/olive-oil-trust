@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { EventsActor } from 'hardhat-env/test/shared/events';
-import { BaseSellerContract } from 'hardhat-env/test/shared/types';
+import { EventsActor } from '@test/shared/events';
+import { BaseSellerContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeReceive(contract: BaseSellerContract, amount: string): void {
   context('succeeds', function () {

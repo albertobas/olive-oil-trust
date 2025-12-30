@@ -6,14 +6,14 @@
  */
 
 import { GetServerSideProps } from 'next';
-import { getBuiltGraphSDK } from 'next-app/.graphclient';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import AllTokens from 'next-app/src/features/explore/ui/tokens/AllTokens';
-import { brandName } from 'next-app/src/shared/utils/constants';
-import allTokensAdapter from 'next-app/src/features/explore/core/adapters/allTokens.adapter';
-import { TokensState, TokensStateData } from 'next-app/src/features/shared/utils/interfaces';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { getBuiltGraphSDK } from '.graphclient';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import AllTokens from '@features/explore/ui/tokens/AllTokens';
+import { brandName } from '@shared/utils/constants';
+import allTokensAdapter from '@features/explore/core/adapters/allTokens.adapter';
+import { TokensState, TokensStateData } from '@features/shared/utils/interfaces';
+import { getTime } from '@features/shared/utils/helpers/helpers';
 
 function TokensPageSSR(state: TokensState): JSX.Element {
   return (
@@ -46,12 +46,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default TokensPageSSR;
 
 // import { NextPage } from 'next';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-// import { useAllTokens } from 'next-app/src/features/explore/ui/hooks/useAllTokens';
-// import { pollInterval } from 'next-app/src/features/shared/utils/constants';
-// import AllTokens from 'next-app/src/features/explore/ui/tokens/AllTokens';
-// import { brandName } from 'next-app/src/shared/utils/constants';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import Intro from '@features/shared/ui/intro/Intro';
+// import { useAllTokens } from '@features/explore/ui/hooks/useAllTokens';
+// import { pollInterval } from '@features/shared/utils/constants';
+// import AllTokens from '@features/explore/ui/tokens/AllTokens';
+// import { brandName } from '@shared/utils/constants';
 
 // const TokensPageCSR: NextPage = () => {
 //   const state = useAllTokens(pollInterval);
@@ -68,15 +68,15 @@ export default TokensPageSSR;
 // export default TokensPageCSR;
 
 // import { GetStaticProps } from 'next';
-// import { getBuiltGraphSDK } from 'next-app/.graphclient';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-// import AllTokens from 'next-app/src/features/explore/ui/tokens/AllTokens';
-// import { brandName } from 'next-app/src/shared/utils/constants';
-// import allTokensAdapter from 'next-app/src/features/explore/core/adapters/allTokens.adapter';
-// import { TokensState, TokensStateData } from 'next-app/src/features/shared/utils/interfaces';
-// import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-// import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
+// import { getBuiltGraphSDK } from '.graphclient';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import Intro from '@features/shared/ui/intro/Intro';
+// import AllTokens from '@features/explore/ui/tokens/AllTokens';
+// import { brandName } from '@shared/utils/constants';
+// import allTokensAdapter from '@features/explore/core/adapters/allTokens.adapter';
+// import { TokensState, TokensStateData } from '@features/shared/utils/interfaces';
+// import { getTime } from '@features/shared/utils/helpers/helpers';
+// import { revalidateInterval } from '@features/shared/utils/constants';
 
 // function TokensPageISR(state: TokensState): JSX.Element {
 //   return (

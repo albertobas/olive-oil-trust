@@ -1,6 +1,6 @@
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
-import { TokenByIdQuery } from 'next-app/.graphclient';
+import { Token } from '@features/shared/core/entities/Tokens';
+import { getToken } from '@features/shared/utils/helpers/token';
+import { TokenByIdQuery } from '.graphclient';
 
 const tokenByIdAdapter = (dataRaw: TokenByIdQuery): Token | null => {
   if (dataRaw.token) {

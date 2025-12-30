@@ -1,8 +1,8 @@
 import { Address, ethereum } from '@graphprotocol/graph-ts';
-import { OwnershipTransferred } from 'subgraph/src/generated/types/schema';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { eventId } from 'subgraph/src/utils/helpers';
+import { OwnershipTransferred } from '../../generated/types/schema';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { ensureAccount } from '../../utils/entities/Account';
+import { eventId } from '../../utils/helpers';
 
 export function ensureOwnershipTransferred(
   event: ethereum.Event,

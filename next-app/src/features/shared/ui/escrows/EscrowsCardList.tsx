@@ -1,15 +1,15 @@
-import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowsCardList.module.css';
+import styles from '@features/shared/styles/modules/escrows/EscrowsCardList.module.css';
 import { useEffect, useMemo, useState } from 'react';
-import { sortEscrowArray } from 'next-app/src/features/shared/utils/helpers/escrow';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import EscrowCard from 'next-app/src/features/shared/ui/escrows/EscrowCard';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
+import { sortEscrowArray } from '@features/shared/utils/helpers/escrow';
+import { IItem } from '@features/shared/utils/interfaces';
+import EscrowCard from '@features/shared/ui/escrows/EscrowCard';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
 import ReactModal from 'react-modal';
-import MakePayment from 'next-app/src/features/shared/ui/escrows/MakePayment';
-import MakeOffer from 'next-app/src/features/shared/ui/escrows/MakeOffer';
-import EscrowActionsConfirmation from 'next-app/src/features/shared/ui/escrows/EscrowActionsConfirmation';
-import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
+import MakePayment from '@features/shared/ui/escrows/MakePayment';
+import MakeOffer from '@features/shared/ui/escrows/MakeOffer';
+import EscrowActionsConfirmation from '@features/shared/ui/escrows/EscrowActionsConfirmation';
+import { IModalInfo } from '@features/shared/ui/utils/interfaces';
 
 type Props = {
   escrows: Escrow[] | null;

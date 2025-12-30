@@ -1,34 +1,34 @@
 import { Dispatch, FC, SetStateAction, useCallback, useMemo, useState } from 'react';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { IFormikMintToken, IMintTokenState } from 'next-app/src/features/management/utils/interfaces';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import { IGroupedItems, IItem } from '@features/shared/utils/interfaces';
+import { IFormikMintToken, IMintTokenState } from '@features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
-import IdentifierTypeAmountCard from 'next-app/src/features/management/ui/tokens/IdentifierTypeAmountCard';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import { Token } from '@features/shared/core/entities/Tokens';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
+import IdentifierTypeAmountCard from '@features/management/ui/tokens/IdentifierTypeAmountCard';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage, useFormikContext, FieldProps } from 'formik';
 import { Root as Label } from '@radix-ui/react-label';
-import { handleAmountValidation, handleStringValidation } from 'next-app/src/features/management/utils/helpers';
+import { handleAmountValidation, handleStringValidation } from '@features/management/utils/helpers';
 import {
   getGroupedTokensByType,
   getTokenNameFromModule,
   getTokenUnitFromModule,
   transferMintedTokens
-} from 'next-app/src/features/management/utils/helpers';
+} from '@features/management/utils/helpers';
 import Carousel from 'react-multi-carousel';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import SVG from '@features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
-import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { isOliveGrower, isOliveOilMill } from 'next-app/src/shared/utils/constants';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+import { handleSelectValidation } from '@features/shared/ui/utils/helpers';
+import { renderToast } from '@shared/utils/helpers';
+import { Module } from '@shared/utils/interfaces';
+import { isOliveGrower, isOliveOilMill } from '@shared/utils/constants';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
+import { carouselResponsive } from '@features/management/utils/constants';
 
 type Props = {
   previousMemberTokens: Token[] | null;
@@ -328,7 +328,7 @@ function MintTokens({
                               option ? { ...prev, tokenTypeId: option } : { ...prev, tokenTypeId: null }
                             )
                           }
-                          value={batchFields ? batchFields.tokenTypeId ?? null : null}
+                          value={batchFields ? (batchFields.tokenTypeId ?? null) : null}
                           options={tokenTypeOptions}
                           borderWidth="2px"
                           borderColor="var(--gray-400)"
@@ -356,7 +356,7 @@ function MintTokens({
                         name="tokenId"
                         type="text"
                         onBlur={undefined}
-                        value={batchFields ? batchFields.tokenId ?? '' : ''}
+                        value={batchFields ? (batchFields.tokenId ?? '') : ''}
                         onChange={(value) => setBatchFields((prev) => ({ ...prev, tokenId: value.target.value }))}
                       />
                     ) : (
@@ -373,7 +373,7 @@ function MintTokens({
                         name="tokenAmount"
                         type="text"
                         onBlur={undefined}
-                        value={batchFields ? batchFields.tokenAmount ?? '' : ''}
+                        value={batchFields ? (batchFields.tokenAmount ?? '') : ''}
                         onChange={(value) => setBatchFields((prev) => ({ ...prev, tokenAmount: value.target.value }))}
                       />
                     ) : (
@@ -470,8 +470,8 @@ function MintTokens({
                                                   (fields[id].data.length === 1
                                                     ? neededAmount
                                                     : neededAmount === totalAmount
-                                                    ? 0
-                                                    : neededAmount - totalAmount
+                                                      ? 0
+                                                      : neededAmount - totalAmount
                                                   ).toString()
                                                 );
                                             }}
@@ -495,9 +495,9 @@ function MintTokens({
                                     disabled={
                                       Boolean(
                                         batchIdOpts &&
-                                          Object.keys(fields).includes(id) &&
-                                          fields[id].data.length ===
-                                            batchIdOpts.map((options) => options.options).flat().length
+                                        Object.keys(fields).includes(id) &&
+                                        fields[id].data.length ===
+                                          batchIdOpts.map((options) => options.options).flat().length
                                       ) || neededAmount === totalAmount
                                     }
                                   >

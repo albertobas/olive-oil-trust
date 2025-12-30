@@ -10,20 +10,20 @@ import {
   TokenDeposited,
   TokenWithdrawn,
   TokensWithdrawn
-} from 'subgraph/src/generated/types/AgriculturalEscrowUpgradeableDataSource/AgriculturalEscrowUpgradeable';
-import { escrowState } from 'subgraph/src/utils/constants';
-import { ensureEscrow } from 'subgraph/src/utils/entities/Escrow';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { registerTokenDeposit } from 'subgraph/src/utils/entities/TokenDeposit';
-import { registerBeforeDepositReversal } from 'subgraph/src/utils/entities/BeforeDepositReversal';
-import { registerEtherDeposit } from 'subgraph/src/utils/entities/EtherDeposit';
-import { registerEtherDepositCancellation } from 'subgraph/src/utils/entities/EtherDepositCancellation';
-import { registerEscrowClosure } from 'subgraph/src/utils/entities/EscrowClosure';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { ensureMemberContract } from 'subgraph/src/utils/entities/MemberContract';
-import { registerAfterDepositReversal } from 'subgraph/src/utils/entities/AfterDepositReversal';
-import { handleEtherWithdrawal, handleTokensWithdrawal } from 'subgraph/src/utils/entities/helpers/escrow';
-import { ensureEscrowContract } from 'subgraph/src/utils/entities/EscrowContract';
+} from '../generated/types/AgriculturalEscrowUpgradeableDataSource/AgriculturalEscrowUpgradeable';
+import { escrowState } from '../utils/constants';
+import { ensureEscrow } from '../utils/entities/Escrow';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { registerTokenDeposit } from '../utils/entities/TokenDeposit';
+import { registerBeforeDepositReversal } from '../utils/entities/BeforeDepositReversal';
+import { registerEtherDeposit } from '../utils/entities/EtherDeposit';
+import { registerEtherDepositCancellation } from '../utils/entities/EtherDepositCancellation';
+import { registerEscrowClosure } from '../utils/entities/EscrowClosure';
+import { ensureAccount } from '../utils/entities/Account';
+import { ensureMemberContract } from '../utils/entities/MemberContract';
+import { registerAfterDepositReversal } from '../utils/entities/AfterDepositReversal';
+import { handleEtherWithdrawal, handleTokensWithdrawal } from '../utils/entities/helpers/escrow';
+import { ensureEscrowContract } from '../utils/entities/EscrowContract';
 
 export function handleTokenDeposited(event: TokenDeposited): void {
   let escrow = ensureEscrow(event.params.escrowId, event.address);

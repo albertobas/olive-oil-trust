@@ -1,19 +1,19 @@
-import { oliveOilTokenFixture, mintedOliveOilTokenFixture } from 'hardhat-env/test/shared/fixtures';
-import { dictOliveOil, dictOlives } from 'hardhat-env/test/shared/constants';
-import { baseUri } from 'hardhat-env/shared/constants';
+import { oliveOilTokenFixture, mintedOliveOilTokenFixture } from '@test/shared/fixtures';
+import { dictOliveOil, dictOlives } from '@test/shared/constants';
+import { baseUri } from '@shared/constants';
 import { BigNumber, utils } from 'ethers';
-import shouldUpgrade from 'hardhat-env/test/tokens/DependentTokenUpgradeable/effects/upgrade';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/tokens/DependentTokenUpgradeable/effects/initialize';
-import shouldBehaveLikeMint from 'hardhat-env/test/tokens/DependentTokenUpgradeable/effects/mint';
-import shouldBehaveLikeSetTokenTypeInstructions from 'hardhat-env/test/tokens/DependentTokenUpgradeable/effects/setTokenTypeInstructions';
-import shouldBehaveLikeSetTokenTypesInstructions from 'hardhat-env/test/tokens/DependentTokenUpgradeable/effects/setTokenTypesInstructions';
-import shouldBehaveLikeMintBatch from 'hardhat-env/test/tokens/DependentTokenUpgradeable/effects/mintBatch';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseToken/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseToken/effects/burnBatch';
-import shouldBehaveLikeBytesToIntTokenTypeId from 'hardhat-env/test/shared/base/BaseToken/view/bytesToIntTokenTypeId';
-import shouldBehaveLikeGetInstructions from 'hardhat-env/test/tokens/DependentTokenUpgradeable/view/getInstructions';
-import shouldBehaveLikeBytesToIntTokenId from 'hardhat-env/test/shared/base/BaseToken/view/bytesToIntTokenId';
-import shouldBehaveLikeIntToBytesTokenId from 'hardhat-env/test/shared/base/BaseToken/view/intToBytesTokenId';
+import shouldUpgrade from '@test/tokens/DependentTokenUpgradeable/effects/upgrade';
+import shouldBehaveLikeInitialize from '@test/tokens/DependentTokenUpgradeable/effects/initialize';
+import shouldBehaveLikeMint from '@test/tokens/DependentTokenUpgradeable/effects/mint';
+import shouldBehaveLikeSetTokenTypeInstructions from '@test/tokens/DependentTokenUpgradeable/effects/setTokenTypeInstructions';
+import shouldBehaveLikeSetTokenTypesInstructions from '@test/tokens/DependentTokenUpgradeable/effects/setTokenTypesInstructions';
+import shouldBehaveLikeMintBatch from '@test/tokens/DependentTokenUpgradeable/effects/mintBatch';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseToken/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseToken/effects/burnBatch';
+import shouldBehaveLikeBytesToIntTokenTypeId from '@test/shared/base/BaseToken/view/bytesToIntTokenTypeId';
+import shouldBehaveLikeGetInstructions from '@test/tokens/DependentTokenUpgradeable/view/getInstructions';
+import shouldBehaveLikeBytesToIntTokenId from '@test/shared/base/BaseToken/view/bytesToIntTokenId';
+import shouldBehaveLikeIntToBytesTokenId from '@test/shared/base/BaseToken/view/intToBytesTokenId';
 
 export function shouldBehaveLikeDependentTokenUpgradeable(): void {
   const contract = 'oliveOilToken';

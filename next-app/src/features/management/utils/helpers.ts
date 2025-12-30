@@ -1,8 +1,8 @@
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
 import { BigNumber, Contract } from 'ethers';
 import { formatBytes32String } from 'ethers/lib/utils';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { Token } from '@features/shared/core/entities/Tokens';
 import {
   BottlingPlant,
   Certifier,
@@ -20,7 +20,7 @@ import {
   Retailer,
   Role,
   Seller
-} from 'next-app/src/features/shared/utils/interfaces';
+} from '@features/shared/utils/interfaces';
 import {
   IAddTokenTypeState,
   IBurnTokenState,
@@ -28,16 +28,16 @@ import {
   IFormikMakePayment,
   IMintTokenState,
   IPackTokenState
-} from 'next-app/src/features/management/utils/interfaces';
+} from '@features/management/utils/interfaces';
 import {
   isBottleManufacturer,
   isBottlingPlant,
   isOliveGrower,
   isOliveOilMill,
   isRetailer
-} from 'next-app/src/shared/utils/constants';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { creatorRoles } from 'next-app/src/features/management/utils/constants';
+} from '@shared/utils/constants';
+import { Module } from '@shared/utils/interfaces';
+import { creatorRoles } from '@features/management/utils/constants';
 
 export async function transferMintedTokens(
   contract: Contract | null,
@@ -495,24 +495,27 @@ export async function transferDepositTokens(
 
 export function getGroupedTokensByType(tokens: Token[], filter?: string[]): IGroupedItems[] | null {
   const groupedItems: IGroupedItems[] = [];
-  const tokensByType = tokens.reduce((acc, { id, identifier, tokenType }) => {
-    if (tokenType) {
-      const { metadata } = tokenType;
-      const label = `${tokenType.identifier}${metadata && metadata.title ? ` - ${metadata.title}` : ''}`;
-      const optsLabel = `Batch ${identifier}`;
-      const options = { label: optsLabel, value: id };
-      if (filter) {
-        if (filter.includes(tokenType.id)) {
+  const tokensByType = tokens.reduce(
+    (acc, { id, identifier, tokenType }) => {
+      if (tokenType) {
+        const { metadata } = tokenType;
+        const label = `${tokenType.identifier}${metadata && metadata.title ? ` - ${metadata.title}` : ''}`;
+        const optsLabel = `Batch ${identifier}`;
+        const options = { label: optsLabel, value: id };
+        if (filter) {
+          if (filter.includes(tokenType.id)) {
+            acc[tokenType.id] ??= { label, options: [] };
+            acc[tokenType.id].options.push(options);
+          }
+        } else {
           acc[tokenType.id] ??= { label, options: [] };
           acc[tokenType.id].options.push(options);
         }
-      } else {
-        acc[tokenType.id] ??= { label, options: [] };
-        acc[tokenType.id].options.push(options);
       }
-    }
-    return acc;
-  }, {} as Record<string, { label: string; options: IItem[] }>);
+      return acc;
+    },
+    {} as Record<string, { label: string; options: IItem[] }>
+  );
 
   for (const type of Object.keys(tokensByType)) {
     const { label, options } = tokensByType[type];
@@ -525,16 +528,19 @@ export function getGroupedTokensByType(tokens: Token[], filter?: string[]): IGro
 
 export function getGroupedTokenTypesByRole(tokenTypes: TokenType[]): IGroupedItems[] {
   const groupedItems: IGroupedItems[] = [];
-  const tokenTypesByRole = tokenTypes.reduce((acc, { id, identifier, metadata, member }) => {
-    if (member && member.role) {
-      acc[member.role] ??= [];
-      acc[member.role].push({
-        label: metadata && metadata.title ? `${identifier} (${metadata.title})` : identifier,
-        value: id
-      });
-    }
-    return acc;
-  }, {} as Record<string, IItem[]>);
+  const tokenTypesByRole = tokenTypes.reduce(
+    (acc, { id, identifier, metadata, member }) => {
+      if (member && member.role) {
+        acc[member.role] ??= [];
+        acc[member.role].push({
+          label: metadata && metadata.title ? `${identifier} (${metadata.title})` : identifier,
+          value: id
+        });
+      }
+      return acc;
+    },
+    {} as Record<string, IItem[]>
+  );
 
   for (const roleItem of creatorRoles) {
     const options = tokenTypesByRole[roleItem.value];
@@ -549,12 +555,12 @@ export function getTokenNameFromModule(moduleId: Module): string | null {
   return isOliveGrower(moduleId)
     ? 'Olives'
     : isBottleManufacturer(moduleId)
-    ? 'Bottles'
-    : isOliveOilMill(moduleId)
-    ? 'Olive Oil'
-    : isBottlingPlant(moduleId) || isRetailer(moduleId)
-    ? 'Olive Oil Bottles'
-    : null;
+      ? 'Bottles'
+      : isOliveOilMill(moduleId)
+        ? 'Olive Oil'
+        : isBottlingPlant(moduleId) || isRetailer(moduleId)
+          ? 'Olive Oil Bottles'
+          : null;
 }
 
 export function getTokenUnitFromModule(moduleId: Module): string {

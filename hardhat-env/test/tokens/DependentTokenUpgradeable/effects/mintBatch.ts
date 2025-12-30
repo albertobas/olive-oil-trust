@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { BigNumber, constants } from 'ethers';
-import { ErrorsBaseToken, ErrorsDependentTokenUpgradeable, ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { DependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
-import { EventsBaseToken, EventsERC1155 } from 'hardhat-env/test/shared/events';
+import { ErrorsBaseToken, ErrorsDependentTokenUpgradeable, ErrorsOwnable } from '@test/shared/errors';
+import { DependentTokenUpgradeableContract } from '@test/shared/types';
+import { EventsBaseToken, EventsERC1155 } from '@test/shared/events';
 
 export default function shouldBehaveLikeMintBatch(
   contract: DependentTokenUpgradeableContract,

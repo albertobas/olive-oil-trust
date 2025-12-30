@@ -1,21 +1,21 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from 'formik';
 import { Root as Label } from '@radix-ui/react-label';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 import { toast } from 'react-toastify';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { IFormikMakeOffer } from 'next-app/src/features/management/utils/interfaces';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { IFormikMakeOffer } from '@features/management/utils/interfaces';
+import SVG from '@features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
-import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
-import { transferMakeOffer } from 'next-app/src/features/management/utils/helpers';
-import { handleAddressValidation, handlePriceValidation } from 'next-app/src/features/shared/ui/utils/helpers';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
+import { IModalInfo } from '@features/shared/ui/utils/interfaces';
+import { transferMakeOffer } from '@features/management/utils/helpers';
+import { handleAddressValidation, handlePriceValidation } from '@features/shared/ui/utils/helpers';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
 import { ImPaste } from 'react-icons/im';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import PriceLabel from 'next-app/src/features/shared/ui/forms/PriceLabel';
+import { renderToast } from '@shared/utils/helpers';
+import PriceLabel from '@features/shared/ui/forms/PriceLabel';
 import { BigNumber } from 'ethers';
 import { formatUnits } from 'ethers/lib/utils';
 
@@ -55,8 +55,8 @@ function MakeOffer({ escrow, setModalInfo, setIsModalOpen }: Props): JSX.Element
       priceUnit === 'ether'
         ? (parseInt(price) * 1e18).toString()
         : priceUnit === 'gwei'
-        ? (parseInt(price) * 1e9).toString()
-        : price;
+          ? (parseInt(price) * 1e9).toString()
+          : price;
     transferMakeOffer(data, escrow, parsedPrice, buyerWallet)
       .then(() => {
         renderToast(toastId, 'The transaction has succeeded.');

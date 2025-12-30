@@ -1,9 +1,9 @@
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
-import { parseEvent } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { getMetadata } from 'next-app/src/features/shared/utils/helpers/metadata';
-import { CertificateRawType } from 'next-app/src/features/shared/utils/interfaces';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import { getMember } from '@features/shared/utils/helpers/member';
+import { parseEvent } from '@features/shared/utils/helpers/helpers';
+import { getTokenType } from '@features/shared/utils/helpers/tokenType';
+import { getMetadata } from '@features/shared/utils/helpers/metadata';
+import { CertificateRawType } from '@features/shared/utils/interfaces';
 
 export function getCertificate(certificate: CertificateRawType): Certificate {
   return {
@@ -16,7 +16,9 @@ export function getCertificate(certificate: CertificateRawType): Certificate {
       ? getMember(certificate.contract.owner.asMemberContract)
       : null,
     tokenTypes:
-      'tokenTypes' in certificate ? certificate.tokenTypes?.map((type) => getTokenType(type.tokenType)) ?? null : null,
+      'tokenTypes' in certificate
+        ? (certificate.tokenTypes?.map((type) => getTokenType(type.tokenType)) ?? null)
+        : null,
     metadata: getMetadata(certificate),
     uri: certificate.uri
   };
@@ -36,8 +38,8 @@ export const sortCertificateArray = (
           ? a.member.name > b.member?.name
             ? -1
             : a.member?.name < b.member?.name
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'date') {
@@ -46,8 +48,8 @@ export const sortCertificateArray = (
           ? a.creationDate < b.creationDate
             ? -1
             : a.creationDate > b.creationDate
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'title') {
@@ -56,8 +58,8 @@ export const sortCertificateArray = (
           ? a.metadata.title > b.metadata.title
             ? -1
             : a.metadata.title < b.metadata.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else return data;
@@ -70,8 +72,8 @@ export const sortCertificateArray = (
           ? a.member.name < b.member?.name
             ? -1
             : a.member?.name > b.member?.name
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'date') {
@@ -80,8 +82,8 @@ export const sortCertificateArray = (
           ? a.creationDate < b.creationDate
             ? -1
             : a.creationDate > b.creationDate
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'title') {
@@ -90,8 +92,8 @@ export const sortCertificateArray = (
           ? a.metadata.title < b.metadata.title
             ? -1
             : a.metadata.title > b.metadata.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else return data;

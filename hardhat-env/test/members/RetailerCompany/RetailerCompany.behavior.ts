@@ -1,7 +1,7 @@
-import { dictChainActorsNames, dictContracts } from 'hardhat-env/shared/constants';
-import { RetailerCompany, RetailerCompanyEscrow } from 'hardhat-env/types';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/members/RetailerCompany/effects/initialize';
-import { deployRetailerAndDeps } from 'hardhat-env/shared/helpers';
+import { dictChainActorsNames, dictContracts } from '@shared/constants';
+import { RetailerCompany, RetailerCompanyEscrow } from '@types';
+import shouldBehaveLikeInitialize from '@test/members/RetailerCompany/effects/initialize';
+import { deployRetailerAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeRetailerCompany(): void {
   const retailerId = dictChainActorsNames.retailer.id1;

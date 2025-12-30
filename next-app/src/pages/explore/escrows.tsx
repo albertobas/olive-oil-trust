@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import AllEscrows from 'next-app/src/features/explore/ui/escrows/AllEscrows';
-import { useAllEscrows } from 'next-app/src/features/explore/ui/hooks/useAllEscrows';
-import { pollInterval } from 'next-app/src/features/shared/utils/constants';
-import { brandName } from 'next-app/src/shared/utils/constants';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import AllEscrows from '@features/explore/ui/escrows/AllEscrows';
+import { useAllEscrows } from '@features/explore/ui/hooks/useAllEscrows';
+import { pollInterval } from '@features/shared/utils/constants';
+import { brandName } from '@shared/utils/constants';
 
 const EscrowsPage: NextPage = () => {
   const state = useAllEscrows(pollInterval);

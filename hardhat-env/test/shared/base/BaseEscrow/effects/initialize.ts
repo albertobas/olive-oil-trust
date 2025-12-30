@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ErrorsInitializable } from 'hardhat-env/test/shared/errors';
-import { BaseEscrowContract } from 'hardhat-env/test/shared/types';
+import { ErrorsInitializable } from '@test/shared/errors';
+import { BaseEscrowContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeInitialize(contract: BaseEscrowContract): void {
   context('succeeds', function () {

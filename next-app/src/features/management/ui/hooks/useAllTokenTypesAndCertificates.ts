@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { TokenTypesState, CertificatesState } from 'next-app/src/features/shared/utils/interfaces';
-import { queryAllTokenTypesAndCertificatesWithDep } from 'next-app/src/features/management/core/interactors';
+import { getTime } from '@features/shared/utils/helpers/helpers';
+import { TokenTypesState, CertificatesState } from '@features/shared/utils/interfaces';
+import { queryAllTokenTypesAndCertificatesWithDep } from '@features/management/core/interactors';
 
 export function useAllTokenTypesAndCertificates(pollInterval?: number): {
   tokenTypesState: TokenTypesState;

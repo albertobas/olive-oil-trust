@@ -1,6 +1,6 @@
-import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import TokensRepository from 'next-app/src/features/explore/core/repositories/Tokens.repository';
-import allTokensAdapter from 'next-app/src/features/explore/core/adapters/allTokens.adapter';
+import { Tokens } from '@features/shared/core/entities/Tokens';
+import TokensRepository from '@features/explore/core/repositories/Tokens.repository';
+import allTokensAdapter from '@features/explore/core/adapters/allTokens.adapter';
 
 const queryAllTokens = (repository: TokensRepository) => async (): Promise<{ error: boolean; data: Tokens | null }> => {
   try {

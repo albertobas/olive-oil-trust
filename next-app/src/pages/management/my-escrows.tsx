@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { isSeller } from 'next-app/src/shared/utils/constants';
-import MyEscrowsByMember from 'next-app/src/features/management/ui/escrows/MyEscrowsByMember';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import { isSeller } from '@shared/utils/constants';
+import MyEscrowsByMember from '@features/management/ui/escrows/MyEscrowsByMember';
 
 const MyEscrowsPage: NextPage = () => {
   const { data } = useAppSelector((state) => state.account);

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { queryEscrowsByBuyerWithDep } from 'next-app/src/features/management/core/interactors';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { EscrowsState } from 'next-app/src/features/shared/utils/interfaces';
+import { queryEscrowsByBuyerWithDep } from '@features/management/core/interactors';
+import { getTime } from '@features/shared/utils/helpers/helpers';
+import { EscrowsState } from '@features/shared/utils/interfaces';
 
 export function useEscrowsByBuyer(address: string, pollInterval?: number): EscrowsState {
   const [escrowsState, setEscrowsState] = useState<EscrowsState>({ error: null, data: null });

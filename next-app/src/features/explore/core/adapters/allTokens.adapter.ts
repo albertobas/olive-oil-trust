@@ -1,6 +1,6 @@
-import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
-import { AllTokensQuery } from 'next-app/.graphclient';
+import { Tokens } from '@features/shared/core/entities/Tokens';
+import { getToken } from '@features/shared/utils/helpers/token';
+import { AllTokensQuery } from '.graphclient';
 
 function allTokensAdapter(dataRaw: AllTokensQuery): Tokens | null {
   if (dataRaw.tokens.length > 0) {

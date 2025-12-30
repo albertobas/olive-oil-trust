@@ -1,4 +1,4 @@
-import { deployOliveGrowerAndDeps } from 'hardhat-env/shared/helpers';
+import { deployOliveGrowerAndDeps } from '@shared/helpers';
 import { upgrades } from 'hardhat';
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 

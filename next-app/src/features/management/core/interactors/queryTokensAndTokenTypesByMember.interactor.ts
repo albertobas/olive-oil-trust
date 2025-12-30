@@ -1,6 +1,6 @@
-import MyTokensRepository from 'next-app/src/features/management/core/repositories/MyTokens.repository';
-import tokensAndTokenTypesByMemberAdapter from 'next-app/src/features/management/core/adapters/tokensAndTokenTypesByMember.adapter';
-import { TokensAndTokenTypesByMember } from 'next-app/src/features/management/core/entities/MyTokens';
+import MyTokensRepository from '@features/management/core/repositories/MyTokens.repository';
+import tokensAndTokenTypesByMemberAdapter from '@features/management/core/adapters/tokensAndTokenTypesByMember.adapter';
+import { TokensAndTokenTypesByMember } from '@features/management/core/entities/MyTokens';
 
 const queryTokensAndTokenTypesByMember =
   (repository: MyTokensRepository) =>

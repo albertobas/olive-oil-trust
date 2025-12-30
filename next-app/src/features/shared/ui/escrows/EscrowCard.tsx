@@ -1,14 +1,14 @@
-import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowCard.module.css';
+import styles from '@features/shared/styles/modules/escrows/EscrowCard.module.css';
 import { join } from 'path';
-import { isIndustrialUnitSeller, pages } from 'next-app/src/shared/utils/constants';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
-import { shouldShowAction } from 'next-app/src/features/shared/ui/utils/helpers';
-import { Button } from 'next-app/src/features/shared/ui/buttons/Button';
-import { getEscrowState, getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { IContract } from 'next-app/src/features/shared/utils/interfaces';
-import { getModuleFromRole } from 'next-app/src/features/management/utils/helpers';
+import { isIndustrialUnitSeller, pages } from '@shared/utils/constants';
+import ILink from '@features/shared/ui/links/ILink';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { IModalInfo } from '@features/shared/ui/utils/interfaces';
+import { shouldShowAction } from '@features/shared/ui/utils/helpers';
+import { Button } from '@features/shared/ui/buttons/Button';
+import { getEscrowState, getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
+import { IContract } from '@features/shared/utils/interfaces';
+import { getModuleFromRole } from '@features/management/utils/helpers';
 import { formatEther, formatUnits } from 'ethers/lib/utils';
 import { BigNumber } from 'ethers';
 import { Dispatch, SetStateAction } from 'react';
@@ -118,8 +118,8 @@ const EscrowCard = ({
                             seller.role === 'OliveGrower'
                               ? `${amount / 1000} kg`
                               : seller.role === 'OliveOilMill'
-                              ? `${amount / 1000} l`
-                              : `${amount} units`
+                                ? `${amount / 1000} l`
+                                : `${amount} units`
                           }`}</span>{' '}
                           x{' '}
                           <ILink href={tokenHref} aria-label={`Batch ${identifier}`}>

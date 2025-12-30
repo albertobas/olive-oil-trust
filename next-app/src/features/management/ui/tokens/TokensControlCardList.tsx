@@ -1,19 +1,14 @@
 import { useMemo, useState, memo } from 'react';
-import TokensCardList from 'next-app/src/features/shared/ui/tokens/TokensCardList';
-import TokensControl from 'next-app/src/features/management/ui/tokens/TokensControl';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import {
-  isIndependentCreator,
-  isDistributor,
-  isOliveOilMill,
-  isBottlingPlant
-} from 'next-app/src/shared/utils/constants';
-import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import FiltersToken from 'next-app/src/features/shared/ui/tokens/FiltersToken';
+import TokensCardList from '@features/shared/ui/tokens/TokensCardList';
+import TokensControl from '@features/management/ui/tokens/TokensControl';
+import { IItem } from '@features/shared/utils/interfaces';
+import { tokenFilter, tokenSearch } from '@features/shared/utils/helpers/helpers';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { Module } from '@shared/utils/interfaces';
+import { isIndependentCreator, isDistributor, isOliveOilMill, isBottlingPlant } from '@shared/utils/constants';
+import { Tokens } from '@features/shared/core/entities/Tokens';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
+import FiltersToken from '@features/shared/ui/tokens/FiltersToken';
 
 type Props = {
   tokens: Tokens | null;
@@ -77,12 +72,12 @@ function TokensControlCardList({ moduleId, ...rest }: Props): JSX.Element {
       ? isIndependentCreator(moduleId)
         ? true
         : isOliveOilMill(moduleId)
-        ? previousMemberTokens || commercialTokens
-        : isBottlingPlant(moduleId)
-        ? previousMemberTokens || commercialTokens || industrialUnitTokens
-        : isDistributor(moduleId)
-        ? previousMemberTokens || industrialUnitTokens
-        : previousMemberTokens || commercialTokens || industrialUnitTokens
+          ? previousMemberTokens || commercialTokens
+          : isBottlingPlant(moduleId)
+            ? previousMemberTokens || commercialTokens || industrialUnitTokens
+            : isDistributor(moduleId)
+              ? previousMemberTokens || industrialUnitTokens
+              : previousMemberTokens || commercialTokens || industrialUnitTokens
       : commercialTokens
   );
 

@@ -1,7 +1,7 @@
-import { IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { Event } from 'next-app/src/features/shared/core/entities/Events';
-import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { IMember } from '@features/shared/utils/interfaces';
+import { Event } from '@features/shared/core/entities/Events';
+import { Metadata } from '@features/shared/core/entities/Metadata';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
 
 export interface Certificate {
   id: string;

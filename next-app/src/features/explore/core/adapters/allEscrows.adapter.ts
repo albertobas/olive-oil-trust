@@ -1,6 +1,6 @@
-import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import { getEscrow } from 'next-app/src/features/shared/utils/helpers/escrow';
-import { AllEscrowsQuery } from 'next-app/.graphclient';
+import { Escrows } from '@features/shared/core/entities/Escrows';
+import { getEscrow } from '@features/shared/utils/helpers/escrow';
+import { AllEscrowsQuery } from '.graphclient';
 
 function allEscrowsAdapter(dataRaw: AllEscrowsQuery): Escrows | null {
   if (dataRaw.escrows.length > 0) {

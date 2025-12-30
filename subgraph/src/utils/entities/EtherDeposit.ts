@@ -1,13 +1,13 @@
 import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts';
-import { EtherDeposit } from 'subgraph/src/generated/types/schema';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
+import { EtherDeposit } from '../../generated/types/schema';
+import { eventId } from '../../utils/helpers';
+import { ensureTransaction } from '../../utils/entities/Transaction';
 import { decimals } from '@amxx/graphprotocol-utils';
-import { ensureEscrow } from 'subgraph/src/utils/entities/Escrow';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { ensureEtherBalance } from 'subgraph/src/utils/entities/Balance';
-import { escrowState } from 'subgraph/src/utils/constants';
-import { increaseBalance } from 'subgraph/src/utils/entities/helpers/balance';
+import { ensureEscrow } from '../../utils/entities/Escrow';
+import { ensureAccount } from '../../utils/entities/Account';
+import { ensureEtherBalance } from '../../utils/entities/Balance';
+import { escrowState } from '../../utils/constants';
+import { increaseBalance } from '../../utils/entities/helpers/balance';
 
 export function registerEtherDeposit(
   event: ethereum.Event,

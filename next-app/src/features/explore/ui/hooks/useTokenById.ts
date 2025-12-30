@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { queryTokenByIdWithDep } from 'next-app/src/features/explore/core/interactors';
-import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
+import { queryTokenByIdWithDep } from '@features/explore/core/interactors';
+import { TokenState } from '@features/shared/utils/interfaces';
 
 export function useTokenById(id: string, pollInterval?: number): TokenState {
   const [tokensState, setTokensState] = useState<TokenState>({ error: null, data: null });

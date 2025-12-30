@@ -1,13 +1,13 @@
 import { join } from 'path';
 import React from 'react';
-import { isOliveGrower, isOliveOilMill, pages } from 'next-app/src/shared/utils/constants';
-import { Event } from 'next-app/src/features/shared/core/entities/Events';
-import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
-import { TokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
-import styles from 'next-app/src/features/explore/styles/modules/tokenTypes/TokenTypeInfo.module.css';
-import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/utils/helpers';
+import { isOliveGrower, isOliveOilMill, pages } from '@shared/utils/constants';
+import { Event } from '@features/shared/core/entities/Events';
+import { Metadata } from '@features/shared/core/entities/Metadata';
+import { TokenTypeInstruction } from '@features/shared/core/entities/TokenTypes';
+import ILink from '@features/shared/ui/links/ILink';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
+import styles from '@features/explore/styles/modules/tokenTypes/TokenTypeInfo.module.css';
+import { getInstuctionTokenUnitFromModule } from '@features/management/utils/helpers';
 
 type Props = {
   identifier: string;

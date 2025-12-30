@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { isBottlingPlant, isCreator, isOliveOilMill } from 'next-app/src/shared/utils/constants';
-import MyTokenTypes from 'next-app/src/features/management/ui/tokenTypes/MyTokenTypes';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import { isBottlingPlant, isCreator, isOliveOilMill } from '@shared/utils/constants';
+import MyTokenTypes from '@features/management/ui/tokenTypes/MyTokenTypes';
 
 const MyTokenTypesPage: NextPage = () => {
   const { data } = useAppSelector((state) => state.account);
@@ -24,8 +24,8 @@ const MyTokenTypesPage: NextPage = () => {
         const previousRoles = isOliveOilMill(moduleId)
           ? ['OliveGrower']
           : isBottlingPlant(moduleId)
-          ? ['OliveOilMill', 'BottleManufacturer']
-          : undefined;
+            ? ['OliveOilMill', 'BottleManufacturer']
+            : undefined;
 
         if (isCreator(moduleId)) {
           return (

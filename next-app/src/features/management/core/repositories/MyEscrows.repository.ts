@@ -1,4 +1,4 @@
-import { EscrowsByBuyerQuery, EscrowsByMemberQuery } from 'next-app/.graphclient';
+import { EscrowsByBuyerQuery, EscrowsByMemberQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 interface MyEscrowsRepository {

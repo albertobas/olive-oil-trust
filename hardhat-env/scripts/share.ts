@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { artifacts, ethers } from 'hardhat';
 import { join } from 'path';
-import { dictAccounts } from 'hardhat-env/shared/constants';
-import { IDeployedContractsJson } from 'hardhat-env/shared/types';
+import { dictAccounts } from '@shared/constants';
+import { IDeployedContractsJson } from '@shared/types';
 import globby = require('globby');
 
 interface IAccountRecord {

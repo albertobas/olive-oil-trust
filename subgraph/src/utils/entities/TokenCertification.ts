@@ -1,7 +1,7 @@
 import { Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { Certificate, TokenCertification } from 'subgraph/src/generated/types/schema';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { eventId } from 'subgraph/src/utils/helpers';
+import { Certificate, TokenCertification } from '../../generated/types/schema';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { eventId } from '../../utils/helpers';
 
 export function registerTokenCertification(
   event: ethereum.Event,

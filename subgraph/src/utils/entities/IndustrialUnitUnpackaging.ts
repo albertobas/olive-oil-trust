@@ -1,7 +1,7 @@
-import { IndustrialUnitUnpackaging } from 'subgraph/src/generated/types/schema';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { ensureIndustrialUnitToken } from 'subgraph/src/utils/entities/Token';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
+import { IndustrialUnitUnpackaging } from '../../generated/types/schema';
+import { eventId } from '../../utils/helpers';
+import { ensureIndustrialUnitToken } from '../../utils/entities/Token';
+import { ensureTransaction } from '../../utils/entities/Transaction';
 import { Bytes, ethereum } from '@graphprotocol/graph-ts';
 
 export function registerIndustrialUnitUnpackaging(event: ethereum.Event, palletId: Bytes, ownerId: Bytes): void {

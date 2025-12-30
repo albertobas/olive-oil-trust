@@ -1,18 +1,18 @@
-import { BottleCompany } from 'next-app/src/generated/types/contracts/members/BottleCompany';
-import { BottlingCompany } from 'next-app/src/generated/types/contracts/members/BottlingCompany';
-import { CertifierCompany } from 'next-app/src/generated/types/contracts/members/CertifierCompany';
-import { DistributorCompany } from 'next-app/src/generated/types/contracts/members/DistributorCompany';
-import { OliveGrowerOne } from 'next-app/src/generated/types/contracts/members/OliveGrowerOne';
-import { OliveOilMillCompany } from 'next-app/src/generated/types/contracts/members/OliveOilMillCompany';
-import { RetailerCompany } from 'next-app/src/generated/types/contracts/members/RetailerCompany';
-import { BottlingCompanyEscrow } from 'next-app/src/generated/types/contracts/escrows/BottlingCompanyEscrow';
-import { BottlingCompanyOliveOilBottle } from 'next-app/src/generated/types/contracts/tokens/BottlingCompanyOliveOilBottle';
-import { roles } from 'next-app/src/shared/utils/constants';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { Certificate, Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { Escrow, Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import { Token, Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { TokenType, TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { BottleCompany } from '@generated/types/contracts/members/BottleCompany';
+import { BottlingCompany } from '@generated/types/contracts/members/BottlingCompany';
+import { CertifierCompany } from '@generated/types/contracts/members/CertifierCompany';
+import { DistributorCompany } from '@generated/types/contracts/members/DistributorCompany';
+import { OliveGrowerOne } from '@generated/types/contracts/members/OliveGrowerOne';
+import { OliveOilMillCompany } from '@generated/types/contracts/members/OliveOilMillCompany';
+import { RetailerCompany } from '@generated/types/contracts/members/RetailerCompany';
+import { BottlingCompanyEscrow } from '@generated/types/contracts/escrows/BottlingCompanyEscrow';
+import { BottlingCompanyOliveOilBottle } from '@generated/types/contracts/tokens/BottlingCompanyOliveOilBottle';
+import { roles } from '@shared/utils/constants';
+import { Module } from '@shared/utils/interfaces';
+import { Certificate, Certificates } from '@features/shared/core/entities/Certificates';
+import { Escrow, Escrows } from '@features/shared/core/entities/Escrows';
+import { Token, Tokens } from '@features/shared/core/entities/Tokens';
+import { TokenType, TokenTypes } from '@features/shared/core/entities/TokenTypes';
 import {
   AllCertificatesQuery,
   AllEscrowsQuery,
@@ -28,7 +28,7 @@ import {
   TokensAndTokenTypesByMemberQuery,
   TokensByAccountQuery,
   TokenTypeByIdQuery
-} from 'next-app/.graphclient';
+} from '.graphclient';
 
 export interface IItem {
   label: string;

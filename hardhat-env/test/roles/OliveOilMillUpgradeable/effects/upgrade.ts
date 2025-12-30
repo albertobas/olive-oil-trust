@@ -1,6 +1,6 @@
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 import { upgrades } from 'hardhat';
-import { deployOliveOilMillAndDeps } from 'hardhat-env/shared/helpers';
+import { deployOliveOilMillAndDeps } from '@shared/helpers';
 
 export default function shouldUpgrade(
   actor: string,

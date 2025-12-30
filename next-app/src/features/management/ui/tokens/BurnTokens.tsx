@@ -1,28 +1,24 @@
 import { Dispatch, FC, SetStateAction, useMemo } from 'react';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import useSignedContract from 'next-app/src/features/shared/ui/hooks/useSignedContract';
-import { IBurnTokenState, IFormikBurnToken } from 'next-app/src/features/management/utils/interfaces';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import useSignedContract from '@features/shared/ui/hooks/useSignedContract';
+import { IBurnTokenState, IFormikBurnToken } from '@features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from '@features/shared/core/entities/Tokens';
 import { Root as Label } from '@radix-ui/react-label';
 import { Formik, Form, Field, ErrorMessage, FieldArray, useFormikContext, FieldProps } from 'formik';
-import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import {
-  getGroupedTokensByType,
-  handleAmountValidation,
-  transferBurnTokens
-} from 'next-app/src/features/management/utils/helpers';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { getGroupedTokensByType, handleAmountValidation, transferBurnTokens } from '@features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { isSeller } from 'next-app/src/shared/utils/constants';
+import SVG from '@features/shared/ui/svg/SVG';
+import { renderToast } from '@shared/utils/helpers';
+import { Module } from '@shared/utils/interfaces';
+import { IGroupedItems, IItem } from '@features/shared/utils/interfaces';
+import { isSeller } from '@shared/utils/constants';
 import { OptionProps } from 'react-select';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 import { BsTrash } from 'react-icons/bs';
-import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
+import { handleSelectValidation } from '@features/shared/ui/utils/helpers';
 
 type Props = {
   commercialTokens: Token[];
@@ -37,7 +33,7 @@ function BurnTokens({ commercialTokens, moduleId, accountAddress, setIsBurningTo
   const { error, data } = useSignedMemberContract();
   const signedEscrowContract = useSignedContract(
     commercialTokens.length
-      ? commercialTokens[0].tokenType?.member?.name?.replace(/ /g, '') + 'OliveOilBottle' ?? null
+      ? (commercialTokens[0].tokenType?.member?.name?.replace(/ /g, '') + 'OliveOilBottle' ?? null)
       : null
   );
   const tokensRecords = useMemo<TokenRecord | null>(() => {
@@ -239,10 +235,10 @@ const BurnDropdown: FC<OptionProps<any> & FieldProps> = ({ form: { setFieldValue
       })
     : [];
   const value = options
-    ? (options as IGroupedItems[])
+    ? ((options as IGroupedItems[])
         .map((options) => options.options)
         .flat()
-        .find((item) => item.value === field.value) ?? null
+        .find((item) => item.value === field.value) ?? null)
     : null;
 
   return (

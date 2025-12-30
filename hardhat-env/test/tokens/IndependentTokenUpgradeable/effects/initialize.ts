@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ErrorsInitializable } from 'hardhat-env/test/shared/errors';
-import { IndependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
+import { ErrorsInitializable } from '@test/shared/errors';
+import { IndependentTokenUpgradeableContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeInitialize(
   contract: IndependentTokenUpgradeableContract,

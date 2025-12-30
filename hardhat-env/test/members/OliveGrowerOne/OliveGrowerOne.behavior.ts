@@ -1,7 +1,7 @@
-import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from 'hardhat-env/shared/constants';
-import { OliveGrowerOne, OliveGrowerOneEscrow, OliveGrowerOneOlives } from 'hardhat-env/types';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/members/OliveGrowerOne/effects/initialize';
-import { deployOliveGrowerAndDeps } from 'hardhat-env/shared/helpers';
+import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from '@shared/constants';
+import { OliveGrowerOne, OliveGrowerOneEscrow, OliveGrowerOneOlives } from '@types';
+import shouldBehaveLikeInitialize from '@test/members/OliveGrowerOne/effects/initialize';
+import { deployOliveGrowerAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeOliveGrowerOne(): void {
   const oliveGrowerId = dictChainActorsNames.oliveGrower.id1;

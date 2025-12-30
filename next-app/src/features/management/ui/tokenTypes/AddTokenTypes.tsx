@@ -1,32 +1,32 @@
 import { useState, useMemo, Dispatch, SetStateAction, useCallback } from 'react';
-import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
-import { IGroupedItems, IItem, Role } from 'next-app/src/features/shared/utils/interfaces';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
+import { IGroupedItems, IItem, Role } from '@features/shared/utils/interfaces';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage } from 'formik';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { Certificate } from '@features/shared/core/entities/Certificates';
 import { Root as Label } from '@radix-ui/react-label';
-import TokenTypesDropdownFiltered from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesDropdownFiltered';
-import { IAddTokenTypeState, IFormikTokenType } from 'next-app/src/features/management/utils/interfaces';
+import TokenTypesDropdownFiltered from '@features/shared/ui/tokenTypes/TokenTypesDropdownFiltered';
+import { IAddTokenTypeState, IFormikTokenType } from '@features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import TokenTypeMiniCard from 'next-app/src/features/management/ui/tokenTypes/TokenTypeMiniCard';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
+import TokenTypeMiniCard from '@features/management/ui/tokenTypes/TokenTypeMiniCard';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
 import {
   getInstuctionTokenUnitFromRole,
   getModuleFromRole,
   getTokenNameFromModule,
   transferTokenTypes
-} from 'next-app/src/features/management/utils/helpers';
+} from '@features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import SVG from '@features/shared/ui/svg/SVG';
 import { BsTrash } from 'react-icons/bs';
 import Carousel from 'react-multi-carousel';
-import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { handleAmountValidation } from 'next-app/src/features/management/utils/helpers';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
+import { handleSelectValidation } from '@features/shared/ui/utils/helpers';
+import { renderToast } from '@shared/utils/helpers';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import { handleAmountValidation } from '@features/management/utils/helpers';
+import { Module } from '@shared/utils/interfaces';
+import { carouselResponsive } from '@features/management/utils/constants';
 
 type Props = {
   previousTokenTypes: TokenType[] | null;
@@ -64,7 +64,7 @@ function AddTokenTypes({ previousTokenTypes, certificates, setIsAddingTokenTypes
             (types[certificate.id] = {
               contract: certificate.contract,
               identifier: certificate.identifier,
-              role: certificate.tokenTypes ? certificate.tokenTypes[0].member?.role ?? null : null,
+              role: certificate.tokenTypes ? (certificate.tokenTypes[0].member?.role ?? null) : null,
               title: certificate.metadata ? certificate.metadata.title : null
             })
         );
@@ -85,10 +85,10 @@ function AddTokenTypes({ previousTokenTypes, certificates, setIsAddingTokenTypes
     return tokenTypesGroup && certificatesGroup
       ? [tokenTypesGroup, certificatesGroup]
       : tokenTypesGroup
-      ? [tokenTypesGroup]
-      : certificatesGroup
-      ? [certificatesGroup]
-      : null;
+        ? [tokenTypesGroup]
+        : certificatesGroup
+          ? [certificatesGroup]
+          : null;
   }, [certificates, previousTokenTypes]);
 
   const handleTokenTypeIdValidation = useCallback(

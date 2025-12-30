@@ -1,11 +1,10 @@
 import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { TokenTypeInstructionsSet } from 'subgraph/src/generated/types/schema';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
-import { ensureTokenType } from 'subgraph/src/utils/entities/TokenType';
-import { DependentTokenUpgradeable } from 'subgraph/src/generated/types/DependentTokenUpgradeableDataSource/DependentTokenUpgradeable';
-import { registerInstruction } from 'subgraph/src/utils/entities/Instruction';
+import { TokenTypeInstructionsSet } from '../../generated/types/schema';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { eventId } from '../../utils/helpers';
+import { ensureTokenContract } from '../../utils/entities/TokenContract';
+import { ensureTokenType } from '../../utils/entities/TokenType';
+import { registerInstruction } from '../../utils/entities/Instruction';
 
 export function registerTokenTypeInstructionsSet(
   event: ethereum.Event,
@@ -30,9 +29,6 @@ export function registerTokenTypeInstructionsSet(
     );
   }
   tokenType.tokenTypeInstructionsSet = instructionsSet.id;
-  let dependentTokenUpgradeable = DependentTokenUpgradeable.bind(event.address);
-  let uriRes = dependentTokenUpgradeable.try_uri(BigInt.fromI32(1));
-  tokenType.uri = uriRes.reverted ? 'null' : uriRes.value.replaceAll('{id}', tokenTypeId.toString());
   tokenType.save();
   instructionsSet.contract = contract.id;
   instructionsSet.emitter = contract.id;

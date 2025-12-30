@@ -1,5 +1,5 @@
-import { TokenTypeCertificateMapping } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
+import { TokenTypeCertificateMapping } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
 
 export function registerTokenTypeCertificateMapping(tokenTypeId: string, certificateId: string): void {
   let id = tokenTypeId.concat(separator.concat(certificateId));

@@ -1,9 +1,9 @@
-import styles from 'next-app/src/features/shared/styles/modules/tokens/TokensCardList.module.css';
+import styles from '@features/shared/styles/modules/tokens/TokensCardList.module.css';
 import React, { useEffect, useState } from 'react';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import TokenCard from 'next-app/src/features/shared/ui/tokens/TokenCard';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import { sortTokenArray } from 'next-app/src/features/shared/utils/helpers/token';
+import { IItem } from '@features/shared/utils/interfaces';
+import TokenCard from '@features/shared/ui/tokens/TokenCard';
+import { Token } from '@features/shared/core/entities/Tokens';
+import { sortTokenArray } from '@features/shared/utils/helpers/token';
 
 type Props = {
   data: Token[];

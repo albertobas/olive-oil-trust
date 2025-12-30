@@ -1,4 +1,4 @@
-import { Module } from 'next-app/src/shared/utils/interfaces';
+import { Module } from '@shared/utils/interfaces';
 
 export const brandName = 'Olive Oil Trust';
 

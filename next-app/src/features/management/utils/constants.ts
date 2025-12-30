@@ -1,4 +1,4 @@
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
+import { IItem } from '@features/shared/utils/interfaces';
 
 export const creatorRoles: IItem[] = [
   { label: 'Olive Growers', value: 'OliveGrower' },

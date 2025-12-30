@@ -1,25 +1,22 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
-import { IGroupedItems } from 'next-app/src/features/shared/utils/interfaces';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
+import { IGroupedItems } from '@features/shared/utils/interfaces';
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from 'formik';
 import { Root as Label } from '@radix-ui/react-label';
-import { ICertifyTokenTypeState, IFormikCertificate } from 'next-app/src/features/management/utils/interfaces';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import { ICertifyTokenTypeState, IFormikCertificate } from '@features/management/utils/interfaces';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 import { toast } from 'react-toastify';
-import {
-  getGroupedTokenTypesByRole,
-  transferCertifiedTokenTypes
-} from 'next-app/src/features/management/utils/helpers';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import { getGroupedTokenTypesByRole, transferCertifiedTokenTypes } from '@features/management/utils/helpers';
+import SVG from '@features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import Carousel from 'react-multi-carousel';
-import CertifyTokenTypesCard from 'next-app/src/features/management/ui/certificates/CertifyTokenTypesCard';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
-import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
-import TokenTypesDropdownMulti from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesDropdownMulti';
+import CertifyTokenTypesCard from '@features/management/ui/certificates/CertifyTokenTypesCard';
+import { renderToast } from '@shared/utils/helpers';
+import { carouselResponsive } from '@features/management/utils/constants';
+import { handleSelectValidation } from '@features/shared/ui/utils/helpers';
+import TokenTypesDropdownMulti from '@features/shared/ui/tokenTypes/TokenTypesDropdownMulti';
 
 type Props = {
   tokenTypes: TokenType[];

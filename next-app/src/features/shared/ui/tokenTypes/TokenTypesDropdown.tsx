@@ -1,8 +1,8 @@
 import { FieldProps } from 'formik';
 import { FC } from 'react';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
+import { IItem } from '@features/shared/utils/interfaces';
 
 const TokenTypesDropdown: FC<OptionProps<any> & FieldProps> = ({
   form: { setFieldValue },

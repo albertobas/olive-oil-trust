@@ -1,21 +1,17 @@
 import { utils } from 'ethers';
-import {
-  activePalletEscrowFixture,
-  depositedPalletEscrowFixture,
-  palletEscrowFixture
-} from 'hardhat-env/test/shared/fixtures';
-import { dictPallet } from 'hardhat-env/test/shared/constants';
-import shouldBehaveLikeCancelPayment from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/cancelPayment';
-import shouldBehaveLikeClose from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/close';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/initialize';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/revertAfterPayment';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/revertBeforePayment';
-import shouldBehaveLikeEscrow from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/view/escrow';
-import shouldBehaveLikeState from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/view/state';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/depositBatch';
-import shouldBehaveLikeMakePayment from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/makePayment';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/depositToken';
-import shouldUpgrade from 'hardhat-env/test/escrows/IndustrialUnitsEscrowUpgradeable/effects/upgrade';
+import { activePalletEscrowFixture, depositedPalletEscrowFixture, palletEscrowFixture } from '@test/shared/fixtures';
+import { dictPallet } from '@test/shared/constants';
+import shouldBehaveLikeCancelPayment from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/cancelPayment';
+import shouldBehaveLikeClose from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/close';
+import shouldBehaveLikeInitialize from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/initialize';
+import shouldBehaveLikeRevertAfterPayment from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/revertAfterPayment';
+import shouldBehaveLikeRevertBeforePayment from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/revertBeforePayment';
+import shouldBehaveLikeEscrow from '@test/escrows/IndustrialUnitsEscrowUpgradeable/view/escrow';
+import shouldBehaveLikeState from '@test/escrows/IndustrialUnitsEscrowUpgradeable/view/state';
+import shouldBehaveLikeDepositBatch from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/depositBatch';
+import shouldBehaveLikeMakePayment from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/makePayment';
+import shouldBehaveLikeDepositToken from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/depositToken';
+import shouldUpgrade from '@test/escrows/IndustrialUnitsEscrowUpgradeable/effects/upgrade';
 
 export function shouldBehaveLikeIndustrialUnitsEscrowUpgradeable(): void {
   const idPallet1 = utils.formatBytes32String(dictPallet.default.id1);

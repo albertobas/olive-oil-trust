@@ -5,12 +5,12 @@ import {
   isIndependentCreator,
   isRetailer,
   pages
-} from 'next-app/src/shared/utils/constants';
-import styles from 'src/app/styles/modules/layout/NavBar.module.css';
-import MenuItem from 'next-app/src/app/ui/layouts/MenuItem';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+} from '@shared/utils/constants';
+import styles from '@app/styles/modules/layout/NavBar.module.css';
+import MenuItem from '@app/ui/layouts/MenuItem';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import ILink from '@features/shared/ui/links/ILink';
+import SVG from '@features/shared/ui/svg/SVG';
 import { BiCommand } from 'react-icons/bi';
 import { MdOutlineExplore } from 'react-icons/md';
 import { Fragment } from 'react';
@@ -62,30 +62,30 @@ function NavBar({ isConnected }: { isConnected: boolean }): JSX.Element {
           exploreMenuItems
         ]
       : isIndependentCreator(moduleId)
-      ? [
-          {
-            ...managementMenuItem,
-            submenu: [myEscrowsMenuItem, myTokensMenuItem, myTokenTypesMenuItem]
-          },
-          exploreMenuItems
-        ]
-      : isDependentCreator(moduleId)
-      ? [
-          {
-            ...managementMenuItem,
-            submenu: [myEscrowsMenuItem, myParticipationsMenuItem, myTokenTypesMenuItem, myTokensMenuItem]
-          },
-          exploreMenuItems
-        ]
-      : isDistributor(moduleId) || isRetailer(moduleId)
-      ? [
-          {
-            ...managementMenuItem,
-            submenu: [myEscrowsMenuItem, myParticipationsMenuItem, myTokensMenuItem]
-          },
-          exploreMenuItems
-        ]
-      : basicMenuItems
+        ? [
+            {
+              ...managementMenuItem,
+              submenu: [myEscrowsMenuItem, myTokensMenuItem, myTokenTypesMenuItem]
+            },
+            exploreMenuItems
+          ]
+        : isDependentCreator(moduleId)
+          ? [
+              {
+                ...managementMenuItem,
+                submenu: [myEscrowsMenuItem, myParticipationsMenuItem, myTokenTypesMenuItem, myTokensMenuItem]
+              },
+              exploreMenuItems
+            ]
+          : isDistributor(moduleId) || isRetailer(moduleId)
+            ? [
+                {
+                  ...managementMenuItem,
+                  submenu: [myEscrowsMenuItem, myParticipationsMenuItem, myTokensMenuItem]
+                },
+                exploreMenuItems
+              ]
+            : basicMenuItems
     : basicMenuItems;
 
   return (

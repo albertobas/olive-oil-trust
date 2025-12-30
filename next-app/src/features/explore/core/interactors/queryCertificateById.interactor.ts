@@ -1,6 +1,6 @@
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import CertificatesRepository from 'next-app/src/features/explore/core/repositories/Certificates.repository';
-import certificateByIdAdapter from 'next-app/src/features/explore/core/adapters/certificateById.adapter';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import CertificatesRepository from '@features/explore/core/repositories/Certificates.repository';
+import certificateByIdAdapter from '@features/explore/core/adapters/certificateById.adapter';
 
 const queryCertificateById =
   (repository: CertificatesRepository) =>

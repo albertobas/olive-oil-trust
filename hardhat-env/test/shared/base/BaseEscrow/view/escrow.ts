@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { BigNumber } from 'ethers';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
-import { BaseEscrowContract, CreationTokenContract } from 'hardhat-env/test/shared/types';
+import { StatesEscrow } from '@test/shared/states';
+import { BaseEscrowContract, CreationTokenContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeEscrow(
   contract: BaseEscrowContract,

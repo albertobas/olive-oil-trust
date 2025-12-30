@@ -1,9 +1,9 @@
-import styles from 'src/features/shared/styles/modules/filters/Filters.module.css';
+import styles from '@features/shared/styles/modules/filters/Filters.module.css';
 import { Dispatch, SetStateAction, useMemo } from 'react';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import FilterSelect from 'next-app/src/features/shared/ui/filters/FilterSelect';
-import { Escrow } from 'next-app/src/features/shared//core/entities/Escrows';
-import { getItemsFromEscrows } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { IItem } from '@features/shared/utils/interfaces';
+import FilterSelect from '@features/shared/ui/filters/FilterSelect';
+import { Escrow } from '@features/shared//core/entities/Escrows';
+import { getItemsFromEscrows } from '@features/shared/utils/helpers/helpers';
 
 interface Props {
   data: Escrow[] | null;

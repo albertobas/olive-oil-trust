@@ -1,9 +1,6 @@
-import {
-  NameSet,
-  OwnershipTransferred
-} from 'subgraph/src/generated/types/RetailerUpgradeableDataSource/RetailerUpgradeable';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { ensureMemberContract, registerMemberName } from 'subgraph/src/utils/entities/MemberContract';
+import { NameSet, OwnershipTransferred } from '../generated/types/RetailerUpgradeableDataSource/RetailerUpgradeable';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { ensureMemberContract, registerMemberName } from '../utils/entities/MemberContract';
 
 export function handleNameSet(event: NameSet): void {
   registerMemberName(event.address, event.params.name, 'Retailer');

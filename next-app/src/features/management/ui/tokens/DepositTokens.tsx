@@ -1,45 +1,45 @@
 import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import { Token } from '@features/shared/core/entities/Tokens';
 import { toast } from 'react-toastify';
 import { ErrorMessage, Field, FieldArray, FieldProps, Form, Formik, FormikHelpers, useFormikContext } from 'formik';
-import { IFormikDepositToken } from 'next-app/src/features/management/utils/interfaces';
+import { IFormikDepositToken } from '@features/management/utils/interfaces';
 import { formatBytes32String, formatUnits } from 'ethers/lib/utils';
-import styles from 'src/features/shared/styles/modules/forms/Form.module.css';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
 import { Root as Label } from '@radix-ui/react-label';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 import {
   getGroupedTokensByType,
   getTokenNameFromModule,
   getTokenUnitFromModule,
   transferDepositTokens
-} from 'next-app/src/features/management/utils/helpers';
+} from '@features/management/utils/helpers';
 import { FaTimes } from 'react-icons/fa';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import SVG from '@features/shared/ui/svg/SVG';
 import { BsTrash } from 'react-icons/bs';
 import { ImPaste } from 'react-icons/im';
 import {
   handleAddressValidation,
   handlePriceValidation,
   handleSelectValidation
-} from 'next-app/src/features/shared/ui/utils/helpers';
-import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import { Module } from 'next-app/src/shared/utils/interfaces';
+} from '@features/shared/ui/utils/helpers';
+import { IGroupedItems, IItem } from '@features/shared/utils/interfaces';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import { renderToast } from '@shared/utils/helpers';
+import { Module } from '@shared/utils/interfaces';
 import {
   isIndustrialUnitSeller,
   isManufacturedUnitSeller,
   isOliveGrower,
   isOliveOilMill,
   isRetailer
-} from 'next-app/src/shared/utils/constants';
-import { handleAmountValidation } from 'next-app/src/features/management/utils/helpers';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+} from '@shared/utils/constants';
+import { handleAmountValidation } from '@features/management/utils/helpers';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import TokensDropdownMulti from 'next-app/src/features/shared/ui/tokens/TokensDropdownMulti';
+import TokensDropdownMulti from '@features/shared/ui/tokens/TokensDropdownMulti';
 import { BigNumber } from 'ethers';
-import PriceLabel from 'next-app/src/features/shared/ui/forms/PriceLabel';
+import PriceLabel from '@features/shared/ui/forms/PriceLabel';
 
 type Props = {
   tokens: Token[] | null;
@@ -131,8 +131,8 @@ function DepositTokens({ tokens, moduleId, setIsDepositingTokens }: Props): JSX.
       priceUnit === 'ether'
         ? (parseFloat(price) * 1e18).toFixed(0).toString()
         : priceUnit === 'gwei'
-        ? (parseFloat(price) * 1e9).toFixed(0).toString()
-        : parseInt(price).toString();
+          ? (parseFloat(price) * 1e9).toFixed(0).toString()
+          : parseInt(price).toString();
     if (tokensRecords) {
       if (isIndustrialUnitSeller_) {
         if (ids) {
@@ -282,10 +282,10 @@ function DepositTokens({ tokens, moduleId, setIsDepositingTokens }: Props): JSX.
                     {({ remove, push }) => {
                       const isAddBatchDisabled = Boolean(
                         fieldArrayIdGroupOpts &&
-                          fieldArray.length ===
-                            fieldArrayIdGroupOpts
-                              .map((group) => group.options.length)
-                              .reduce((acc, current) => acc + current, 0)
+                        fieldArray.length ===
+                          fieldArrayIdGroupOpts
+                            .map((group) => group.options.length)
+                            .reduce((acc, current) => acc + current, 0)
                       );
                       return (
                         <div className={styles.fieldArray}>
@@ -380,10 +380,10 @@ const DepositDropdown: FC<OptionProps<any> & FieldProps> = ({
       })
     : [];
   const value = options
-    ? (options as IGroupedItems[])
+    ? ((options as IGroupedItems[])
         .map((options) => options.options)
         .flat()
-        .find((item) => item.value === field.value) ?? null
+        .find((item) => item.value === field.value) ?? null)
     : null;
 
   return (

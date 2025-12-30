@@ -1,5 +1,5 @@
-import TokensRepository from 'next-app/src/features/explore/core/repositories/Tokens.repository';
-import { AllTokensDocument, AllTokensQuery, execute, TokenByIdDocument, TokenByIdQuery } from 'next-app/.graphclient';
+import TokensRepository from '@features/explore/core/repositories/Tokens.repository';
+import { AllTokensDocument, AllTokensQuery, execute, TokenByIdDocument, TokenByIdQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 class TokensDataSource implements TokensRepository {

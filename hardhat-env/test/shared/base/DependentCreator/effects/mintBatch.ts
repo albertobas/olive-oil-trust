@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import { BigNumber, constants } from 'ethers';
-import { ErrorsDependentCreator, ErrorsOwnable, ErrorsValidationLibrary } from 'hardhat-env/test/shared/errors';
+import { ErrorsDependentCreator, ErrorsOwnable, ErrorsValidationLibrary } from '@test/shared/errors';
 import {
   DependentCreatorContract,
   DependentTokenUpgradeableContract,
   IndependentTokenUpgradeableContract
-} from 'hardhat-env/test/shared/types';
-import { EventsBaseToken, EventsDependentCreator, EventsERC1155 } from 'hardhat-env/test/shared/events';
+} from '@test/shared/types';
+import { EventsBaseToken, EventsDependentCreator, EventsERC1155 } from '@test/shared/events';
 
 export default function shouldBehaveLikeMintBatch(
   contract: DependentCreatorContract,

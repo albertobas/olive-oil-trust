@@ -1,6 +1,6 @@
 import { BigInt, Bytes } from '@graphprotocol/graph-ts';
-import { IndustrialUnitTokenInfo } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
+import { IndustrialUnitTokenInfo } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
 
 export function registerIndustrialUnitTokenInfo(
   contractId: Bytes,

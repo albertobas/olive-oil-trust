@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { queryAllCertificatesWithDep } from 'next-app/src/features/explore/core/interactors';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { CertificatesState } from 'next-app/src/features/shared/utils/interfaces';
+import { queryAllCertificatesWithDep } from '@features/explore/core/interactors';
+import { getTime } from '@features/shared/utils/helpers/helpers';
+import { CertificatesState } from '@features/shared/utils/interfaces';
 
 export function useAllCertificates(pollInterval?: number): CertificatesState {
   const [certificatesState, setCertificatesState] = useState<CertificatesState>({ error: null, data: null });

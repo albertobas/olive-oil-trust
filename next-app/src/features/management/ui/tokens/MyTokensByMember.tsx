@@ -1,10 +1,10 @@
-import { pollInterval } from 'next-app/src/features/shared/utils/constants';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { useTokensAndTokenTypesByMember } from 'next-app/src/features/management/ui/hooks/useTokensAndTokenTypesByMember';
-import TokensControlCardList from 'next-app/src/features/management/ui/tokens/TokensControlCardList';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
-import styles from 'src/features/shared/styles/modules/page/Page.module.css';
-import { Module } from 'next-app/src/shared/utils/interfaces';
+import { pollInterval } from '@features/shared/utils/constants';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { useTokensAndTokenTypesByMember } from '@features/management/ui/hooks/useTokensAndTokenTypesByMember';
+import TokensControlCardList from '@features/management/ui/tokens/TokensControlCardList';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
+import styles from '@features/shared/styles/modules/page/Page.module.css';
+import { Module } from '@shared/utils/interfaces';
 
 type Props = {
   address: string;

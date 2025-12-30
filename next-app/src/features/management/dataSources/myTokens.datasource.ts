@@ -1,11 +1,11 @@
-import MyTokensRepository from 'next-app/src/features/management/core/repositories/MyTokens.repository';
+import MyTokensRepository from '@features/management/core/repositories/MyTokens.repository';
 import {
   execute,
   TokensAndTokenTypesByMemberDocument,
   TokensAndTokenTypesByMemberQuery,
   TokensByAccountDocument,
   TokensByAccountQuery
-} from 'next-app/.graphclient';
+} from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 class MyTokensDataSource implements MyTokensRepository {

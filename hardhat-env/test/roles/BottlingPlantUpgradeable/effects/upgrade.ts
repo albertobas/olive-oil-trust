@@ -1,4 +1,4 @@
-import { deployBottlingPlantAndDeps } from 'hardhat-env/shared/helpers';
+import { deployBottlingPlantAndDeps } from '@shared/helpers';
 import { upgrades } from 'hardhat';
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 

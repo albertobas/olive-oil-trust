@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { queryCertificatesByMemberAndAllTokenTypesWithDep } from 'next-app/src/features/management/core/interactors';
-import { TokenTypesState, CertificatesState } from 'next-app/src/features/shared/utils/interfaces';
+import { getTime } from '@features/shared/utils/helpers/helpers';
+import { queryCertificatesByMemberAndAllTokenTypesWithDep } from '@features/management/core/interactors';
+import { TokenTypesState, CertificatesState } from '@features/shared/utils/interfaces';
 
 export function useCertificatesByMemberAndAllTokenTypes(
   address: string,

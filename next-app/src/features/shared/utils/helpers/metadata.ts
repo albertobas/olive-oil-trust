@@ -1,5 +1,5 @@
-import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
-import { MetadataRawType } from 'next-app/src/features/shared/utils/interfaces';
+import { Metadata } from '@features/shared/core/entities/Metadata';
+import { MetadataRawType } from '@features/shared/utils/interfaces';
 
 export function getMetadata({
   bottleQuality,

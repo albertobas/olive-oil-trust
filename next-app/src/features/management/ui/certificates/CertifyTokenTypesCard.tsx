@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
-import styles from 'src/features/management/styles/modules/certificates/CertifyTokenTypesCard.module.css';
+import SVG from '@features/shared/ui/svg/SVG';
+import styles from '@features/management/styles/modules/certificates/CertifyTokenTypesCard.module.css';
 import { FaTimes } from 'react-icons/fa';
-import { ICertifyTokenTypeState } from 'next-app/src/features/management/utils/interfaces';
+import { ICertifyTokenTypeState } from '@features/management/utils/interfaces';
 
 type Props = ICertifyTokenTypeState & {
   handleDelCertificate: (id: string) => void;

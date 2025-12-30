@@ -1,9 +1,9 @@
-import styles from 'src/features/shared/styles/modules/filters/Filters.module.css';
+import styles from '@features/shared/styles/modules/filters/Filters.module.css';
 import { Dispatch, SetStateAction, useMemo } from 'react';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import FilterSelect from 'next-app/src/features/shared/ui/filters/FilterSelect';
-import { getItemsFromTokens } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import { IItem } from '@features/shared/utils/interfaces';
+import FilterSelect from '@features/shared/ui/filters/FilterSelect';
+import { getItemsFromTokens } from '@features/shared/utils/helpers/helpers';
+import { Token } from '@features/shared/core/entities/Tokens';
 
 interface Props {
   data: Token[] | null;

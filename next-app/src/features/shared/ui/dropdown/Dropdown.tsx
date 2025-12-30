@@ -1,6 +1,6 @@
 import Select, { OptionsOrGroups } from 'react-select';
 import { memo, useMemo } from 'react';
-import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
+import { IGroupedItems, IItem } from '@features/shared/utils/interfaces';
 
 type Props = {
   instanceId: string;

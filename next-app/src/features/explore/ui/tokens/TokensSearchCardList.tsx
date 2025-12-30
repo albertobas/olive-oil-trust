@@ -1,12 +1,12 @@
 import { memo, useMemo, useState } from 'react';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { sortTokenCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import TokensCardList from 'next-app/src/features/shared/ui/tokens/TokensCardList';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { tokenFilter, tokenSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import FiltersToken from 'next-app/src/features/shared/ui/tokens/FiltersToken';
+import { IItem } from '@features/shared/utils/interfaces';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { sortTokenCardsRecords } from '@features/shared/utils/constants';
+import TokensCardList from '@features/shared/ui/tokens/TokensCardList';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { tokenFilter, tokenSearch } from '@features/shared/utils/helpers/helpers';
+import { Tokens } from '@features/shared/core/entities/Tokens';
+import FiltersToken from '@features/shared/ui/tokens/FiltersToken';
 
 type Props = {
   tokens: Tokens | null;

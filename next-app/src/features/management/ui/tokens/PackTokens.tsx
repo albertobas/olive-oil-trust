@@ -1,28 +1,24 @@
 import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { IFormikPackToken, IPackTokenState } from 'next-app/src/features/management/utils/interfaces';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import { IGroupedItems, IItem } from '@features/shared/utils/interfaces';
+import { IFormikPackToken, IPackTokenState } from '@features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
+import { Token } from '@features/shared/core/entities/Tokens';
 import { Formik, Form, Field, FieldArray, FormikHelpers, ErrorMessage, useFormikContext, FieldProps } from 'formik';
-import PackTokenCard from 'next-app/src/features/management/ui/tokens/PackTokenCard';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import {
-  getGroupedTokensByType,
-  handleAmountValidation,
-  transferPackTokens
-} from 'next-app/src/features/management/utils/helpers';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
+import PackTokenCard from '@features/management/ui/tokens/PackTokenCard';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { getGroupedTokensByType, handleAmountValidation, transferPackTokens } from '@features/management/utils/helpers';
+import { renderToast } from '@shared/utils/helpers';
 import { Root as Label } from '@radix-ui/react-label';
-import styles from 'next-app/src/features/shared/styles/modules/forms/Form.module.css';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
+import SVG from '@features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
 import Carousel from 'react-multi-carousel';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import { carouselResponsive } from 'next-app/src/features/management/utils/constants';
-import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
+import { carouselResponsive } from '@features/management/utils/constants';
+import { handleSelectValidation } from '@features/shared/ui/utils/helpers';
 
 type Props = {
   commercialTokens: Token[];
@@ -277,10 +273,10 @@ const PackDropdown: FC<OptionProps<any> & FieldProps> = ({ form: { setFieldValue
       })
     : [];
   const value = options
-    ? (options as IGroupedItems[])
+    ? ((options as IGroupedItems[])
         .map((options) => options.options)
         .flat()
-        .find((item) => item.value === field.value) ?? null
+        .find((item) => item.value === field.value) ?? null)
     : null;
 
   return (

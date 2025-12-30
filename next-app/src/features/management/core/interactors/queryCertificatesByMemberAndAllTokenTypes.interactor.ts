@@ -1,6 +1,6 @@
-import MyCertificatesRepository from 'next-app/src/features/management/core/repositories/MyCertificates.repository';
-import certificatesByMemberAndAllTokenTypesAdapter from 'next-app/src/features/management/core/adapters/certificatesByMemberAndAllTokenTypes.adapter';
-import { CertificatesByMemberAndAllTokenTypes } from 'next-app/src/features/management/core/entities/MyCertificates';
+import MyCertificatesRepository from '@features/management/core/repositories/MyCertificates.repository';
+import certificatesByMemberAndAllTokenTypesAdapter from '@features/management/core/adapters/certificatesByMemberAndAllTokenTypes.adapter';
+import { CertificatesByMemberAndAllTokenTypes } from '@features/management/core/entities/MyCertificates';
 
 const queryCertificatesByMemberAndAllTokenTypes =
   (repository: MyCertificatesRepository) =>

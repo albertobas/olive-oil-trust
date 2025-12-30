@@ -1,5 +1,5 @@
-import MyCertificatesRepository from 'next-app/src/features/management/core/repositories/MyCertificates.repository';
-import { execute, CertificatesByMemberDocument, CertificatesByMemberQuery } from 'next-app/.graphclient';
+import MyCertificatesRepository from '@features/management/core/repositories/MyCertificates.repository';
+import { execute, CertificatesByMemberDocument, CertificatesByMemberQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 class MyCertificatesDataSource implements MyCertificatesRepository {

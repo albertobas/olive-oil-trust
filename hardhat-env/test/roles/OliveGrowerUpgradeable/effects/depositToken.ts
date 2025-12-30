@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseToken, EventsERC1155, EventsEscrow } from 'hardhat-env/test/shared/events';
+import { ErrorsOwnable } from '@test/shared/errors';
+import { EventsBaseToken, EventsERC1155, EventsEscrow } from '@test/shared/events';
 
 export default function shouldBehaveLikeDepositToken(
   escrowId: number,

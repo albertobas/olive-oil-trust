@@ -1,12 +1,7 @@
-import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from 'hardhat-env/shared/constants';
-import {
-  BottlingCompany,
-  BottlingCompanyOliveOilBottle,
-  BottlingCompanyPallet,
-  BottlingCompanyEscrow
-} from 'hardhat-env/types';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/members/BottlingCompany/effects/initialize';
-import { deployBottlingPlantAndDeps } from 'hardhat-env/shared/helpers';
+import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from '@shared/constants';
+import { BottlingCompany, BottlingCompanyOliveOilBottle, BottlingCompanyPallet, BottlingCompanyEscrow } from '@types';
+import shouldBehaveLikeInitialize from '@test/members/BottlingCompany/effects/initialize';
+import { deployBottlingPlantAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeBottlingCompany(): void {
   const bottlingPlantId = dictChainActorsNames.bottlingPlant.id1;

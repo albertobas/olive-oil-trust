@@ -1,8 +1,8 @@
-import styles from 'next-app/src/features/shared/styles/modules/tokens/TokenCard.module.css';
-import { pages } from 'next-app/src/shared/utils/constants';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { TokenFields } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
+import styles from '@features/shared/styles/modules/tokens/TokenCard.module.css';
+import { pages } from '@shared/utils/constants';
+import ILink from '@features/shared/ui/links/ILink';
+import { TokenFields } from '@features/shared/core/entities/Tokens';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
 import Image from 'next/image';
 import { join } from 'path';
 

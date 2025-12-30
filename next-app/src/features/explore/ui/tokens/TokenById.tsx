@@ -1,16 +1,16 @@
 import Image from 'next/image';
-import styles from 'next-app/src/features/explore/styles/modules/tokens/TokenById.module.css';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
+import styles from '@features/explore/styles/modules/tokens/TokenById.module.css';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
+import ILink from '@features/shared/ui/links/ILink';
 import { Fragment } from 'react';
-import AncestryTokenCard from 'next-app/src/features/explore/ui/tokens/AncestryTokenCard';
-import { Role } from 'next-app/src/features/shared/utils/interfaces';
-import { pages, roles } from 'next-app/src/shared/utils/constants';
+import AncestryTokenCard from '@features/explore/ui/tokens/AncestryTokenCard';
+import { Role } from '@features/shared/utils/interfaces';
+import { pages, roles } from '@shared/utils/constants';
 import Xarrow, { Xwrapper } from 'react-xarrows';
-import TokenTypeInfo from 'next-app/src/features/explore/ui/tokenTypes/TokenTypeInfo';
+import TokenTypeInfo from '@features/explore/ui/tokenTypes/TokenTypeInfo';
 import { join } from 'path';
-import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import { TokenState } from '@features/shared/utils/interfaces';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 function TokenById({ error, data, id }: TokenState & { id: string }): JSX.Element {
   if (error) {

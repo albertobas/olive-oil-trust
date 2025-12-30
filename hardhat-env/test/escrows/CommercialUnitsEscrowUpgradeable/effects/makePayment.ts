@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsBaseEscrow, ErrorsCommercialUnitsEscrowUpgradeable } from 'hardhat-env/test/shared/errors';
-import { EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { ErrorsBaseEscrow, ErrorsCommercialUnitsEscrowUpgradeable } from '@test/shared/errors';
+import { EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
 
 export default function shouldBehaveLikeMakePayment(escrowId: number, tokenPrice: string): void {
   const options = { value: tokenPrice };

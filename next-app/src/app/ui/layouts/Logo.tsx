@@ -1,4 +1,4 @@
-import styles from 'src/app/styles/modules/layout/Logo.module.css';
+import styles from '@app/styles/modules/layout/Logo.module.css';
 
 function Logo(): JSX.Element {
   return (

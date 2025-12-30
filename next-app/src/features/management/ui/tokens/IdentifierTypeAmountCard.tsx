@@ -1,9 +1,9 @@
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
-import styles from 'src/features/management/styles/modules/tokens/IdentifierTypeAmountCard.module.css';
+import SVG from '@features/shared/ui/svg/SVG';
+import styles from '@features/management/styles/modules/tokens/IdentifierTypeAmountCard.module.css';
 import { FaTimes } from 'react-icons/fa';
-import { IBaseTokenState } from 'next-app/src/features/management/utils/interfaces';
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { isOliveGrower, isOliveOilMill } from 'next-app/src/shared/utils/constants';
+import { IBaseTokenState } from '@features/management/utils/interfaces';
+import { Module } from '@shared/utils/interfaces';
+import { isOliveGrower, isOliveOilMill } from '@shared/utils/constants';
 
 type Props = IBaseTokenState & {
   moduleId: Module;
@@ -39,8 +39,8 @@ const IdentifierTypeAmountCard = ({
               isOliveGrower(moduleId)
                 ? (tokenAmount / 1000).toString().concat(' kg')
                 : isOliveOilMill(moduleId)
-                ? (tokenAmount / 1000).toString().concat(' l')
-                : tokenAmount
+                  ? (tokenAmount / 1000).toString().concat(' l')
+                  : tokenAmount
             }`}
       </p>
     </div>

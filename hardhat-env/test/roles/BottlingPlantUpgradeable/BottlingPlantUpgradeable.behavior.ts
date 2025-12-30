@@ -1,6 +1,6 @@
-import { dictBottle, dictOliveOil, dictOliveOilBottle, dictPallet } from 'hardhat-env/test/shared/constants';
-import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from 'hardhat-env/shared/constants';
 import { BigNumber, utils } from 'ethers';
+import { dictBottle, dictOliveOil, dictOliveOilBottle, dictPallet } from '@test/shared/constants';
+import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from '@shared/constants';
 import {
   bottlingPlantFixture,
   activeBottlingPlantFixture,
@@ -11,28 +11,28 @@ import {
   mintedBottlingPlantFixture,
   packedBottlingPlantFixture,
   paymentBottlingPlantFixture
-} from 'hardhat-env/test/shared/fixtures';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/roles/BottlingPlantUpgradeable/effects/initialize';
-import shouldBehaveLikeSetTokenTypeInstructions from 'hardhat-env/test/shared/base/DependentCreator/effects/setTokenTypeInstructions';
-import shouldBehaveLikeSetTokenTypesInstructions from 'hardhat-env/test/shared/base/DependentCreator/effects/setTokenTypesInstructions';
-import shouldBehaveLikeMint from 'hardhat-env/test/shared/base/DependentCreator/effects/mint';
-import shouldBehaveLikeMintBatch from 'hardhat-env/test/shared/base/DependentCreator/effects/mintBatch';
-import shouldBehaveLikeName from 'hardhat-env/test/shared/base/BaseMember/view/name';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/shared/base/IndustrialUnitsSeller/effects/depositToken';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/shared/base/IndustrialUnitsSeller/effects/depositBatch';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/shared/base/IndustrialUnitsSeller/effects/revertBeforePayment';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/shared/base/IndustrialUnitsSeller/effects/revertAfterPayment';
-import shouldBehaveLikeCloseEscrow from 'hardhat-env/test/shared/base/IndustrialUnitsSeller/effects/closeEscrow';
-import shouldBehaveLikeMakePayment from 'hardhat-env/test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/makePayment';
-import shouldBehaveLikeCancelPayment from 'hardhat-env/test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/cancelPayment';
-import shouldBehaveLikePack from 'hardhat-env/test/roles/BottlingPlantUpgradeable/effects/pack';
-import shouldBehaveLikePackBatch from 'hardhat-env/test/roles/BottlingPlantUpgradeable/effects/packBatch';
-import shouldBehaveLikeUnpack from 'hardhat-env/test/roles/BottlingPlantUpgradeable/effects/unpack';
-import shouldBehaveLikeUnpackBatch from 'hardhat-env/test/roles/BottlingPlantUpgradeable/effects/unpackBatch';
-import shouldBehaveLikeReceive from 'hardhat-env/test/shared/base/BaseSeller/effects/receive';
-import shouldUpgrade from 'hardhat-env/test/roles/BottlingPlantUpgradeable/effects/upgrade';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseSeller/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseSeller/effects/burnBatch';
+} from '@test/shared/fixtures';
+import shouldBehaveLikeInitialize from '@test/roles/BottlingPlantUpgradeable/effects/initialize';
+import shouldBehaveLikeSetTokenTypeInstructions from '@test/shared/base/DependentCreator/effects/setTokenTypeInstructions';
+import shouldBehaveLikeSetTokenTypesInstructions from '@test/shared/base/DependentCreator/effects/setTokenTypesInstructions';
+import shouldBehaveLikeMint from '@test/shared/base/DependentCreator/effects/mint';
+import shouldBehaveLikeMintBatch from '@test/shared/base/DependentCreator/effects/mintBatch';
+import shouldBehaveLikeName from '@test/shared/base/BaseMember/view/name';
+import shouldBehaveLikeDepositToken from '@test/shared/base/IndustrialUnitsSeller/effects/depositToken';
+import shouldBehaveLikeDepositBatch from '@test/shared/base/IndustrialUnitsSeller/effects/depositBatch';
+import shouldBehaveLikeRevertBeforePayment from '@test/shared/base/IndustrialUnitsSeller/effects/revertBeforePayment';
+import shouldBehaveLikeRevertAfterPayment from '@test/shared/base/IndustrialUnitsSeller/effects/revertAfterPayment';
+import shouldBehaveLikeCloseEscrow from '@test/shared/base/IndustrialUnitsSeller/effects/closeEscrow';
+import shouldBehaveLikeMakePayment from '@test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/makePayment';
+import shouldBehaveLikeCancelPayment from '@test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/cancelPayment';
+import shouldBehaveLikePack from '@test/roles/BottlingPlantUpgradeable/effects/pack';
+import shouldBehaveLikePackBatch from '@test/roles/BottlingPlantUpgradeable/effects/packBatch';
+import shouldBehaveLikeUnpack from '@test/roles/BottlingPlantUpgradeable/effects/unpack';
+import shouldBehaveLikeUnpackBatch from '@test/roles/BottlingPlantUpgradeable/effects/unpackBatch';
+import shouldBehaveLikeReceive from '@test/shared/base/BaseSeller/effects/receive';
+import shouldUpgrade from '@test/roles/BottlingPlantUpgradeable/effects/upgrade';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseSeller/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseSeller/effects/burnBatch';
 
 export function shouldBehaveLikeBottlingPlantUpgradeable(): void {
   const contract = 'bottlingPlant';
@@ -114,9 +114,8 @@ export function shouldBehaveLikeBottlingPlantUpgradeable(): void {
 
     describe('#initialize', function () {
       before(async function () {
-        const { bottlingPlant, oliveOilBottleToken, palletToken, escrow } = await this.loadFixture(
-          bottlingPlantFixture
-        );
+        const { bottlingPlant, oliveOilBottleToken, palletToken, escrow } =
+          await this.loadFixture(bottlingPlantFixture);
         this.contracts.bottlingPlant = bottlingPlant;
         this.contracts.oliveOilBottleToken = oliveOilBottleToken;
         this.contracts.palletToken = palletToken;

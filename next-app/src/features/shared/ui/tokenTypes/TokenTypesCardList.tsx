@@ -1,9 +1,9 @@
-import styles from 'next-app/src/features/shared/styles/modules/tokenTypes/TokenTypesCardList.module.css';
+import styles from '@features/shared/styles/modules/tokenTypes/TokenTypesCardList.module.css';
 import React, { useEffect, useState } from 'react';
-import { sortTokenTypeArray } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import TokenTypeCard from 'next-app/src/features/shared/ui/tokenTypes/TokenTypeCard';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { sortTokenTypeArray } from '@features/shared/utils/helpers/tokenType';
+import { IItem } from '@features/shared/utils/interfaces';
+import TokenTypeCard from '@features/shared/ui/tokenTypes/TokenTypeCard';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
 
 type Props = {
   data: TokenType[];

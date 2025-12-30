@@ -1,10 +1,10 @@
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
-import styles from 'next-app/src/features/explore/styles/modules/certificates/CertificateById.module.css';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { pages } from 'next-app/src/shared/utils/constants';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
+import styles from '@features/explore/styles/modules/certificates/CertificateById.module.css';
+import ILink from '@features/shared/ui/links/ILink';
+import { pages } from '@shared/utils/constants';
 import { join } from 'path';
-import { CertificateState } from 'next-app/src/features/shared/utils/interfaces';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import { CertificateState } from '@features/shared/utils/interfaces';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 function CertificateById({ error, data, id }: CertificateState & { id: string }): JSX.Element {
   if (error) {

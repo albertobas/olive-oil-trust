@@ -15,7 +15,7 @@ import {
   DistributorUpgradeableWithInit,
   RetailerUpgradeableWithInit,
   CertifierUpgradeableWithInit
-} from 'hardhat-env/types';
+} from '@types';
 import {
   bytes32Data,
   dictBottle,
@@ -24,9 +24,9 @@ import {
   dictCertificate,
   dictOliveOilBottle,
   dictPallet
-} from 'hardhat-env/test/shared/constants';
-import { deploy, deployWithUpgrades } from 'hardhat-env/shared/helpers';
-import { baseUri, dictContracts } from 'hardhat-env/shared/constants';
+} from '@test/shared/constants';
+import { deploy, deployWithUpgrades } from '@shared/helpers';
+import { baseUri, dictContracts } from '@shared/constants';
 
 const idPicual = utils.formatBytes32String(dictOlives.picual.id);
 const idArbequina = utils.formatBytes32String(dictOlives.arbequina.id);

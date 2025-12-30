@@ -1,6 +1,6 @@
 import { ethers, upgrades } from 'hardhat';
-import { dictContracts } from 'hardhat-env/shared/constants';
-import { IndependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
+import { dictContracts } from '@shared/constants';
+import { IndependentTokenUpgradeableContract } from '@test/shared/types';
 
 export default function shouldUpgrade(contract: IndependentTokenUpgradeableContract): void {
   context('succeeds', function () {

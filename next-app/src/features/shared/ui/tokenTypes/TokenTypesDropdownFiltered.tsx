@@ -1,9 +1,9 @@
 import { FieldProps, useFormikContext } from 'formik';
 import { FC } from 'react';
-import { IGroupedItems, IItem } from 'next-app/src/features/shared/utils/interfaces';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+import { IGroupedItems, IItem } from '@features/shared/utils/interfaces';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 import { OptionProps } from 'react-select';
-import { IFormikTokenType } from 'next-app/src/features/management/utils/interfaces';
+import { IFormikTokenType } from '@features/management/utils/interfaces';
 
 const TokenTypesDropdownFiltered: FC<OptionProps<any> & FieldProps> = ({ form, field, options }): JSX.Element => {
   const { values } = useFormikContext();

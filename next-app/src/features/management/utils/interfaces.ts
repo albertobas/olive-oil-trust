@@ -1,4 +1,4 @@
-import { Module } from 'next-app/src/shared/utils/interfaces';
+import { Module } from '@shared/utils/interfaces';
 
 export interface IAddTokenTypeState {
   id: string;
@@ -44,11 +44,10 @@ export interface IPackTokenState {
 
 export interface IFormikTokenType {
   id: string;
-  fieldArray:
-    | {
-        id: string | null;
-        amount: string;
-      }[];
+  fieldArray: {
+    id: string | null;
+    amount: string;
+  }[];
 }
 
 export interface IFormikMintToken {

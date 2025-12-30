@@ -1,8 +1,8 @@
-import { Module } from 'next-app/src/shared/utils/interfaces';
-import { IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { Event } from 'next-app/src/features/shared/core/entities/Events';
-import { Metadata } from 'next-app/src/features/shared/core/entities/Metadata';
+import { Module } from '@shared/utils/interfaces';
+import { IMember } from '@features/shared/utils/interfaces';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import { Event } from '@features/shared/core/entities/Events';
+import { Metadata } from '@features/shared/core/entities/Metadata';
 
 export interface TokenTypeInstruction {
   id: string;

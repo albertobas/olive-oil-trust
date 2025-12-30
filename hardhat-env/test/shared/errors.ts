@@ -71,3 +71,7 @@ export enum ErrorsValidationLibrary {
   InvalidInputToken = 'ValidationInvalidInputToken',
   InvalidAmount = 'ValidationInvalidAmount'
 }
+
+export enum ErrorsDistributorUpgradeable {
+  InvalidArray = 'DistributorUpgradeableInvalidArray'
+}

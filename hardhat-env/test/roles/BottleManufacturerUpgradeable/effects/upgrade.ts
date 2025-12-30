@@ -1,6 +1,6 @@
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 import { upgrades } from 'hardhat';
-import { deployBottleManufacturerAndDeps } from 'hardhat-env/shared/helpers';
+import { deployBottleManufacturerAndDeps } from '@shared/helpers';
 
 export default function shouldUpgrade(
   actor: string,

@@ -1,6 +1,6 @@
-import { IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import { IMember } from '@features/shared/utils/interfaces';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
 
 export interface TokensInfo {
   [tokenId: string]: {

@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsActor, EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { ErrorsOwnable } from '@test/shared/errors';
+import { EventsActor, EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
 import {
   IndustrialOrCommercialUnitsEscrowContract,
   IndustrialOrCommercialUnitsPaymentGatewayContract
-} from 'hardhat-env/test/shared/types';
+} from '@test/shared/types';
 
 export default function shouldBehaveLikeCancelPayment(
   contract: IndustrialOrCommercialUnitsPaymentGatewayContract,

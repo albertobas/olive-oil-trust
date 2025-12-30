@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { queryTokensByAccountWithDep } from 'next-app/src/features/management/core/interactors';
-import { TokensState } from 'next-app/src/features/shared/utils/interfaces';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { queryTokensByAccountWithDep } from '@features/management/core/interactors';
+import { TokensState } from '@features/shared/utils/interfaces';
+import { getTime } from '@features/shared/utils/helpers/helpers';
 
 export function useTokensByAccount(address: string, pollInterval?: number): TokensState {
   const [tokensState, setTokensState] = useState<TokensState>({ error: null, data: null });

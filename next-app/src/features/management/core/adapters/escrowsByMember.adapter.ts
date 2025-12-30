@@ -1,6 +1,6 @@
-import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import { getEscrow } from 'next-app/src/features/shared/utils/helpers/escrow';
-import { EscrowsByMemberQuery } from 'next-app/.graphclient';
+import { Escrows } from '@features/shared/core/entities/Escrows';
+import { getEscrow } from '@features/shared/utils/helpers/escrow';
+import { EscrowsByMemberQuery } from '.graphclient';
 
 const escrowsByMemberAdapter = (dataRaw: EscrowsByMemberQuery): Escrows | null => {
   if (dataRaw.memberContract) {

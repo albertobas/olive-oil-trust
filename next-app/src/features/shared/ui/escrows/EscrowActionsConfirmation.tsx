@@ -1,12 +1,12 @@
-import { IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
+import { IModalInfo } from '@features/shared/ui/utils/interfaces';
 import { toast } from 'react-toastify';
-import { transferEscrowActions } from 'next-app/src/features/shared/ui/utils/helpers';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import useSignedContract from 'next-app/src/features/shared/ui/hooks/useSignedContract';
+import { transferEscrowActions } from '@features/shared/ui/utils/helpers';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import useSignedContract from '@features/shared/ui/hooks/useSignedContract';
 import { Dispatch, SetStateAction } from 'react';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import styles from 'next-app/src/features/shared/styles/modules/escrows/EscrowActionsConfirmation.module.css';
+import { Escrow } from '@features/shared/core/entities/Escrows';
+import { renderToast } from '@shared/utils/helpers';
+import styles from '@features/shared/styles/modules/escrows/EscrowActionsConfirmation.module.css';
 
 type Props = {
   escrow: Escrow;
@@ -33,10 +33,10 @@ function EscrowActionsConfirmation({ escrow, modalInfo, isMember, setModalInfo, 
             modalInfo.action === 'revertBeforePayment' || modalInfo.action === 'revertAfterPayment'
               ? 'The escrow has been reverted'
               : modalInfo.action === 'closeEscrow'
-              ? 'The escrow has been closed'
-              : modalInfo.action === 'cancelPayment'
-              ? 'The deposit of ether has been cancelled'
-              : ''
+                ? 'The escrow has been closed'
+                : modalInfo.action === 'cancelPayment'
+                  ? 'The deposit of ether has been cancelled'
+                  : ''
           }.`
         );
       })
@@ -60,10 +60,10 @@ function EscrowActionsConfirmation({ escrow, modalInfo, isMember, setModalInfo, 
         modalInfo.action === 'revertBeforePayment' || modalInfo.action === 'revertAfterPayment'
           ? 'revert the escrow'
           : modalInfo.action === 'closeEscrow'
-          ? 'close the escrow'
-          : modalInfo.action === 'cancelPayment'
-          ? 'cancel the deposit of ether in the escrow'
-          : ''
+            ? 'close the escrow'
+            : modalInfo.action === 'cancelPayment'
+              ? 'cancel the deposit of ether in the escrow'
+              : ''
       } ${identifier}?`}</p>
       <div className={styles.actionBtns}>
         <button onClick={handleConfirm}>Confirm</button>

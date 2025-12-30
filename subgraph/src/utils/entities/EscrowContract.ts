@@ -1,5 +1,5 @@
 import { Address } from '@graphprotocol/graph-ts';
-import { Account, EscrowContract } from 'subgraph/src/generated/types/schema';
+import { Account, EscrowContract } from '../../generated/types/schema';
 
 export function ensureEscrowContract(addr: Address): EscrowContract {
   let contract = EscrowContract.load(addr);

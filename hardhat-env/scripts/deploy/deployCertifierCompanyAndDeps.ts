@@ -1,7 +1,7 @@
 import { ethers } from 'hardhat';
-import { baseUri, dictAccounts, dictContracts, dictInheritedModules, uupsOpts } from 'hardhat-env/shared/constants';
-import { deployCertifierAndDeps } from 'hardhat-env/shared/helpers';
-import { IDeployedActorAndDeps } from 'hardhat-env/shared/types';
+import { baseUri, dictAccounts, dictContracts, dictInheritedModules, uupsOpts } from '@shared/constants';
+import { deployCertifierAndDeps } from '@shared/helpers';
+import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployCertifierCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {
   const certifierCompanyContractName = dictContracts.certifierCompany.v1;

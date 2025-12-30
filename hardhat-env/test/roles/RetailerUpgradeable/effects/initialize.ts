@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ErrorsInitializable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseMember } from 'hardhat-env/test/shared/events';
+import { ErrorsInitializable } from '@test/shared/errors';
+import { EventsBaseMember } from '@test/shared/events';
 
 export default function shouldBehaveLikeInitialize(memberName: string): void {
   context('succeeds', function () {

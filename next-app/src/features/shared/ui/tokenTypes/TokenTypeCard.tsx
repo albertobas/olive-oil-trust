@@ -1,11 +1,11 @@
-import styles from 'next-app/src/features/shared/styles/modules/tokenTypes/TokenTypeCard.module.css';
-import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/utils/helpers';
+import styles from '@features/shared/styles/modules/tokenTypes/TokenTypeCard.module.css';
+import { getInstuctionTokenUnitFromModule } from '@features/management/utils/helpers';
 import Image from 'next/image';
 import { join } from 'path';
-import { isOliveGrower, isOliveOilMill, pages } from 'next-app/src/shared/utils/constants';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { isOliveGrower, isOliveOilMill, pages } from '@shared/utils/constants';
+import ILink from '@features/shared/ui/links/ILink';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
 
 const TokenTypeCard = ({ id, identifier, instructions, creationDate, member, metadata }: TokenType): JSX.Element => {
   const href = join(pages.TOKEN_TYPES.url, id);

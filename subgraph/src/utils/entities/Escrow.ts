@@ -1,9 +1,9 @@
 import { Address, BigInt } from '@graphprotocol/graph-ts';
-import { Escrow } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
-import { ensureEscrowBalance, ensureEtherBalance } from 'subgraph/src/utils/entities/Balance';
-import { ensureEscrowContract } from 'subgraph/src/utils/entities/EscrowContract';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
+import { Escrow } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
+import { ensureEscrowBalance, ensureEtherBalance } from '../../utils/entities/Balance';
+import { ensureEscrowContract } from '../../utils/entities/EscrowContract';
+import { ensureAccount } from '../../utils/entities/Account';
 
 export function ensureEscrow(escrowId: BigInt, escrowAddress: Address): Escrow {
   let contract = ensureEscrowContract(escrowAddress);

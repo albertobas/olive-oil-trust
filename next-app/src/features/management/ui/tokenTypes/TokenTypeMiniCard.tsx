@@ -1,9 +1,9 @@
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
-import styles from 'src/features/management/styles/modules/tokenTypes/TokenTypeMiniCard.module.css';
+import SVG from '@features/shared/ui/svg/SVG';
+import styles from '@features/management/styles/modules/tokenTypes/TokenTypeMiniCard.module.css';
 import { FaTimes } from 'react-icons/fa';
-import { IAddTokenTypeState } from 'next-app/src/features/management/utils/interfaces';
-import { isOliveGrower, isOliveOilMill } from 'next-app/src/shared/utils/constants';
-import { getInstuctionTokenUnitFromModule } from 'next-app/src/features/management/utils/helpers';
+import { IAddTokenTypeState } from '@features/management/utils/interfaces';
+import { isOliveGrower, isOliveOilMill } from '@shared/utils/constants';
+import { getInstuctionTokenUnitFromModule } from '@features/management/utils/helpers';
 
 type Props = IAddTokenTypeState & {
   handleDelTokenType: (id: string) => void;

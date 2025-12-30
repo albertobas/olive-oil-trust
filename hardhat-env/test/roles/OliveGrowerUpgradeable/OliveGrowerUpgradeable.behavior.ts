@@ -1,25 +1,25 @@
 import { utils } from 'ethers';
-import { dictOlives } from 'hardhat-env/test/shared/constants';
-import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from 'hardhat-env/shared/constants';
+import { dictOlives } from '@test/shared/constants';
+import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from '@shared/constants';
 import {
   activeOliveGrowerFixture,
   mintedOliveGrowerFixture,
   offeredOliveGrowerFixture,
   oliveGrowerFixture
-} from 'hardhat-env/test/shared/fixtures';
-import shouldBehaveLikeName from 'hardhat-env/test/shared/base/BaseMember/view/name';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/revertAfterPayment';
-import shouldBehaveLikeCloseEscrow from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/closeEscrow';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/initialize';
-import shouldBehaveLikeMint from 'hardhat-env/test/shared/base/IndependentCreator/effects/mint';
-import shouldBehaveLikeMintBatch from 'hardhat-env/test/shared/base/IndependentCreator/effects/mintBatch';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/depositToken';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/depositBatch';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/revertBeforePayment';
-import shouldBehaveLikeReceive from 'hardhat-env/test/shared/base/BaseSeller/effects/receive';
-import shouldUpgrade from 'hardhat-env/test/roles/OliveGrowerUpgradeable/effects/upgrade';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseSeller/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseSeller/effects/burnBatch';
+} from '@test/shared/fixtures';
+import shouldBehaveLikeName from '@test/shared/base/BaseMember/view/name';
+import shouldBehaveLikeRevertAfterPayment from '@test/roles/OliveGrowerUpgradeable/effects/revertAfterPayment';
+import shouldBehaveLikeCloseEscrow from '@test/roles/OliveGrowerUpgradeable/effects/closeEscrow';
+import shouldBehaveLikeInitialize from '@test/roles/OliveGrowerUpgradeable/effects/initialize';
+import shouldBehaveLikeMint from '@test/shared/base/IndependentCreator/effects/mint';
+import shouldBehaveLikeMintBatch from '@test/shared/base/IndependentCreator/effects/mintBatch';
+import shouldBehaveLikeDepositToken from '@test/roles/OliveGrowerUpgradeable/effects/depositToken';
+import shouldBehaveLikeDepositBatch from '@test/roles/OliveGrowerUpgradeable/effects/depositBatch';
+import shouldBehaveLikeRevertBeforePayment from '@test/roles/OliveGrowerUpgradeable/effects/revertBeforePayment';
+import shouldBehaveLikeReceive from '@test/shared/base/BaseSeller/effects/receive';
+import shouldUpgrade from '@test/roles/OliveGrowerUpgradeable/effects/upgrade';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseSeller/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseSeller/effects/burnBatch';
 
 export function shouldBehaveLikeOliveGrowerUpgradeable(): void {
   const contract = 'oliveGrower';

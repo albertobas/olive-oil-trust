@@ -1,5 +1,5 @@
 import { ethers, upgrades } from 'hardhat';
-import { dictContracts } from 'hardhat-env/shared/constants';
+import { dictContracts } from '@shared/constants';
 
 export default function shouldUpgrade(): void {
   context('succeeds', function () {

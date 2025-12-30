@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsCertificate } from 'hardhat-env/test/shared/events';
-import { CreationTokenContract } from 'hardhat-env/test/shared/types';
+import { ErrorsOwnable } from '@test/shared/errors';
+import { EventsCertificate } from '@test/shared/events';
+import { CreationTokenContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeCertifyBatch(
   tokenContract: CreationTokenContract,

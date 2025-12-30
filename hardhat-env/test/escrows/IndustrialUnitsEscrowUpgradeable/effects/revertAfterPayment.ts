@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { BigNumber } from 'ethers';
-import { ErrorsBaseEscrow, ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsERC1155, EventsEscrow, EventsIndustrialUnitToken } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { ErrorsBaseEscrow, ErrorsOwnable } from '@test/shared/errors';
+import { EventsERC1155, EventsEscrow, EventsIndustrialUnitToken } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
 
 export default function shouldBehaveLikeRevertAfterPayment(
   escrowIds: number[],

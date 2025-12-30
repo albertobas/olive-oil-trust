@@ -1,8 +1,8 @@
-import styles from 'next-app/src/features/shared/styles/modules/fallbackMessage/FallbackMessage.module.css';
+import styles from '@features/shared/styles/modules/fallbackMessage/FallbackMessage.module.css';
 import { VscLoading } from 'react-icons/vsc';
 import { BiError } from 'react-icons/bi';
 import { BsInfoCircle } from 'react-icons/bs';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import SVG from '@features/shared/ui/svg/SVG';
 
 type Props = {
   message?: string;

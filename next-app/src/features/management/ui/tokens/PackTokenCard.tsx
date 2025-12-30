@@ -1,8 +1,8 @@
 import React from 'react';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
-import styles from 'src/features/management/styles/modules/tokens/PackTokenCard.module.css';
+import SVG from '@features/shared/ui/svg/SVG';
+import styles from '@features/management/styles/modules/tokens/PackTokenCard.module.css';
 import { FaTimes } from 'react-icons/fa';
-import { IPackTokenState } from 'next-app/src/features/management/utils/interfaces';
+import { IPackTokenState } from '@features/management/utils/interfaces';
 
 type Props = IPackTokenState & {
   handleDelToken: (id: string) => void;

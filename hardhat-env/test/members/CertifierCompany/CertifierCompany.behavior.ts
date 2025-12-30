@@ -1,7 +1,7 @@
-import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from 'hardhat-env/shared/constants';
-import { CertifierCompany, CertifierCompanyCertificate } from 'hardhat-env/types';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/members/CertifierCompany/effects/initialize';
-import { deployCertifierAndDeps } from 'hardhat-env/shared/helpers';
+import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from '@shared/constants';
+import { CertifierCompany, CertifierCompanyCertificate } from '@types';
+import shouldBehaveLikeInitialize from '@test/members/CertifierCompany/effects/initialize';
+import { deployCertifierAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeCertifierCompany(): void {
   const certifierId = dictChainActorsNames.certifier.id1;

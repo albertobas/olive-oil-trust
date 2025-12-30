@@ -1,7 +1,7 @@
 import { constants } from '@amxx/graphprotocol-utils';
 import { Bytes } from '@graphprotocol/graph-ts';
-import { Account, Balance } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
+import { Account, Balance } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
 
 export function ensureTokenBalance(tokenId: string, contractId: Bytes, accountId: Bytes | null): Balance {
   let tokenIdStr = tokenId.toString();

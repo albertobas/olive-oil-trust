@@ -3,19 +3,19 @@ import {
   activeOliveOilEscrowFixture,
   depositedOliveOilEscrowFixture,
   oliveOilEscrowFixture
-} from 'hardhat-env/test/shared/fixtures';
-import { dictOliveOil } from 'hardhat-env/test/shared/constants';
-import shouldBehaveLikeCancelPayment from 'hardhat-env/test/shared/base/BaseEscrow/effects/cancelPayment';
-import shouldBehaveLikeClose from 'hardhat-env/test/shared/base/BaseEscrow/effects/close';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/shared/base/BaseEscrow/effects/initialize';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/shared/base/BaseEscrow/effects/revertAfterPayment';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/shared/base/BaseEscrow/effects/revertBeforePayment';
-import shouldBehaveLikeEscrow from 'hardhat-env/test/shared/base/BaseEscrow/view/escrow';
-import shouldBehaveLikeState from 'hardhat-env/test/shared/base/BaseEscrow/view/state';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/escrows/CommercialUnitsEscrowUpgradeable/effects/depositBatch';
-import shouldBehaveLikeMakePayment from 'hardhat-env/test/escrows/CommercialUnitsEscrowUpgradeable/effects/makePayment';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/escrows/CommercialUnitsEscrowUpgradeable/effects/depositToken';
-import shouldUpgrade from 'hardhat-env/test/escrows/CommercialUnitsEscrowUpgradeable/effects/upgrade';
+} from '@test/shared/fixtures';
+import { dictOliveOil } from '@test/shared/constants';
+import shouldBehaveLikeCancelPayment from '@test/shared/base/BaseEscrow/effects/cancelPayment';
+import shouldBehaveLikeClose from '@test/shared/base/BaseEscrow/effects/close';
+import shouldBehaveLikeInitialize from '@test/shared/base/BaseEscrow/effects/initialize';
+import shouldBehaveLikeRevertAfterPayment from '@test/shared/base/BaseEscrow/effects/revertAfterPayment';
+import shouldBehaveLikeRevertBeforePayment from '@test/shared/base/BaseEscrow/effects/revertBeforePayment';
+import shouldBehaveLikeEscrow from '@test/shared/base/BaseEscrow/view/escrow';
+import shouldBehaveLikeState from '@test/shared/base/BaseEscrow/view/state';
+import shouldBehaveLikeDepositBatch from '@test/escrows/CommercialUnitsEscrowUpgradeable/effects/depositBatch';
+import shouldBehaveLikeMakePayment from '@test/escrows/CommercialUnitsEscrowUpgradeable/effects/makePayment';
+import shouldBehaveLikeDepositToken from '@test/escrows/CommercialUnitsEscrowUpgradeable/effects/depositToken';
+import shouldUpgrade from '@test/escrows/CommercialUnitsEscrowUpgradeable/effects/upgrade';
 
 export function shouldBehaveLikeCommercialUnitsEscrowUpgradeable(): void {
   const contract = 'commercialUnitsEscrow';

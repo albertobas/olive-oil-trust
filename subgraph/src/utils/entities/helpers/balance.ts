@@ -1,6 +1,6 @@
 import { decimals } from '@amxx/graphprotocol-utils';
 import { BigInt } from '@graphprotocol/graph-ts';
-import { Balance } from 'subgraph/src/generated/types/schema';
+import { Balance } from '../../../generated/types/schema';
 
 export function increaseBalance(balance: Balance, value: BigInt): void {
   if (balance.valueExact) {

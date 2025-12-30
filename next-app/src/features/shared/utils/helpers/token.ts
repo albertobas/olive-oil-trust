@@ -1,4 +1,4 @@
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
+import { Escrow } from '@features/shared/core/entities/Escrows';
 import {
   FirstAncestry,
   IndustrialUnitTokenInfo,
@@ -7,11 +7,11 @@ import {
   TokenFields,
   TokenFirstAncestry,
   TokensInfo
-} from 'next-app/src/features/shared/core/entities/Tokens';
-import { getEscrow } from 'next-app/src/features/shared/utils/helpers/escrow';
-import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
-import { EscrowRawType, TokenInfoRawType, TokenRawType } from 'next-app/src/features/shared/utils/interfaces';
+} from '@features/shared/core/entities/Tokens';
+import { getEscrow } from '@features/shared/utils/helpers/escrow';
+import { getTokenType } from '@features/shared/utils/helpers/tokenType';
+import { getMember } from '@features/shared/utils/helpers/member';
+import { EscrowRawType, TokenInfoRawType, TokenRawType } from '@features/shared/utils/interfaces';
 
 export function getToken(token: TokenRawType, balanceValue: string | null, selfProducedIds: string[] | null): Token {
   const { ancestry } = token;
@@ -161,8 +161,8 @@ export const sortTokenArray = (data: Token[], sortValue: string | undefined, rev
           ? a.mintingDate < b.mintingDate
             ? -1
             : a.mintingDate > b.mintingDate
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'title') {
@@ -173,8 +173,8 @@ export const sortTokenArray = (data: Token[], sortValue: string | undefined, rev
           ? a.tokenType?.metadata?.title > b.tokenType.metadata?.title
             ? -1
             : a.tokenType?.metadata?.title < b.tokenType?.metadata?.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'typeId') {
@@ -183,8 +183,8 @@ export const sortTokenArray = (data: Token[], sortValue: string | undefined, rev
           ? a.tokenType.id > b.tokenType.id
             ? -1
             : a.tokenType.id < b.tokenType.id
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else return data;
@@ -195,8 +195,8 @@ export const sortTokenArray = (data: Token[], sortValue: string | undefined, rev
           ? a.mintingDate > b.mintingDate
             ? -1
             : a.mintingDate < b.mintingDate
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'title') {
@@ -207,8 +207,8 @@ export const sortTokenArray = (data: Token[], sortValue: string | undefined, rev
           ? a.tokenType?.metadata?.title < b.tokenType.metadata?.title
             ? -1
             : a.tokenType?.metadata?.title > b.tokenType?.metadata?.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'typeId') {
@@ -217,8 +217,8 @@ export const sortTokenArray = (data: Token[], sortValue: string | undefined, rev
           ? a.tokenType.id < b.tokenType.id
             ? -1
             : a.tokenType.id > b.tokenType.id
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else return data;

@@ -1,10 +1,10 @@
 import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { IndustrialUnitPackaging } from 'subgraph/src/generated/types/schema';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
-import { registerIndustrialUnitTokenInfo } from 'subgraph/src/utils/entities/IndustrialUnitTokenInfo';
-import { ensureIndustrialUnitToken, getTokenId } from 'subgraph/src/utils/entities/Token';
+import { IndustrialUnitPackaging } from '../../generated/types/schema';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { eventId } from '../../utils/helpers';
+import { ensureTokenContract } from '../../utils/entities/TokenContract';
+import { registerIndustrialUnitTokenInfo } from '../../utils/entities/IndustrialUnitTokenInfo';
+import { ensureIndustrialUnitToken, getTokenId } from '../../utils/entities/Token';
 
 export function registerIndustrialUnitPackaging(
   event: ethereum.Event,

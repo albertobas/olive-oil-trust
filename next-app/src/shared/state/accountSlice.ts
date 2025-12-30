@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IContract } from 'next-app/src/features/shared/utils/interfaces';
+import { IContract } from '@features/shared/utils/interfaces';
 
 export interface IAccountStateData {
   account: string;

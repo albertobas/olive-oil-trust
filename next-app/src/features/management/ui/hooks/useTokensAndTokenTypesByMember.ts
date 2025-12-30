@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { queryTokensAndTokenTypesByMemberWithDep } from 'next-app/src/features/management/core/interactors';
-import { TokensState, TokenTypesState } from 'next-app/src/features/shared/utils/interfaces';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { queryTokensAndTokenTypesByMemberWithDep } from '@features/management/core/interactors';
+import { TokensState, TokenTypesState } from '@features/shared/utils/interfaces';
+import { getTime } from '@features/shared/utils/helpers/helpers';
 
 export function useTokensAndTokenTypesByMember(
   address: string,

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { CreationTokenContract } from 'hardhat-env/test/shared/types';
+import { CreationTokenContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeCertificatesOfBatch(
   tokenContract: CreationTokenContract,

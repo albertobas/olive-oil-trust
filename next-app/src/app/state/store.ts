@@ -1,6 +1,6 @@
-import accountSlice from 'next-app/src/shared/state/accountSlice';
-import providerSlice from 'next-app/src/app/state/providerSlice';
-import connectionSlice from 'next-app/src/shared/state/connectionSlice';
+import accountSlice from '@shared/state/accountSlice';
+import providerSlice from '@app/state/providerSlice';
+import connectionSlice from '@shared/state/connectionSlice';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({

@@ -1,5 +1,5 @@
-import { shouldBehaveLikeIndustrialUnitTokenUpgradeable } from 'hardhat-env/test/tokens/IndustrialUnitTokenUpgradeable/IndustrialUnitTokenUpgradeable.behavior';
-import { dictContracts } from 'hardhat-env/shared/constants';
+import { shouldBehaveLikeIndustrialUnitTokenUpgradeable } from '@test/tokens/IndustrialUnitTokenUpgradeable/IndustrialUnitTokenUpgradeable.behavior';
+import { dictContracts } from '@shared/constants';
 
 export function testIndustrialUnitTokenUpgradeable(): void {
   describe(dictContracts.industrialUnitTokenWithInit.v1, function () {

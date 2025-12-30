@@ -1,15 +1,15 @@
 import { utils } from 'ethers';
-import { dictCertificate, dictOlives } from 'hardhat-env/test/shared/constants';
-import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from 'hardhat-env/shared/constants';
-import shouldBehaveLikeName from 'hardhat-env/test/shared/base/BaseMember/view/name';
-import { certifiedPicualCertifierFixture, certifierFixture } from 'hardhat-env/test/shared/fixtures';
-import shouldBehaveLikeCertifyBatch from 'hardhat-env/test/roles/CertifierUpgradeable/effects/certifyBatch';
-import shouldBehaveLikeCertifyToken from 'hardhat-env/test/roles/CertifierUpgradeable/effects/certifyToken';
-import shouldUpgrade from 'hardhat-env/test/roles/CertifierUpgradeable/effects/upgrade';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/roles/CertifierUpgradeable/effects/initialize';
-import shouldBehaveLikeCertificatesOf from 'hardhat-env/test/roles/CertifierUpgradeable/views/certificateOf';
-import shouldBehaveLikeCertificatesOfBatch from 'hardhat-env/test/roles/CertifierUpgradeable/views/certificatesOfBatch';
-import shouldBehaveLikeIsCertified from 'hardhat-env/test/roles/CertifierUpgradeable/views/isCertified';
+import { dictCertificate, dictOlives } from '@test/shared/constants';
+import { baseUri, dictChainActorsNames, dictContracts, uupsOpts } from '@shared/constants';
+import shouldBehaveLikeName from '@test/shared/base/BaseMember/view/name';
+import { certifiedPicualCertifierFixture, certifierFixture } from '@test/shared/fixtures';
+import shouldBehaveLikeCertifyBatch from '@test/roles/CertifierUpgradeable/effects/certifyBatch';
+import shouldBehaveLikeCertifyToken from '@test/roles/CertifierUpgradeable/effects/certifyToken';
+import shouldUpgrade from '@test/roles/CertifierUpgradeable/effects/upgrade';
+import shouldBehaveLikeInitialize from '@test/roles/CertifierUpgradeable/effects/initialize';
+import shouldBehaveLikeCertificatesOf from '@test/roles/CertifierUpgradeable/views/certificateOf';
+import shouldBehaveLikeCertificatesOfBatch from '@test/roles/CertifierUpgradeable/views/certificatesOfBatch';
+import shouldBehaveLikeIsCertified from '@test/roles/CertifierUpgradeable/views/isCertified';
 
 export function shouldBehaveLikeCertifierUpgradeable(): void {
   const certifierName = dictChainActorsNames.certifier.id1;

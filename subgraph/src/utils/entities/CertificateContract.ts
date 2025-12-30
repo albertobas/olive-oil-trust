@@ -1,5 +1,5 @@
 import { Address } from '@graphprotocol/graph-ts';
-import { Account, CertificateContract } from 'subgraph/src/generated/types/schema';
+import { Account, CertificateContract } from '../../generated/types/schema';
 
 export function ensureCertificateContract(addr: Address): CertificateContract {
   let contract = CertificateContract.load(addr);

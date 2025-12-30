@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import styles from 'src/features/shared/styles/modules/filters/FilterSelect.module.css';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import Dropdown from 'next-app/src/features/shared/ui/dropdown/Dropdown';
+import styles from '@features/shared/styles/modules/filters/FilterSelect.module.css';
+import { IItem } from '@features/shared/utils/interfaces';
+import Dropdown from '@features/shared/ui/dropdown/Dropdown';
 
 type Props = {
   options: IItem[] | null;

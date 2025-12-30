@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import styles from 'src/app/styles/modules/sections/Section.module.css';
-import { brandName, pages } from 'next-app/src/shared/utils/constants';
+import styles from '@app/styles/modules/sections/Section.module.css';
+import { brandName, pages } from '@shared/utils/constants';
 import Link from 'next/link';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 const Explore: NextPage = () => {
   const { isConnecting } = useAppSelector((state) => state.connection);

@@ -1,6 +1,6 @@
-import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import MyEscrowsRepository from 'next-app/src/features/management/core/repositories/MyEscrows.repository';
-import escrowsByMemberAdapter from 'next-app/src/features/management/core/adapters/escrowsByMember.adapter';
+import { Escrows } from '@features/shared/core/entities/Escrows';
+import MyEscrowsRepository from '@features/management/core/repositories/MyEscrows.repository';
+import escrowsByMemberAdapter from '@features/management/core/adapters/escrowsByMember.adapter';
 
 const queryEscrowsByMember =
   (repository: MyEscrowsRepository) =>

@@ -1,4 +1,4 @@
-import { BottleMaterial, EscrowState, LightDarkScale, LowHighScale, OliveOrigin } from 'subgraph/src/utils/types';
+import { BottleMaterial, EscrowState, LightDarkScale, LowHighScale, OliveOrigin } from '../utils/types';
 
 export let escrowState: EscrowState = {
   NON_ACTIVE: 'NonActive',

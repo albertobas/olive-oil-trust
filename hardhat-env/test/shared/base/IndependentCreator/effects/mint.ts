@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseToken, EventsERC1155 } from 'hardhat-env/test/shared/events';
-import { IndependentCreatorContract, IndependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
+import { ErrorsOwnable } from '@test/shared/errors';
+import { EventsBaseToken, EventsERC1155 } from '@test/shared/events';
+import { IndependentCreatorContract, IndependentTokenUpgradeableContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeMint(
   contract: IndependentCreatorContract,

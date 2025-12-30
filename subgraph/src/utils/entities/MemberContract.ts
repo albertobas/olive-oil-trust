@@ -1,6 +1,6 @@
 import { Address } from '@graphprotocol/graph-ts';
-import { MemberContract } from 'subgraph/src/generated/types/schema';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
+import { MemberContract } from '../../generated/types/schema';
+import { ensureAccount } from '../../utils/entities/Account';
 
 export function ensureMemberContract(memberAddress: Address): MemberContract {
   let contract = MemberContract.load(memberAddress);

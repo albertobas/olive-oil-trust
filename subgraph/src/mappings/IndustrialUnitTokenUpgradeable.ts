@@ -7,16 +7,16 @@ import {
   BatchUnpacked,
   SinglePacked,
   SingleUnpacked
-} from 'subgraph/src/generated/types/IndustrialUnitTokenUpgradeableDataSource/IndustrialUnitTokenUpgradeable';
-import { ensureIndustrialUnitToken } from 'subgraph/src/utils/entities/Token';
-import { registerTokenTransfer } from 'subgraph/src/utils/entities/TokenTransfer';
+} from '../generated/types/IndustrialUnitTokenUpgradeableDataSource/IndustrialUnitTokenUpgradeable';
+import { ensureIndustrialUnitToken } from '../utils/entities/Token';
+import { registerTokenTransfer } from '../utils/entities/TokenTransfer';
 import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { registerApproval } from 'subgraph/src/utils/entities/TokenOperator';
-import { registerIndustrialUnitPackaging } from 'subgraph/src/utils/entities/IndustrialUnitPackaging';
-import { registerIndustrialUnitUnpackaging } from 'subgraph/src/utils/entities/IndustrialUnitUnpackaging';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { ensureAccount } from '../utils/entities/Account';
+import { registerApproval } from '../utils/entities/TokenOperator';
+import { registerIndustrialUnitPackaging } from '../utils/entities/IndustrialUnitPackaging';
+import { registerIndustrialUnitUnpackaging } from '../utils/entities/IndustrialUnitUnpackaging';
+import { ensureTokenContract } from '../utils/entities/TokenContract';
 
 function handleTransferred(
   event: ethereum.Event,

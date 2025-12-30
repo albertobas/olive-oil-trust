@@ -7,9 +7,9 @@ import {
   OliveOilBottleEscrow,
   Role,
   Seller
-} from 'next-app/src/features/shared/utils/interfaces';
-import { EscrowCardAction, IModalInfo } from 'next-app/src/features/shared/ui/utils/interfaces';
-import { Escrow } from 'next-app/src/features/shared/core/entities/Escrows';
+} from '@features/shared/utils/interfaces';
+import { EscrowCardAction, IModalInfo } from '@features/shared/ui/utils/interfaces';
+import { Escrow } from '@features/shared/core/entities/Escrows';
 
 export function handleAddressValidation(value: string): string | null {
   if (!value) {

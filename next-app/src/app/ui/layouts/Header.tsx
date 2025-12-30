@@ -1,10 +1,10 @@
-import styles from 'src/app/styles/modules/layout/Header.module.css';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import useConnection from 'next-app/src/app/ui/hooks/useConnection';
-import NavBar from 'next-app/src/app/ui/layouts/NavBar';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import styles from '@app/styles/modules/layout/Header.module.css';
+import ILink from '@features/shared/ui/links/ILink';
+import useConnection from '@app/ui/hooks/useConnection';
+import NavBar from '@app/ui/layouts/NavBar';
+import SVG from '@features/shared/ui/svg/SVG';
 import { AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai';
-import Logo from 'next-app/src/app/ui/layouts/Logo';
+import Logo from '@app/ui/layouts/Logo';
 
 export default function Header(): JSX.Element {
   const { connectWallet, disconnectWallet, isConnected, isConnecting } = useConnection();

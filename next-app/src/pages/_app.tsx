@@ -1,8 +1,8 @@
 import 'next-app/src/app/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { store } from 'next-app/src/app/state/store';
-import SiteLayout from 'next-app/src/app/ui/layouts/SiteLayout';
+import { store } from '@app/state/store';
+import SiteLayout from '@app/ui/layouts/SiteLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import 'react-multi-carousel/lib/styles.css';

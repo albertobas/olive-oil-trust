@@ -1,7 +1,7 @@
 import { ethers } from 'hardhat';
-import { baseUri, dictAccounts, dictContracts, dictInheritedModules, uupsOpts } from 'hardhat-env/shared/constants';
-import { deployOliveGrowerAndDeps } from 'hardhat-env/shared/helpers';
-import { IDeployedActorAndDeps } from 'hardhat-env/shared/types';
+import { baseUri, dictAccounts, dictContracts, dictInheritedModules, uupsOpts } from '@shared/constants';
+import { deployOliveGrowerAndDeps } from '@shared/helpers';
+import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployOliveGrowerOneAndDeps(): Promise<IDeployedActorAndDeps[]> {
   const oliveGrowerOneContractName = dictContracts.oliveGrowerOne.v1;

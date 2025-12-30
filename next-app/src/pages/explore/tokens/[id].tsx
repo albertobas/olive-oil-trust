@@ -6,12 +6,12 @@
  */
 
 import { GetStaticProps, GetStaticPaths } from 'next';
-import TokenById from 'next-app/src/features/explore/ui/tokens/TokenById';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import { getBuiltGraphSDK } from 'next-app/.graphclient';
-import tokenByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenById.adapter';
-import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
-import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
+import TokenById from '@features/explore/ui/tokens/TokenById';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import { getBuiltGraphSDK } from '.graphclient';
+import tokenByIdAdapter from '@features/explore/core/adapters/tokenById.adapter';
+import { revalidateInterval } from '@features/shared/utils/constants';
+import { TokenState } from '@features/shared/utils/interfaces';
 
 function DynamicTokenPageISR(props: TokenState & { id: string }): JSX.Element {
   return (
@@ -51,11 +51,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default DynamicTokenPageISR;
 
 // import { GetServerSideProps } from 'next';
-// import TokenById from 'next-app/src/features/explore/ui/tokens/TokenById';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import { getBuiltGraphSDK } from 'next-app/.graphclient';
-// import tokenByIdAdapter from 'next-app/src/features/explore/core/adapters/tokenById.adapter';
-// import { TokenState } from 'next-app/src/features/shared/utils/interfaces';
+// import TokenById from '@features/explore/ui/tokens/TokenById';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import { getBuiltGraphSDK } from '.graphclient';
+// import tokenByIdAdapter from '@features/explore/core/adapters/tokenById.adapter';
+// import { TokenState } from '@features/shared/utils/interfaces';
 
 // function DynamicTokenPageSSR(props: TokenState & { id: string }): JSX.Element {
 //   return (
@@ -83,9 +83,9 @@ export default DynamicTokenPageISR;
 
 // import { NextPage } from 'next';
 // import { useRouter } from 'next/router';
-// import TokenByIdCSR from 'next-app/src/features/explore/ui/tokens/TokenByIdCSR';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
+// import TokenByIdCSR from '@features/explore/ui/tokens/TokenByIdCSR';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
 
 // const DynamicTokenPageCSR: NextPage = () => {
 //   const { query, isReady } = useRouter();

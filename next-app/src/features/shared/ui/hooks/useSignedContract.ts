@@ -1,8 +1,8 @@
 import { Contract } from 'ethers';
 import { useCallback, useEffect, useState } from 'react';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import contractsJson from 'next-app/src/generated/contracts/hardhat_contracts.json';
-import { IContractState } from 'next-app/src/features/shared/ui/utils/interfaces';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import contractsJson from '@generated/contracts/hardhat_contracts.json';
+import { IContractState } from '@features/shared/ui/utils/interfaces';
 
 const useSignedContract = (contractName: string | null): IContractState => {
   const [contract, setContract] = useState<IContractState>({ error: null, data: null });

@@ -4,17 +4,17 @@ import {
   TokenTypesInstructionsSet,
   BatchTransferred,
   TokenTransferred,
-  OwnershipTransferred
-} from 'subgraph/src/generated/types/DependentTokenUpgradeableDataSource/DependentTokenUpgradeable';
-import { ensureToken } from 'subgraph/src/utils/entities/Token';
-import { registerTokenTransfer } from 'subgraph/src/utils/entities/TokenTransfer';
+  OwnershipTransferred,
+} from '../generated/types/DependentTokenUpgradeableDataSource/DependentTokenUpgradeable';
+import { ensureToken } from '../utils/entities/Token';
+import { registerTokenTransfer } from '../utils/entities/TokenTransfer';
 import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { registerTokenTypeInstructionsSet } from 'subgraph/src/utils/entities/TokenTypeInstructionsSet';
-import { ensureTokenType } from 'subgraph/src/utils/entities/TokenType';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { registerApproval } from 'subgraph/src/utils/entities/TokenOperator';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
+import { ensureAccount } from '../utils/entities/Account';
+import { registerTokenTypeInstructionsSet } from '../utils/entities/TokenTypeInstructionsSet';
+import { ensureTokenType } from '../utils/entities/TokenType';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { registerApproval } from '../utils/entities/TokenOperator';
+import { ensureTokenContract } from '../utils/entities/TokenContract';
 
 function handleTransferred(
   event: ethereum.Event,

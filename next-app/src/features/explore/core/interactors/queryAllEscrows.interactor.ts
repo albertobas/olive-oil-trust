@@ -1,6 +1,6 @@
-import { Escrows } from 'next-app/src/features/shared/core/entities/Escrows';
-import EscrowsRepository from 'next-app/src/features/explore/core/repositories/Escrows.repository';
-import allEscrowsAdapter from 'next-app/src/features/explore/core/adapters/allEscrows.adapter';
+import { Escrows } from '@features/shared/core/entities/Escrows';
+import EscrowsRepository from '@features/explore/core/repositories/Escrows.repository';
+import allEscrowsAdapter from '@features/explore/core/adapters/allEscrows.adapter';
 
 const queryAllEscrows =
   (repository: EscrowsRepository) => async (): Promise<{ error: boolean; data: Escrows | null }> => {

@@ -6,7 +6,8 @@ import '@openzeppelin/hardhat-upgrades';
 import 'hardhat-contract-sizer';
 import 'hardhat-gas-reporter';
 import 'solidity-coverage';
-import 'hardhat-env/tasks/setState';
+import 'tsconfig-paths/register';
+import 'hardhat-env/tasks/set-state';
 
 const config: HardhatUserConfig = {
   solidity: '0.8.14',

@@ -1,4 +1,4 @@
-import { TokensAndTokenTypesByMemberQuery, TokensByAccountQuery } from 'next-app/.graphclient';
+import { TokensAndTokenTypesByMemberQuery, TokensByAccountQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 interface MyTokensRepository {

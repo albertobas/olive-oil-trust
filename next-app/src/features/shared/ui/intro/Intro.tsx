@@ -1,4 +1,4 @@
-import styles from 'src/features/shared/styles/modules/page/Page.module.css';
+import styles from '@features/shared/styles/modules/page/Page.module.css';
 
 type Props = { title: string; description: string; note?: string };
 

@@ -1,4 +1,4 @@
-import { AllTokenTypesQuery, TokenTypeByIdQuery } from 'next-app/.graphclient';
+import { AllTokenTypesQuery, TokenTypeByIdQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 interface TokenTypesRepository {

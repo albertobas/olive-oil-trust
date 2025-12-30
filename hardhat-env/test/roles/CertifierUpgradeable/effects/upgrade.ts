@@ -1,4 +1,4 @@
-import { deployCertifierAndDeps } from 'hardhat-env/shared/helpers';
+import { deployCertifierAndDeps } from '@shared/helpers';
 import { upgrades } from 'hardhat';
 import { DeployProxyOptions } from '@openzeppelin/hardhat-upgrades/dist/utils';
 

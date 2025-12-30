@@ -1,21 +1,17 @@
 import { utils } from 'ethers';
-import {
-  activeOlivesEscrowFixture,
-  depositedOlivesEscrowFixture,
-  olivesEscrowFixture
-} from 'hardhat-env/test/shared/fixtures';
-import { dictOlives } from 'hardhat-env/test/shared/constants';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/shared/base/BaseEscrow/effects/initialize';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/escrows/AgriculturalEscrowUpgradeable/effects/depositToken';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/escrows/AgriculturalEscrowUpgradeable/effects/depositBatch';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/shared/base/BaseEscrow/effects/revertBeforePayment';
-import shouldBehaveLikeMakeOffer from 'hardhat-env/test/escrows/AgriculturalEscrowUpgradeable/effects/makeOffer';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/shared/base/BaseEscrow/effects/revertAfterPayment';
-import shouldBehaveLikeCancelPayment from 'hardhat-env/test/shared/base/BaseEscrow/effects/cancelPayment';
-import shouldBehaveLikeClose from 'hardhat-env/test/shared/base/BaseEscrow/effects/close';
-import shouldBehaveLikeEscrow from 'hardhat-env/test/shared/base/BaseEscrow/view/escrow';
-import shouldBehaveLikeState from 'hardhat-env/test/shared/base/BaseEscrow/view/state';
-import shouldUpgrade from 'hardhat-env/test/escrows/AgriculturalEscrowUpgradeable/effects/upgrade';
+import { activeOlivesEscrowFixture, depositedOlivesEscrowFixture, olivesEscrowFixture } from '@test/shared/fixtures';
+import { dictOlives } from '@test/shared/constants';
+import shouldBehaveLikeInitialize from '@test/shared/base/BaseEscrow/effects/initialize';
+import shouldBehaveLikeDepositToken from '@test/escrows/AgriculturalEscrowUpgradeable/effects/depositToken';
+import shouldBehaveLikeDepositBatch from '@test/escrows/AgriculturalEscrowUpgradeable/effects/depositBatch';
+import shouldBehaveLikeRevertBeforePayment from '@test/shared/base/BaseEscrow/effects/revertBeforePayment';
+import shouldBehaveLikeMakeOffer from '@test/escrows/AgriculturalEscrowUpgradeable/effects/makeOffer';
+import shouldBehaveLikeRevertAfterPayment from '@test/shared/base/BaseEscrow/effects/revertAfterPayment';
+import shouldBehaveLikeCancelPayment from '@test/shared/base/BaseEscrow/effects/cancelPayment';
+import shouldBehaveLikeClose from '@test/shared/base/BaseEscrow/effects/close';
+import shouldBehaveLikeEscrow from '@test/shared/base/BaseEscrow/view/escrow';
+import shouldBehaveLikeState from '@test/shared/base/BaseEscrow/view/state';
+import shouldUpgrade from '@test/escrows/AgriculturalEscrowUpgradeable/effects/upgrade';
 
 export function shouldBehaveLikeAgriculturalEscrowUpgradeable(): void {
   const contract = 'agriculturalEscrow';

@@ -1,9 +1,9 @@
-import styles from 'next-app/src/features/shared/styles/modules/tokens/TokenCard.module.css';
+import styles from '@features/shared/styles/modules/tokens/TokenCard.module.css';
 import { join } from 'path';
-import { pages } from 'next-app/src/shared/utils/constants';
-import ILink from 'next-app/src/features/shared/ui/links/ILink';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getUTCFromTimestamp } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { pages } from '@shared/utils/constants';
+import ILink from '@features/shared/ui/links/ILink';
+import { Token } from '@features/shared/core/entities/Tokens';
+import { getUTCFromTimestamp } from '@features/shared/utils/helpers/helpers';
 import Image from 'next/image';
 
 const TokenCard = ({
@@ -66,8 +66,8 @@ const TokenCard = ({
                   ? tokenType.member.role === 'OliveGrower'
                     ? `${balance / 1000} kg`
                     : tokenType.member.role === 'OliveOilMill'
-                    ? `${balance / 1000} l`
-                    : `${balance} units`
+                      ? `${balance / 1000} l`
+                      : `${balance} units`
                   : `${balance} units`
               }`}
             </p>

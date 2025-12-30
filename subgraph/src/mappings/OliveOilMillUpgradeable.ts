@@ -2,10 +2,10 @@ import {
   NameSet,
   OwnershipTransferred,
   TokenAncestrySet
-} from 'subgraph/src/generated/types/OliveOilMillUpgradeableDataSource/OliveOilMillUpgradeable';
-import { ensureOwnershipTransferred } from 'subgraph/src/utils/entities/OwnershipTransferred';
-import { ensureMemberContract, registerMemberName } from 'subgraph/src/utils/entities/MemberContract';
-import { registerTokenAncestry } from 'subgraph/src/utils/entities/Ancestor';
+} from '../generated/types/OliveOilMillUpgradeableDataSource/OliveOilMillUpgradeable';
+import { ensureOwnershipTransferred } from '../utils/entities/OwnershipTransferred';
+import { ensureMemberContract, registerMemberName } from '../utils/entities/MemberContract';
+import { registerTokenAncestry } from '../utils/entities/Ancestor';
 
 export function handleNameSet(event: NameSet): void {
   registerMemberName(event.address, event.params.name, 'OliveOilMill');

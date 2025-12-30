@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { join } from 'path';
-import { pages } from 'next-app/src/shared/utils/constants';
-import { IBreadcrumbs } from 'next-app/src/features/shared/ui/utils/interfaces';
+import { pages } from '@shared/utils/constants';
+import { IBreadcrumbs } from '@features/shared/ui/utils/interfaces';
 
 export const useBreadcrumbs = (pageTitle?: string): IBreadcrumbs[] | null => {
   const router = useRouter();
@@ -13,8 +13,8 @@ export const useBreadcrumbs = (pageTitle?: string): IBreadcrumbs[] | null => {
       return Object.keys(pages).includes(key)
         ? pages[key as keyof typeof pages].title
         : pageTitle
-        ? pageTitle.replace(/\\n/g, ' ')
-        : value;
+          ? pageTitle.replace(/\\n/g, ' ')
+          : value;
     },
     [pageTitle]
   );

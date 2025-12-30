@@ -1,10 +1,10 @@
 import { BigInt, ethereum } from '@graphprotocol/graph-ts';
-import { AfterDepositReversal } from 'subgraph/src/generated/types/schema';
-import { eventId } from 'subgraph/src/utils/helpers';
-import { ensureTransaction } from 'subgraph/src/utils/entities/Transaction';
-import { ensureEscrow } from 'subgraph/src/utils/entities/Escrow';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { escrowState } from 'subgraph/src/utils/constants';
+import { AfterDepositReversal } from '../../generated/types/schema';
+import { eventId } from '../../utils/helpers';
+import { ensureTransaction } from '../../utils/entities/Transaction';
+import { ensureEscrow } from '../../utils/entities/Escrow';
+import { ensureAccount } from '../../utils/entities/Account';
+import { escrowState } from '../../utils/constants';
 
 export function registerAfterDepositReversal(event: ethereum.Event, escrowId: BigInt): void {
   let escrow = ensureEscrow(escrowId, event.address);

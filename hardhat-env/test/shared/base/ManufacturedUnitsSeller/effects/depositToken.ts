@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseToken, EventsERC1155, EventsEscrow } from 'hardhat-env/test/shared/events';
-import { CreationTokenContract, ManufacturedUnitsSellerContract } from 'hardhat-env/test/shared/types';
+import { ErrorsOwnable } from '@test/shared/errors';
+import { EventsBaseToken, EventsERC1155, EventsEscrow } from '@test/shared/events';
+import { CreationTokenContract, ManufacturedUnitsSellerContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeDepositToken(
   contract: ManufacturedUnitsSellerContract,

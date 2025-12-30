@@ -1,9 +1,9 @@
-import styles from 'next-app/src/features/shared/styles/modules/certificates/CertificatesCardList.module.css';
+import styles from '@features/shared/styles/modules/certificates/CertificatesCardList.module.css';
 import { useEffect, useState } from 'react';
-import { sortCertificateArray } from 'next-app/src/features/shared/utils/helpers/certificate';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import CertificateCard from 'next-app/src/features/shared/ui/certificates/CertificateCard';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
+import { sortCertificateArray } from '@features/shared/utils/helpers/certificate';
+import { IItem } from '@features/shared/utils/interfaces';
+import CertificateCard from '@features/shared/ui/certificates/CertificateCard';
+import { Certificate } from '@features/shared/core/entities/Certificates';
 
 type Props = {
   data: Certificate[] | null;

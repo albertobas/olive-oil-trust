@@ -1,12 +1,12 @@
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { AllCertificatesQuery, AllTokenTypesQuery, TokenTypeByIdQuery } from 'next-app/.graphclient';
-import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
-import { parseEvent } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { getMetadata } from 'next-app/src/features/shared/utils/helpers/metadata';
-import { getMember } from 'next-app/src/features/shared/utils/helpers/member';
-import { TokenTypeInstruction } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { checkModule } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { TokenTypeRawType } from 'next-app/src/features/shared/utils/interfaces';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { AllCertificatesQuery, AllTokenTypesQuery, TokenTypeByIdQuery } from '.graphclient';
+import { getCertificate } from '@features/shared/utils/helpers/certificate';
+import { parseEvent } from '@features/shared/utils/helpers/helpers';
+import { getMetadata } from '@features/shared/utils/helpers/metadata';
+import { getMember } from '@features/shared/utils/helpers/member';
+import { TokenTypeInstruction } from '@features/shared/core/entities/TokenTypes';
+import { checkModule } from '@features/shared/utils/helpers/helpers';
+import { TokenTypeRawType } from '@features/shared/utils/interfaces';
 
 export function getTokenType(type: TokenTypeRawType): TokenType {
   return {
@@ -45,17 +45,17 @@ function getTokenTypeInstructions(
       const tokenTypeOrCertificateId = instruction.instructedCertificate
         ? instruction.instructedCertificate.id
         : instruction.instructedTokenType
-        ? instruction.instructedTokenType.id
-        : null;
+          ? instruction.instructedTokenType.id
+          : null;
       const tokenTypeOrCertificateTitle = instruction.instructedCertificate
         ? instruction.instructedCertificate.title
         : instruction.instructedTokenType
-        ? instruction.instructedTokenType.title
-        : null;
+          ? instruction.instructedTokenType.title
+          : null;
       if (tokenTypeOrCertificateId && tokenTypeOrCertificateTitle) {
         const certificateTokenTypeRole = instruction.instructedCertificate
           ? instruction.instructedCertificate.tokenTypes
-            ? instruction.instructedCertificate.tokenTypes[0].tokenType.contract.owner?.asMemberContract?.role ?? null
+            ? (instruction.instructedCertificate.tokenTypes[0].tokenType.contract.owner?.asMemberContract?.role ?? null)
             : null
           : null;
         const tokenTypeRole = instruction.instructedTokenType?.contract.owner?.asMemberContract?.role ?? null;
@@ -64,8 +64,8 @@ function getTokenTypeInstructions(
           instructorModuleId: certificateTokenTypeRole
             ? checkModule(certificateTokenTypeRole)
             : tokenTypeRole
-            ? checkModule(tokenTypeRole)
-            : null,
+              ? checkModule(tokenTypeRole)
+              : null,
           id: tokenTypeOrCertificateId,
           isCertificate: instruction.instructedCertificate ? true : false,
           title: tokenTypeOrCertificateTitle,
@@ -92,8 +92,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.instructionsSetEvent.transaction.timestamp > b.instructionsSetEvent.transaction.timestamp
             ? -1
             : a.instructionsSetEvent.transaction.timestamp < b.instructionsSetEvent.transaction.timestamp
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'numInstructions') {
@@ -102,8 +102,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.instructions.length > b.instructions.length
             ? -1
             : a.instructions.length < b.instructions.length
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'title') {
@@ -112,8 +112,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.metadata.title > b.metadata.title
             ? -1
             : a.metadata.title < b.metadata.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'type') {
@@ -122,8 +122,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.metadata?.title > b.metadata?.title
             ? -1
             : a.metadata?.title < b.metadata?.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'typeId') {
@@ -136,8 +136,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.instructionsSetEvent.transaction.timestamp < b.instructionsSetEvent.transaction.timestamp
             ? -1
             : a.instructionsSetEvent.transaction.timestamp > b.instructionsSetEvent.transaction.timestamp
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'numInstructions') {
@@ -146,8 +146,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.instructions.length < b.instructions.length
             ? -1
             : a.instructions.length > b.instructions.length
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'title') {
@@ -156,8 +156,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.metadata.title < b.metadata.title
             ? -1
             : a.metadata.title > b.metadata.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'type') {
@@ -166,8 +166,8 @@ export const sortTokenTypeArray = (data: TokenType[], sortValue: string | undefi
           ? a.metadata?.title < b.metadata?.title
             ? -1
             : a.metadata?.title > b.metadata?.title
-            ? 1
-            : 0
+              ? 1
+              : 0
           : 0
       );
     } else if (sortValue === 'typeId') {

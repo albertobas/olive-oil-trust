@@ -1,6 +1,6 @@
-import { IMenuItem } from 'next-app/src/app/ui/layouts/NavBar';
-import MenuItem from 'next-app/src/app/ui/layouts/MenuItem';
-import styles from 'src/app/styles/modules/layout/MenuDropdown.module.css';
+import { IMenuItem } from '@app/ui/layouts/NavBar';
+import MenuItem from '@app/ui/layouts/MenuItem';
+import styles from '@app/styles/modules/layout/MenuDropdown.module.css';
 
 type Props = { submenuItem: IMenuItem[]; isExpanded: boolean };
 

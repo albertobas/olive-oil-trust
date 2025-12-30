@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import { isCertifier } from 'next-app/src/shared/utils/constants';
-import MyCertificatesByMember from 'next-app/src/features/management/ui/certificates/MyCertificatesByMember';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import { isCertifier } from '@shared/utils/constants';
+import MyCertificatesByMember from '@features/management/ui/certificates/MyCertificatesByMember';
 
 const MyCertificatesPage: NextPage = () => {
   const { data } = useAppSelector((state) => state.account);

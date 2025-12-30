@@ -1,12 +1,12 @@
 import { memo, useMemo, useState } from 'react';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/constants';
-import TokenTypesCardList from 'next-app/src/features/shared/ui/tokenTypes/TokenTypesCardList';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { tokenTypeFilter, tokenTypeSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import FiltersTokenType from 'next-app/src/features/management/ui/tokenTypes/FiltersTokenType';
+import { IItem } from '@features/shared/utils/interfaces';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { sortTokenTypeCardsRecords } from '@features/shared/utils/constants';
+import TokenTypesCardList from '@features/shared/ui/tokenTypes/TokenTypesCardList';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { tokenTypeFilter, tokenTypeSearch } from '@features/shared/utils/helpers/helpers';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
+import FiltersTokenType from '@features/management/ui/tokenTypes/FiltersTokenType';
 
 type Props = {
   tokenTypes: TokenTypes | null;

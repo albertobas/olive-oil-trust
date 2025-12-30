@@ -1,6 +1,6 @@
-import { Tokens } from 'next-app/src/features/shared/core/entities/Tokens';
-import { getToken } from 'next-app/src/features/shared/utils/helpers/token';
-import { TokensByAccountQuery } from 'next-app/.graphclient';
+import { Tokens } from '@features/shared/core/entities/Tokens';
+import { getToken } from '@features/shared/utils/helpers/token';
+import { TokensByAccountQuery } from '.graphclient';
 
 const tokensByAccountAdapter = (dataRaw: TokensByAccountQuery): Tokens | null => {
   if (dataRaw.account) {

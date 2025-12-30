@@ -1,5 +1,5 @@
-import { dictOliveOilBottle, dictPallet } from 'hardhat-env/test/shared/constants';
-import { dictChainActorsNames, dictContracts, uupsOpts } from 'hardhat-env/shared/constants';
+import { dictOliveOilBottle, dictPallet } from '@test/shared/constants';
+import { dictChainActorsNames, dictContracts, uupsOpts } from '@shared/constants';
 import { utils } from 'ethers';
 import {
   activeRetailerFixture,
@@ -10,22 +10,22 @@ import {
   retailerWithStockFixture,
   paymentRetailerFixture,
   packedRetailerFixture
-} from 'hardhat-env/test/shared/fixtures';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/roles/RetailerUpgradeable/effects/initialize';
-import shouldBehaveLikeName from 'hardhat-env/test/shared/base/BaseMember/view/name';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/roles/RetailerUpgradeable/effects/depositToken';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/roles/RetailerUpgradeable/effects/depositBatch';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/shared/base/BaseSeller/effects/revertBeforePayment';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/shared/base/BaseSeller/effects/revertAfterPayment';
-import shouldBehaveLikeCloseEscrow from 'hardhat-env/test/shared/base/BaseSeller/effects/closeEscrow';
-import shouldBehaveLikeMakePayment from 'hardhat-env/test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/makePayment';
-import shouldBehaveLikeCancelPayment from 'hardhat-env/test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/cancelPayment';
-import shouldBehaveLikeUnpack from 'hardhat-env/test/roles/RetailerUpgradeable/effects/unpack';
-import shouldBehaveLikeUnpackBatch from 'hardhat-env/test/roles/RetailerUpgradeable/effects/unpackBatch';
-import shouldBehaveLikeReceive from 'hardhat-env/test/shared/base/BaseSeller/effects/receive';
-import shouldUpgrade from 'hardhat-env/test/roles/RetailerUpgradeable/effects/upgrade';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseSeller/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseSeller/effects/burnBatch';
+} from '@test/shared/fixtures';
+import shouldBehaveLikeInitialize from '@test/roles/RetailerUpgradeable/effects/initialize';
+import shouldBehaveLikeName from '@test/shared/base/BaseMember/view/name';
+import shouldBehaveLikeDepositToken from '@test/roles/RetailerUpgradeable/effects/depositToken';
+import shouldBehaveLikeDepositBatch from '@test/roles/RetailerUpgradeable/effects/depositBatch';
+import shouldBehaveLikeRevertBeforePayment from '@test/shared/base/BaseSeller/effects/revertBeforePayment';
+import shouldBehaveLikeRevertAfterPayment from '@test/shared/base/BaseSeller/effects/revertAfterPayment';
+import shouldBehaveLikeCloseEscrow from '@test/shared/base/BaseSeller/effects/closeEscrow';
+import shouldBehaveLikeMakePayment from '@test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/makePayment';
+import shouldBehaveLikeCancelPayment from '@test/shared/base/IndustrialOrCommercialUnitsPaymentGateway/effects/cancelPayment';
+import shouldBehaveLikeUnpack from '@test/roles/RetailerUpgradeable/effects/unpack';
+import shouldBehaveLikeUnpackBatch from '@test/roles/RetailerUpgradeable/effects/unpackBatch';
+import shouldBehaveLikeReceive from '@test/shared/base/BaseSeller/effects/receive';
+import shouldUpgrade from '@test/roles/RetailerUpgradeable/effects/upgrade';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseSeller/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseSeller/effects/burnBatch';
 
 export function shouldBehaveLikeRetailerUpgradeable(): void {
   const contract = 'retailer';

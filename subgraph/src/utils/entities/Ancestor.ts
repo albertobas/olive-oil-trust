@@ -1,7 +1,7 @@
 import { Address, BigInt, Bytes } from '@graphprotocol/graph-ts';
-import { Ancestor } from 'subgraph/src/generated/types/schema';
-import { ensureToken } from 'subgraph/src/utils/entities/Token';
-import { separator } from 'subgraph/src/utils/constants';
+import { Ancestor } from '../../generated/types/schema';
+import { ensureToken } from '../../utils/entities/Token';
+import { separator } from '../../utils/constants';
 
 export function registerTokenAncestry(
   tokenTypeId: Bytes,

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { ErrorsBaseEscrow, ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsIndustrialUnitToken, EventsERC1155, EventsEscrow } from 'hardhat-env/test/shared/events';
-import { StatesEscrow } from 'hardhat-env/test/shared/states';
+import { ErrorsBaseEscrow, ErrorsOwnable } from '@test/shared/errors';
+import { EventsIndustrialUnitToken, EventsERC1155, EventsEscrow } from '@test/shared/events';
+import { StatesEscrow } from '@test/shared/states';
 
 export default function shouldBehaveLikeClose(
   escrowIds: number[],

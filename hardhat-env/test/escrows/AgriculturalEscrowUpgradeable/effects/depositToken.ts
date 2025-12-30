@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsAgriculturalEscrowUpgradeable, ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseToken, EventsERC1155, EventsEscrow } from 'hardhat-env/test/shared/events';
-import { IndependentTokenUpgradeableContract } from 'hardhat-env/test/shared/types';
+import { ErrorsAgriculturalEscrowUpgradeable, ErrorsOwnable } from '@test/shared/errors';
+import { EventsBaseToken, EventsERC1155, EventsEscrow } from '@test/shared/events';
+import { IndependentTokenUpgradeableContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeDepositToken(
   tokenContract: IndependentTokenUpgradeableContract,

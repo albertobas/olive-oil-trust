@@ -1,6 +1,6 @@
-import { EscrowSate, IMember } from 'next-app/src/features/shared/utils/interfaces';
-import { Transaction } from 'next-app/src/features/shared/core/entities/Events';
-import { TokensInfo } from 'next-app/src/features/shared/core/entities/Tokens';
+import { EscrowSate, IMember } from '@features/shared/utils/interfaces';
+import { Transaction } from '@features/shared/core/entities/Events';
+import { TokensInfo } from '@features/shared/core/entities/Tokens';
 
 export interface Escrow {
   id: string;

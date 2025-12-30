@@ -1,6 +1,6 @@
-import { baseUri, dictAccounts, dictContracts, dictInheritedModules, uupsLibOpts } from 'hardhat-env/shared/constants';
-import { IDeployedActorAndDeps } from 'hardhat-env/shared/types';
-import { deployBottlingPlantAndDeps } from 'hardhat-env/shared/helpers';
+import { baseUri, dictAccounts, dictContracts, dictInheritedModules, uupsLibOpts } from '@shared/constants';
+import { IDeployedActorAndDeps } from '@shared/types';
+import { deployBottlingPlantAndDeps } from '@shared/helpers';
 import { ethers } from 'hardhat';
 
 export async function deployBottlingCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {

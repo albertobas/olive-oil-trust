@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import useAppSelector from 'next-app/src/shared/ui/hooks/useAppSelector';
-import MyParticipations from 'next-app/src/features/management/ui/participations/MyParticipations';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import useAppSelector from '@shared/ui/hooks/useAppSelector';
+import MyParticipations from '@features/management/ui/participations/MyParticipations';
 
 const MyParticipationsPage: NextPage = () => {
   const { data } = useAppSelector((state) => state.account);

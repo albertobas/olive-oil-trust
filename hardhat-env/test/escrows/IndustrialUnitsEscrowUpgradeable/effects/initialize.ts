@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ErrorsInitializable } from 'hardhat-env/test/shared/errors';
+import { ErrorsInitializable } from '@test/shared/errors';
 
 export default function shouldBehaveLikeInitialize(): void {
   context('succeeds', function () {

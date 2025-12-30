@@ -1,6 +1,6 @@
 import { BigNumber, utils } from 'ethers';
-import { dictOliveOil, dictOlives } from 'hardhat-env/test/shared/constants';
-import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from 'hardhat-env/shared/constants';
+import { dictOliveOil, dictOlives } from '@test/shared/constants';
+import { baseUri, dictChainActorsNames, dictContracts, uupsLibOpts } from '@shared/constants';
 import {
   oliveOilMillFixture,
   activeOliveOilMillFixture,
@@ -10,24 +10,24 @@ import {
   offeredPaymentOliveOilMillFixture,
   initializedOliveOilMillFixture,
   paymentOliveOilMillFixture
-} from 'hardhat-env/test/shared/fixtures';
-import shouldBehaveLikeInitialize from 'hardhat-env/test/roles/OliveOilMillUpgradeable/effects/initialize';
-import shouldBehaveLikeSetTokenTypeInstructions from 'hardhat-env/test/shared/base/DependentCreator/effects/setTokenTypeInstructions';
-import shouldBehaveLikeSetTokenTypesInstructions from 'hardhat-env/test/shared/base/DependentCreator/effects/setTokenTypesInstructions';
-import shouldBehaveLikeMint from 'hardhat-env/test/shared/base/DependentCreator/effects/mint';
-import shouldBehaveLikeMintBatch from 'hardhat-env/test/shared/base/DependentCreator/effects/mintBatch';
-import shouldBehaveLikeDepositToken from 'hardhat-env/test/shared/base/ManufacturedUnitsSeller/effects/depositToken';
-import shouldBehaveLikeDepositBatch from 'hardhat-env/test/shared/base/ManufacturedUnitsSeller/effects/depositBatch';
-import shouldBehaveLikeRevertBeforePayment from 'hardhat-env/test/shared/base/BaseSeller/effects/revertBeforePayment';
-import shouldBehaveLikeRevertAfterPayment from 'hardhat-env/test/shared/base/BaseSeller/effects/revertAfterPayment';
-import shouldBehaveLikeCloseEscrow from 'hardhat-env/test/shared/base/BaseSeller/effects/closeEscrow';
-import shouldBehaveLikeMakeOffer from 'hardhat-env/test/roles/OliveOilMillUpgradeable/effects/makeOffer';
-import shouldBehaveLikeCancelPayment from 'hardhat-env/test/roles/OliveOilMillUpgradeable/effects/cancelPayment';
-import shouldBehaveLikeName from 'hardhat-env/test/shared/base/BaseMember/view/name';
-import shouldBehaveLikeReceive from 'hardhat-env/test/shared/base/BaseSeller/effects/receive';
-import shouldUpgrade from 'hardhat-env/test/roles/OliveOilMillUpgradeable/effects/upgrade';
-import shouldBehaveLikeBurn from 'hardhat-env/test/shared/base/BaseSeller/effects/burn';
-import shouldBehaveLikeBurnBatch from 'hardhat-env/test/shared/base/BaseSeller/effects/burnBatch';
+} from '@test/shared/fixtures';
+import shouldBehaveLikeInitialize from '@test/roles/OliveOilMillUpgradeable/effects/initialize';
+import shouldBehaveLikeSetTokenTypeInstructions from '@test/shared/base/DependentCreator/effects/setTokenTypeInstructions';
+import shouldBehaveLikeSetTokenTypesInstructions from '@test/shared/base/DependentCreator/effects/setTokenTypesInstructions';
+import shouldBehaveLikeMint from '@test/shared/base/DependentCreator/effects/mint';
+import shouldBehaveLikeMintBatch from '@test/shared/base/DependentCreator/effects/mintBatch';
+import shouldBehaveLikeDepositToken from '@test/shared/base/ManufacturedUnitsSeller/effects/depositToken';
+import shouldBehaveLikeDepositBatch from '@test/shared/base/ManufacturedUnitsSeller/effects/depositBatch';
+import shouldBehaveLikeRevertBeforePayment from '@test/shared/base/BaseSeller/effects/revertBeforePayment';
+import shouldBehaveLikeRevertAfterPayment from '@test/shared/base/BaseSeller/effects/revertAfterPayment';
+import shouldBehaveLikeCloseEscrow from '@test/shared/base/BaseSeller/effects/closeEscrow';
+import shouldBehaveLikeMakeOffer from '@test/roles/OliveOilMillUpgradeable/effects/makeOffer';
+import shouldBehaveLikeCancelPayment from '@test/roles/OliveOilMillUpgradeable/effects/cancelPayment';
+import shouldBehaveLikeName from '@test/shared/base/BaseMember/view/name';
+import shouldBehaveLikeReceive from '@test/shared/base/BaseSeller/effects/receive';
+import shouldUpgrade from '@test/roles/OliveOilMillUpgradeable/effects/upgrade';
+import shouldBehaveLikeBurn from '@test/shared/base/BaseSeller/effects/burn';
+import shouldBehaveLikeBurnBatch from '@test/shared/base/BaseSeller/effects/burnBatch';
 
 export function shouldBehaveLikeOliveOilMillUpgradeable(): void {
   const contract = 'oliveOilMill';

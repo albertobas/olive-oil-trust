@@ -14,8 +14,8 @@
     "tsc": "tsc --pretty --noEmit",
     "lint:sol": "solhint --config ./.solhint.json --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:ts": "eslint . --ext .ts",
-    "lint": "npm run lint:sol && npm run lint:ts",
-    "setState": "hardhat setState --network localhost"
+    "lint": "pnpm run lint:sol && pnpm run lint:ts",
+    "set-state": "hardhat set-state --network localhost"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.6",
@@ -30,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "chai": "^4.3.6",
     "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^8.10.2",
     "eslint-config-standard-with-typescript": "^21.0.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
@@ -41,11 +41,10 @@
     "hardhat": "^2.9.6",
     "hardhat-contract-sizer": "^2.5.1",
     "hardhat-gas-reporter": "^1.0.8",
-    "prettier-plugin-solidity": "^1.0.0-beta.19",
-    "solhint": "^3.3.7",
-    "solhint-plugin-prettier": "^0.0.5",
+    "solhint": "^6.0.2",
+    "solhint-plugin-prettier": "^0.1.0",
     "solidity-coverage": "^0.7.21",
-    "ts-node": "^10.8.0",
+    "tsconfig-paths": "^4.2.0",
     "typechain": "^8.0.0",
     "typescript": "^4.7.4"
   }

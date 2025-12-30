@@ -1,6 +1,6 @@
-import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { TokenTypeByIdQuery } from 'next-app/.graphclient';
+import { getTokenType } from '@features/shared/utils/helpers/tokenType';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { TokenTypeByIdQuery } from '.graphclient';
 
 const tokenTypeByIdAdapter = (dataRaw: TokenTypeByIdQuery): TokenType | null => {
   if (dataRaw.tokenType) {

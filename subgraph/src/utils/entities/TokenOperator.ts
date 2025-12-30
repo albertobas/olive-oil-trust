@@ -1,8 +1,8 @@
 import { Address, ethereum } from '@graphprotocol/graph-ts';
-import { TokenOperator } from 'subgraph/src/generated/types/schema';
-import { separator } from 'subgraph/src/utils/constants';
-import { ensureAccount } from 'subgraph/src/utils/entities/Account';
-import { ensureTokenContract } from 'subgraph/src/utils/entities/TokenContract';
+import { TokenOperator } from '../../generated/types/schema';
+import { separator } from '../../utils/constants';
+import { ensureAccount } from '../../utils/entities/Account';
+import { ensureTokenContract } from '../../utils/entities/TokenContract';
 
 export function registerApproval(
   event: ethereum.Event,

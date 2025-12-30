@@ -1,11 +1,11 @@
 import { memo, useMemo, useState } from 'react';
-import CertificatesCardList from 'next-app/src/features/shared/ui/certificates/CertificatesCardList';
-import CertificatesControl from 'next-app/src/features/management/ui/certificates/CertificatesControl';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { certificateSearch } from 'next-app/src/features/shared/utils/helpers/helpers';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
+import CertificatesCardList from '@features/shared/ui/certificates/CertificatesCardList';
+import CertificatesControl from '@features/management/ui/certificates/CertificatesControl';
+import { IItem } from '@features/shared/utils/interfaces';
+import { certificateSearch } from '@features/shared/utils/helpers/helpers';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { Certificates } from '@features/shared/core/entities/Certificates';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
 
 type Props = {
   certificates: Certificates | null;

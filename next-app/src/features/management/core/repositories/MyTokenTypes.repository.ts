@@ -1,4 +1,4 @@
-import { AllTokenTypesAndCertificatesQuery } from 'next-app/.graphclient';
+import { AllTokenTypesAndCertificatesQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 interface MyTokenTypesRepository {

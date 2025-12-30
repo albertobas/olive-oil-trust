@@ -6,14 +6,14 @@
  */
 
 import { GetServerSideProps } from 'next';
-import { getBuiltGraphSDK } from 'next-app/.graphclient';
-import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-import AllTokenTypes from 'next-app/src/features/explore/ui/tokenTypes/AllTokenTypes';
-import { brandName } from 'next-app/src/shared/utils/constants';
-import allTokenTypesAdapter from 'next-app/src/features/explore/core/adapters/allTokenTypes.adapter';
-import { TokenTypesState, TokenTypesStateData } from 'next-app/src/features/shared/utils/interfaces';
-import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
+import { getBuiltGraphSDK } from '.graphclient';
+import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+import Intro from '@features/shared/ui/intro/Intro';
+import AllTokenTypes from '@features/explore/ui/tokenTypes/AllTokenTypes';
+import { brandName } from '@shared/utils/constants';
+import allTokenTypesAdapter from '@features/explore/core/adapters/allTokenTypes.adapter';
+import { TokenTypesState, TokenTypesStateData } from '@features/shared/utils/interfaces';
+import { getTime } from '@features/shared/utils/helpers/helpers';
 
 function TokenTypesPageSSR(state: TokenTypesState): JSX.Element {
   return (
@@ -45,12 +45,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 export default TokenTypesPageSSR;
 
 // import { NextPage } from 'next';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-// import { useAllTokenTypes } from 'next-app/src/features/explore/ui/hooks/useAllTokenTypes';
-// import { pollInterval } from 'next-app/src/features/shared/utils/constants';
-// import AllTokenTypes from 'next-app/src/features/explore/ui/tokenTypes/AllTokenTypes';
-// import { brandName } from 'next-app/src/shared/utils/constants';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import Intro from '@features/shared/ui/intro/Intro';
+// import { useAllTokenTypes } from '@features/explore/ui/hooks/useAllTokenTypes';
+// import { pollInterval } from '@features/shared/utils/constants';
+// import AllTokenTypes from '@features/explore/ui/tokenTypes/AllTokenTypes';
+// import { brandName } from '@shared/utils/constants';
 
 // const TokenTypesPageCSR: NextPage = () => {
 //   const state = useAllTokenTypes(pollInterval);
@@ -70,15 +70,15 @@ export default TokenTypesPageSSR;
 // export default TokenTypesPageCSR;
 
 // import { GetStaticProps } from 'next';
-// import { getBuiltGraphSDK } from 'next-app/.graphclient';
-// import Breadcrumbs from 'next-app/src/features/shared/ui/breadcrumbs/Breadcrumbs';
-// import Intro from 'next-app/src/features/shared/ui/intro/Intro';
-// import AllTokenTypes from 'next-app/src/features/explore/ui/tokenTypes/AllTokenTypes';
-// import { brandName } from 'next-app/src/shared/utils/constants';
-// import allTokenTypesAdapter from 'next-app/src/features/explore/core/adapters/allTokenTypes.adapter';
-// import { TokenTypesState, TokenTypesStateData } from 'next-app/src/features/shared/utils/interfaces';
-// import { getTime } from 'next-app/src/features/shared/utils/helpers/helpers';
-// import { revalidateInterval } from 'next-app/src/features/shared/utils/constants';
+// import { getBuiltGraphSDK } from '.graphclient';
+// import Breadcrumbs from '@features/shared/ui/breadcrumbs/Breadcrumbs';
+// import Intro from '@features/shared/ui/intro/Intro';
+// import AllTokenTypes from '@features/explore/ui/tokenTypes/AllTokenTypes';
+// import { brandName } from '@shared/utils/constants';
+// import allTokenTypesAdapter from '@features/explore/core/adapters/allTokenTypes.adapter';
+// import { TokenTypesState, TokenTypesStateData } from '@features/shared/utils/interfaces';
+// import { getTime } from '@features/shared/utils/helpers/helpers';
+// import { revalidateInterval } from '@features/shared/utils/constants';
 
 // function TokenTypesPageISR(state: TokenTypesState): JSX.Element {
 //   return (

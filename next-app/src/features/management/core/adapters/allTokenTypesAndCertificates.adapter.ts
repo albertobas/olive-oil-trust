@@ -1,9 +1,9 @@
-import { getCertificate } from 'next-app/src/features/shared/utils/helpers/certificate';
-import { getTokenType } from 'next-app/src/features/shared/utils/helpers/tokenType';
-import { TokenTypes } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { IAllTokenTypesAndCertificates } from 'next-app/src/features/management/core/entities/MyTokenTypes';
-import { Certificates } from 'next-app/src/features/shared/core/entities/Certificates';
-import { AllTokenTypesAndCertificatesQuery } from 'next-app/.graphclient';
+import { getCertificate } from '@features/shared/utils/helpers/certificate';
+import { getTokenType } from '@features/shared/utils/helpers/tokenType';
+import { TokenTypes } from '@features/shared/core/entities/TokenTypes';
+import { IAllTokenTypesAndCertificates } from '@features/management/core/entities/MyTokenTypes';
+import { Certificates } from '@features/shared/core/entities/Certificates';
+import { AllTokenTypesAndCertificatesQuery } from '.graphclient';
 
 const allTokenTypesAndCertificatesAdapter = (
   dataRaw: AllTokenTypesAndCertificatesQuery

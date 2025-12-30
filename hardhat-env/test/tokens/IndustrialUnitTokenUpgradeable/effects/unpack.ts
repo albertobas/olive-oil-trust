@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
-import { ErrorsIndustrialUnitTokenUpgradeable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseToken, EventsERC1155, EventsIndustrialUnitToken } from 'hardhat-env/test/shared/events';
-import { bytes32Data } from 'hardhat-env/test/shared/constants';
+import { ErrorsIndustrialUnitTokenUpgradeable } from '@test/shared/errors';
+import { EventsBaseToken, EventsERC1155, EventsIndustrialUnitToken } from '@test/shared/events';
+import { bytes32Data } from '@test/shared/constants';
 
 export default function shouldBehaveLikeUnpack(
   palletId: string,

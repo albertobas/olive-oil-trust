@@ -1,20 +1,20 @@
 import { Dispatch, SetStateAction, useMemo } from 'react';
-import useSignedMemberContract from 'next-app/src/features/shared/ui/hooks/useSignedMemberContract';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import { IFormikUnpackToken } from 'next-app/src/features/management/utils/interfaces';
+import useSignedMemberContract from '@features/shared/ui/hooks/useSignedMemberContract';
+import { IItem } from '@features/shared/utils/interfaces';
+import { IFormikUnpackToken } from '@features/management/utils/interfaces';
 import { toast } from 'react-toastify';
-import { Token } from 'next-app/src/features/shared/core/entities/Tokens';
-import styles from 'src/features/shared/styles/modules/forms/Form.module.css';
+import { Token } from '@features/shared/core/entities/Tokens';
+import styles from '@features/shared/styles/modules/forms/Form.module.css';
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import { Root as Label } from '@radix-ui/react-label';
 import { formatBytes32String } from 'ethers/lib/utils';
-import FallbackMessage from 'next-app/src/features/shared/ui/fallbackMessage/FallbackMessage';
-import { renderToast } from 'next-app/src/shared/utils/helpers';
-import SVG from 'next-app/src/features/shared/ui/svg/SVG';
+import FallbackMessage from '@features/shared/ui/fallbackMessage/FallbackMessage';
+import { renderToast } from '@shared/utils/helpers';
+import SVG from '@features/shared/ui/svg/SVG';
 import { FaTimes } from 'react-icons/fa';
-import TokensDropdownMulti from 'next-app/src/features/shared/ui/tokens/TokensDropdownMulti';
-import { handleSelectValidation } from 'next-app/src/features/shared/ui/utils/helpers';
-import { transferUnpackTokens } from 'next-app/src/features/management/utils/helpers';
+import TokensDropdownMulti from '@features/shared/ui/tokens/TokensDropdownMulti';
+import { handleSelectValidation } from '@features/shared/ui/utils/helpers';
+import { transferUnpackTokens } from '@features/management/utils/helpers';
 
 type Props = {
   industrialUnitTokens: Token[];

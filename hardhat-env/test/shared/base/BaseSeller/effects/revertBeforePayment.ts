@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { BigNumber } from 'ethers';
-import { ErrorsOwnable } from 'hardhat-env/test/shared/errors';
-import { EventsBaseToken, EventsERC1155, EventsEscrow } from 'hardhat-env/test/shared/events';
-import { CreationTokenContract, BaseSellerContract } from 'hardhat-env/test/shared/types';
+import { ErrorsOwnable } from '@test/shared/errors';
+import { EventsBaseToken, EventsERC1155, EventsEscrow } from '@test/shared/events';
+import { CreationTokenContract, BaseSellerContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeRevertBeforePayment(
   contract: BaseSellerContract,

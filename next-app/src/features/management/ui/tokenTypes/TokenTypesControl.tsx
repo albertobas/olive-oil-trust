@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { Certificate } from 'next-app/src/features/shared/core/entities/Certificates';
-import { TokenType } from 'next-app/src/features/shared/core/entities/TokenTypes';
-import { IItem } from 'next-app/src/features/shared/utils/interfaces';
-import AddTokenTypes from 'next-app/src/features/management/ui/tokenTypes/AddTokenTypes';
-import styles from 'next-app/src/features/management/styles/modules/tokenTypes/TokenTypesControl.module.css';
-import SearchSortBar from 'next-app/src/features/shared/ui/search/SearchSortBar';
-import { sortTokenTypeCardsRecords } from 'next-app/src/features/shared/utils/constants';
+import { Certificate } from '@features/shared/core/entities/Certificates';
+import { TokenType } from '@features/shared/core/entities/TokenTypes';
+import { IItem } from '@features/shared/utils/interfaces';
+import AddTokenTypes from '@features/management/ui/tokenTypes/AddTokenTypes';
+import styles from '@features/management/styles/modules/tokenTypes/TokenTypesControl.module.css';
+import SearchSortBar from '@features/shared/ui/search/SearchSortBar';
+import { sortTokenTypeCardsRecords } from '@features/shared/utils/constants';
 import ReactModal from 'react-modal';
 
 type Props = {

@@ -1,11 +1,11 @@
-import MyEscrowsRepository from 'next-app/src/features/management/core/repositories/MyEscrows.repository';
+import MyEscrowsRepository from '@features/management/core/repositories/MyEscrows.repository';
 import {
   execute,
   EscrowsByBuyerDocument,
   EscrowsByBuyerQuery,
   EscrowsByMemberDocument,
   EscrowsByMemberQuery
-} from 'next-app/.graphclient';
+} from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 class MyEscrowsDataSource implements MyEscrowsRepository {

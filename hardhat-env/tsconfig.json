@@ -11,7 +11,13 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "sourceMap": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["./shared/*"],
+      "@test/*": ["./test/*"],
+      "@types": ["./types/index"]
+    }
   },
   "exclude": ["**/node_modules"],
   "include": ["./test/**/*", "./scripts/**/*", "./tasks/**/*", "helpers/**/*"],

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { BigNumber, constants } from 'ethers';
-import { EventsBaseToken, EventsERC1155 } from 'hardhat-env/test/shared/events';
-import { BaseSellerContract, CreationTokenContract } from 'hardhat-env/test/shared/types';
+import { EventsBaseToken, EventsERC1155 } from '@test/shared/events';
+import { BaseSellerContract, CreationTokenContract } from '@test/shared/types';
 
 export default function shouldBehaveLikeBurnBatch(
   contract: BaseSellerContract,

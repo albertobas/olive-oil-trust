@@ -1,9 +1,5 @@
-import MyTokenTypesRepository from 'next-app/src/features/management/core/repositories/MyTokenTypes.repository';
-import {
-  execute,
-  AllTokenTypesAndCertificatesDocument,
-  AllTokenTypesAndCertificatesQuery
-} from 'next-app/.graphclient';
+import MyTokenTypesRepository from '@features/management/core/repositories/MyTokenTypes.repository';
+import { execute, AllTokenTypesAndCertificatesDocument, AllTokenTypesAndCertificatesQuery } from '.graphclient';
 import { ExecutionResult } from 'graphql';
 
 class MyTokenTypesDataSource implements MyTokenTypesRepository {
