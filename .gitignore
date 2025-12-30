@@ -9,7 +9,7 @@ hardhat-env/artifacts
 hardhat-env/cache
 hardhat-env/deployments
 hardhat-env/types
-services/graph-node
+graph-node/data
 subgraph/build
 
 # files
@@ -17,3 +17,4 @@ subgraph/build
 **/.DS_Store
 hardhat-env/coverage.json
 subgraph/subgraph.yaml
+.nvmrc
