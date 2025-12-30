@@ -68,7 +68,7 @@ enum MemberRole {
 # ----------------------------------
 #  ENTITIES FOR HIGH-LEVEL CONCEPTS
 # ----------------------------------
-type Account @entity {
+type Account @entity(immutable: false) {
   id: Bytes!
   asCertificateContract: CertificateContract
   asEscrowContract: EscrowContract
@@ -88,7 +88,7 @@ type Account @entity {
   tokenTransferToEvent: [TokenTransfer!] @derivedFrom(field: "to")
   tokenTransferOperatorEvent: [TokenTransfer!] @derivedFrom(field: "operator")
 }
-type MemberContract @entity {
+type MemberContract @entity(immutable: false) {
   id: Bytes!
   name: String
   owner: Account!
@@ -96,7 +96,7 @@ type MemberContract @entity {
   asAccount: Account!
 }
 # Due to contract aptitude to change ownership entity is mutable
-type TokenContract @entity {
+type TokenContract @entity(immutable: false) {
   id: Bytes!
   asAccount: Account!
   owner: Account
@@ -111,7 +111,7 @@ type TokenContract @entity {
   tokenTransfers: [TokenTransfer!] @derivedFrom(field: "contract")
 }
 # Due to contract aptitude to change ownership entity is mutable
-type EscrowContract @entity {
+type EscrowContract @entity(immutable: false) {
   id: Bytes!
   asAccount: Account!
   owner: Account
@@ -125,14 +125,14 @@ type EscrowContract @entity {
   tokenDeposit: [TokenDeposit!]! @derivedFrom(field: "escrowContract")
 }
 # Due to contract aptitude to change ownership entity is mutable
-type CertificateContract @entity {
+type CertificateContract @entity(immutable: false) {
   id: Bytes!
   asAccount: Account!
   owner: Account
   certificates: [Certificate!] @derivedFrom(field: "contract")
   tokenCertification: [TokenCertification!] @derivedFrom(field: "certificateContract")
 }
-type Certificate implements IMetadata @entity {
+type Certificate implements IMetadata @entity(immutable: false) {
   id: ID!
   identifier: String!
   bottleQuality: String
@@ -154,11 +154,11 @@ type Certificate implements IMetadata @entity {
   oliveOilItching: String
   oliveOrigin: String
   title: String
-  uri: String!
+  uri: String
   certification: [TokenCertification!] @derivedFrom(field: "certificate")
   tokenTypes: [TokenTypeCertificateMapping!] @derivedFrom(field: "certificate")
 }
-type Escrow @entity {
+type Escrow @entity(immutable: false) {
   id: ID!
   buyer: Account
   buyerWallet: Bytes
@@ -179,7 +179,7 @@ type Escrow @entity {
   etherDepositCancellations: [EtherDepositCancellation!]! @derivedFrom(field: "escrow")
   tokens: [TokenEscrowMapping!]! @derivedFrom(field: "escrow")
 }
-type Token @entity {
+type Token @entity(immutable: false) {
   id: ID!
   contract: TokenContract!
   tokenType: TokenType
@@ -198,7 +198,7 @@ type Ancestor @entity(immutable: true) {
   amount: BigInt!
   descendant: Token!
 }
-type TokenType implements IMetadata @entity {
+type TokenType implements IMetadata @entity(immutable: false) {
   id: ID!
   bottleQuality: String
   bottleMaterial: String
@@ -234,7 +234,7 @@ type Instruction @entity(immutable: true) {
   tokenTypeInstructionsSet: TokenTypeInstructionsSet!
   tokenType: TokenType!
 }
-type Balance @entity {
+type Balance @entity(immutable: false) {
   id: ID!
   escrowEscrowContract: EscrowContract
   escrowEscrow: Escrow
@@ -249,7 +249,7 @@ type Balance @entity {
   tokenTransferFromEvent: [TokenTransfer!] @derivedFrom(field: "fromBalance")
   tokenTransferToEvent: [TokenTransfer!] @derivedFrom(field: "toBalance")
 }
-type TokenOperator @entity {
+type TokenOperator @entity(immutable: false) {
   id: ID!
   approved: Boolean!
   contract: TokenContract!
@@ -408,10 +408,10 @@ type OwnershipTransferred implements IEvent @entity(immutable: true) {
 # ----------------------------------
 #          FULL TEXT SEARCH
 # ----------------------------------
-type _Schema_
-  @fulltext(
-    name: "memberSearch"
-    language: en
-    algorithm: rank
-    include: [{ entity: "MemberContract", fields: [{ name: "name" }] }]
-  )
+# type _Schema_
+#   @fulltext(
+#     name: "memberSearch"
+#     language: en
+#     algorithm: rank
+#     include: [{ entity: "MemberContract", fields: [{ name: "name" }] }]
+#   )
