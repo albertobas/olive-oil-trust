@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { constants } from 'ethers';
 import { EventsBaseToken, EventsERC1155, EventsIndustrialUnitToken } from '@test/shared/events';
-import { ErrorsOwnable } from '@test/shared/errors';
+import { ErrorsDistributorUpgradeable, ErrorsOwnable } from '@test/shared/errors';
 
 export default function shouldBehaveLikePack(
   palletId: string,
@@ -57,6 +57,14 @@ export default function shouldBehaveLikePack(
           palletId,
           1
         );
+    });
+  });
+
+  context('fails', function () {
+    it("if packing a pallet with invalid arrays' lengths", async function () {
+      await expect(
+        this.contracts.distributor.pack(palletId, [], tokenTypeIds, tokenIds, tokenAmounts)
+      ).to.be.revertedWith(ErrorsDistributorUpgradeable.InvalidArray);
     });
   });
 

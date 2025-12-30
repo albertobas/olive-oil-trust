@@ -78,6 +78,12 @@ export default function shouldBehaveLikeUnpackBatch(
       );
     });
 
+    it('if unpacking a pallet with invalid array length', async function () {
+      await expect(this.contracts.palletToken.unpackBatch(this.signers.deployer.address, [])).to.be.revertedWith(
+        ErrorsIndustrialUnitTokenUpgradeable.InvalidArray
+      );
+    });
+
     it('if unpacking multiple pallets but failing to have the ownership of at least one of them', async function () {
       const id_ = await this.contracts.palletToken.bytesToIntId(palletsIds[0]);
       const balanceId = await this.contracts.palletToken.balanceOf(this.signers.deployer.address, id_);
