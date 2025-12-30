@@ -41,43 +41,39 @@ Finally, data are queried from a local TheGraph node using GraphQL. The subgraph
 - `next-app/src/pages/*`: static pages.
 - `next-app/src/**/shared/*`: user interface code and constants shared across files at the same folder level.
 - `next-app/src/**/styles/*`: CSSModules files.
-- `services/*`: TheGraph graph node.
+- `graph-node/*`: TheGraph graph node data.
 - `subgraph/scripts/*`: script to generate a subgraph manifest from a template, replacing keys for values from a JSON file.
 - `subgraph/src/*`: mappings, written in AssemblyScript, constants and entities used to extract data from the local Hardhat chain, process them and store them.
 - `subgraph/templates/*`: a subgraph manifest template.
 
 ## Running locally
 
-First of all, a TheGraph node has to be configured in `services/graph-node`.
-
-> Visit the TheGraph [graph node repo](https://github.com/graphprotocol/graph-node/tree/f5e18bfdce700892e412096c26ec06090852a251) for more information about the TheGraph node.
-
-The npm script to run this service currently runs the Docker image of the node, but this may well be changed as per your preference.
+This project needs PNPM, Node >= 20.18.1 and Docker to be installed.
 
 ```bash
 $ git clone https://github.com/albertobas/olive-oil-trust.git
 $ cd olive-oil-trust
-$ npm i
+$ pnpm i
 ```
 
 Now, run the Hardhat node:
 
 ```bash
-$ npm run hardhat:node
+$ pnpm run hardhat:node
 ```
 
 Then, open two separate terminal tabs or windows and in one of them run the following command to start the TheGraph node:
 
 ```bash
-$ npm run services:start
+$ pnpm run graph-node:start
 ```
 
-This will start PostgreSQL, IPFS and the TheGraph node in Docker. See the [Graph Node Docker Image](https://github.com/graphprotocol/graph-node/tree/f5e18bfdce700892e412096c26ec06090852a251/docker) GitHub page for more information.
+This will start PostgreSQL, IPFS and the TheGraph node in Docker. See the [Graph Node Docker Image](https://github.com/graphprotocol/graph-node/tree/44b5638e55a6408b852b2057c19ac7abc9491772/docker) GitHub page for more information.
 
 Once it is up and running, in the terminal tab or window left run:
 
 ```bash
-$ npm run start
+$ pnpm run setup
 ```
 
 This command will run multiple commands sequentially in order to do the following tasks:
@@ -92,7 +88,7 @@ This command will run multiple commands sequentially in order to do the followin
 When this is all accomplished, just run the following command to start the Next.js development server:
 
 ```bash
-$ npm run next-app:dev
+$ pnpm run next-app:dev
 ```
 
 Then, visit `http://localhost:3000` to view your application.
@@ -105,7 +101,7 @@ In `hardhat-env/shared/constants.ts` we can see that `dictAccounts` gathers inde
 
 Every figurative member, as well as an end customer, of this simulation in Olive Oil Trust is then assigned a wallet address with fake Ether in the harhdat local chain, only for development purposes.
 
-Running `npm run hardhat:setState`, or `npm run start:setState` above instead of `npm run start`, will set a state to the local chain to represent tokens being minted and traded from an imaginative olive grower to a figurative end customer.
+Running `pnpm run hardhat:set-state`, or `pnpm run setup:set-state` above instead of `pnpm run setup`, will set a state to the local chain to represent tokens being minted and traded from an imaginative olive grower to a figurative end customer.
 
 ## Related posts
 
