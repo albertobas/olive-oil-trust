@@ -1,0 +1,8 @@
+{
+  "name": "graph-node",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf data/"
+  }
+}
