@@ -7,4 +7,4 @@
 
 "hardhat-env/**/*.sol":
   - prettier --write
-  - pnpm --filter hardhat-env exec solhint --config hardhat-env/.solhint.json --ignore-path hardhat-env/.solhintignore --fix
+  - cd hardhat-env && pnpm exec solhint --config .solhint.json --ignore-path .solhintignore contracts/**/*.sol --fix
