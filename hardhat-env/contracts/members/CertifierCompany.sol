@@ -17,4 +17,7 @@ contract CertifierCompany is Initializable, CertifierUpgradeable {
     function initialize(address certificate) external initializer {
         __CertifierUpgradeable_init('Certifier Company', certificate);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

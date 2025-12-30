@@ -14,4 +14,7 @@ contract DistributorCompanyEscrow is Initializable, IndustrialUnitsEscrowUpgrade
     function initialize() external initializer {
         __IndustrialUnitsEscrowUpgradeable_init();
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

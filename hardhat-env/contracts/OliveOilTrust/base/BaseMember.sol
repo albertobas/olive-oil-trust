@@ -8,7 +8,7 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
  * @dev Implementation of a base contract that implements a function to retrieve the name
  *     which is common to all members through the supply chain.
  */
-contract BaseMember is Initializable {
+abstract contract BaseMember is Initializable {
     /// @dev Name of the member
     string internal _name;
 
@@ -36,4 +36,7 @@ contract BaseMember is Initializable {
         _name = name_;
         emit NameSet(name_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

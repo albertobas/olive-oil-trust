@@ -18,4 +18,7 @@ contract BottleCompany is Initializable, BottleManufacturerUpgradeable {
     function initialize(address token, address escrow_) external initializer {
         __BottleManufacturerUpgradeable_init('Bottle Company', token, escrow_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

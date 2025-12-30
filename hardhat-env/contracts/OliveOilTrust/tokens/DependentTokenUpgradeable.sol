@@ -13,7 +13,7 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
  *     Inherits from BaseToken, see {BaseToken}.
  *     It requires a base URI.
  */
-contract DependentTokenUpgradeable is Initializable, BaseToken, IDependentTokenUpgradeable, OwnableUpgradeable {
+contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeable, IDependentTokenUpgradeable {
     /// @dev Struct that gathers instruction about a single dependent token
     struct DependentTokenInstructions {
         address[] instructedTokenAddresses;
@@ -28,9 +28,12 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, IDependentTokenU
     mapping(uint256 => mapping(bytes32 => bool)) private _isTypeInstructed;
 
     function __DependentTokenUpgradeable_init(string memory uri_) internal onlyInitializing {
-        __BaseToken_init(uri_);
-        __Ownable_init();
+        __ERC1155_init_unchained(uri_);
+        __Ownable_init_unchained();
+        __DependentTokenUpgradeable_init_unchained();
     }
+
+    function __DependentTokenUpgradeable_init_unchained() internal onlyInitializing {}
 
     /// @inheritdoc IDependentTokenUpgradeable
     function setTokenTypeInstructions(
@@ -64,12 +67,13 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, IDependentTokenU
             instructedTokenAddresses.length != instructedTokenTypeIds.length ||
             instructedTokenAddresses.length != instructedTokenAmounts.length ||
             instructedTokenAddresses.length != tokenTypeIds.length ||
-            tokenTypeIds.length == 0
+            tokenTypeIds.length == 0 ||
+            tokenTypeIds.length > 50
         ) {
             revert DependentTokenInvalidArray();
         }
         uint256[] memory tokenTypeIds_ = new uint256[](tokenTypeIds.length);
-        for (uint256 i = 0; i < tokenTypeIds.length; i++) {
+        for (uint256 i = 0; i < tokenTypeIds.length; ) {
             if (_intTokenTypeId[tokenTypeIds[i]] != 0) {
                 revert DependentTokenDuplicatedTokenTypeId();
             }
@@ -80,6 +84,9 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, IDependentTokenU
                 instructedTokenTypeIds[i],
                 instructedTokenAmounts[i]
             );
+            unchecked {
+                i++;
+            }
         }
         emit TokenTypesInstructionsSet(
             msg.sender,
@@ -156,11 +163,12 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, IDependentTokenU
         if (
             instructedTokenAddresses.length != instructedTokenTypeIds.length ||
             instructedTokenAddresses.length != instructedTokenAmounts.length ||
-            instructedTokenAddresses.length == 0
+            instructedTokenAddresses.length == 0 ||
+            instructedTokenAddresses.length > 50
         ) {
             revert DependentTokenInvalidArray();
         }
-        for (uint256 i = 0; i < instructedTokenAddresses.length; i++) {
+        for (uint256 i = 0; i < instructedTokenAddresses.length; ) {
             if (instructedTokenAddresses[i] == address(0)) {
                 revert DependentTokenInvalidAddress();
             }
@@ -168,13 +176,19 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, IDependentTokenU
                 revert DependentTokenInvalidAmount();
             }
             bytes32 key = keccak256(abi.encodePacked(instructedTokenAddresses[i], instructedTokenTypeIds[i]));
-            if (_isTypeInstructed[tokenTypeId][key] == true) {
+            if (_isTypeInstructed[tokenTypeId][key]) {
                 revert DependentTokenInvalidAddress();
             }
             _isTypeInstructed[tokenTypeId][key] = true;
+            unchecked {
+                i++;
+            }
         }
         _tokenInstructions[tokenTypeId].instructedTokenAddresses = instructedTokenAddresses;
         _tokenInstructions[tokenTypeId].instructedTokenTypeIds = instructedTokenTypeIds;
         _tokenInstructions[tokenTypeId].instructedTokenAmounts = instructedTokenAmounts;
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[48] private __gap;
 }

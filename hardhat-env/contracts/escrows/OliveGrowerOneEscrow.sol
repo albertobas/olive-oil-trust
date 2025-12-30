@@ -14,4 +14,7 @@ contract OliveGrowerOneEscrow is Initializable, AgriculturalEscrowUpgradeable {
     function initialize() external initializer {
         __AgriculturalEscrowUpgradeable_init();
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

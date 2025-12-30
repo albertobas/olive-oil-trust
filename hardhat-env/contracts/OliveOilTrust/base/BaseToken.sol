@@ -17,7 +17,7 @@ import '@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol
  *     much more efficient. The tokens are expected to get assigned an id for its type and a unique id. EAN
  *     standards (EAN-14 or EAN-13), or similar, are expected to be used.
  */
-contract BaseToken is ERC1155Upgradeable, IBaseToken {
+abstract contract BaseToken is ERC1155Upgradeable, IBaseToken {
     using CountersUpgradeable for CountersUpgradeable.Counter;
 
     /// @dev A counter to provide token ids
@@ -41,9 +41,9 @@ contract BaseToken is ERC1155Upgradeable, IBaseToken {
     /// @dev Mapping from int token id to bytes token id
     mapping(uint256 => bytes32) private _bytesTokenId;
 
-    function __BaseToken_init(string memory uri_) internal onlyInitializing {
-        __ERC1155_init_unchained(uri_);
-    }
+    function __BaseToken_init() internal onlyInitializing {}
+
+    function __BaseToken_init_unchained() internal onlyInitializing {}
 
     /// @inheritdoc IBaseToken
     function burn(
@@ -147,4 +147,7 @@ contract BaseToken is ERC1155Upgradeable, IBaseToken {
             emit TokenTransferred(operator, from, to, byteTokenTypeIds[0], byteTokenIds[0], amounts[0]);
         }
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[43] private __gap;
 }

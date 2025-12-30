@@ -11,9 +11,9 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
  * @dev Base contract that implements actions taken by a member of the supply chain which either
  *     sells commercial units or sells manufactured units
  */
-contract BaseSeller is Initializable, BaseMember {
+abstract contract BaseSeller is Initializable, BaseMember {
     /// @dev ICommercialUnitsEscrowUpgradeable reference used to interact with the escrow contract
-    address private _escrow;
+    address internal _escrow;
 
     /**
      * @dev Event emitted when the contract receive funds.
@@ -23,8 +23,7 @@ contract BaseSeller is Initializable, BaseMember {
     event Received(address payer, uint256 weiAmount);
 
     /// @dev Initializes the contract by setting a `name_` and  a `escrow_`
-    function __BaseSeller_init(string memory name_, address escrow_) internal onlyInitializing {
-        __BaseMember_init(name_);
+    function __BaseSeller_init(address escrow_) internal onlyInitializing {
         __BaseSeller_init_unchained(escrow_);
     }
 
@@ -95,4 +94,7 @@ contract BaseSeller is Initializable, BaseMember {
     receive() external payable {
         emit Received(msg.sender, msg.value);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

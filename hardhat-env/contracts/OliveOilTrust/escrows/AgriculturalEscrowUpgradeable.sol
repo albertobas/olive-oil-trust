@@ -29,8 +29,8 @@ import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
 contract AgriculturalEscrowUpgradeable is
     Initializable,
     AmountsEscrow,
-    IAgriculturalEscrowUpgradeable,
-    OwnableUpgradeable
+    OwnableUpgradeable,
+    IAgriculturalEscrowUpgradeable
 {
     using CountersUpgradeable for CountersUpgradeable.Counter;
 
@@ -41,8 +41,8 @@ contract AgriculturalEscrowUpgradeable is
     mapping(uint256 => mapping(bytes32 => mapping(bytes32 => bool))) private _isTokenDeposited;
 
     function __AgriculturalEscrowUpgradeable_init() internal onlyInitializing {
-        __ERC1155Holder_init();
-        __Ownable_init();
+        __ERC1155Holder_init_unchained();
+        __Ownable_init_unchained();
     }
 
     /// @inheritdoc IAgriculturalEscrowUpgradeable
@@ -65,8 +65,8 @@ contract AgriculturalEscrowUpgradeable is
         _escrows[escrowId].ids = _asSingletonArray(tokenId_);
         _escrows[escrowId].amounts = _asSingletonArray(tokenAmount);
         _escrowsIds.increment();
-        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, '');
         emit TokenDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenTypeId, tokenId, tokenAmount);
+        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, '');
     }
 
     /// @inheritdoc IAgriculturalEscrowUpgradeable
@@ -80,17 +80,26 @@ contract AgriculturalEscrowUpgradeable is
         if (tokenAddress == address(0) || sellerWallet == address(0)) {
             revert AgriculturalEscrowInvalidAddress();
         }
-        if (tokenIds.length != tokenAmounts.length || tokenIds.length != tokenTypeIds.length) {
+        if (
+            tokenIds.length != tokenAmounts.length ||
+            tokenIds.length != tokenTypeIds.length ||
+            tokenIds.length == 0 ||
+            tokenIds.length > 50
+        ) {
             revert AgriculturalEscrowInvalidArray();
         }
         uint256 escrowId = _escrowsIds.current();
         uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; i++) {
-            if (_isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]] == true) {
+        for (uint256 i = 0; i < tokenIds.length; ) {
+            if (_isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]]) {
                 revert AgriculturalEscrowInvalidArray();
             }
             _isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]] = true;
+            // slither-disable-next-line calls-loop
             tokenIds_[i] = IBaseToken(tokenAddress).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
+            unchecked {
+                i++;
+            }
         }
         _escrows[escrowId].state = State.Active;
         _escrows[escrowId].addr = tokenAddress;
@@ -99,8 +108,8 @@ contract AgriculturalEscrowUpgradeable is
         _escrows[escrowId].ids = tokenIds_;
         _escrows[escrowId].amounts = tokenAmounts;
         _escrowsIds.increment();
-        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, '');
         emit BatchDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenTypeIds, tokenIds, tokenAmounts);
+        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, '');
     }
 
     /// @inheritdoc IBaseEscrow
@@ -137,4 +146,7 @@ contract AgriculturalEscrowUpgradeable is
     function close(uint256 escrowId) public override(AmountsEscrow, IBaseEscrow) onlyOwner {
         super.close(escrowId);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[48] private __gap;
 }

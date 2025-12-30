@@ -14,7 +14,7 @@ import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
  *     the owner of the certificate with the means to certify a token or multiple tokens, check if
  *     the tokens are certified and retrieve the certificates of the tokens.
  */
-contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateUpgradeable, OwnableUpgradeable {
+contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgradeable, ICertificateUpgradeable {
     using CountersUpgradeable for CountersUpgradeable.Counter;
 
     /// @dev A counter to provide certificate ids
@@ -36,9 +36,9 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateU
     mapping(uint256 => bytes32) private _bytesId;
 
     function __CertificateUpgradeable_init(string memory uri_) internal onlyInitializing {
+        __UUPSUpgradeable_init_unchained();
+        __Ownable_init_unchained();
         __CertificateUpgradeable_init_unchained(uri_);
-        __UUPSUpgradeable_init();
-        __Ownable_init();
     }
 
     function __CertificateUpgradeable_init_unchained(string memory uri_) internal onlyInitializing {
@@ -70,7 +70,8 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateU
         if (
             certificateIds.length != tokenAddresses.length ||
             certificateIds.length != tokenTypeIds.length ||
-            certificateIds.length == 0
+            certificateIds.length == 0 ||
+            certificateIds.length > 50
         ) {
             revert CertificateInvalidArray();
         }
@@ -114,12 +115,15 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateU
         view
         returns (bytes32[][] memory certificates_)
     {
-        if (tokenAddresses.length != tokenTypeIds.length || tokenAddresses.length == 0) {
+        if (tokenAddresses.length != tokenTypeIds.length || tokenAddresses.length == 0 || tokenAddresses.length > 50) {
             revert CertificateInvalidArray();
         }
         certificates_ = new bytes32[][](tokenAddresses.length);
-        for (uint256 i = 0; i < tokenAddresses.length; i++) {
+        for (uint256 i = 0; i < tokenAddresses.length; ) {
             certificates_[i] = _certificatesOf(tokenAddresses[i], tokenTypeIds[i]);
+            unchecked {
+                i++;
+            }
         }
     }
 
@@ -136,6 +140,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateU
         if (tokenAddress == address(0)) {
             revert CertificateInvalidAddress();
         }
+        // slither-disable-next-line calls-loop
         uint256 intTokenTypeId = IBaseToken(tokenAddress).bytesToIntTokenTypeId(tokenTypeId);
         certificates_ = new bytes32[](_certificates[tokenAddress][intTokenTypeId].length);
         for (uint256 i = 0; i < _certificates[tokenAddress][intTokenTypeId].length; i++) {
@@ -161,6 +166,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateU
         address tokenAddress,
         bytes32 tokenTypeId
     ) private onlyOwner returns (uint256 intCertificateId, uint256 intTokenTypeId) {
+        // slither-disable-next-line calls-loop
         intTokenTypeId = IBaseToken(tokenAddress).bytesToIntTokenTypeId(tokenTypeId);
         if (_intId[certificateId] != 0) {
             intCertificateId = _intId[certificateId];
@@ -182,4 +188,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, ICertificateU
     ) private view returns (bool) {
         return _certificateBool[certificateId][tokenAddress][tokenTypeId];
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[44] private __gap;
 }

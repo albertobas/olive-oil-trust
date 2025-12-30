@@ -17,4 +17,7 @@ contract BottlingCompanyPallet is Initializable, IndustrialUnitTokenUpgradeable 
     function initialize(string memory uri_) external initializer {
         __IndustrialUnitTokenUpgradeable_init(uri_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

@@ -18,4 +18,7 @@ contract OliveOilMillCompany is Initializable, OliveOilMillUpgradeable {
     function initialize(address token, address escrow_) external initializer {
         __OliveOilMillUpgradeable_init('Olive Oil Mill Company', token, escrow_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

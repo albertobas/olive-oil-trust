@@ -18,4 +18,7 @@ contract OliveGrowerOne is Initializable, OliveGrowerUpgradeable {
     function initialize(address token, address escrow_) external initializer {
         __OliveGrowerUpgradeable_init('Olive Grower One', token, escrow_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

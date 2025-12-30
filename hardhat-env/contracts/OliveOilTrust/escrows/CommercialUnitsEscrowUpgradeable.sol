@@ -29,8 +29,8 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 contract CommercialUnitsEscrowUpgradeable is
     Initializable,
     AmountsEscrow,
-    ICommercialUnitsEscrowUpgradeable,
-    OwnableUpgradeable
+    OwnableUpgradeable,
+    ICommercialUnitsEscrowUpgradeable
 {
     using CountersUpgradeable for CountersUpgradeable.Counter;
 
@@ -41,8 +41,8 @@ contract CommercialUnitsEscrowUpgradeable is
     mapping(uint256 => mapping(bytes32 => mapping(bytes32 => bool))) private _isTokenDeposited;
 
     function __CommercialUnitsEscrowUpgradeable_init() internal onlyInitializing {
-        __ERC1155Holder_init();
-        __Ownable_init();
+        __ERC1155Holder_init_unchained();
+        __Ownable_init_unchained();
     }
 
     /// @inheritdoc ICommercialUnitsEscrowUpgradeable
@@ -70,7 +70,6 @@ contract CommercialUnitsEscrowUpgradeable is
         _escrows[escrowId].amounts = _asSingletonArray(tokenAmount);
         _escrows[escrowId].price = tokenPrice;
         _escrowsIds.increment();
-        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, '');
         emit TokenDeposited(
             msg.sender,
             sellerWallet,
@@ -81,6 +80,7 @@ contract CommercialUnitsEscrowUpgradeable is
             tokenAmount,
             tokenPrice
         );
+        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, '');
     }
 
     /// @inheritdoc ICommercialUnitsEscrowUpgradeable
@@ -95,7 +95,12 @@ contract CommercialUnitsEscrowUpgradeable is
         if (tokenAddress == address(0) || sellerWallet == address(0)) {
             revert CommercialUnitsEscrowInvalidAddress();
         }
-        if (tokenIds.length != tokenAmounts.length) {
+        if (
+            tokenIds.length != tokenAmounts.length ||
+            tokenIds.length != tokenTypeIds.length ||
+            tokenIds.length == 0 ||
+            tokenIds.length > 50
+        ) {
             revert CommercialUnitsEscrowInvalidArray();
         }
         if (batchPrice == 0) {
@@ -103,12 +108,16 @@ contract CommercialUnitsEscrowUpgradeable is
         }
         uint256 escrowId = _escrowsIds.current();
         uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; i++) {
-            if (_isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]] == true) {
+        for (uint256 i = 0; i < tokenIds.length; ) {
+            if (_isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]]) {
                 revert CommercialUnitsEscrowInvalidArray();
             }
             _isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]] = true;
+            // slither-disable-next-line calls-loop
             tokenIds_[i] = IBaseToken(tokenAddress).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
+            unchecked {
+                i++;
+            }
         }
         _escrows[escrowId].state = State.Active;
         _escrows[escrowId].addr = tokenAddress;
@@ -118,7 +127,6 @@ contract CommercialUnitsEscrowUpgradeable is
         _escrows[escrowId].amounts = tokenAmounts;
         _escrows[escrowId].price = batchPrice;
         _escrowsIds.increment();
-        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, '');
         emit BatchDeposited(
             msg.sender,
             sellerWallet,
@@ -129,6 +137,7 @@ contract CommercialUnitsEscrowUpgradeable is
             tokenAmounts,
             batchPrice
         );
+        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, '');
     }
 
     /// @inheritdoc IBaseEscrow
@@ -164,4 +173,7 @@ contract CommercialUnitsEscrowUpgradeable is
     function close(uint256 escrowId) public override(AmountsEscrow, IBaseEscrow) onlyOwner {
         super.close(escrowId);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[48] private __gap;
 }

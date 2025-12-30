@@ -18,4 +18,7 @@ contract RetailerCompany is Initializable, RetailerUpgradeable {
     function initialize(address escrow_) external initializer {
         __RetailerUpgradeable_init('Retailer Company', escrow_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

@@ -44,7 +44,9 @@ library Validation {
         if (
             data.inputTokenAddresses.length != data.inputTokenTypeIds.length ||
             data.inputTokenAddresses.length != data.inputTokenIds.length ||
-            data.inputTokenAddresses.length != data.inputTokenAmounts.length
+            data.inputTokenAddresses.length != data.inputTokenAmounts.length ||
+            data.inputTokenAddresses.length == 0 ||
+            data.inputTokenAddresses.length > 50
         ) {
             revert ValidationInvalidArray();
         }
@@ -53,7 +55,7 @@ library Validation {
             bytes32[] memory instructedTokenTypeIds,
             uint256[] memory instructedTokenAmounts
         ) = IDependentTokenUpgradeable(tokenAddress).getInstructions(tokenTypeId);
-        for (uint256 i = 0; i < instructedTokenTypeIds.length; i++) {
+        for (uint256 i = 0; i < instructedTokenTypeIds.length; ) {
             if (
                 data.inputTokenAddresses[i].length != data.inputTokenTypeIds[i].length ||
                 data.inputTokenAddresses[i].length != data.inputTokenIds[i].length ||
@@ -61,13 +63,14 @@ library Validation {
             ) {
                 revert ValidationInvalidArray();
             }
-            for (uint256 j = 0; j < data.inputTokenTypeIds[i].length; j++) {
+            for (uint256 j = 0; j < data.inputTokenTypeIds[i].length; ) {
                 // check that the ith jth inputed address matches the ith instructed address
                 if (data.inputTokenAddresses[i][j] != instructedTokenAddresses[i]) {
                     // if not proceed as if the ith instructed address is actually the address of a certificate
                     // and that the ith input id is certified. If not, revert because the token id is neither the
                     // one in the instructions nor certified.
                     if (
+                        // slither-disable-next-line calls-loop
                         !ICertificateUpgradeable(instructedTokenAddresses[i]).isCertified(
                             instructedTokenTypeIds[i],
                             data.inputTokenAddresses[i][j],
@@ -77,39 +80,31 @@ library Validation {
                         revert ValidationInvalidInputToken();
                     }
                 }
+                unchecked {
+                    j++;
+                }
             }
-            _burn(
-                data.inputTokenTypeIds[i],
-                data.inputTokenIds[i],
-                data.inputTokenAmounts[i],
-                data.inputTokenAddresses[i],
-                tokenAmount,
-                instructedTokenAmounts[i]
-            );
-        }
-    }
-
-    function _burn(
-        bytes32[] calldata inputTokenTypeIds,
-        bytes32[] calldata inputTokenIds,
-        uint256[] calldata inputTokenAmounts,
-        address[] calldata inputTokenAddresses,
-        uint256 tokenAmount,
-        uint256 instructedTokenAmount
-    ) private {
-        uint256 inputTokenAmountNeeded = tokenAmount * instructedTokenAmount;
-        uint256 accAmount;
-        for (uint256 i = 0; i < inputTokenAmounts.length; i++) {
-            accAmount += inputTokenAmounts[i];
-            IBaseToken(inputTokenAddresses[i]).burn(
-                address(this),
-                inputTokenTypeIds[i],
-                inputTokenIds[i],
-                inputTokenAmounts[i]
-            );
-        }
-        if (inputTokenAmountNeeded != accAmount) {
-            revert ValidationInvalidAmount();
+            uint256 inputTokenAmountNeeded = tokenAmount * instructedTokenAmounts[i];
+            uint256 accAmount = 0;
+            for (uint256 h = 0; h < data.inputTokenAmounts[i].length; ) {
+                accAmount += data.inputTokenAmounts[i][h];
+                // slither-disable-next-line calls-loop
+                IBaseToken(address(data.inputTokenAddresses[i][h])).burn(
+                    address(this),
+                    data.inputTokenTypeIds[i][h],
+                    data.inputTokenIds[i][h],
+                    data.inputTokenAmounts[i][h]
+                );
+                unchecked {
+                    h++;
+                }
+            }
+            if (inputTokenAmountNeeded != accAmount) {
+                revert ValidationInvalidAmount();
+            }
+            unchecked {
+                i++;
+            }
         }
     }
 }

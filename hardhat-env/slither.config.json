@@ -1,0 +1,4 @@
+{
+  "filter_paths": "contracts/OliveOilTrust/mocks,node_modules",
+  "detectors_to_exclude": "unused-state,naming-convention,dead-code"
+}

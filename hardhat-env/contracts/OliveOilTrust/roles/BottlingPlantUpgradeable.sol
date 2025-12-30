@@ -29,9 +29,6 @@ contract BottlingPlantUpgradeable is
     /// @dev IIndustrialUnitTokenUpgradeable reference used to interact with the industrial unit token contract
     address internal _industrialUnitToken;
 
-    /// @dev IIndustrialUnitsEscrowUpgradeable reference used to interact with the escrow contract
-    address private _escrow;
-
     /**
      * @dev Initialize function.
      * @param memberName The name of the member.
@@ -45,12 +42,13 @@ contract BottlingPlantUpgradeable is
         address industrialUnitToken_,
         address escrow_
     ) internal onlyInitializing {
+        __UUPSUpgradeable_init_unchained();
+        __DependentCreator_init_unchained(dependentToken);
+        __BaseMember_init_unchained(memberName);
+        __BaseSeller_init_unchained(escrow_);
+        __ERC1155Holder_init_unchained();
+        __Ownable_init_unchained();
         __BottlingPlantUpgradeable_init_unchained(dependentToken, industrialUnitToken_, escrow_);
-        __UUPSUpgradeable_init();
-        __BaseSeller_init(memberName, escrow_);
-        __DependentCreator_init(dependentToken);
-        __Ownable_init();
-        __ERC1155Holder_init();
     }
 
     function __BottlingPlantUpgradeable_init_unchained(
@@ -58,10 +56,9 @@ contract BottlingPlantUpgradeable is
         address industrialUnitToken_,
         address escrow_
     ) internal onlyInitializing {
-        _escrow = escrow_;
         _industrialUnitToken = industrialUnitToken_;
         IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(escrow_, true);
-        IDependentTokenUpgradeable(dependentToken).setApprovalForAll(address(industrialUnitToken_), true);
+        IDependentTokenUpgradeable(dependentToken).setApprovalForAll(industrialUnitToken_, true);
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
@@ -269,4 +266,7 @@ contract BottlingPlantUpgradeable is
             tokenAddresses[i] = address(_dependentToken);
         }
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

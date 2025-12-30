@@ -24,9 +24,6 @@ contract OliveGrowerUpgradeable is
     /// @dev IIndependentTokenUpgradeable reference used to interact with the independent token contract
     address private _token;
 
-    /// @dev IAgriculturalEscrowUpgradeable reference used to interact with the escrow
-    address private _escrow;
-
     /**
      * @dev Initialize function.
      * @param memberName The name of the member.
@@ -38,17 +35,17 @@ contract OliveGrowerUpgradeable is
         address token_,
         address escrow_
     ) internal onlyInitializing {
+        __UUPSUpgradeable_init_unchained();
+        __BaseMember_init_unchained(memberName);
+        __BaseSeller_init_unchained(escrow_);
+        __Ownable_init_unchained();
+        __ERC1155Holder_init_unchained();
         __OliveGrowerUpgradeable_init_unchained(token_, escrow_);
-        __UUPSUpgradeable_init();
-        __BaseSeller_init(memberName, escrow_);
-        __ERC1155Holder_init();
-        __Ownable_init();
-        IIndependentTokenUpgradeable(token_).setApprovalForAll(address(escrow_), true);
     }
 
     function __OliveGrowerUpgradeable_init_unchained(address token_, address escrow_) internal onlyInitializing {
         _token = token_;
-        _escrow = escrow_;
+        IIndependentTokenUpgradeable(token_).setApprovalForAll(address(escrow_), true);
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
@@ -137,4 +134,7 @@ contract OliveGrowerUpgradeable is
             sellerWallet
         );
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

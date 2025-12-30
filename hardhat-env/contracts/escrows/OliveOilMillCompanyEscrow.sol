@@ -14,4 +14,7 @@ contract OliveOilMillCompanyEscrow is Initializable, CommercialUnitsEscrowUpgrad
     function initialize() external initializer {
         __CommercialUnitsEscrowUpgradeable_init();
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

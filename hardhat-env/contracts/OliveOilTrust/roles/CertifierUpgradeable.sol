@@ -17,10 +17,10 @@ contract CertifierUpgradeable is Initializable, UUPSUpgradeable, BaseMember, Own
     address private _certificate;
 
     function __CertifierUpgradeable_init(string memory name_, address certificate_) internal onlyInitializing {
+        __UUPSUpgradeable_init_unchained();
+        __BaseMember_init_unchained(name_);
+        __Ownable_init_unchained();
         __CertifierUpgradeable_init_unchained(certificate_);
-        __UUPSUpgradeable_init();
-        __BaseMember_init(name_);
-        __Ownable_init();
     }
 
     function __CertifierUpgradeable_init_unchained(address certificate_) internal onlyInitializing {
@@ -69,4 +69,7 @@ contract CertifierUpgradeable is Initializable, UUPSUpgradeable, BaseMember, Own
     {
         return ICertificateUpgradeable(_certificate).certificatesOfBatch(tokenAddresses, tokenIds);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

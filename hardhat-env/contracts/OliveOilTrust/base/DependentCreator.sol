@@ -105,6 +105,15 @@ contract DependentCreator is Initializable {
         uint256 tokenAmount,
         Validation.MintDependentData calldata data
     ) public virtual {
+        emit TokenAncestrySet(
+            address(_dependentToken),
+            tokenTypeId,
+            tokenId,
+            data.inputTokenAddresses,
+            data.inputTokenTypeIds,
+            data.inputTokenIds,
+            data.inputTokenAmounts
+        );
         Validation.validate(
             tokenTypeId,
             tokenAmount,
@@ -117,15 +126,6 @@ contract DependentCreator is Initializable {
             })
         );
         IDependentTokenUpgradeable(_dependentToken).mint(address(this), tokenTypeId, tokenId, tokenAmount);
-        emit TokenAncestrySet(
-            address(_dependentToken),
-            tokenTypeId,
-            tokenId,
-            data.inputTokenAddresses,
-            data.inputTokenTypeIds,
-            data.inputTokenIds,
-            data.inputTokenAmounts
-        );
     }
 
     /**
@@ -148,11 +148,26 @@ contract DependentCreator is Initializable {
             data.length != tokenTypeIds.length ||
             data.length != tokenIds.length ||
             data.length != tokenAmounts.length ||
-            data.length == 0
+            data.length == 0 ||
+            data.length > 50
         ) {
             revert DependentCreatorInvalidArray();
         }
-        for (uint256 i = 0; i < data.length; i++) {
+        for (uint256 i = 0; i < data.length; ) {
+            emit TokenAncestrySet(
+                address(_dependentToken),
+                tokenTypeIds[i],
+                tokenIds[i],
+                data[i].inputTokenAddresses,
+                data[i].inputTokenTypeIds,
+                data[i].inputTokenIds,
+                data[i].inputTokenAmounts
+            );
+            unchecked {
+                i++;
+            }
+        }
+        for (uint256 i = 0; i < data.length; ) {
             Validation.validate(
                 tokenTypeIds[i],
                 tokenAmounts[i],
@@ -164,16 +179,13 @@ contract DependentCreator is Initializable {
                     inputTokenAmounts: data[i].inputTokenAmounts
                 })
             );
-            emit TokenAncestrySet(
-                address(_dependentToken),
-                tokenTypeIds[i],
-                tokenIds[i],
-                data[i].inputTokenAddresses,
-                data[i].inputTokenTypeIds,
-                data[i].inputTokenIds,
-                data[i].inputTokenAmounts
-            );
+            unchecked {
+                i++;
+            }
         }
         IDependentTokenUpgradeable(_dependentToken).mintBatch(address(this), tokenTypeIds, tokenIds, tokenAmounts);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

@@ -23,4 +23,7 @@ contract BottlingCompany is Initializable, BottlingPlantUpgradeable {
     ) external initializer {
         __BottlingPlantUpgradeable_init('Bottling Company', dependentToken, industrialUnitToken, escrow_);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

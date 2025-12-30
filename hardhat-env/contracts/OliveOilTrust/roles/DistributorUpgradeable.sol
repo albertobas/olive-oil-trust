@@ -26,8 +26,8 @@ contract DistributorUpgradeable is
     /// @dev IIndustrialUnitTokenUpgradeable reference used to interact with the token contract
     address internal _industrialUnitToken;
 
-    /// @dev IIndustrialUnitsEscrowUpgradeable reference used to interact with the escrow contract
-    address private _escrow;
+    /// @dev Invalid array
+    error DistributorUpgradeableInvalidArray();
 
     /**
      * @dev Initialize function.
@@ -40,20 +40,20 @@ contract DistributorUpgradeable is
         address industrialUnitToken_,
         address escrow_
     ) internal onlyInitializing {
+        __UUPSUpgradeable_init_unchained();
+        __BaseMember_init_unchained(memberName);
+        __BaseSeller_init_unchained(escrow_);
+        __Ownable_init_unchained();
+        __ERC1155Holder_init_unchained();
         __DistributorUpgradeable_init_unchained(industrialUnitToken_, escrow_);
-        __UUPSUpgradeable_init();
-        __BaseSeller_init(memberName, escrow_);
-        __ERC1155Holder_init();
-        __Ownable_init();
     }
 
     function __DistributorUpgradeable_init_unchained(address industrialUnitToken_, address escrow_)
         internal
         onlyInitializing
     {
-        _escrow = escrow_;
         _industrialUnitToken = industrialUnitToken_;
-        IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(address(escrow_), true);
+        IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(escrow_, true);
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
@@ -188,8 +188,14 @@ contract DistributorUpgradeable is
         bytes32[][] calldata tokenIds,
         uint256[][] calldata tokenAmounts
     ) external onlyOwner {
-        for (uint256 i = 0; i < tokenAddresses.length; i++) {
+        if (tokenAddresses.length == 0 || tokenAddresses.length > 50) {
+            revert DistributorUpgradeableInvalidArray();
+        }
+        for (uint256 i = 0; i < tokenAddresses.length; ) {
             _setApprovals(tokenAddresses[i]);
+            unchecked {
+                i++;
+            }
         }
         IIndustrialUnitTokenUpgradeable(_industrialUnitToken).packBatch(
             address(this),
@@ -212,15 +218,26 @@ contract DistributorUpgradeable is
     }
 
     function _setApprovals(address[] calldata tokenAddresses) private {
-        for (uint256 i = 0; i < tokenAddresses.length; i++) {
+        if (tokenAddresses.length == 0 || tokenAddresses.length > 50) {
+            revert DistributorUpgradeableInvalidArray();
+        }
+        for (uint256 i = 0; i < tokenAddresses.length; ) {
             if (
+                // slither-disable-next-line calls-loop
                 !IDependentTokenUpgradeable(tokenAddresses[i]).isApprovedForAll(
                     address(this),
                     address(_industrialUnitToken)
                 )
             ) {
+                // slither-disable-next-line calls-loop
                 IDependentTokenUpgradeable(tokenAddresses[i]).setApprovalForAll(address(_industrialUnitToken), true);
+            }
+            unchecked {
+                i++;
             }
         }
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

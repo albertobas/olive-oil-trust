@@ -11,7 +11,7 @@ import '@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.so
  * @dev Escrow contract that implements common actions taken by members in both, commercial
  *     and agricultural phases.
  */
-contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
+abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
     /// @dev Struct that aims to store information about a single escrow
     struct MyAmountsEscrow {
         // The state of the escrow, see IBaseEscrow enum State
@@ -46,8 +46,8 @@ contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         }
         (, address addr, uint256[] memory ids, uint256[] memory amounts, , address seller, , , , ) = _escrow(escrowId);
         _escrows[escrowId].state = State.RevertedBeforePayment;
-        _transferTokens(escrowId, addr, address(this), seller, ids, amounts);
         emit RevertedBeforePayment(seller, escrowId);
+        _transferTokens(escrowId, addr, address(this), seller, ids, amounts);
     }
 
     /// @inheritdoc IBaseEscrow
@@ -66,9 +66,9 @@ contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         _escrows[escrowId].balance -= weiAmount;
         _escrows[escrowId].buyer = address(0);
         _escrows[escrowId].buyerWallet = payable(address(0));
-        buyerWallet.transfer(weiAmount);
         emit EtherWithdrawn(escrowId, formerBuyerWallet, weiAmount);
         emit PaymentCancelled(formerBuyer, formerBuyerWallet, escrowId, weiAmount);
+        buyerWallet.transfer(weiAmount);
     }
 
     /// @inheritdoc IBaseEscrow
@@ -91,10 +91,10 @@ contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         _escrows[escrowId].state = State.RevertedAfterPayment;
         uint256 weiAmount = _escrows[escrowId].balance;
         _escrows[escrowId].balance -= weiAmount;
-        buyerWallet.transfer(weiAmount);
-        _transferTokens(escrowId, addr, address(this), seller, ids, amounts);
         emit EtherWithdrawn(escrowId, buyerWallet, weiAmount);
         emit RevertedAfterPayment(seller, buyer, escrowId, weiAmount);
+        _transferTokens(escrowId, addr, address(this), seller, ids, amounts);
+        buyerWallet.transfer(weiAmount);
     }
 
     /// @inheritdoc IBaseEscrow
@@ -117,10 +117,10 @@ contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         _escrows[escrowId].state = State.Closed;
         uint256 weiAmount = _escrows[escrowId].balance;
         _escrows[escrowId].balance -= weiAmount;
-        sellerWallet.transfer(weiAmount);
-        _transferTokens(escrowId, addr, address(this), buyer, ids, amounts);
         emit EtherWithdrawn(escrowId, sellerWallet, weiAmount);
         emit Closed(seller, buyer, sellerWallet, escrowId, weiAmount);
+        _transferTokens(escrowId, addr, address(this), buyer, ids, amounts);
+        sellerWallet.transfer(weiAmount);
     }
 
     /// @inheritdoc IAmountsEscrow
@@ -142,8 +142,12 @@ contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
     {
         MyAmountsEscrow memory escrow_ = _escrows[escrowId];
         ids = new bytes32[](escrow_.ids.length);
-        for (uint256 i = 0; i < escrow_.ids.length; i++) {
+        for (uint256 i = 0; i < escrow_.ids.length; ) {
+            // slither-disable-next-line calls-loop
             ids[i] = IBaseToken(escrow_.addr).intToBytesTokenId(escrow_.ids[i]);
+            unchecked {
+                i++;
+            }
         }
         return (
             escrow_.state,
@@ -210,15 +214,22 @@ contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         uint256[] memory amounts
     ) private {
         bytes32[] memory ids_ = new bytes32[](ids.length);
-        for (uint256 i = 0; i < ids.length; i++) {
+        for (uint256 i = 0; i < ids.length; ) {
+            // slither-disable-next-line calls-loop
             ids_[i] = IBaseToken(addr).intToBytesTokenId(ids[i]);
+            unchecked {
+                i++;
+            }
         }
         if (ids.length > 1) {
-            IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, '');
             emit TokensWithdrawn(escrowId, to, addr, ids_, amounts);
+            IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, '');
         } else {
-            IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], amounts[0], '');
             emit TokenWithdrawn(escrowId, to, addr, ids_[0], amounts[0]);
+            IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], amounts[0], '');
         }
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

@@ -28,9 +28,6 @@ contract OliveOilMillUpgradeable is
     /// @dev ICommercialUnitsEscrowUpgradeable reference used to interact with rhe dependent token contract
     address private _token;
 
-    /// @dev ICommercialUnitsEscrowUpgradeable reference used to interact with the escrow contract
-    address private _escrow;
-
     /**
      * @dev Initialize function.
      * @param memberName The name of the member.
@@ -42,18 +39,18 @@ contract OliveOilMillUpgradeable is
         address token_,
         address escrow_
     ) internal onlyInitializing {
+        __UUPSUpgradeable_init_unchained();
+        __DependentCreator_init_unchained(token_);
+        __BaseMember_init_unchained(memberName);
+        __BaseSeller_init_unchained(escrow_);
+        __Ownable_init_unchained();
+        __ERC1155Holder_init_unchained();
         __OliveOilMillUpgradeable_init_unchained(token_, escrow_);
-        __UUPSUpgradeable_init();
-        __DependentCreator_init(token_);
-        __BaseSeller_init(memberName, escrow_);
-        __ERC1155Holder_init();
-        __Ownable_init();
-        IDependentTokenUpgradeable(token_).setApprovalForAll(address(escrow_), true);
     }
 
     function __OliveOilMillUpgradeable_init_unchained(address token_, address escrow_) internal onlyInitializing {
         _token = token_;
-        _escrow = escrow_;
+        IDependentTokenUpgradeable(token_).setApprovalForAll(escrow_, true);
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
@@ -201,4 +198,7 @@ contract OliveOilMillUpgradeable is
     function cancelPayment(address escrowAddress_, uint256 escrowId) external onlyOwner {
         IAgriculturalEscrowUpgradeable(escrowAddress_).cancelPayment(escrowId);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

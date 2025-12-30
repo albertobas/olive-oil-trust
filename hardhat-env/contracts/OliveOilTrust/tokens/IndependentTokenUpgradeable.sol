@@ -13,14 +13,18 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
  *     Inherits from BaseToken, see {BaseToken}.
  *     It requires a base URI.
  */
-contract IndependentTokenUpgradeable is Initializable, BaseToken, IIndependentTokenUpgradeable, OwnableUpgradeable {
+contract IndependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeable, IIndependentTokenUpgradeable {
     /// @dev Mapping from token type id to token id
     mapping(uint256 => uint256[]) private _tokenId;
 
     function __IndependentTokenUpgradeable_init(string memory uri_) internal onlyInitializing {
-        __BaseToken_init(uri_);
-        __Ownable_init();
+        __ERC1155_init_unchained(uri_);
+        __Ownable_init_unchained();
+        __BaseToken_init_unchained();
+        __IndependentTokenUpgradeable_init_unchained();
     }
+
+    function __IndependentTokenUpgradeable_init_unchained() internal onlyInitializing {}
 
     /// @inheritdoc IIndependentTokenUpgradeable
     function mint(
@@ -45,16 +49,20 @@ contract IndependentTokenUpgradeable is Initializable, BaseToken, IIndependentTo
         if (
             tokenTypeIds.length != tokenIds.length ||
             tokenTypeIds.length != tokenAmounts.length ||
-            tokenTypeIds.length == 0
+            tokenTypeIds.length == 0 ||
+            tokenTypeIds.length > 50
         ) {
             revert IndependentTokenInvalidArray();
         }
         uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; i++) {
+        for (uint256 i = 0; i < tokenIds.length; ) {
             uint256 tokenTypeId_ = _getIntTokenTypeId(tokenTypeIds[i]);
             uint256 tokenId = _getTokenId(tokenTypeId_, tokenTypeIds[i], tokenIds[i]);
             tokenIds_[i] = tokenId;
             _tokenId[tokenTypeId_].push(tokenId);
+            unchecked {
+                i++;
+            }
         }
         _mintBatch(to, tokenIds_, tokenAmounts, '');
     }
@@ -66,4 +74,7 @@ contract IndependentTokenUpgradeable is Initializable, BaseToken, IIndependentTo
         }
         return _generateIntTokenTypeId(tokenTypeId);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[49] private __gap;
 }

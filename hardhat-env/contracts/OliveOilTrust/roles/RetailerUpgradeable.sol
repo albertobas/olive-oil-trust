@@ -23,26 +23,21 @@ contract RetailerUpgradeable is
     OwnableUpgradeable,
     ERC1155HolderUpgradeable
 {
-    /// @dev ICommercialUnitsEscrowUpgradeable reference used to interact with the escrow contract
-    address private _escrow;
-
     /**
      * @dev Initialize function.
      * @param memberName The name of the member.
      * @param escrow_ The commercial units escrow address.
      */
     function __RetailerUpgradeable_init(string memory memberName, address escrow_) internal onlyInitializing {
-        __RetailerUpgradeable_init_unchained(escrow_);
-        __UUPSUpgradeable_init();
-        __BaseSeller_init(memberName, escrow_);
-        __ERC1155Holder_init();
-        __Ownable_init();
+        __UUPSUpgradeable_init_unchained();
+        __BaseMember_init_unchained(memberName);
         __BaseSeller_init_unchained(escrow_);
+        __Ownable_init_unchained();
+        __ERC1155Holder_init_unchained();
+        __RetailerUpgradeable_init_unchained();
     }
 
-    function __RetailerUpgradeable_init_unchained(address escrow_) internal onlyInitializing {
-        _escrow = escrow_;
-    }
+    function __RetailerUpgradeable_init_unchained() internal onlyInitializing {}
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
@@ -183,4 +178,7 @@ contract RetailerUpgradeable is
     function unpackBatch(address tokenAddress, bytes32[] calldata tokenIds) external {
         IIndustrialUnitTokenUpgradeable(tokenAddress).unpackBatch(address(this), tokenIds);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[50] private __gap;
 }

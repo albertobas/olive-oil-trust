@@ -19,9 +19,9 @@ import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
 contract IndustrialUnitTokenUpgradeable is
     Initializable,
     ERC1155Upgradeable,
-    IIndustrialUnitTokenUpgradeable,
     ERC1155HolderUpgradeable,
-    OwnableUpgradeable
+    OwnableUpgradeable,
+    IIndustrialUnitTokenUpgradeable
 {
     using CountersUpgradeable for CountersUpgradeable.Counter;
     /// @dev Struct that gathers information about a single industrial unit
@@ -45,9 +45,12 @@ contract IndustrialUnitTokenUpgradeable is
     mapping(uint256 => MyIndustrialUnitToken) private _industrialUnitToken;
 
     function __IndustrialUnitTokenUpgradeable_init(string memory uri_) internal onlyInitializing {
-        __ERC1155_init(uri_);
-        __Ownable_init();
+        __ERC1155_init_unchained(uri_);
+        __Ownable_init_unchained();
+        __IndustrialUnitTokenUpgradeable_init_unchained();
     }
+
+    function __IndustrialUnitTokenUpgradeable_init_unchained() internal onlyInitializing {}
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
     function pack(
@@ -58,9 +61,9 @@ contract IndustrialUnitTokenUpgradeable is
         bytes32[] calldata tokenIds,
         uint256[] calldata tokenAmounts
     ) external onlyOwner {
+        emit SinglePacked(owner_, palletId, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
         uint256 palletId_ = _pack(palletId, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
         _mint(owner_, palletId_, 1, '');
-        emit SinglePacked(owner_, palletId, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
@@ -73,21 +76,27 @@ contract IndustrialUnitTokenUpgradeable is
         uint256[][] calldata tokenAmounts
     ) external onlyOwner {
         if (
+            tokenAddresses.length != palletIds.length ||
+            tokenAddresses.length != tokenTypeIds.length ||
             tokenAddresses.length != tokenIds.length ||
             tokenAddresses.length != tokenAmounts.length ||
-            tokenAddresses.length == 0
+            tokenAddresses.length == 0 ||
+            tokenAddresses.length > 50
         ) {
             revert IndustrialUnitTokenInvalidArray();
         }
         uint256[] memory palletIds_ = new uint256[](palletIds.length);
         uint256[] memory packAmounts = new uint256[](palletIds.length);
-        for (uint256 i = 0; i < palletIds.length; i++) {
+        emit BatchPacked(owner_, palletIds, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
+        for (uint256 i = 0; i < palletIds.length; ) {
             uint256 palletId = _pack(palletIds[i], tokenAddresses[i], tokenTypeIds[i], tokenIds[i], tokenAmounts[i]);
             palletIds_[i] = palletId;
             packAmounts[i] = 1;
+            unchecked {
+                i++;
+            }
         }
         _mintBatch(owner_, palletIds_, packAmounts, '');
-        emit BatchPacked(owner_, palletIds, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
@@ -96,8 +105,8 @@ contract IndustrialUnitTokenUpgradeable is
             revert IndustrialUnitTokenInvalidCaller();
         }
         uint256 palletId_ = _unpack(owner_, palletId);
-        _burn(owner_, palletId_, 1);
         emit SingleUnpacked(owner_, palletId);
+        _burn(owner_, palletId_, 1);
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
@@ -105,14 +114,21 @@ contract IndustrialUnitTokenUpgradeable is
         if (owner_ != msg.sender) {
             revert IndustrialUnitTokenInvalidCaller();
         }
+        // Array is bounded to 50 to remove costly operations within loops
+        if (palletIds.length == 0 || palletIds.length > 50) {
+            revert IndustrialUnitTokenInvalidArray();
+        }
         uint256[] memory palletIds_ = new uint256[](palletIds.length);
         uint256[] memory packAmounts = new uint256[](palletIds.length);
-        for (uint256 i = 0; i < palletIds.length; i++) {
+        for (uint256 i = 0; i < palletIds.length; ) {
             palletIds_[i] = _unpack(owner_, palletIds[i]);
             packAmounts[i] = 1;
+            unchecked {
+                i++;
+            }
         }
-        _burnBatch(owner_, palletIds_, packAmounts);
         emit BatchUnpacked(owner_, palletIds);
+        _burnBatch(owner_, palletIds_, packAmounts);
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
@@ -153,9 +169,11 @@ contract IndustrialUnitTokenUpgradeable is
         uint256[] calldata tokenAmounts
     ) private returns (uint256) {
         if (
+            tokenAddresses.length != tokenTypeIds.length ||
             tokenAddresses.length != tokenIds.length ||
             tokenAddresses.length != tokenAmounts.length ||
-            tokenAddresses.length == 0
+            tokenAddresses.length == 0 ||
+            tokenAddresses.length > 50
         ) {
             revert IndustrialUnitTokenInvalidArray();
         }
@@ -167,19 +185,25 @@ contract IndustrialUnitTokenUpgradeable is
         _idsCounter.increment();
         _intId[palletId] = palletId_;
         _bytesId[palletId_] = palletId;
-        for (uint256 i = 0; i < tokenAddresses.length; i++) {
+        _industrialUnitToken[palletId_].addresses = tokenAddresses;
+        _industrialUnitToken[palletId_].tokenTypeIds = tokenTypeIds;
+        _industrialUnitToken[palletId_].tokenIds = tokenIds;
+        _industrialUnitToken[palletId_].amounts = tokenAmounts;
+        for (uint256 i = 0; i < tokenAddresses.length; ) {
+            // slither-disable-next-line calls-loop
             uint256 intTokenId = IBaseToken(tokenAddresses[i]).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
+            // slither-disable-next-line calls-loop
             if (IBaseToken(tokenAddresses[i]).balanceOf(msg.sender, intTokenId) < tokenAmounts[i]) {
                 {
                     revert IndustrialUnitTokenInvalidBalance();
                 }
             }
+            // slither-disable-next-line calls-loop
             IBaseToken(tokenAddresses[i]).safeTransferFrom(msg.sender, address(this), intTokenId, tokenAmounts[i], '');
+            unchecked {
+                i++;
+            }
         }
-        _industrialUnitToken[palletId_].addresses = tokenAddresses;
-        _industrialUnitToken[palletId_].tokenTypeIds = tokenTypeIds;
-        _industrialUnitToken[palletId_].tokenIds = tokenIds;
-        _industrialUnitToken[palletId_].amounts = tokenAmounts;
         return palletId_;
     }
 
@@ -194,11 +218,18 @@ contract IndustrialUnitTokenUpgradeable is
             bytes32[] memory tokenIds,
             uint256[] memory amounts
         ) = getTokens(palletId);
-        for (uint256 i = 0; i < addresses.length; i++) {
-            uint256 intTokenId = IBaseToken(addresses[i]).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
-            IBaseToken(addresses[i]).safeTransferFrom(address(this), owner_, intTokenId, amounts[i], '');
-        }
+        // slither-disable-next-line costly-loop
         delete _industrialUnitToken[intPackId];
+
+        for (uint256 i = 0; i < addresses.length; ) {
+            // slither-disable-next-line calls-loop
+            uint256 intTokenId = IBaseToken(addresses[i]).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
+            // slither-disable-next-line calls-loop
+            IBaseToken(addresses[i]).safeTransferFrom(address(this), owner_, intTokenId, amounts[i], '');
+            unchecked {
+                i++;
+            }
+        }
         return intPackId;
     }
 
@@ -232,4 +263,7 @@ contract IndustrialUnitTokenUpgradeable is
     {
         return super.supportsInterface(interfaceId);
     }
+
+    /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+    uint256[46] private __gap;
 }
