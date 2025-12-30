@@ -4,7 +4,7 @@ import {
   TokenTypesInstructionsSet,
   BatchTransferred,
   TokenTransferred,
-  OwnershipTransferred,
+  OwnershipTransferred
 } from '../generated/types/DependentTokenUpgradeableDataSource/DependentTokenUpgradeable';
 import { ensureToken } from '../utils/entities/Token';
 import { registerTokenTransfer } from '../utils/entities/TokenTransfer';

@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../interfaces/IBaseToken.sol';
-import '../interfaces/IIndustrialUnitTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
+import "../interfaces/IBaseToken.sol";
+import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 
 /**
  * @title IndustrialUnitTokenUpgradeable contract.
@@ -63,7 +63,7 @@ contract IndustrialUnitTokenUpgradeable is
     ) external onlyOwner {
         emit SinglePacked(owner_, palletId, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
         uint256 palletId_ = _pack(palletId, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
-        _mint(owner_, palletId_, 1, '');
+        _mint(owner_, palletId_, 1, "");
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
@@ -96,7 +96,7 @@ contract IndustrialUnitTokenUpgradeable is
                 i++;
             }
         }
-        _mintBatch(owner_, palletIds_, packAmounts, '');
+        _mintBatch(owner_, palletIds_, packAmounts, "");
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
@@ -137,16 +137,9 @@ contract IndustrialUnitTokenUpgradeable is
     }
 
     /// @inheritdoc IIndustrialUnitTokenUpgradeable
-    function getTokens(bytes32 palletId)
-        public
-        view
-        returns (
-            address[] memory,
-            bytes32[] memory,
-            bytes32[] memory,
-            uint256[] memory
-        )
-    {
+    function getTokens(
+        bytes32 palletId
+    ) public view returns (address[] memory, bytes32[] memory, bytes32[] memory, uint256[] memory) {
         uint256 palletId_ = _intId[palletId];
         return (
             _industrialUnitToken[palletId_].addresses,
@@ -199,7 +192,7 @@ contract IndustrialUnitTokenUpgradeable is
                 }
             }
             // slither-disable-next-line calls-loop
-            IBaseToken(tokenAddresses[i]).safeTransferFrom(msg.sender, address(this), intTokenId, tokenAmounts[i], '');
+            IBaseToken(tokenAddresses[i]).safeTransferFrom(msg.sender, address(this), intTokenId, tokenAmounts[i], "");
             unchecked {
                 i++;
             }
@@ -225,7 +218,7 @@ contract IndustrialUnitTokenUpgradeable is
             // slither-disable-next-line calls-loop
             uint256 intTokenId = IBaseToken(addresses[i]).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
             // slither-disable-next-line calls-loop
-            IBaseToken(addresses[i]).safeTransferFrom(address(this), owner_, intTokenId, amounts[i], '');
+            IBaseToken(addresses[i]).safeTransferFrom(address(this), owner_, intTokenId, amounts[i], "");
             unchecked {
                 i++;
             }
@@ -254,13 +247,9 @@ contract IndustrialUnitTokenUpgradeable is
     }
 
     /// @dev See {IERC165Upgradeable-supportsInterface}.
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(ERC1155ReceiverUpgradeable, ERC1155Upgradeable, IERC165Upgradeable)
-        returns (bool)
-    {
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override(ERC1155ReceiverUpgradeable, ERC1155Upgradeable, IERC165Upgradeable) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 

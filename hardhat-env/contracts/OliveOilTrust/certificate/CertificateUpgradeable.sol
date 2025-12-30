@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../interfaces/IBaseToken.sol';
-import '../interfaces/ICertificateUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
+import "../interfaces/IBaseToken.sol";
+import "../interfaces/ICertificateUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 
 /**
  * @title CertificateUpgradeable base contract.
@@ -48,11 +48,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @inheritdoc ICertificateUpgradeable
-    function certifyToken(
-        bytes32 certificateId,
-        address tokenAddress,
-        bytes32 tokenTypeId
-    ) external onlyOwner {
+    function certifyToken(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external onlyOwner {
         if (tokenAddress == address(0)) {
             revert CertificateInvalidAddress();
         }
@@ -110,11 +106,10 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
     }
 
     /// @inheritdoc ICertificateUpgradeable
-    function certificatesOfBatch(address[] calldata tokenAddresses, bytes32[] calldata tokenTypeIds)
-        external
-        view
-        returns (bytes32[][] memory certificates_)
-    {
+    function certificatesOfBatch(
+        address[] calldata tokenAddresses,
+        bytes32[] calldata tokenTypeIds
+    ) external view returns (bytes32[][] memory certificates_) {
         if (tokenAddresses.length != tokenTypeIds.length || tokenAddresses.length == 0 || tokenAddresses.length > 50) {
             revert CertificateInvalidArray();
         }
@@ -132,11 +127,10 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         return _uri;
     }
 
-    function _certificatesOf(address tokenAddress, bytes32 tokenTypeId)
-        private
-        view
-        returns (bytes32[] memory certificates_)
-    {
+    function _certificatesOf(
+        address tokenAddress,
+        bytes32 tokenTypeId
+    ) private view returns (bytes32[] memory certificates_) {
         if (tokenAddress == address(0)) {
             revert CertificateInvalidAddress();
         }
@@ -149,11 +143,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         }
     }
 
-    function _certify(
-        uint256 certificateId,
-        address tokenAddress,
-        uint256 tokenTypeId
-    ) private onlyOwner {
+    function _certify(uint256 certificateId, address tokenAddress, uint256 tokenTypeId) private onlyOwner {
         if (_isCertified(certificateId, tokenAddress, tokenTypeId)) {
             revert CertificateTokenAlreadyCertified();
         }

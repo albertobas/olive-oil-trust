@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../OliveOilTrust/tokens/IndependentTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../OliveOilTrust/tokens/IndependentTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title Bottle Company bottle contract.

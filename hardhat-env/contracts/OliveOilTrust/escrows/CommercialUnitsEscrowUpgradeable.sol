@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/AmountsEscrow.sol';
-import '../interfaces/IBaseToken.sol';
-import '../interfaces/ICommercialUnitsEscrowUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../base/AmountsEscrow.sol";
+import "../interfaces/IBaseToken.sol";
+import "../interfaces/ICommercialUnitsEscrowUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title CommercialUnitsEscrowUpgradeable contract.
@@ -80,7 +80,7 @@ contract CommercialUnitsEscrowUpgradeable is
             tokenAmount,
             tokenPrice
         );
-        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, '');
+        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, "");
     }
 
     /// @inheritdoc ICommercialUnitsEscrowUpgradeable
@@ -137,7 +137,7 @@ contract CommercialUnitsEscrowUpgradeable is
             tokenAmounts,
             batchPrice
         );
-        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, '');
+        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, "");
     }
 
     /// @inheritdoc IBaseEscrow

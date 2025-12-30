@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol';
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol";
 
 /// @dev Interface required for a IndustrialUnitTokenUpgradeable contract
 interface IIndustrialUnitTokenUpgradeable is IERC1155Upgradeable {
@@ -173,13 +173,7 @@ interface IIndustrialUnitTokenUpgradeable is IERC1155Upgradeable {
     function intToBytesId(uint256 palletId) external view returns (bytes32);
 
     /// @dev Returns the industrial units, i.e. addresses, ids and amounts, of token `palletId`
-    function getTokens(bytes32 palletId)
-        external
-        view
-        returns (
-            address[] memory,
-            bytes32[] memory,
-            bytes32[] memory,
-            uint256[] memory
-        );
+    function getTokens(
+        bytes32 palletId
+    ) external view returns (address[] memory, bytes32[] memory, bytes32[] memory, uint256[] memory);
 }

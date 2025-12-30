@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../interfaces/IAmountsEscrow.sol';
-import '../interfaces/IBaseToken.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol';
+import "../interfaces/IAmountsEscrow.sol";
+import "../interfaces/IBaseToken.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol";
 
 /**
  * @title AmountsEscrow base contract.
@@ -124,7 +124,9 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
     }
 
     /// @inheritdoc IAmountsEscrow
-    function escrow(uint256 escrowId)
+    function escrow(
+        uint256 escrowId
+    )
         external
         view
         returns (
@@ -168,7 +170,9 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         return (_escrows[escrowId].state);
     }
 
-    function _escrow(uint256 escrowId)
+    function _escrow(
+        uint256 escrowId
+    )
         private
         view
         returns (
@@ -223,10 +227,10 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         }
         if (ids.length > 1) {
             emit TokensWithdrawn(escrowId, to, addr, ids_, amounts);
-            IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, '');
+            IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, "");
         } else {
             emit TokenWithdrawn(escrowId, to, addr, ids_[0], amounts[0]);
-            IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], amounts[0], '');
+            IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], amounts[0], "");
         }
     }
 

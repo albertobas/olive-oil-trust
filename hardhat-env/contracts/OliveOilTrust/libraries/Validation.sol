@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../interfaces/ICertificateUpgradeable.sol';
-import '../interfaces/IDependentTokenUpgradeable.sol';
+import "../interfaces/ICertificateUpgradeable.sol";
+import "../interfaces/IDependentTokenUpgradeable.sol";
 
 library Validation {
     /// @dev Invalid Array
@@ -84,27 +84,45 @@ library Validation {
                     j++;
                 }
             }
-            uint256 inputTokenAmountNeeded = tokenAmount * instructedTokenAmounts[i];
-            uint256 accAmount = 0;
-            for (uint256 h = 0; h < data.inputTokenAmounts[i].length; ) {
-                accAmount += data.inputTokenAmounts[i][h];
-                // slither-disable-next-line calls-loop
-                IBaseToken(address(data.inputTokenAddresses[i][h])).burn(
-                    address(this),
-                    data.inputTokenTypeIds[i][h],
-                    data.inputTokenIds[i][h],
-                    data.inputTokenAmounts[i][h]
-                );
-                unchecked {
-                    h++;
-                }
-            }
-            if (inputTokenAmountNeeded != accAmount) {
-                revert ValidationInvalidAmount();
-            }
+            _burn(
+                data.inputTokenTypeIds[i],
+                data.inputTokenIds[i],
+                data.inputTokenAmounts[i],
+                data.inputTokenAddresses[i],
+                tokenAmount,
+                instructedTokenAmounts[i]
+            );
             unchecked {
                 i++;
             }
+        }
+    }
+
+    function _burn(
+        bytes32[] calldata inputTokenTypeIds,
+        bytes32[] calldata inputTokenIds,
+        uint256[] calldata inputTokenAmounts,
+        address[] calldata inputTokenAddresses,
+        uint256 tokenAmount,
+        uint256 instructedTokenAmount
+    ) private {
+        uint256 inputTokenAmountNeeded = tokenAmount * instructedTokenAmount;
+        uint256 accAmount = 0;
+        for (uint256 i = 0; i < inputTokenAmounts.length; ) {
+            accAmount += inputTokenAmounts[i];
+            // slither-disable-next-line calls-loop
+            IBaseToken(inputTokenAddresses[i]).burn(
+                address(this),
+                inputTokenTypeIds[i],
+                inputTokenIds[i],
+                inputTokenAmounts[i]
+            );
+            unchecked {
+                i++;
+            }
+        }
+        if (inputTokenAmountNeeded != accAmount) {
+            revert ValidationInvalidAmount();
         }
     }
 }

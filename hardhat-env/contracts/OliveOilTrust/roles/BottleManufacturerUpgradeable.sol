@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/BaseSeller.sol';
-import '../interfaces/IIndependentTokenUpgradeable.sol';
-import '../interfaces/ICommercialUnitsEscrowUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol';
+import "../base/BaseSeller.sol";
+import "../interfaces/IIndependentTokenUpgradeable.sol";
+import "../interfaces/ICommercialUnitsEscrowUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
 
 /**
  * @title BottleManufacturerUpgradeable contract.
@@ -51,11 +51,7 @@ contract BottleManufacturerUpgradeable is
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {IIndependentTokenUpgradeable-mint}
-    function mint(
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) public onlyOwner {
+    function mint(bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) public onlyOwner {
         IIndependentTokenUpgradeable(_token).mint(address(this), tokenTypeId, tokenId, tokenAmount);
     }
 

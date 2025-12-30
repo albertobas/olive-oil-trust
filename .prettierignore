@@ -11,13 +11,15 @@ next-app/.graphclient
 next-app/.next
 next-app/public
 next-app/src/generated
-services/graph-node
+graph-node
 subgraph/build
 subgraph/src/generated
 
 # files
-package-lock.json
+pnpm-lock.yaml
 **/*.tsbuildinfo
 hardhat-env/coverage.json
 subgraph/templates/subgraph.template.yaml
 subgraph/subgraph.yaml
+.nvmrc
+.npmrc

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../interfaces/IBaseToken.sol';
-import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol';
+import "../interfaces/IBaseToken.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
 
 /**
  * @title BaseToken contract.
@@ -46,12 +46,7 @@ abstract contract BaseToken is ERC1155Upgradeable, IBaseToken {
     function __BaseToken_init_unchained() internal onlyInitializing {}
 
     /// @inheritdoc IBaseToken
-    function burn(
-        address account,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) external {
+    function burn(address account, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external {
         if (account != msg.sender && !isApprovedForAll(account, msg.sender)) {
             revert BaseTokenInvalidCaller();
         }

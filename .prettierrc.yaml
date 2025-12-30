@@ -1,3 +1,4 @@
+plugins: [prettier-plugin-solidity]
 useTabs: false
 trailingComma: none
 tabWidth: 2
@@ -9,6 +10,8 @@ overrides:
   - files: "*.sol"
     options:
       tabWidth: 4
+      singleQuote: false
+      bracketSpacing: false
   - files: "*.y(*)ml"
     options:
       singleQuote: false

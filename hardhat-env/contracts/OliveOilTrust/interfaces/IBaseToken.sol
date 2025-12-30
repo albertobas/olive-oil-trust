@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol';
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol";
 
 /// @dev Interface required for a BaseToken contract
 interface IBaseToken is IERC1155Upgradeable {
@@ -40,12 +40,7 @@ interface IBaseToken is IERC1155Upgradeable {
      * @param tokenId The id of the token.
      * @param tokenAmount The amount of token to be burnt.
      */
-    function burn(
-        address account,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) external;
+    function burn(address account, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external;
 
     /**
      * @dev Burns `tokenAmounts` units of tokens `tokenIds` of types `tokenTypeIds` owned by `account`.

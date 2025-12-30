@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../OliveOilTrust/roles/BottleManufacturerUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../OliveOilTrust/roles/BottleManufacturerUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title Member Bottle Company 2 contract.
@@ -16,7 +16,7 @@ contract BottleCompany2 is Initializable, BottleManufacturerUpgradeable {
      * @param escrow_ The commercial units escrow address.
      */
     function initialize(address token, address escrow_) external initializer {
-        __BottleManufacturerUpgradeable_init('Bottle Company 2', token, escrow_);
+        __BottleManufacturerUpgradeable_init("Bottle Company 2", token, escrow_);
     }
 
     /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps

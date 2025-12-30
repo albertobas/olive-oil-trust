@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol';
+import "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol";
 
 /// @dev Interface required for a CertificateUpgradeable contract
 interface ICertificateUpgradeable {
@@ -52,11 +52,7 @@ interface ICertificateUpgradeable {
      * @param tokenAddress The address of the token.
      * @param tokenTypeId The id of the type of the token.
      */
-    function certifyToken(
-        bytes32 certificateId,
-        address tokenAddress,
-        bytes32 tokenTypeId
-    ) external;
+    function certifyToken(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external;
 
     /**
      * @dev Certifies the types of tokens `tokenTypeIds`.
@@ -82,11 +78,7 @@ interface ICertificateUpgradeable {
      * @param tokenAddress The address of the token.
      * @param tokenTypeId The id of the type of the token.
      */
-    function isCertified(
-        bytes32 certificateId,
-        address tokenAddress,
-        bytes32 tokenTypeId
-    ) external view returns (bool);
+    function isCertified(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external view returns (bool);
 
     /**
      * @dev Returns the certificates that a type of token `tokenTypeId` has been certified with.
@@ -104,10 +96,10 @@ interface ICertificateUpgradeable {
      * @param tokenAddresses The addresses of the tokens.
      * @param tokenTypeIds The ids of the types of the tokens.
      */
-    function certificatesOfBatch(address[] calldata tokenAddresses, bytes32[] calldata tokenTypeIds)
-        external
-        view
-        returns (bytes32[][] memory certificates_);
+    function certificatesOfBatch(
+        address[] calldata tokenAddresses,
+        bytes32[] calldata tokenTypeIds
+    ) external view returns (bytes32[][] memory certificates_);
 
     /// @dev Returns the base URI of the certificates
     function uri() external view returns (string memory);

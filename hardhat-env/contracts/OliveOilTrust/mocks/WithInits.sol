@@ -1,21 +1,21 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../certificate/CertificateUpgradeable.sol';
-import '../escrows/AgriculturalEscrowUpgradeable.sol';
-import '../escrows/CommercialUnitsEscrowUpgradeable.sol';
-import '../escrows/IndustrialUnitsEscrowUpgradeable.sol';
-import '../roles/BottleManufacturerUpgradeable.sol';
-import '../roles/BottlingPlantUpgradeable.sol';
-import '../roles/CertifierUpgradeable.sol';
-import '../roles/DistributorUpgradeable.sol';
-import '../roles/OliveGrowerUpgradeable.sol';
-import '../roles/OliveOilMillUpgradeable.sol';
-import '../roles/RetailerUpgradeable.sol';
-import '../tokens/DependentTokenUpgradeable.sol';
-import '../tokens/IndependentTokenUpgradeable.sol';
-import '../tokens/IndustrialUnitTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../certificate/CertificateUpgradeable.sol";
+import "../escrows/AgriculturalEscrowUpgradeable.sol";
+import "../escrows/CommercialUnitsEscrowUpgradeable.sol";
+import "../escrows/IndustrialUnitsEscrowUpgradeable.sol";
+import "../roles/BottleManufacturerUpgradeable.sol";
+import "../roles/BottlingPlantUpgradeable.sol";
+import "../roles/CertifierUpgradeable.sol";
+import "../roles/DistributorUpgradeable.sol";
+import "../roles/OliveGrowerUpgradeable.sol";
+import "../roles/OliveOilMillUpgradeable.sol";
+import "../roles/RetailerUpgradeable.sol";
+import "../tokens/DependentTokenUpgradeable.sol";
+import "../tokens/IndependentTokenUpgradeable.sol";
+import "../tokens/IndustrialUnitTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /// @dev BottleManufacturerUpgradeable with an initialize function
 contract BottleManufacturerUpgradeableWithInit is Initializable, BottleManufacturerUpgradeable {
@@ -25,7 +25,7 @@ contract BottleManufacturerUpgradeableWithInit is Initializable, BottleManufactu
      * @param escrow_ The commercial units escrow address.
      */
     function initialize(address token, address escrow_) external initializer {
-        __BottleManufacturerUpgradeable_init('Bottle Company', token, escrow_);
+        __BottleManufacturerUpgradeable_init("Bottle Company", token, escrow_);
     }
 }
 
@@ -37,12 +37,8 @@ contract BottlingPlantUpgradeableWithInit is Initializable, BottlingPlantUpgrade
      * @param industrialUnitToken The industrial unit address.
      * @param escrow_ The industrial units escrow address.
      */
-    function initialize(
-        address dependentToken,
-        address industrialUnitToken,
-        address escrow_
-    ) external initializer {
-        __BottlingPlantUpgradeable_init('Bottling Company', dependentToken, industrialUnitToken, escrow_);
+    function initialize(address dependentToken, address industrialUnitToken, address escrow_) external initializer {
+        __BottlingPlantUpgradeable_init("Bottling Company", dependentToken, industrialUnitToken, escrow_);
     }
 }
 
@@ -53,7 +49,7 @@ contract CertifierUpgradeableWithInit is Initializable, CertifierUpgradeable {
      * @param certificate_ The certificate address.
      */
     function initialize(address certificate_) external initializer {
-        __CertifierUpgradeable_init('Certifier Company', certificate_);
+        __CertifierUpgradeable_init("Certifier Company", certificate_);
     }
 }
 
@@ -65,7 +61,7 @@ contract DistributorUpgradeableWithInit is Initializable, DistributorUpgradeable
      * @param escrow_ The industrial units escrow address.
      */
     function initialize(address token, address escrow_) external initializer {
-        __DistributorUpgradeable_init('Distributor Company', token, escrow_);
+        __DistributorUpgradeable_init("Distributor Company", token, escrow_);
     }
 }
 
@@ -77,7 +73,7 @@ contract OliveGrowerUpgradeableWithInit is Initializable, OliveGrowerUpgradeable
      * @param escrow_ The agricultural units escrow address.
      */
     function initialize(address token, address escrow_) external initializer {
-        __OliveGrowerUpgradeable_init('Olive Grower One', token, escrow_);
+        __OliveGrowerUpgradeable_init("Olive Grower One", token, escrow_);
     }
 }
 
@@ -89,7 +85,7 @@ contract OliveOilMillUpgradeableWithInit is Initializable, OliveOilMillUpgradeab
      * @param escrow_ The commercial units escrow address.
      */
     function initialize(address token, address escrow_) external initializer {
-        __OliveOilMillUpgradeable_init('Olive Oil Mill Company', token, escrow_);
+        __OliveOilMillUpgradeable_init("Olive Oil Mill Company", token, escrow_);
     }
 }
 
@@ -100,7 +96,7 @@ contract RetailerUpgradeableWithInit is Initializable, RetailerUpgradeable {
      * @param escrow_ The commercial units escrow address.
      */
     function initialize(address escrow_) external initializer {
-        __RetailerUpgradeable_init('Retailer Company', escrow_);
+        __RetailerUpgradeable_init("Retailer Company", escrow_);
     }
 }
 

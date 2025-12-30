@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../interfaces/IIndustrialUnitsEscrowUpgradeable.sol';
-import '../interfaces/IIndustrialUnitTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../interfaces/IIndustrialUnitsEscrowUpgradeable.sol";
+import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title IndustrialUnitsEscrowUpgradeable contract.
@@ -94,7 +94,7 @@ contract IndustrialUnitsEscrowUpgradeable is
         _escrows[escrowId].price = tokenPrice;
         _escrowsIds.increment();
         emit TokenDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenId, tokenPrice);
-        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, 1, '');
+        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, 1, "");
     }
 
     /// @inheritdoc IIndustrialUnitsEscrowUpgradeable
@@ -135,7 +135,7 @@ contract IndustrialUnitsEscrowUpgradeable is
             amounts[i] = 1;
         }
         emit BatchDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenIds, batchPrice);
-        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, amounts, '');
+        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, amounts, "");
     }
 
     /// @inheritdoc IBaseEscrow
@@ -240,7 +240,9 @@ contract IndustrialUnitsEscrowUpgradeable is
     }
 
     /// @inheritdoc IIndustrialUnitsEscrowUpgradeable
-    function escrow(uint256 escrowId)
+    function escrow(
+        uint256 escrowId
+    )
         external
         view
         returns (
@@ -282,7 +284,9 @@ contract IndustrialUnitsEscrowUpgradeable is
         return (_escrows[escrowId].state);
     }
 
-    function _escrow(uint256 escrowId)
+    function _escrow(
+        uint256 escrowId
+    )
         private
         view
         returns (
@@ -311,13 +315,7 @@ contract IndustrialUnitsEscrowUpgradeable is
         );
     }
 
-    function _transferTokens(
-        uint256 escrowId,
-        address addr,
-        address from,
-        address to,
-        uint256[] memory ids
-    ) private {
+    function _transferTokens(uint256 escrowId, address addr, address from, address to, uint256[] memory ids) private {
         bytes32[] memory ids_ = new bytes32[](ids.length);
         uint256[] memory amounts = new uint256[](ids.length);
         for (uint256 i = 0; i < ids.length; ) {
@@ -330,10 +328,10 @@ contract IndustrialUnitsEscrowUpgradeable is
         }
         if (ids.length > 1) {
             emit TokensWithdrawn(escrowId, to, addr, ids_);
-            IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, '');
+            IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, "");
         } else {
             emit TokenWithdrawn(escrowId, to, addr, ids_[0]);
-            IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], 1, '');
+            IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], 1, "");
         }
     }
 

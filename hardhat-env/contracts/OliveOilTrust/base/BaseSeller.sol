@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import './BaseMember.sol';
-import '../interfaces/IBaseEscrow.sol';
-import '../interfaces/IBaseToken.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "./BaseMember.sol";
+import "../interfaces/IBaseEscrow.sol";
+import "../interfaces/IBaseToken.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title Seller base contract.
@@ -62,12 +62,7 @@ abstract contract BaseSeller is Initializable, BaseMember {
      * @param tokenId The id of the token.
      * @param tokenAmount The amount of token.
      */
-    function burn(
-        address tokenAddress,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) public virtual {
+    function burn(address tokenAddress, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) public virtual {
         IBaseToken(tokenAddress).burn(address(this), tokenTypeId, tokenId, tokenAmount);
     }
 

@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/BaseSeller.sol';
-import '../base/DependentCreator.sol';
-import '../interfaces/IBaseToken.sol';
-import '../interfaces/ICommercialUnitsEscrowUpgradeable.sol';
-import '../interfaces/IDependentTokenUpgradeable.sol';
-import '../interfaces/IIndustrialUnitsEscrowUpgradeable.sol';
-import '../interfaces/IIndustrialUnitTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol';
+import "../base/BaseSeller.sol";
+import "../base/DependentCreator.sol";
+import "../interfaces/IBaseToken.sol";
+import "../interfaces/ICommercialUnitsEscrowUpgradeable.sol";
+import "../interfaces/IDependentTokenUpgradeable.sol";
+import "../interfaces/IIndustrialUnitsEscrowUpgradeable.sol";
+import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
 
 /**
  * @title BottlingPlantUpgradeable contract in a supply chain.
@@ -149,11 +149,7 @@ contract BottlingPlantUpgradeable is
     }
 
     /// @dev See {IIndustrialUnitsEscrowUpgradeable-depositToken}
-    function depositToken(
-        bytes32 tokenId,
-        uint256 tokenPrice,
-        address payable sellerWallet
-    ) public onlyOwner {
+    function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) public onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(_escrow).depositToken(
             address(_industrialUnitToken),
             tokenId,
@@ -182,12 +178,8 @@ contract BottlingPlantUpgradeable is
      * @param escrowId The id of the escrow.
      * @param wallet The address funds will be sent to if a refund occurs.
      */
-    function makePayment(
-        address escrowAddress_,
-        uint256 escrowId,
-        address payable wallet
-    ) public payable onlyOwner {
-        ICommercialUnitsEscrowUpgradeable(escrowAddress_).makePayment{ value: msg.value }(escrowId, wallet);
+    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) public payable onlyOwner {
+        ICommercialUnitsEscrowUpgradeable(escrowAddress_).makePayment{value: msg.value}(escrowId, wallet);
     }
 
     /**

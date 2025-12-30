@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import './IBaseEscrow.sol';
+import "./IBaseEscrow.sol";
 
 /// Interface required for a Escrow contract
 interface IIndustrialUnitsEscrowUpgradeable is IBaseEscrow {
@@ -132,7 +132,9 @@ interface IIndustrialUnitsEscrowUpgradeable is IBaseEscrow {
      *     IIndustrialUnitsEscrowUpgradeable.IndustrialUnitsEscrow struct.
      * @param escrowId The id of the escrow.
      */
-    function escrow(uint256 escrowId)
+    function escrow(
+        uint256 escrowId
+    )
         external
         view
         returns (

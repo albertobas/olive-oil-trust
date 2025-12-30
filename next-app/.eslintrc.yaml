@@ -11,12 +11,9 @@ overrides:
   - files:
       - "**/*.ts?(x)"
     parserOptions:
-      project: tsconfig.json
       tsConfigRootDir: __dirname
       sourceType: module
     extends:
-      - next/core-web-vitals
       - plugin:@typescript-eslint/recommended
-      - prettier
     plugins:
       - "@typescript-eslint"

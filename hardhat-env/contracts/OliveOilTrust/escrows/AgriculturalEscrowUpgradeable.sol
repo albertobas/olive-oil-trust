@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/AmountsEscrow.sol';
-import '../interfaces/IAgriculturalEscrowUpgradeable.sol';
-import '../interfaces/IBaseToken.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
+import "../base/AmountsEscrow.sol";
+import "../interfaces/IAgriculturalEscrowUpgradeable.sol";
+import "../interfaces/IBaseToken.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 
 /**
  * @title AgriculturalEscrowUpgradeable contract.
@@ -66,7 +66,7 @@ contract AgriculturalEscrowUpgradeable is
         _escrows[escrowId].amounts = _asSingletonArray(tokenAmount);
         _escrowsIds.increment();
         emit TokenDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenTypeId, tokenId, tokenAmount);
-        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, '');
+        IERC1155Upgradeable(tokenAddress).safeTransferFrom(msg.sender, address(this), tokenId_, tokenAmount, "");
     }
 
     /// @inheritdoc IAgriculturalEscrowUpgradeable
@@ -109,7 +109,7 @@ contract AgriculturalEscrowUpgradeable is
         _escrows[escrowId].amounts = tokenAmounts;
         _escrowsIds.increment();
         emit BatchDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenTypeIds, tokenIds, tokenAmounts);
-        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, '');
+        IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, tokenAmounts, "");
     }
 
     /// @inheritdoc IBaseEscrow

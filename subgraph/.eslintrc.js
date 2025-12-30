@@ -1,0 +1,4 @@
+module.exports = {
+  ignorePatterns: ['node_modules', 'src/generated'],
+  parser: '@typescript-eslint/parser'
+};

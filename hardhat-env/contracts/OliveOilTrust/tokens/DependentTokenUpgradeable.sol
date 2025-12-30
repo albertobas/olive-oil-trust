@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/BaseToken.sol';
-import '../interfaces/IDependentTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../base/BaseToken.sol";
+import "../interfaces/IDependentTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title DependentTokenUpgradeable contract.
@@ -98,14 +98,9 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
     }
 
     /// @inheritdoc IDependentTokenUpgradeable
-    function mint(
-        address to,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) external onlyOwner {
+    function mint(address to, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external onlyOwner {
         uint256 tokenId_ = _getDependentTokenId(tokenTypeId, tokenId);
-        _mint(to, tokenId_, tokenAmount, '');
+        _mint(to, tokenId_, tokenAmount, "");
     }
 
     /// @inheritdoc IDependentTokenUpgradeable
@@ -126,18 +121,16 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
         for (uint256 i = 0; i < tokenIds.length; i++) {
             tokenIds_[i] = _getDependentTokenId(tokenTypeIds[i], tokenIds[i]);
         }
-        _mintBatch(to, tokenIds_, tokenAmounts, '');
+        _mintBatch(to, tokenIds_, tokenAmounts, "");
     }
 
     /// @inheritdoc IDependentTokenUpgradeable
-    function getInstructions(bytes32 tokenId)
+    function getInstructions(
+        bytes32 tokenId
+    )
         external
         view
-        returns (
-            address[] memory tokenAddresses,
-            bytes32[] memory tokenTypeIds,
-            uint256[] memory tokenAmounts
-        )
+        returns (address[] memory tokenAddresses, bytes32[] memory tokenTypeIds, uint256[] memory tokenAmounts)
     {
         uint256 intTokenTypeId_ = _intTokenTypeId[tokenId];
         return (

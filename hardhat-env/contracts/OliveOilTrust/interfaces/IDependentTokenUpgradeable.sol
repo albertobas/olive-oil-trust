@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.14;
 
-import './IBaseToken.sol';
+import "./IBaseToken.sol";
 
 /// @dev Interface required for a DependentToken contract
 interface IDependentTokenUpgradeable is IBaseToken {
@@ -111,12 +111,7 @@ interface IDependentTokenUpgradeable is IBaseToken {
      * @param tokenId The id of the token.
      * @param tokenAmount The number of units to be minted.
      */
-    function mint(
-        address to,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) external;
+    function mint(address to, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external;
 
     /**
      * @dev Mints `tokenAmounts` units of tokens with ids `tokenIds` of type `tokenTypeIds`.
@@ -137,12 +132,10 @@ interface IDependentTokenUpgradeable is IBaseToken {
     ) external;
 
     /// @dev Returns the instructions, i.e. addresses, ids and amounts, of token `tokenId`
-    function getInstructions(bytes32 tokenId)
+    function getInstructions(
+        bytes32 tokenId
+    )
         external
         view
-        returns (
-            address[] memory tokenAddresses,
-            bytes32[] memory tokenTypeIds,
-            uint256[] memory tokenAmounts
-        );
+        returns (address[] memory tokenAddresses, bytes32[] memory tokenTypeIds, uint256[] memory tokenAmounts);
 }

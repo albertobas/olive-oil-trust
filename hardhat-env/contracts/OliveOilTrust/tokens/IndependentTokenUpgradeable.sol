@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/BaseToken.sol';
-import '../interfaces/IIndependentTokenUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../base/BaseToken.sol";
+import "../interfaces/IIndependentTokenUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title IndependentTokenUpgradeable contract.
@@ -27,16 +27,11 @@ contract IndependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgrade
     function __IndependentTokenUpgradeable_init_unchained() internal onlyInitializing {}
 
     /// @inheritdoc IIndependentTokenUpgradeable
-    function mint(
-        address to,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) external onlyOwner {
+    function mint(address to, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external onlyOwner {
         uint256 tokenTypeId_ = _getIntTokenTypeId(tokenTypeId);
         uint256 tokenId_ = _getTokenId(tokenTypeId_, tokenTypeId, tokenId);
         _tokenId[tokenTypeId_].push(tokenId_);
-        _mint(to, tokenId_, tokenAmount, '');
+        _mint(to, tokenId_, tokenAmount, "");
     }
 
     /// @inheritdoc IIndependentTokenUpgradeable
@@ -64,7 +59,7 @@ contract IndependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgrade
                 i++;
             }
         }
-        _mintBatch(to, tokenIds_, tokenAmounts, '');
+        _mintBatch(to, tokenIds_, tokenAmounts, "");
     }
 
     function _getIntTokenTypeId(bytes32 tokenTypeId) private returns (uint256) {

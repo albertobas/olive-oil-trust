@@ -1,2 +1,10 @@
 "**/*.{json,md,yaml,yml}":
-  - prettier --config ./.prettierrc.yaml --write
+  - prettier --write
+
+"hardhat-env/**/*.{ts,js}":
+  - prettier --write
+  - pnpm --filter hardhat-env exec eslint --fix
+
+"hardhat-env/**/*.sol":
+  - prettier --write
+  - pnpm --filter hardhat-env exec solhint --config hardhat-env/.solhint.json --ignore-path hardhat-env/.solhintignore --fix

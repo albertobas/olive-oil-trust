@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import './IBaseToken.sol';
+import "./IBaseToken.sol";
 
 /// Interface required for an IndependentToken contract
 interface IIndependentTokenUpgradeable is IBaseToken {
@@ -17,12 +17,7 @@ interface IIndependentTokenUpgradeable is IBaseToken {
      * @param tokenId The id of the token.
      * @param tokenAmount The number of units to be minted.
      */
-    function mint(
-        address to,
-        bytes32 tokenTypeId,
-        bytes32 tokenId,
-        uint256 tokenAmount
-    ) external;
+    function mint(address to, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external;
 
     /**
      * @dev Mints `tokenAmounts` units of tokens with ids `tokenIds` of type `tokenTypeIds`.

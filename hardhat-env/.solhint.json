@@ -2,7 +2,6 @@
   "plugins": ["prettier"],
   "rules": {
     "code-complexity": ["error", 7],
-    "contract-name-camelcase": "error",
     "const-name-snakecase": "error",
     "constructor-syntax": "error",
     "func-name-mixedcase": "off",
@@ -11,6 +10,7 @@
     "imports-on-top": "error",
     "max-line-length": ["error", 120],
     "modifier-name-mixedcase": "error",
+    "no-unused-vars": "error",
     "not-rely-on-time": "off",
     "prettier/prettier": [
       "error",
@@ -21,6 +21,7 @@
     "private-vars-leading-underscore": "error",
     "reason-string": ["warn", { "maxLength": 64 }],
     "reentrancy": "warn",
+    "state-visibility": "error",
     "var-name-mixedcase": "error"
   }
 }

@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import '../base/BaseSeller.sol';
-import '../interfaces/IDependentTokenUpgradeable.sol';
-import '../interfaces/IIndustrialUnitTokenUpgradeable.sol';
-import '../interfaces/IBaseToken.sol';
-import '../interfaces/IIndustrialUnitsEscrowUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol';
+import "../base/BaseSeller.sol";
+import "../interfaces/IDependentTokenUpgradeable.sol";
+import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "../interfaces/IBaseToken.sol";
+import "../interfaces/IIndustrialUnitsEscrowUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
 
 /**
  * @title DistributorUpgradeable contract in a supply chain.
@@ -48,10 +48,10 @@ contract DistributorUpgradeable is
         __DistributorUpgradeable_init_unchained(industrialUnitToken_, escrow_);
     }
 
-    function __DistributorUpgradeable_init_unchained(address industrialUnitToken_, address escrow_)
-        internal
-        onlyInitializing
-    {
+    function __DistributorUpgradeable_init_unchained(
+        address industrialUnitToken_,
+        address escrow_
+    ) internal onlyInitializing {
         _industrialUnitToken = industrialUnitToken_;
         IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(escrow_, true);
     }
@@ -59,11 +59,7 @@ contract DistributorUpgradeable is
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {IIndustrialUnitsEscrowUpgradeable-depositToken}
-    function depositToken(
-        bytes32 tokenId,
-        uint256 tokenPrice,
-        address payable sellerWallet
-    ) public onlyOwner {
+    function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) public onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(_escrow).depositToken(
             address(_industrialUnitToken),
             tokenId,
@@ -127,12 +123,8 @@ contract DistributorUpgradeable is
      * @param escrowId The id of the escrow.
      * @param wallet The address funds will be sent to if a refund occurs.
      */
-    function makePayment(
-        address escrowAddress_,
-        uint256 escrowId,
-        address payable wallet
-    ) public payable onlyOwner {
-        IIndustrialUnitsEscrowUpgradeable(escrowAddress_).makePayment{ value: msg.value }(escrowId, wallet);
+    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) public payable onlyOwner {
+        IIndustrialUnitsEscrowUpgradeable(escrowAddress_).makePayment{value: msg.value}(escrowId, wallet);
     }
 
     /**

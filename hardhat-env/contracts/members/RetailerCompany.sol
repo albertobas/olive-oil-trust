@@ -2,8 +2,8 @@
 pragma solidity ^0.8.14;
 
 // import '../OliveOilTrust/interfaces/ICommercialUnitsEscrowUpgradeable.sol';
-import '../OliveOilTrust/roles/RetailerUpgradeable.sol';
-import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
+import "../OliveOilTrust/roles/RetailerUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title MemberRetailer Company contract.
@@ -16,7 +16,7 @@ contract RetailerCompany is Initializable, RetailerUpgradeable {
      * @param escrow_ The commercial units escrow address.
      */
     function initialize(address escrow_) external initializer {
-        __RetailerUpgradeable_init('Retailer Company', escrow_);
+        __RetailerUpgradeable_init("Retailer Company", escrow_);
     }
 
     /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps

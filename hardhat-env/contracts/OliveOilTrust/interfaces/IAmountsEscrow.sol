@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.14;
 
-import './IBaseEscrow.sol';
+import "./IBaseEscrow.sol";
 
 /// @dev Interface required for an AmountsEscrow contract
 interface IAmountsEscrow is IBaseEscrow {
@@ -41,7 +41,9 @@ interface IAmountsEscrow is IBaseEscrow {
      * @dev Returns all the information stored in the escrow `escrowId` IBaseEscrow.MyEscrow struct.
      * @param escrowId The id of the escrow.
      */
-    function escrow(uint256 escrowId)
+    function escrow(
+        uint256 escrowId
+    )
         external
         view
         returns (
