@@ -113,7 +113,8 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
         if (
             tokenTypeIds.length != tokenIds.length ||
             tokenTypeIds.length != tokenAmounts.length ||
-            tokenTypeIds.length == 0
+            tokenTypeIds.length == 0 ||
+            tokenTypeIds.length > 50
         ) {
             revert DependentTokenInvalidArray();
         }
