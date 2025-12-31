@@ -75,3 +75,7 @@ export enum ErrorsValidationLibrary {
 export enum ErrorsDistributorUpgradeable {
   InvalidArray = 'DistributorUpgradeableInvalidArray'
 }
+
+export enum ErrorsBottlingPlantUpgradeable {
+  InvalidArray = 'BottlingPlantUpgradeableInvalidArray'
+}

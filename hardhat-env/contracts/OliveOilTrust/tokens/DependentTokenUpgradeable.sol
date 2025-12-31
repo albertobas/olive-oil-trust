@@ -119,8 +119,11 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
             revert DependentTokenInvalidArray();
         }
         uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; i++) {
+        for (uint256 i = 0; i < tokenIds.length; ) {
             tokenIds_[i] = _getDependentTokenId(tokenTypeIds[i], tokenIds[i]);
+            unchecked {
+                i++;
+            }
         }
         _mintBatch(to, tokenIds_, tokenAmounts, "");
     }

@@ -29,6 +29,9 @@ contract BottlingPlantUpgradeable is
     /// @dev IIndustrialUnitTokenUpgradeable reference used to interact with the industrial unit token contract
     address internal _industrialUnitToken;
 
+    /// @dev Invalid array
+    error BottlingPlantUpgradeableInvalidArray();
+
     /**
      * @dev Initialize function.
      * @param memberName The name of the member.
@@ -228,9 +231,15 @@ contract BottlingPlantUpgradeable is
         bytes32[][] calldata tokenIds,
         uint256[][] calldata tokenAmounts
     ) external onlyOwner {
+        if (tokenTypeIds.length == 0 || tokenTypeIds.length > 50) {
+            revert BottlingPlantUpgradeableInvalidArray();
+        }
         address[][] memory tokenAddresses = new address[][](tokenTypeIds.length);
-        for (uint256 i = 0; i < tokenTypeIds.length; i++) {
+        for (uint256 i = 0; i < tokenTypeIds.length; ) {
             tokenAddresses[i] = _getAddressesArray(tokenTypeIds[i].length);
+            unchecked {
+                i++;
+            }
         }
         IIndustrialUnitTokenUpgradeable(_industrialUnitToken).packBatch(
             address(this),
@@ -253,9 +262,15 @@ contract BottlingPlantUpgradeable is
     }
 
     function _getAddressesArray(uint256 length) private view returns (address[] memory tokenAddresses) {
+        if (length == 0 || length > 50) {
+            revert BottlingPlantUpgradeableInvalidArray();
+        }
         tokenAddresses = new address[](length);
-        for (uint256 i = 0; i < length; i++) {
+        for (uint256 i = 0; i < length; ) {
             tokenAddresses[i] = address(_dependentToken);
+            unchecked {
+                i++;
+            }
         }
     }
 

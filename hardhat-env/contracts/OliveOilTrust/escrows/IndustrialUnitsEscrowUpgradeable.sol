@@ -131,8 +131,11 @@ contract IndustrialUnitsEscrowUpgradeable is
         _escrowsIds.increment();
         // _transferBatchFrom(tokenAddress, msg.sender, address(this), tokenIds_);
         uint256[] memory amounts = new uint256[](tokenIds_.length);
-        for (uint256 i = 0; i < tokenIds_.length; i++) {
+        for (uint256 i = 0; i < tokenIds_.length; ) {
             amounts[i] = 1;
+            unchecked {
+                i++;
+            }
         }
         emit BatchDeposited(msg.sender, sellerWallet, escrowId, tokenAddress, tokenIds, batchPrice);
         IERC1155Upgradeable(tokenAddress).safeBatchTransferFrom(msg.sender, address(this), tokenIds_, amounts, "");

@@ -73,7 +73,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         }
         uint256[] memory intCertificatesIds = new uint256[](certificateIds.length);
         uint256[] memory intTokensTypeIds = new uint256[](certificateIds.length);
-        for (uint256 i = 0; i < certificateIds.length; i++) {
+        for (uint256 i = 0; i < certificateIds.length; ) {
             if (tokenAddresses[i] == address(0)) {
                 revert CertificateInvalidAddress();
             }
@@ -85,6 +85,9 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
             intCertificatesIds[i] = intCertificateId;
             intTokensTypeIds[i] = intTokenTypeId;
             _certify(intCertificateId, tokenAddresses[i], intTokenTypeId);
+            unchecked {
+                i++;
+            }
         }
         emit BatchCertified(msg.sender, certificateIds, tokenAddresses, tokenTypeIds);
     }
