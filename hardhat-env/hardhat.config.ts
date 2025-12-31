@@ -7,7 +7,7 @@ import 'hardhat-contract-sizer';
 import 'hardhat-gas-reporter';
 import 'solidity-coverage';
 import 'tsconfig-paths/register';
-import 'hardhat-env/tasks/set-state';
+import './tasks/set-state';
 
 const config: HardhatUserConfig = {
   solidity: '0.8.14',
