@@ -34,7 +34,7 @@ Finally, data are queried from a local TheGraph node using GraphQL. The subgraph
 
 - `hardhat-env/contracts/*`: smart contracts written in Solidity language.
 - `hardhat-env/scripts/*`: TypeScript scripts to deploy contracts and to write relevant information about them in both front-end and subgraph workspaces.
-- `hardhat-env/tasks/setState`: Hardhat task to set a state to the local node.
+- `hardhat-env/tasks/set-state`: Hardhat task to set a state to the local node.
 - `hardhat-env/test/*`: contracts unit tests with [Mocha](https://mochajs.org/) alongside [Chai](https://www.chaijs.com/) written using a Hardhat plugin for integration with [Waffle](https://hardhat.org/plugins/nomiclabs-hardhat-waffle.html) and [Ethers.js](https://hardhat.org/plugins/nomiclabs-hardhat-ethers.html).
 - `next-app/src/app/*`: app state, postcss mixins and a global css file, user interface components and constants.
 - `next-app/src/features/*`: explore and management web page sections. Each feature with its core, styles, user interface components and code. The data sources as well as the repositories and entities are in a shared folder at the same folders level.
@@ -48,7 +48,7 @@ Finally, data are queried from a local TheGraph node using GraphQL. The subgraph
 
 ## Running locally
 
-This project needs PNPM, Node >= 20.18.1 and Docker to be installed.
+This project requires **Node.js ≥ 20.18.1**, **pnpm** as the package manager, and **Docker** to be installed on your system.
 
 ```bash
 $ git clone https://github.com/albertobas/olive-oil-trust.git
