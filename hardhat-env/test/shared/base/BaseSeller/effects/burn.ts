@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { constants } from 'ethers';
 import { EventsBaseToken, EventsERC1155 } from '@test/shared/events';
 import { BaseSellerContract, CreationTokenContract } from '@test/shared/types';
+import { ErrorsBaseMember } from '@test/shared/errors';
 
 export default function shouldBehaveLikeBurn(
   contract: BaseSellerContract,
@@ -38,6 +39,14 @@ export default function shouldBehaveLikeBurn(
           tokenId,
           tokenAmount
         );
+    });
+  });
+
+  context('fails', function () {
+    it('if tokenAddress is the zero address', async function () {
+      await expect(
+        this.contracts[contract].burn(constants.AddressZero, tokenTypeId, tokenId, tokenAmount)
+      ).to.be.revertedWith(ErrorsBaseMember.InvalidAddress);
     });
   });
 }

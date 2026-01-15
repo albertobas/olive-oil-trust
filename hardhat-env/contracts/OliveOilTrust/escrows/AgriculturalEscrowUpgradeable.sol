@@ -4,6 +4,7 @@ pragma solidity ^0.8.14;
 import "../base/AmountsEscrow.sol";
 import "../interfaces/IAgriculturalEscrowUpgradeable.sol";
 import "../interfaces/IBaseToken.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
@@ -53,9 +54,10 @@ contract AgriculturalEscrowUpgradeable is
         uint256 tokenAmount,
         address payable sellerWallet
     ) external onlyOwner {
-        if (tokenAddress == address(0) || sellerWallet == address(0)) {
+        if (sellerWallet == address(0)) {
             revert AgriculturalEscrowInvalidAddress();
         }
+        _checkAddress(tokenAddress);
         uint256 escrowId = _escrowsIds.current();
         uint256 tokenId_ = IBaseToken(tokenAddress).bytesToIntTokenId(tokenTypeId, tokenId);
         _escrows[escrowId].state = State.Active;
@@ -77,20 +79,17 @@ contract AgriculturalEscrowUpgradeable is
         uint256[] calldata tokenAmounts,
         address payable sellerWallet
     ) external onlyOwner {
-        if (tokenAddress == address(0) || sellerWallet == address(0)) {
+        if (sellerWallet == address(0)) {
             revert AgriculturalEscrowInvalidAddress();
         }
-        if (
-            tokenIds.length != tokenAmounts.length ||
-            tokenIds.length != tokenTypeIds.length ||
-            tokenIds.length == 0 ||
-            tokenIds.length > 50
-        ) {
+        uint256 len = tokenIds.length;
+        if (len != tokenAmounts.length || len != tokenTypeIds.length || len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert AgriculturalEscrowInvalidArray();
         }
+        _checkAddress(tokenAddress);
         uint256 escrowId = _escrowsIds.current();
-        uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; ) {
+        uint256[] memory tokenIds_ = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             if (_isTokenDeposited[escrowId][tokenTypeIds[i]][tokenIds[i]]) {
                 revert AgriculturalEscrowInvalidArray();
             }

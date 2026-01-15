@@ -7,7 +7,8 @@ export enum ErrorsAgriculturalEscrowUpgradeable {
 
 export enum ErrorsBaseEscrow {
   InvalidBuyer = 'BaseEscrowInvalidBuyer',
-  InvalidState = 'BaseEscrowInvalidState'
+  InvalidState = 'BaseEscrowInvalidState',
+  InvalidAddress = 'BaseEscrowInvalidAddress'
 }
 
 export enum ErrorsBaseToken {
@@ -34,10 +35,8 @@ export enum ErrorsDependentCreator {
 export enum ErrorsDependentTokenUpgradeable {
   InvalidAddress = 'DependentTokenInvalidAddress',
   InvalidArray = 'DependentTokenInvalidArray',
-  InvalidCaller = 'DependentTokenInvalidCaller',
   NonExistentTokenTypeId = 'DependentTokenNonExistentTokenTypeId',
   DuplicatedTokenTypeId = 'DependentTokenDuplicatedTokenTypeId',
-  InsufficientBalance = 'DependentTokenInsufficientBalance',
   InvalidAmount = 'DependentTokenInvalidAmount'
 }
 
@@ -53,7 +52,6 @@ export enum ErrorsIndustrialUnitsEscrowUpgradeable {
 
 export enum ErrorsIndustrialUnitTokenUpgradeable {
   DuplicatedId = 'IndustrialUnitTokenDuplicatedId',
-  InvalidAmount = 'IndustrialUnitTokenInvalidAmount',
   InvalidArray = 'IndustrialUnitTokenInvalidArray',
   InvalidBalance = 'IndustrialUnitTokenInvalidBalance',
   InvalidCaller = 'IndustrialUnitTokenInvalidCaller'
@@ -78,4 +76,8 @@ export enum ErrorsDistributorUpgradeable {
 
 export enum ErrorsBottlingPlantUpgradeable {
   InvalidArray = 'BottlingPlantUpgradeableInvalidArray'
+}
+
+export enum ErrorsBaseMember {
+  InvalidAddress = 'BaseMemberInvalidAddress'
 }

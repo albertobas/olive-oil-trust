@@ -4,17 +4,16 @@ import shouldBehaveLikeInitialize from '@test/members/DistributorCompany/effects
 import { deployDistributorAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeDistributorCompany(): void {
-  const distributorPlantId = dictChainActorsNames.distributor.id1;
-  const distributorCompanyContractName = dictContracts.distributorCompany.v1;
-  const distributorCompanyPalletContractName = dictContracts.distributorCompanyPallet.v1;
-  const distributorCompanyEscrowContractName = dictContracts.distributorCompanyEscrow.v1;
+  const { distributor } = dictChainActorsNames;
+  const { distributorCompany, distributorCompanyEscrow, distributorCompanyPallet } = dictContracts;
+
   describe('Effects functions', function () {
     describe('#initialize', function () {
       before(async function () {
         const { distributor, distributorPallet, distributorEscrow } = await deployDistributorAndDeps(
-          distributorCompanyContractName,
-          distributorCompanyPalletContractName,
-          distributorCompanyEscrowContractName,
+          distributorCompany.v1,
+          distributorCompanyPallet.v1,
+          distributorCompanyEscrow.v1,
           baseUri,
           this.signers.deployer,
           uupsOpts
@@ -23,7 +22,7 @@ export function shouldBehaveLikeDistributorCompany(): void {
         this.contracts.distributorCompanyPallet = distributorPallet.proxy as DistributorCompanyPallet;
         this.contracts.distributorCompanyEscrow = distributorEscrow.proxy as DistributorCompanyEscrow;
       });
-      shouldBehaveLikeInitialize(distributorPlantId);
+      shouldBehaveLikeInitialize(distributor.id1);
     });
   });
 }

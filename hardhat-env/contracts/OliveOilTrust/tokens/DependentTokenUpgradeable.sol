@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../base/BaseToken.sol";
 import "../interfaces/IDependentTokenUpgradeable.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
@@ -63,17 +64,18 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
         bytes32[][] calldata instructedTokenTypeIds,
         uint256[][] calldata instructedTokenAmounts
     ) external onlyOwner {
+        uint256 len = tokenTypeIds.length;
         if (
-            instructedTokenAddresses.length != instructedTokenTypeIds.length ||
-            instructedTokenAddresses.length != instructedTokenAmounts.length ||
-            instructedTokenAddresses.length != tokenTypeIds.length ||
-            tokenTypeIds.length == 0 ||
-            tokenTypeIds.length > 50
+            len != instructedTokenAddresses.length ||
+            len != instructedTokenTypeIds.length ||
+            len != instructedTokenAmounts.length ||
+            len == 0 ||
+            len > Constants.MAX_BATCH_SIZE
         ) {
             revert DependentTokenInvalidArray();
         }
-        uint256[] memory tokenTypeIds_ = new uint256[](tokenTypeIds.length);
-        for (uint256 i = 0; i < tokenTypeIds.length; ) {
+        uint256[] memory tokenTypeIds_ = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             if (_intTokenTypeId[tokenTypeIds[i]] != 0) {
                 revert DependentTokenDuplicatedTokenTypeId();
             }
@@ -110,16 +112,12 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
         bytes32[] calldata tokenIds,
         uint256[] calldata tokenAmounts
     ) external onlyOwner {
-        if (
-            tokenTypeIds.length != tokenIds.length ||
-            tokenTypeIds.length != tokenAmounts.length ||
-            tokenTypeIds.length == 0 ||
-            tokenTypeIds.length > 50
-        ) {
+        uint256 len = tokenTypeIds.length;
+        if (len != tokenIds.length || len != tokenAmounts.length || len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert DependentTokenInvalidArray();
         }
-        uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; ) {
+        uint256[] memory tokenIds_ = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             tokenIds_[i] = _getDependentTokenId(tokenTypeIds[i], tokenIds[i]);
             unchecked {
                 i++;
@@ -157,15 +155,16 @@ contract DependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgradeab
         bytes32[] calldata instructedTokenTypeIds,
         uint256[] calldata instructedTokenAmounts
     ) private {
+        uint256 len = instructedTokenAddresses.length;
         if (
-            instructedTokenAddresses.length != instructedTokenTypeIds.length ||
-            instructedTokenAddresses.length != instructedTokenAmounts.length ||
-            instructedTokenAddresses.length == 0 ||
-            instructedTokenAddresses.length > 50
+            len != instructedTokenTypeIds.length ||
+            len != instructedTokenAmounts.length ||
+            len == 0 ||
+            len > Constants.MAX_BATCH_SIZE
         ) {
             revert DependentTokenInvalidArray();
         }
-        for (uint256 i = 0; i < instructedTokenAddresses.length; ) {
+        for (uint256 i = 0; i < len; ) {
             if (instructedTokenAddresses[i] == address(0)) {
                 revert DependentTokenInvalidAddress();
             }

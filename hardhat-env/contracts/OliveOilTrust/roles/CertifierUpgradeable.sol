@@ -24,10 +24,11 @@ contract CertifierUpgradeable is Initializable, UUPSUpgradeable, BaseMember, Own
     }
 
     function __CertifierUpgradeable_init_unchained(address certificate_) internal onlyInitializing {
+        _checkAddress(certificate_);
         _certificate = certificate_;
     }
 
-    function _authorizeUpgrade(address) internal override onlyOwner {}
+    function _authorizeUpgrade(address) internal override {}
 
     /// @dev See {ICertificateUpgradeable-certifyToken}
     function certifyToken(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external onlyOwner {
@@ -61,7 +62,7 @@ contract CertifierUpgradeable is Initializable, UUPSUpgradeable, BaseMember, Own
     function certificatesOfBatch(
         address[] calldata tokenAddresses,
         bytes32[] calldata tokenIds
-    ) public view returns (bytes32[][] memory) {
+    ) external view returns (bytes32[][] memory) {
         return ICertificateUpgradeable(_certificate).certificatesOfBatch(tokenAddresses, tokenIds);
     }
 

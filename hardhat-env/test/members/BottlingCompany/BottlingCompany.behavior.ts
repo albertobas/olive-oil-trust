@@ -4,32 +4,30 @@ import shouldBehaveLikeInitialize from '@test/members/BottlingCompany/effects/in
 import { deployBottlingPlantAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeBottlingCompany(): void {
-  const bottlingPlantId = dictChainActorsNames.bottlingPlant.id1;
-  const bottlingCompanyContractName = dictContracts.bottlingCompany.v1;
-  const bottlingCompanyOliveOilBottleContractName = dictContracts.bottlingCompanyOliveOilBottle.v1;
-  const bottlingCompanyPalletContractName = dictContracts.bottlingCompanyPallet.v1;
-  const bottlingCompanyEscrowContractName = dictContracts.bottlingCompanyEscrow.v1;
+  const { bottlingCompany, bottlingCompanyOliveOilBottle, bottlingCompanyPallet, bottlingCompanyEscrow, validation } =
+    dictContracts;
+  const { bottlingPlant } = dictChainActorsNames;
 
   describe('Effects functions', function () {
     describe('#initialize', function () {
       before(async function () {
         const { bottlingPlant, bottlingPlantOilBottle, bottlingPlantPallet, bottlingPlantEscrow } =
           await deployBottlingPlantAndDeps(
-            bottlingCompanyContractName,
-            bottlingCompanyOliveOilBottleContractName,
-            bottlingCompanyPalletContractName,
-            bottlingCompanyEscrowContractName,
+            bottlingCompany.v1,
+            bottlingCompanyOliveOilBottle.v1,
+            bottlingCompanyPallet.v1,
+            bottlingCompanyEscrow.v1,
+            validation.v1,
             baseUri,
             this.signers.deployer,
-            uupsLibOpts,
-            [dictContracts.validation.v1]
+            uupsLibOpts
           );
         this.contracts.bottlingCompany = bottlingPlant.proxy as BottlingCompany;
         this.contracts.bottlingCompanyOliveOilBottle = bottlingPlantOilBottle.proxy as BottlingCompanyOliveOilBottle;
         this.contracts.bottlingCompanyPallet = bottlingPlantPallet.proxy as BottlingCompanyPallet;
         this.contracts.bottlingCompanyEscrow = bottlingPlantEscrow.proxy as BottlingCompanyEscrow;
       });
-      shouldBehaveLikeInitialize(bottlingPlantId);
+      shouldBehaveLikeInitialize(bottlingPlant.id1);
     });
   });
 }

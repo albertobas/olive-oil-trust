@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../interfaces/IDependentTokenUpgradeable.sol";
 import "../libraries/Validation.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
@@ -38,6 +39,7 @@ contract DependentCreator is Initializable {
 
     /// @dev Invalid Array
     error DependentCreatorInvalidArray();
+    error DependentCreatorInvalidTokenAddress();
 
     /// @dev Initializes the contract by setting the address `token_`  to the dependent token
     function __DependentCreator_init(address token_) internal onlyInitializing {
@@ -45,6 +47,7 @@ contract DependentCreator is Initializable {
     }
 
     function __DependentCreator_init_unchained(address token_) internal onlyInitializing {
+        if (token_ == address(0) || token_.code.length == 0) revert DependentCreatorInvalidTokenAddress();
         _dependentToken = token_;
     }
 
@@ -144,16 +147,17 @@ contract DependentCreator is Initializable {
         uint256[] calldata tokenAmounts,
         Validation.MintDependentData[] calldata data
     ) public virtual {
+        uint256 len = data.length;
         if (
-            data.length != tokenTypeIds.length ||
-            data.length != tokenIds.length ||
-            data.length != tokenAmounts.length ||
-            data.length == 0 ||
-            data.length > 50
+            len != tokenTypeIds.length ||
+            len != tokenIds.length ||
+            len != tokenAmounts.length ||
+            len == 0 ||
+            len > Constants.MAX_BATCH_SIZE
         ) {
             revert DependentCreatorInvalidArray();
         }
-        for (uint256 i = 0; i < data.length; ) {
+        for (uint256 i = 0; i < len; ) {
             emit TokenAncestrySet(
                 address(_dependentToken),
                 tokenTypeIds[i],
@@ -167,7 +171,7 @@ contract DependentCreator is Initializable {
                 i++;
             }
         }
-        for (uint256 i = 0; i < data.length; ) {
+        for (uint256 i = 0; i < len; ) {
             Validation.validate(
                 tokenTypeIds[i],
                 tokenAmounts[i],

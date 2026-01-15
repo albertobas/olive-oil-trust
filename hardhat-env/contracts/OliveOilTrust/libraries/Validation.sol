@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../interfaces/ICertificateUpgradeable.sol";
 import "../interfaces/IDependentTokenUpgradeable.sol";
+import "../libraries/Constants.sol";
 
 library Validation {
     /// @dev Invalid Array
@@ -40,30 +41,26 @@ library Validation {
         uint256 tokenAmount,
         address tokenAddress,
         MintDependentData calldata data
-    ) public {
-        if (
-            data.inputTokenAddresses.length != data.inputTokenTypeIds.length ||
-            data.inputTokenAddresses.length != data.inputTokenIds.length ||
-            data.inputTokenAddresses.length != data.inputTokenAmounts.length ||
-            data.inputTokenAddresses.length == 0 ||
-            data.inputTokenAddresses.length > 50
-        ) {
-            revert ValidationInvalidArray();
-        }
+    ) external {
+        _checkArray(
+            data.inputTokenAddresses.length,
+            data.inputTokenTypeIds.length,
+            data.inputTokenIds.length,
+            data.inputTokenAmounts.length
+        );
         (
             address[] memory instructedTokenAddresses,
             bytes32[] memory instructedTokenTypeIds,
             uint256[] memory instructedTokenAmounts
         ) = IDependentTokenUpgradeable(tokenAddress).getInstructions(tokenTypeId);
         for (uint256 i = 0; i < instructedTokenTypeIds.length; ) {
-            if (
-                data.inputTokenAddresses[i].length != data.inputTokenTypeIds[i].length ||
-                data.inputTokenAddresses[i].length != data.inputTokenIds[i].length ||
-                data.inputTokenAddresses[i].length != data.inputTokenAmounts[i].length
-            ) {
-                revert ValidationInvalidArray();
-            }
-            for (uint256 j = 0; j < data.inputTokenTypeIds[i].length; ) {
+            _checkArray(
+                data.inputTokenAddresses[i].length,
+                data.inputTokenTypeIds[i].length,
+                data.inputTokenIds[i].length,
+                data.inputTokenAmounts[i].length
+            );
+            for (uint256 j = 0; j < data.inputTokenAddresses[i].length; ) {
                 // check that the ith jth inputed address matches the ith instructed address
                 if (data.inputTokenAddresses[i][j] != instructedTokenAddresses[i]) {
                     // if not proceed as if the ith instructed address is actually the address of a certificate
@@ -96,6 +93,10 @@ library Validation {
                 i++;
             }
         }
+    }
+
+    function _checkArray(uint256 a, uint256 b, uint256 c, uint256 d) private pure {
+        if (a != b || a != c || a != d || a == 0 || a > Constants.MAX_BATCH_SIZE) revert ValidationInvalidArray();
     }
 
     function _burn(

@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../interfaces/IIndustrialUnitsEscrowUpgradeable.sol";
 import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/IERC1155Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
@@ -76,12 +77,13 @@ contract IndustrialUnitsEscrowUpgradeable is
         uint256 tokenPrice,
         address payable sellerWallet
     ) external onlyOwner {
-        if (tokenAddress == address(0) || sellerWallet == address(0)) {
+        if (sellerWallet == address(0)) {
             revert IndustrialUnitsEscrowInvalidAddress();
         }
         if (tokenPrice == 0) {
             revert IndustrialUnitsEscrowInvalidPrice();
         }
+        _checkAddress(tokenAddress);
         uint256 escrowId = _escrowsIds.current();
         uint256 tokenId_ = IIndustrialUnitTokenUpgradeable(tokenAddress).bytesToIntId(tokenId);
         uint256[] memory arr = new uint256[](1);
@@ -104,18 +106,20 @@ contract IndustrialUnitsEscrowUpgradeable is
         uint256 batchPrice,
         address payable sellerWallet
     ) external onlyOwner {
-        if (tokenIds.length == 0 || tokenIds.length > 50) {
-            revert IndustrialUnitsEscrowInvalidArray();
-        }
-        if (tokenAddress == address(0) || sellerWallet == address(0)) {
+        if (sellerWallet == address(0)) {
             revert IndustrialUnitsEscrowInvalidAddress();
         }
         if (batchPrice == 0) {
             revert IndustrialUnitsEscrowInvalidPrice();
         }
+        uint256 len = tokenIds.length;
+        if (len == 0 || len > Constants.MAX_BATCH_SIZE) {
+            revert IndustrialUnitsEscrowInvalidArray();
+        }
+        _checkAddress(tokenAddress);
         uint256 escrowId = _escrowsIds.current();
-        uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; ) {
+        uint256[] memory tokenIds_ = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             // slither-disable-next-line calls-loop
             tokenIds_[i] = IIndustrialUnitTokenUpgradeable(tokenAddress).bytesToIntId(tokenIds[i]);
             unchecked {
@@ -129,9 +133,8 @@ contract IndustrialUnitsEscrowUpgradeable is
         _escrows[escrowId].ids = tokenIds_;
         _escrows[escrowId].price = batchPrice;
         _escrowsIds.increment();
-        // _transferBatchFrom(tokenAddress, msg.sender, address(this), tokenIds_);
-        uint256[] memory amounts = new uint256[](tokenIds_.length);
-        for (uint256 i = 0; i < tokenIds_.length; ) {
+        uint256[] memory amounts = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             amounts[i] = 1;
             unchecked {
                 i++;
@@ -189,7 +192,8 @@ contract IndustrialUnitsEscrowUpgradeable is
         _escrows[escrowId].buyerWallet = payable(address(0));
         emit EtherWithdrawn(escrowId, formerBuyerWallet, weiAmount);
         emit PaymentCancelled(formerBuyer, formerBuyerWallet, escrowId, weiAmount);
-        buyerWallet.transfer(weiAmount);
+        (bool success, ) = buyerWallet.call{value: weiAmount}("");
+        if (!success) revert BaseEscrowTransferFailed();
     }
 
     /// @inheritdoc IBaseEscrow
@@ -214,7 +218,8 @@ contract IndustrialUnitsEscrowUpgradeable is
         emit EtherWithdrawn(escrowId, buyerWallet, weiAmount);
         emit RevertedAfterPayment(seller, buyer, escrowId, weiAmount);
         _transferTokens(escrowId, addr, address(this), seller, ids);
-        buyerWallet.transfer(weiAmount);
+        (bool success, ) = buyerWallet.call{value: weiAmount}("");
+        if (!success) revert BaseEscrowTransferFailed();
     }
 
     /// @inheritdoc IBaseEscrow
@@ -239,7 +244,8 @@ contract IndustrialUnitsEscrowUpgradeable is
         emit EtherWithdrawn(escrowId, sellerWallet, weiAmount);
         emit Closed(seller, buyer, sellerWallet, escrowId, weiAmount);
         _transferTokens(escrowId, addr, address(this), buyer, ids);
-        sellerWallet.transfer(weiAmount);
+        (bool success, ) = sellerWallet.call{value: weiAmount}("");
+        if (!success) revert BaseEscrowTransferFailed();
     }
 
     /// @inheritdoc IIndustrialUnitsEscrowUpgradeable
@@ -261,8 +267,9 @@ contract IndustrialUnitsEscrowUpgradeable is
         )
     {
         MyIndustrialUnitsEscrow memory escrow_ = _escrows[escrowId];
-        ids = new bytes32[](escrow_.ids.length);
-        for (uint256 i = 0; i < escrow_.ids.length; ) {
+        uint256 len = escrow_.ids.length;
+        ids = new bytes32[](len);
+        for (uint256 i = 0; i < len; ) {
             // slither-disable-next-line calls-loop
             ids[i] = IIndustrialUnitTokenUpgradeable(escrow_.addr).intToBytesId(escrow_.ids[i]);
             unchecked {
@@ -319,9 +326,10 @@ contract IndustrialUnitsEscrowUpgradeable is
     }
 
     function _transferTokens(uint256 escrowId, address addr, address from, address to, uint256[] memory ids) private {
-        bytes32[] memory ids_ = new bytes32[](ids.length);
-        uint256[] memory amounts = new uint256[](ids.length);
-        for (uint256 i = 0; i < ids.length; ) {
+        uint256 len = ids.length;
+        bytes32[] memory ids_ = new bytes32[](len);
+        uint256[] memory amounts = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             // slither-disable-next-line calls-loop
             ids_[i] = IIndustrialUnitTokenUpgradeable(addr).intToBytesId(ids[i]);
             amounts[i] = 1;
@@ -329,13 +337,17 @@ contract IndustrialUnitsEscrowUpgradeable is
                 i++;
             }
         }
-        if (ids.length > 1) {
+        if (len > 1) {
             emit TokensWithdrawn(escrowId, to, addr, ids_);
             IERC1155Upgradeable(addr).safeBatchTransferFrom(from, to, ids, amounts, "");
         } else {
             emit TokenWithdrawn(escrowId, to, addr, ids_[0]);
             IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], 1, "");
         }
+    }
+
+    function _checkAddress(address token) internal view {
+        if (token == address(0) || token.code.length == 0) revert BaseEscrowInvalidAddress();
     }
 
     /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps

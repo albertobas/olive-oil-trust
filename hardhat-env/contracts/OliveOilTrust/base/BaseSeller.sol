@@ -28,6 +28,7 @@ abstract contract BaseSeller is Initializable, BaseMember {
     }
 
     function __BaseSeller_init_unchained(address escrow_) internal onlyInitializing {
+        _checkAddress(escrow_);
         _escrow = escrow_;
     }
 
@@ -63,6 +64,7 @@ abstract contract BaseSeller is Initializable, BaseMember {
      * @param tokenAmount The amount of token.
      */
     function burn(address tokenAddress, bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) public virtual {
+        _checkAddress(tokenAddress);
         IBaseToken(tokenAddress).burn(address(this), tokenTypeId, tokenId, tokenAmount);
     }
 
@@ -79,6 +81,7 @@ abstract contract BaseSeller is Initializable, BaseMember {
         bytes32[] calldata tokenIds,
         uint256[] calldata tokenAmounts
     ) public virtual {
+        _checkAddress(tokenAddress);
         IBaseToken(tokenAddress).burnBatch(address(this), tokenTypeIds, tokenIds, tokenAmounts);
     }
 
