@@ -4,8 +4,9 @@ import { deployRetailerAndDeps } from '@shared/helpers';
 import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployRetailerCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {
-  const retailerCompanyContractName = dictContracts.retailerCompany.v1;
-  const retailerCompanyEscrowContractName = dictContracts.retailerCompanyEscrow.v1;
+  const { retailerCompany, retailerCompanyEscrow } = dictContracts;
+  const retailerCompanyContractName = retailerCompany.v1;
+  const retailerCompanyEscrowContractName = retailerCompanyEscrow.v1;
   const signers = await ethers.getSigners();
   const { retailer, retailerEscrow } = await deployRetailerAndDeps(
     retailerCompanyContractName,

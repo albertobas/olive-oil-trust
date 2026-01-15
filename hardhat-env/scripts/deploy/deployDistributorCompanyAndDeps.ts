@@ -4,9 +4,10 @@ import { deployDistributorAndDeps } from '@shared/helpers';
 import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployDistributorCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {
-  const distributorCompanyContractName = dictContracts.distributorCompany.v1;
-  const distributorCompanyPalletContractName = dictContracts.distributorCompanyPallet.v1;
-  const distributorCompanyEscrowContractName = dictContracts.distributorCompanyEscrow.v1;
+  const { distributorCompany, distributorCompanyEscrow, distributorCompanyPallet } = dictContracts;
+  const distributorCompanyContractName = distributorCompany.v1;
+  const distributorCompanyPalletContractName = distributorCompanyPallet.v1;
+  const distributorCompanyEscrowContractName = distributorCompanyEscrow.v1;
   const signers = await ethers.getSigners();
   const { distributor, distributorPallet, distributorEscrow } = await deployDistributorAndDeps(
     distributorCompanyContractName,

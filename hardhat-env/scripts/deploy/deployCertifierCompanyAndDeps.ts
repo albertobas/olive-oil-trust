@@ -4,8 +4,9 @@ import { deployCertifierAndDeps } from '@shared/helpers';
 import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployCertifierCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {
-  const certifierCompanyContractName = dictContracts.certifierCompany.v1;
-  const certifierCompanyCertificateContractName = dictContracts.certifierCompanyCertificate.v1;
+  const { certifierCompany, certifierCompanyCertificate } = dictContracts;
+  const certifierCompanyContractName = certifierCompany.v1;
+  const certifierCompanyCertificateContractName = certifierCompanyCertificate.v1;
   const signers = await ethers.getSigners();
   const { certifier, certifierCertificate } = await deployCertifierAndDeps(
     certifierCompanyContractName,

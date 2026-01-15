@@ -4,18 +4,19 @@ import { deployOliveOilMillAndDeps } from '@shared/helpers';
 import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployOliveOilMillCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {
-  const oliveOilMillCompanyContractName = dictContracts.oliveOilMillCompany.v1;
-  const oliveOilMillCompanyOliveOilContractName = dictContracts.oliveOilMillCompanyOliveOil.v1;
-  const oliveOilMillCompanyEscrowContractName = dictContracts.oliveOilMillCompanyEscrow.v1;
+  const { oliveOilMillCompany, oliveOilMillCompanyEscrow, oliveOilMillCompanyOliveOil, validation } = dictContracts;
+  const oliveOilMillCompanyContractName = oliveOilMillCompany.v1;
+  const oliveOilMillCompanyOliveOilContractName = oliveOilMillCompanyOliveOil.v1;
+  const oliveOilMillCompanyEscrowContractName = oliveOilMillCompanyEscrow.v1;
   const signers = await ethers.getSigners();
   const { oliveOilMill, oliveOilMillOil, oliveOilMillEscrow } = await deployOliveOilMillAndDeps(
     oliveOilMillCompanyContractName,
     oliveOilMillCompanyOliveOilContractName,
     oliveOilMillCompanyEscrowContractName,
+    validation.v1,
     baseUri,
     signers[dictAccounts.OliveOilMillCompany],
-    uupsLibOpts,
-    [dictContracts.validation.v1]
+    uupsLibOpts
   );
   return [
     {

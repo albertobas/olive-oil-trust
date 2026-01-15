@@ -4,9 +4,10 @@ import { deployBottleManufacturerAndDeps } from '@shared/helpers';
 import { ethers } from 'hardhat';
 
 export async function deployBottleCompanyAndDeps(): Promise<IDeployedActorAndDeps[]> {
-  const bottleCompanyContractName = dictContracts.bottleCompany.v1;
-  const bottleCompanyBottleContractName = dictContracts.bottleCompanyBottle.v1;
-  const bottleCompanyEscrowContractName = dictContracts.bottleCompanyEscrow.v1;
+  const { bottleCompany, bottleCompanyBottle, bottleCompanyEscrow } = dictContracts;
+  const bottleCompanyContractName = bottleCompany.v1;
+  const bottleCompanyBottleContractName = bottleCompanyBottle.v1;
+  const bottleCompanyEscrowContractName = bottleCompanyEscrow.v1;
   const signers = await ethers.getSigners();
   const { bottleManufacturer, bottleManufacturerBottle, bottleManufacturerEscrow } =
     await deployBottleManufacturerAndDeps(

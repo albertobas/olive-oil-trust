@@ -76,10 +76,10 @@ export async function deployBottlingPlantAndDeps(
   bottlingPlantOilBottleContractName: string,
   bottlingPlantPalletContractName: string,
   bottlingPlantEscrowContractName: string,
+  validationLib: string,
   uri: string,
   signer: Signer,
-  opts: DeployProxyOptions,
-  libs: string[]
+  opts: DeployProxyOptions
 ): Promise<{
   bottlingPlant: IDeploymentWithUpgrades;
   bottlingPlantOilBottle: IDeploymentWithUpgrades;
@@ -106,7 +106,7 @@ export async function deployBottlingPlantAndDeps(
     signer,
     args: [bottlingPlantOilBottle.proxy.address, bottlingPlantPallet.proxy.address, bottlingPlantEscrow.proxy.address],
     opts,
-    libs
+    libs: [validationLib]
   });
   // transfer ownerships
   await bottlingPlantOilBottle.proxy.transferOwnership(bottlingPlant.proxy.address);
@@ -129,7 +129,8 @@ export async function deployCertifierAndDeps(
   const certifierCertificate = await deployWithUpgrades({
     name: certifierCertificateContractName,
     signer,
-    args: [uri]
+    args: [uri],
+    opts
   });
   const certifier = await deployWithUpgrades({
     name: certifierContractName,
@@ -212,10 +213,10 @@ export async function deployOliveOilMillAndDeps(
   oliveOilMillContractName: string,
   oliveOilMillOilContractName: string,
   oliveOilMillEscrowContractName: string,
+  validationLib: string,
   uri: string,
   signer: Signer,
-  opts: DeployProxyOptions,
-  libs: string[]
+  opts: DeployProxyOptions
 ): Promise<{
   oliveOilMill: IDeploymentWithUpgrades;
   oliveOilMillOil: IDeploymentWithUpgrades;
@@ -235,7 +236,7 @@ export async function deployOliveOilMillAndDeps(
     signer,
     args: [oliveOilMillOil.proxy.address, oliveOilMillEscrow.proxy.address],
     opts,
-    libs
+    libs: [validationLib]
   });
   // transfer ownerships
   await oliveOilMillOil.proxy.transferOwnership(oliveOilMill.proxy.address);

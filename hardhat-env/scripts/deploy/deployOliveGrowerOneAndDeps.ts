@@ -4,9 +4,10 @@ import { deployOliveGrowerAndDeps } from '@shared/helpers';
 import { IDeployedActorAndDeps } from '@shared/types';
 
 export async function deployOliveGrowerOneAndDeps(): Promise<IDeployedActorAndDeps[]> {
-  const oliveGrowerOneContractName = dictContracts.oliveGrowerOne.v1;
-  const oliveGrowerOneOlivesContractName = dictContracts.oliveGrowerOneOlives.v1;
-  const oliveGrowerOneEscrowContractName = dictContracts.oliveGrowerOneEscrow.v1;
+  const { oliveGrowerOne, oliveGrowerOneEscrow, oliveGrowerOneOlives } = dictContracts;
+  const oliveGrowerOneContractName = oliveGrowerOne.v1;
+  const oliveGrowerOneOlivesContractName = oliveGrowerOneOlives.v1;
+  const oliveGrowerOneEscrowContractName = oliveGrowerOneEscrow.v1;
   const signers = await ethers.getSigners();
   const { oliveGrower, oliveGrowerOlives, oliveGrowerEscrow } = await deployOliveGrowerAndDeps(
     oliveGrowerOneContractName,

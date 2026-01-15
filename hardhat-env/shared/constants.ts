@@ -70,7 +70,8 @@ export const dictContracts = {
   retailerCompany: { v1: 'RetailerCompany' },
   retailerCompanyEscrow: { v1: 'RetailerCompanyEscrow' },
   endCustomerOne: { v1: 'EndCustomerOne' },
-  validation: { v1: 'Validation' }
+  validation: { v1: 'Validation' },
+  constants: { v1: 'Constants' }
 };
 
 export const dictInheritedModules = {

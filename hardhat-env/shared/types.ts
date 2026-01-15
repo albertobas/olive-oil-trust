@@ -17,3 +17,8 @@ export interface IDeployedContractsJson {
     };
   }>;
 }
+
+export interface ILibraries {
+  validation: string;
+  constants: string;
+}
