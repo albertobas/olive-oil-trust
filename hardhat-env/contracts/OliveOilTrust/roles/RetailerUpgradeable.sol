@@ -39,7 +39,7 @@ contract RetailerUpgradeable is
 
     function __RetailerUpgradeable_init_unchained() internal onlyInitializing {}
 
-    function _authorizeUpgrade(address) internal override {}
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /**
      * @dev Checks that _escrow is approved to operate token `tokenAddress` ownedby this contract and approve it if

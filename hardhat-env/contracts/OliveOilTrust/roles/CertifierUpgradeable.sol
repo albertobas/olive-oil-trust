@@ -28,7 +28,7 @@ contract CertifierUpgradeable is Initializable, UUPSUpgradeable, BaseMember, Own
         _certificate = certificate_;
     }
 
-    function _authorizeUpgrade(address) internal override {}
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {ICertificateUpgradeable-certifyToken}
     function certifyToken(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external onlyOwner {

@@ -58,7 +58,7 @@ contract DistributorUpgradeable is
         IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(escrow_, true);
     }
 
-    function _authorizeUpgrade(address) internal override {}
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {IIndustrialUnitsEscrowUpgradeable-depositToken}
     function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) external onlyOwner {

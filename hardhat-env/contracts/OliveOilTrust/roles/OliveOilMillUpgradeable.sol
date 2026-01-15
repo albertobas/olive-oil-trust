@@ -55,7 +55,7 @@ contract OliveOilMillUpgradeable is
         IDependentTokenUpgradeable(token_).setApprovalForAll(escrow_, true);
     }
 
-    function _authorizeUpgrade(address) internal override {}
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @inheritdoc DependentCreator
     function setTokenTypeInstructions(

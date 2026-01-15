@@ -46,7 +46,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         _uri = uri_;
     }
 
-    function _authorizeUpgrade(address) internal override {}
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @inheritdoc ICertificateUpgradeable
     function certifyToken(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external onlyOwner {

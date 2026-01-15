@@ -49,7 +49,7 @@ contract BottleManufacturerUpgradeable is
         IIndependentTokenUpgradeable(token_).setApprovalForAll(escrow_, true);
     }
 
-    function _authorizeUpgrade(address) internal override {}
+    function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {IIndependentTokenUpgradeable-mint}
     function mint(bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external onlyOwner {
