@@ -4,18 +4,17 @@ import { deployBottleManufacturerAndDeps } from '@shared/helpers';
 import { BottleCompany, BottleCompanyBottle, BottleCompanyEscrow } from '@types';
 
 export function shouldBehaveLikeBottleCompany(): void {
-  const bottleCompanyId = dictChainActorsNames.bottleManufacturer.id1;
-  const bottleCompanyContractName = dictContracts.bottleCompany.v1;
-  const bottleCompanyBottleContractName = dictContracts.bottleCompanyBottle.v1;
-  const bottleCompanyEscrowContractName = dictContracts.bottleCompanyEscrow.v1;
+  const { bottleManufacturer } = dictChainActorsNames;
+  const { bottleCompany, bottleCompanyBottle, bottleCompanyEscrow } = dictContracts;
+
   describe('Effects functions', function () {
     describe('#initialize', function () {
       before(async function () {
         const { bottleManufacturer, bottleManufacturerBottle, bottleManufacturerEscrow } =
           await deployBottleManufacturerAndDeps(
-            bottleCompanyContractName,
-            bottleCompanyBottleContractName,
-            bottleCompanyEscrowContractName,
+            bottleCompany.v1,
+            bottleCompanyBottle.v1,
+            bottleCompanyEscrow.v1,
             baseUri,
             this.signers.deployer,
             uupsOpts
@@ -24,7 +23,7 @@ export function shouldBehaveLikeBottleCompany(): void {
         this.contracts.bottleCompanyBottle = bottleManufacturerBottle.proxy as BottleCompanyBottle;
         this.contracts.bottleCompanyEscrow = bottleManufacturerEscrow.proxy as BottleCompanyEscrow;
       });
-      shouldBehaveLikeInitialize(bottleCompanyId);
+      shouldBehaveLikeInitialize(bottleManufacturer.id1);
     });
   });
 }

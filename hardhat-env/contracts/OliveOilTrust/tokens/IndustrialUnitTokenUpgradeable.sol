@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../interfaces/IBaseToken.sol";
 import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC1155/ERC1155Upgradeable.sol";
@@ -75,20 +76,21 @@ contract IndustrialUnitTokenUpgradeable is
         bytes32[][] calldata tokenIds,
         uint256[][] calldata tokenAmounts
     ) external onlyOwner {
+        uint256 len = tokenAddresses.length;
         if (
-            tokenAddresses.length != palletIds.length ||
-            tokenAddresses.length != tokenTypeIds.length ||
-            tokenAddresses.length != tokenIds.length ||
-            tokenAddresses.length != tokenAmounts.length ||
-            tokenAddresses.length == 0 ||
-            tokenAddresses.length > 50
+            len != palletIds.length ||
+            len != tokenTypeIds.length ||
+            len != tokenIds.length ||
+            len != tokenAmounts.length ||
+            len == 0 ||
+            len > Constants.MAX_BATCH_SIZE
         ) {
             revert IndustrialUnitTokenInvalidArray();
         }
-        uint256[] memory palletIds_ = new uint256[](palletIds.length);
-        uint256[] memory packAmounts = new uint256[](palletIds.length);
+        uint256[] memory palletIds_ = new uint256[](len);
+        uint256[] memory packAmounts = new uint256[](len);
         emit BatchPacked(owner_, palletIds, tokenAddresses, tokenTypeIds, tokenIds, tokenAmounts);
-        for (uint256 i = 0; i < palletIds.length; ) {
+        for (uint256 i = 0; i < len; ) {
             uint256 palletId = _pack(palletIds[i], tokenAddresses[i], tokenTypeIds[i], tokenIds[i], tokenAmounts[i]);
             palletIds_[i] = palletId;
             packAmounts[i] = 1;
@@ -114,13 +116,13 @@ contract IndustrialUnitTokenUpgradeable is
         if (owner_ != msg.sender) {
             revert IndustrialUnitTokenInvalidCaller();
         }
-        // Array is bounded to 50 to remove costly operations within loops
-        if (palletIds.length == 0 || palletIds.length > 50) {
+        uint256 len = palletIds.length;
+        if (len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert IndustrialUnitTokenInvalidArray();
         }
-        uint256[] memory palletIds_ = new uint256[](palletIds.length);
-        uint256[] memory packAmounts = new uint256[](palletIds.length);
-        for (uint256 i = 0; i < palletIds.length; ) {
+        uint256[] memory palletIds_ = new uint256[](len);
+        uint256[] memory packAmounts = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             palletIds_[i] = _unpack(owner_, palletIds[i]);
             packAmounts[i] = 1;
             unchecked {
@@ -161,12 +163,13 @@ contract IndustrialUnitTokenUpgradeable is
         bytes32[] calldata tokenIds,
         uint256[] calldata tokenAmounts
     ) private returns (uint256) {
+        uint256 len = tokenAddresses.length;
         if (
-            tokenAddresses.length != tokenTypeIds.length ||
-            tokenAddresses.length != tokenIds.length ||
-            tokenAddresses.length != tokenAmounts.length ||
-            tokenAddresses.length == 0 ||
-            tokenAddresses.length > 50
+            len != tokenTypeIds.length ||
+            len != tokenIds.length ||
+            len != tokenAmounts.length ||
+            len == 0 ||
+            len > Constants.MAX_BATCH_SIZE
         ) {
             revert IndustrialUnitTokenInvalidArray();
         }
@@ -182,7 +185,7 @@ contract IndustrialUnitTokenUpgradeable is
         _industrialUnitToken[palletId_].tokenTypeIds = tokenTypeIds;
         _industrialUnitToken[palletId_].tokenIds = tokenIds;
         _industrialUnitToken[palletId_].amounts = tokenAmounts;
-        for (uint256 i = 0; i < tokenAddresses.length; ) {
+        for (uint256 i = 0; i < len; ) {
             // slither-disable-next-line calls-loop
             uint256 intTokenId = IBaseToken(tokenAddresses[i]).bytesToIntTokenId(tokenTypeIds[i], tokenIds[i]);
             // slither-disable-next-line calls-loop
@@ -234,12 +237,13 @@ contract IndustrialUnitTokenUpgradeable is
         uint256[] memory amounts,
         bytes memory
     ) internal override {
-        bytes32[] memory ids_ = new bytes32[](ids.length);
-        for (uint256 i = 0; i < ids.length; i++) {
+        uint256 len = ids.length;
+        bytes32[] memory ids_ = new bytes32[](len);
+        for (uint256 i = 0; i < len; i++) {
             uint256 id = ids[i];
             ids_[i] = _bytesId[id];
         }
-        if (ids.length > 1) {
+        if (len > 1) {
             emit BatchTransferred(operator, from, to, ids_, amounts);
         } else {
             emit TokenTransferred(operator, from, to, ids_[0], amounts[0]);

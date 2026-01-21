@@ -108,7 +108,7 @@ export function shouldBehaveLikeBottlingPlantUpgradeable(): void {
         dictContracts.industrialUnitsEscrowWithInit.v1,
         baseUri,
         uupsLibOpts,
-        [dictContracts.validation.v1]
+        dictContracts.validation.v1
       );
     });
 

@@ -6,6 +6,7 @@ import "../interfaces/IDependentTokenUpgradeable.sol";
 import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
 import "../interfaces/IBaseToken.sol";
 import "../interfaces/IIndustrialUnitsEscrowUpgradeable.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
@@ -52,6 +53,7 @@ contract DistributorUpgradeable is
         address industrialUnitToken_,
         address escrow_
     ) internal onlyInitializing {
+        _checkAddress(industrialUnitToken_);
         _industrialUnitToken = industrialUnitToken_;
         IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(escrow_, true);
     }
@@ -59,7 +61,7 @@ contract DistributorUpgradeable is
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {IIndustrialUnitsEscrowUpgradeable-depositToken}
-    function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) public onlyOwner {
+    function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) external onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(_escrow).depositToken(
             address(_industrialUnitToken),
             tokenId,
@@ -73,7 +75,7 @@ contract DistributorUpgradeable is
         bytes32[] calldata tokenIds,
         uint256 batchPrice,
         address payable sellerWallet
-    ) public onlyOwner {
+    ) external onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(_escrow).depositBatch(
             address(_industrialUnitToken),
             tokenIds,
@@ -123,7 +125,7 @@ contract DistributorUpgradeable is
      * @param escrowId The id of the escrow.
      * @param wallet The address funds will be sent to if a refund occurs.
      */
-    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) public payable onlyOwner {
+    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) external payable onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(escrowAddress_).makePayment{value: msg.value}(escrowId, wallet);
     }
 
@@ -132,7 +134,7 @@ contract DistributorUpgradeable is
      * @param escrowAddress_ The address of the escrow.
      * @param escrowId The id of the escrow.
      */
-    function cancelPayment(address escrowAddress_, uint256 escrowId) public onlyOwner {
+    function cancelPayment(address escrowAddress_, uint256 escrowId) external onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(escrowAddress_).cancelPayment(escrowId);
     }
 
@@ -180,10 +182,11 @@ contract DistributorUpgradeable is
         bytes32[][] calldata tokenIds,
         uint256[][] calldata tokenAmounts
     ) external onlyOwner {
-        if (tokenAddresses.length == 0 || tokenAddresses.length > 50) {
+        uint256 len = tokenAddresses.length;
+        if (len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert DistributorUpgradeableInvalidArray();
         }
-        for (uint256 i = 0; i < tokenAddresses.length; ) {
+        for (uint256 i = 0; i < len; ) {
             _setApprovals(tokenAddresses[i]);
             unchecked {
                 i++;
@@ -201,19 +204,22 @@ contract DistributorUpgradeable is
 
     /// @dev See {IIndustrialUnitTokenUpgradeable-unpack}
     function unpack(address tokenAddress, bytes32 tokenId) external {
+        _checkAddress(tokenAddress);
         IIndustrialUnitTokenUpgradeable(tokenAddress).unpack(address(this), tokenId);
     }
 
     /// @dev See {IIndustrialUnitTokenUpgradeable-unpackBatch}
     function unpackBatch(address tokenAddress, bytes32[] calldata tokenIds) external {
+        _checkAddress(tokenAddress);
         IIndustrialUnitTokenUpgradeable(tokenAddress).unpackBatch(address(this), tokenIds);
     }
 
     function _setApprovals(address[] calldata tokenAddresses) private {
-        if (tokenAddresses.length == 0 || tokenAddresses.length > 50) {
+        uint256 len = tokenAddresses.length;
+        if (len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert DistributorUpgradeableInvalidArray();
         }
-        for (uint256 i = 0; i < tokenAddresses.length; ) {
+        for (uint256 i = 0; i < len; ) {
             if (
                 // slither-disable-next-line calls-loop
                 !IDependentTokenUpgradeable(tokenAddresses[i]).isApprovedForAll(

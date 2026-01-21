@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { BigNumber, constants } from 'ethers';
-import { ErrorsCommercialUnitsEscrowUpgradeable, ErrorsOwnable } from '@test/shared/errors';
+import { ErrorsBaseEscrow, ErrorsCommercialUnitsEscrowUpgradeable, ErrorsOwnable } from '@test/shared/errors';
 import { EventsBaseToken, EventsERC1155, EventsEscrow } from '@test/shared/events';
 import { DependentTokenUpgradeableContract } from '@test/shared/types';
 
@@ -72,7 +72,7 @@ export default function shouldBehaveLikeDepositBatch(
           batchPrice,
           this.signers.deployer.address
         )
-      ).to.be.revertedWith(ErrorsCommercialUnitsEscrowUpgradeable.InvalidAddress);
+      ).to.be.revertedWith(ErrorsBaseEscrow.InvalidAddress);
       await expect(
         this.contracts.commercialUnitsEscrow.depositBatch(
           this.contracts[tokenContract].address,

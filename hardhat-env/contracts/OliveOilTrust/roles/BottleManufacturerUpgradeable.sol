@@ -44,6 +44,7 @@ contract BottleManufacturerUpgradeable is
     }
 
     function __BottleManufacturerUpgradeable_init_unchained(address token_, address escrow_) internal onlyInitializing {
+        _checkAddress(token_);
         _token = token_;
         IIndependentTokenUpgradeable(token_).setApprovalForAll(escrow_, true);
     }
@@ -51,7 +52,7 @@ contract BottleManufacturerUpgradeable is
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
     /// @dev See {IIndependentTokenUpgradeable-mint}
-    function mint(bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) public onlyOwner {
+    function mint(bytes32 tokenTypeId, bytes32 tokenId, uint256 tokenAmount) external onlyOwner {
         IIndependentTokenUpgradeable(_token).mint(address(this), tokenTypeId, tokenId, tokenAmount);
     }
 
@@ -60,7 +61,7 @@ contract BottleManufacturerUpgradeable is
         bytes32[] calldata tokenTypeIds,
         bytes32[] calldata tokenIds,
         uint256[] calldata tokenAmounts
-    ) public onlyOwner {
+    ) external onlyOwner {
         IIndependentTokenUpgradeable(_token).mintBatch(address(this), tokenTypeIds, tokenIds, tokenAmounts);
     }
 
@@ -106,7 +107,7 @@ contract BottleManufacturerUpgradeable is
         uint256 tokenAmount,
         uint256 tokenPrice,
         address payable sellerWallet
-    ) public onlyOwner {
+    ) external onlyOwner {
         ICommercialUnitsEscrowUpgradeable(_escrow).depositToken(
             address(_token),
             tokenTypeId,
@@ -124,7 +125,7 @@ contract BottleManufacturerUpgradeable is
         uint256[] calldata tokenAmounts,
         uint256 batchPrice,
         address payable sellerWallet
-    ) public onlyOwner {
+    ) external onlyOwner {
         ICommercialUnitsEscrowUpgradeable(_escrow).depositBatch(
             address(_token),
             tokenTypeIds,

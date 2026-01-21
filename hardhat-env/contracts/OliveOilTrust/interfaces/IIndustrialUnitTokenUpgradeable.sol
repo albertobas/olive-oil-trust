@@ -71,9 +71,6 @@ interface IIndustrialUnitTokenUpgradeable is IERC1155Upgradeable {
      */
     event BatchUnpacked(address indexed owner, bytes32[] palletIds);
 
-    /// @dev Invalid amount
-    error IndustrialUnitTokenInvalidAmount();
-
     /// @dev Invalid array
     error IndustrialUnitTokenInvalidArray();
 

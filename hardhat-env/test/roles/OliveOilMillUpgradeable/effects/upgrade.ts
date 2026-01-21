@@ -8,7 +8,7 @@ export default function shouldUpgrade(
   escrow: string,
   uri: string,
   opts: DeployProxyOptions,
-  libs: string[]
+  validationLib: string
 ): void {
   context('succeeds', function () {
     it('upgrading', async function () {
@@ -16,10 +16,10 @@ export default function shouldUpgrade(
         actor,
         token,
         escrow,
+        validationLib,
         uri,
         this.signers.deployer,
-        opts,
-        libs
+        opts
       );
       await upgrades.upgradeProxy(oliveOilMill.proxy.address, oliveOilMill.factory, opts);
     });

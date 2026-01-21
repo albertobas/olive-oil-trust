@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../base/BaseToken.sol";
 import "../interfaces/IIndependentTokenUpgradeable.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
@@ -41,16 +42,12 @@ contract IndependentTokenUpgradeable is Initializable, BaseToken, OwnableUpgrade
         bytes32[] calldata tokenIds,
         uint256[] memory tokenAmounts
     ) external onlyOwner {
-        if (
-            tokenTypeIds.length != tokenIds.length ||
-            tokenTypeIds.length != tokenAmounts.length ||
-            tokenTypeIds.length == 0 ||
-            tokenTypeIds.length > 50
-        ) {
+        uint256 len = tokenTypeIds.length;
+        if (len != tokenIds.length || len != tokenAmounts.length || len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert IndependentTokenInvalidArray();
         }
-        uint256[] memory tokenIds_ = new uint256[](tokenIds.length);
-        for (uint256 i = 0; i < tokenIds.length; ) {
+        uint256[] memory tokenIds_ = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
             uint256 tokenTypeId_ = _getIntTokenTypeId(tokenTypeIds[i]);
             uint256 tokenId = _getTokenId(tokenTypeId_, tokenTypeIds[i], tokenIds[i]);
             tokenIds_[i] = tokenId;

@@ -69,7 +69,7 @@ export function shouldBehaveLikeOliveOilMillUpgradeable(): void {
         dictContracts.commercialUnitsEscrowWithInit.v1,
         baseUri,
         uupsLibOpts,
-        [dictContracts.validation.v1]
+        dictContracts.validation.v1
       );
     });
 

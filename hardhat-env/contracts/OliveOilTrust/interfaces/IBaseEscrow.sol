@@ -94,6 +94,12 @@ interface IBaseEscrow is IERC1155ReceiverUpgradeable {
     /// @dev Invalid buyer
     error BaseEscrowInvalidBuyer();
 
+    /// @dev Invalid token address
+    error BaseEscrowInvalidAddress();
+
+    /// @dev Invalid token address
+    error BaseEscrowTransferFailed();
+
     /**
      * @dev It reverts the transfer of the token/s to the escrow before funds have been deposited and
      *     sets the escrow to the final state RevertedBeforePayment.

@@ -59,6 +59,7 @@ contract RetailerUpgradeable is
         uint256 tokenPrice,
         address payable sellerWallet
     ) external onlyOwner {
+        _checkAddress(tokenAddress);
         if (!IBaseToken(tokenAddress).isApprovedForAll(address(this), address(_escrow))) {
             IBaseToken(tokenAddress).setApprovalForAll(address(_escrow), true);
         }
@@ -90,6 +91,7 @@ contract RetailerUpgradeable is
         uint256 batchPrice,
         address payable sellerWallet
     ) external onlyOwner {
+        _checkAddress(tokenAddress);
         if (!IBaseToken(tokenAddress).isApprovedForAll(address(this), address(_escrow))) {
             IBaseToken(tokenAddress).setApprovalForAll(address(_escrow), true);
         }
@@ -144,7 +146,7 @@ contract RetailerUpgradeable is
      * @param escrowId The id of the escrow.
      * @param wallet The address funds will be sent to if a refund occurs.
      */
-    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) public payable onlyOwner {
+    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) external payable onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(escrowAddress_).makePayment{value: msg.value}(escrowId, wallet);
     }
 
@@ -153,7 +155,7 @@ contract RetailerUpgradeable is
      * @param escrowAddress_ The address of the escrow.
      * @param escrowId The id of the escrow.
      */
-    function cancelPayment(address escrowAddress_, uint256 escrowId) public onlyOwner {
+    function cancelPayment(address escrowAddress_, uint256 escrowId) external onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(escrowAddress_).cancelPayment(escrowId);
     }
 
@@ -163,6 +165,7 @@ contract RetailerUpgradeable is
      * @param tokenId The id of the token.
      */
     function unpack(address tokenAddress, bytes32 tokenId) external {
+        _checkAddress(tokenAddress);
         IIndustrialUnitTokenUpgradeable(tokenAddress).unpack(address(this), tokenId);
     }
 
@@ -172,6 +175,7 @@ contract RetailerUpgradeable is
      * @param tokenIds The ids of the tokens.
      */
     function unpackBatch(address tokenAddress, bytes32[] calldata tokenIds) external {
+        _checkAddress(tokenAddress);
         IIndustrialUnitTokenUpgradeable(tokenAddress).unpackBatch(address(this), tokenIds);
     }
 

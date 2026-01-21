@@ -4,15 +4,15 @@ import shouldBehaveLikeInitialize from '@test/members/CertifierCompany/effects/i
 import { deployCertifierAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeCertifierCompany(): void {
-  const certifierId = dictChainActorsNames.certifier.id1;
-  const certifierCompanyContractName = dictContracts.certifierCompany.v1;
-  const certifierCompanyCertificateContractName = dictContracts.certifierCompanyCertificate.v1;
+  const { certifier } = dictChainActorsNames;
+  const { certifierCompany, certifierCompanyCertificate } = dictContracts;
+
   describe('Effects functions', function () {
     describe('#initialize', function () {
       before(async function () {
         const { certifier, certifierCertificate } = await deployCertifierAndDeps(
-          certifierCompanyContractName,
-          certifierCompanyCertificateContractName,
+          certifierCompany.v1,
+          certifierCompanyCertificate.v1,
           baseUri,
           this.signers.deployer,
           uupsOpts
@@ -21,7 +21,7 @@ export function shouldBehaveLikeCertifierCompany(): void {
         this.contracts.certifierCompanyCertificate = certifierCertificate.proxy as CertifierCompanyCertificate;
       });
 
-      shouldBehaveLikeInitialize(certifierId);
+      shouldBehaveLikeInitialize(certifier.id1);
     });
   });
 }

@@ -8,6 +8,8 @@ import "../interfaces/ICommercialUnitsEscrowUpgradeable.sol";
 import "../interfaces/IDependentTokenUpgradeable.sol";
 import "../interfaces/IIndustrialUnitsEscrowUpgradeable.sol";
 import "../interfaces/IIndustrialUnitTokenUpgradeable.sol";
+import "../libraries/Validation.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -59,6 +61,8 @@ contract BottlingPlantUpgradeable is
         address industrialUnitToken_,
         address escrow_
     ) internal onlyInitializing {
+        _checkAddress(industrialUnitToken_);
+        _checkAddress(dependentToken);
         _industrialUnitToken = industrialUnitToken_;
         IIndustrialUnitTokenUpgradeable(industrialUnitToken_).setApprovalForAll(escrow_, true);
         IDependentTokenUpgradeable(dependentToken).setApprovalForAll(industrialUnitToken_, true);
@@ -152,7 +156,7 @@ contract BottlingPlantUpgradeable is
     }
 
     /// @dev See {IIndustrialUnitsEscrowUpgradeable-depositToken}
-    function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) public onlyOwner {
+    function depositToken(bytes32 tokenId, uint256 tokenPrice, address payable sellerWallet) external onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(_escrow).depositToken(
             address(_industrialUnitToken),
             tokenId,
@@ -166,7 +170,7 @@ contract BottlingPlantUpgradeable is
         bytes32[] calldata tokenIds,
         uint256 batchPrice,
         address payable sellerWallet
-    ) public onlyOwner {
+    ) external onlyOwner {
         IIndustrialUnitsEscrowUpgradeable(_escrow).depositBatch(
             address(_industrialUnitToken),
             tokenIds,
@@ -181,7 +185,7 @@ contract BottlingPlantUpgradeable is
      * @param escrowId The id of the escrow.
      * @param wallet The address funds will be sent to if a refund occurs.
      */
-    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) public payable onlyOwner {
+    function makePayment(address escrowAddress_, uint256 escrowId, address payable wallet) external payable onlyOwner {
         ICommercialUnitsEscrowUpgradeable(escrowAddress_).makePayment{value: msg.value}(escrowId, wallet);
     }
 
@@ -190,7 +194,7 @@ contract BottlingPlantUpgradeable is
      * @param escrowAddress_ The address of the escrow.
      * @param escrowId The id of the escrow.
      */
-    function cancelPayment(address escrowAddress_, uint256 escrowId) public onlyOwner {
+    function cancelPayment(address escrowAddress_, uint256 escrowId) external onlyOwner {
         ICommercialUnitsEscrowUpgradeable(escrowAddress_).cancelPayment(escrowId);
     }
 
@@ -231,11 +235,12 @@ contract BottlingPlantUpgradeable is
         bytes32[][] calldata tokenIds,
         uint256[][] calldata tokenAmounts
     ) external onlyOwner {
-        if (tokenTypeIds.length == 0 || tokenTypeIds.length > 50) {
+        uint256 len = tokenTypeIds.length;
+        if (len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert BottlingPlantUpgradeableInvalidArray();
         }
-        address[][] memory tokenAddresses = new address[][](tokenTypeIds.length);
-        for (uint256 i = 0; i < tokenTypeIds.length; ) {
+        address[][] memory tokenAddresses = new address[][](len);
+        for (uint256 i = 0; i < len; ) {
             tokenAddresses[i] = _getAddressesArray(tokenTypeIds[i].length);
             unchecked {
                 i++;
@@ -262,7 +267,7 @@ contract BottlingPlantUpgradeable is
     }
 
     function _getAddressesArray(uint256 length) private view returns (address[] memory tokenAddresses) {
-        if (length == 0 || length > 50) {
+        if (length == 0 || length > Constants.MAX_BATCH_SIZE) {
             revert BottlingPlantUpgradeableInvalidArray();
         }
         tokenAddresses = new address[](length);

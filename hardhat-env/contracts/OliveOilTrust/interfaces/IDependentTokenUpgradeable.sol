@@ -47,17 +47,11 @@ interface IDependentTokenUpgradeable is IBaseToken {
     /// @dev Invalid array
     error DependentTokenInvalidArray();
 
-    /// @dev Invalid caller
-    error DependentTokenInvalidCaller();
-
     /// @dev Duplicated token id
     error DependentTokenDuplicatedTokenTypeId();
 
     /// @dev Non existent token id
     error DependentTokenNonExistentTokenTypeId();
-
-    /// @dev Insufficient balance
-    error DependentTokenInsufficientBalance();
 
     /**
      * @dev Sets the instructions that are to be followed in order to mint a new token of type `tokenTypeId`.

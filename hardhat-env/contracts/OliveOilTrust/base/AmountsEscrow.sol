@@ -68,7 +68,8 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         _escrows[escrowId].buyerWallet = payable(address(0));
         emit EtherWithdrawn(escrowId, formerBuyerWallet, weiAmount);
         emit PaymentCancelled(formerBuyer, formerBuyerWallet, escrowId, weiAmount);
-        buyerWallet.transfer(weiAmount);
+        (bool success, ) = buyerWallet.call{value: weiAmount}("");
+        if (!success) revert BaseEscrowTransferFailed();
     }
 
     /// @inheritdoc IBaseEscrow
@@ -94,7 +95,8 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         emit EtherWithdrawn(escrowId, buyerWallet, weiAmount);
         emit RevertedAfterPayment(seller, buyer, escrowId, weiAmount);
         _transferTokens(escrowId, addr, address(this), seller, ids, amounts);
-        buyerWallet.transfer(weiAmount);
+        (bool success, ) = buyerWallet.call{value: weiAmount}("");
+        if (!success) revert BaseEscrowTransferFailed();
     }
 
     /// @inheritdoc IBaseEscrow
@@ -120,7 +122,8 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
         emit EtherWithdrawn(escrowId, sellerWallet, weiAmount);
         emit Closed(seller, buyer, sellerWallet, escrowId, weiAmount);
         _transferTokens(escrowId, addr, address(this), buyer, ids, amounts);
-        sellerWallet.transfer(weiAmount);
+        (bool success, ) = sellerWallet.call{value: weiAmount}("");
+        if (!success) revert BaseEscrowTransferFailed();
     }
 
     /// @inheritdoc IAmountsEscrow
@@ -232,6 +235,10 @@ abstract contract AmountsEscrow is ERC1155HolderUpgradeable, IAmountsEscrow {
             emit TokenWithdrawn(escrowId, to, addr, ids_[0], amounts[0]);
             IERC1155Upgradeable(addr).safeTransferFrom(address(this), to, ids[0], amounts[0], "");
         }
+    }
+
+    function _checkAddress(address token) internal view {
+        if (token == address(0) || token.code.length == 0) revert BaseEscrowInvalidAddress();
     }
 
     /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps

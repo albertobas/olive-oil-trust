@@ -7,6 +7,7 @@ import "../interfaces/IAgriculturalEscrowUpgradeable.sol";
 import "../interfaces/IBaseToken.sol";
 import "../interfaces/ICommercialUnitsEscrowUpgradeable.sol";
 import "../interfaces/IDependentTokenUpgradeable.sol";
+import "../libraries/Validation.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -49,6 +50,7 @@ contract OliveOilMillUpgradeable is
     }
 
     function __OliveOilMillUpgradeable_init_unchained(address token_, address escrow_) internal onlyInitializing {
+        _checkAddress(token_);
         _token = token_;
         IDependentTokenUpgradeable(token_).setApprovalForAll(escrow_, true);
     }
@@ -147,7 +149,7 @@ contract OliveOilMillUpgradeable is
         uint256 tokenAmount,
         uint256 tokenPrice,
         address payable sellerWallet
-    ) public onlyOwner {
+    ) external onlyOwner {
         ICommercialUnitsEscrowUpgradeable(_escrow).depositToken(
             address(_token),
             tokenTypeId,
@@ -165,7 +167,7 @@ contract OliveOilMillUpgradeable is
         uint256[] calldata tokenAmounts,
         uint256 batchPrice,
         address payable sellerWallet
-    ) public onlyOwner {
+    ) external onlyOwner {
         ICommercialUnitsEscrowUpgradeable(_escrow).depositBatch(
             address(_token),
             tokenTypeIds,

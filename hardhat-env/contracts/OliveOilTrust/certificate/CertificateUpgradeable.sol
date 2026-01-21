@@ -3,6 +3,7 @@ pragma solidity ^0.8.14;
 
 import "../interfaces/IBaseToken.sol";
 import "../interfaces/ICertificateUpgradeable.sol";
+import "../libraries/Constants.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
@@ -49,9 +50,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
 
     /// @inheritdoc ICertificateUpgradeable
     function certifyToken(bytes32 certificateId, address tokenAddress, bytes32 tokenTypeId) external onlyOwner {
-        if (tokenAddress == address(0)) {
-            revert CertificateInvalidAddress();
-        }
+        _checkAddress(tokenAddress);
         (uint256 intCertificateId, uint256 intTokenTypeId) = _getIds(certificateId, tokenAddress, tokenTypeId);
         _certify(intCertificateId, tokenAddress, intTokenTypeId);
         emit TokenCertified(msg.sender, certificateId, tokenAddress, tokenTypeId);
@@ -63,20 +62,14 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         address[] calldata tokenAddresses,
         bytes32[] calldata tokenTypeIds
     ) external onlyOwner {
-        if (
-            certificateIds.length != tokenAddresses.length ||
-            certificateIds.length != tokenTypeIds.length ||
-            certificateIds.length == 0 ||
-            certificateIds.length > 50
-        ) {
+        uint256 len = certificateIds.length;
+        if (len != tokenAddresses.length || len != tokenTypeIds.length || len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert CertificateInvalidArray();
         }
-        uint256[] memory intCertificatesIds = new uint256[](certificateIds.length);
-        uint256[] memory intTokensTypeIds = new uint256[](certificateIds.length);
-        for (uint256 i = 0; i < certificateIds.length; ) {
-            if (tokenAddresses[i] == address(0)) {
-                revert CertificateInvalidAddress();
-            }
+        uint256[] memory intCertificatesIds = new uint256[](len);
+        uint256[] memory intTokensTypeIds = new uint256[](len);
+        for (uint256 i = 0; i < len; ) {
+            _checkAddress(tokenAddresses[i]);
             (uint256 intCertificateId, uint256 intTokenTypeId) = _getIds(
                 certificateIds[i],
                 tokenAddresses[i],
@@ -98,6 +91,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         address tokenAddress,
         bytes32 tokenTypeId
     ) external view returns (bool) {
+        _checkAddress(tokenAddress);
         uint256 intCertificateId = _intId[certificateId];
         uint256 intTokenTypeId = IBaseToken(tokenAddress).bytesToIntTokenTypeId(tokenTypeId);
         return _isCertified(intCertificateId, tokenAddress, intTokenTypeId);
@@ -113,11 +107,12 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         address[] calldata tokenAddresses,
         bytes32[] calldata tokenTypeIds
     ) external view returns (bytes32[][] memory certificates_) {
-        if (tokenAddresses.length != tokenTypeIds.length || tokenAddresses.length == 0 || tokenAddresses.length > 50) {
+        uint256 len = tokenAddresses.length;
+        if (len != tokenTypeIds.length || len == 0 || len > Constants.MAX_BATCH_SIZE) {
             revert CertificateInvalidArray();
         }
-        certificates_ = new bytes32[][](tokenAddresses.length);
-        for (uint256 i = 0; i < tokenAddresses.length; ) {
+        certificates_ = new bytes32[][](len);
+        for (uint256 i = 0; i < len; ) {
             certificates_[i] = _certificatesOf(tokenAddresses[i], tokenTypeIds[i]);
             unchecked {
                 i++;
@@ -134,19 +129,18 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         address tokenAddress,
         bytes32 tokenTypeId
     ) private view returns (bytes32[] memory certificates_) {
-        if (tokenAddress == address(0)) {
-            revert CertificateInvalidAddress();
-        }
+        _checkAddress(tokenAddress);
         // slither-disable-next-line calls-loop
         uint256 intTokenTypeId = IBaseToken(tokenAddress).bytesToIntTokenTypeId(tokenTypeId);
-        certificates_ = new bytes32[](_certificates[tokenAddress][intTokenTypeId].length);
-        for (uint256 i = 0; i < _certificates[tokenAddress][intTokenTypeId].length; i++) {
+        uint256 len = _certificates[tokenAddress][intTokenTypeId].length;
+        certificates_ = new bytes32[](len);
+        for (uint256 i = 0; i < len; i++) {
             uint256 intCertificateId = _certificates[tokenAddress][intTokenTypeId][i];
             certificates_[i] = (_bytesId[intCertificateId]);
         }
     }
 
-    function _certify(uint256 certificateId, address tokenAddress, uint256 tokenTypeId) private onlyOwner {
+    function _certify(uint256 certificateId, address tokenAddress, uint256 tokenTypeId) private {
         if (_isCertified(certificateId, tokenAddress, tokenTypeId)) {
             revert CertificateTokenAlreadyCertified();
         }
@@ -158,7 +152,7 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         bytes32 certificateId,
         address tokenAddress,
         bytes32 tokenTypeId
-    ) private onlyOwner returns (uint256 intCertificateId, uint256 intTokenTypeId) {
+    ) private returns (uint256 intCertificateId, uint256 intTokenTypeId) {
         // slither-disable-next-line calls-loop
         intTokenTypeId = IBaseToken(tokenAddress).bytesToIntTokenTypeId(tokenTypeId);
         if (_intId[certificateId] != 0) {
@@ -180,6 +174,10 @@ contract CertificateUpgradeable is Initializable, UUPSUpgradeable, OwnableUpgrad
         uint256 tokenTypeId
     ) private view returns (bool) {
         return _certificateBool[certificateId][tokenAddress][tokenTypeId];
+    }
+
+    function _checkAddress(address token) private view {
+        if (token == address(0) || token.code.length == 0) revert CertificateInvalidAddress();
     }
 
     /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps

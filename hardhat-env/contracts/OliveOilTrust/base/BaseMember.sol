@@ -12,6 +12,8 @@ abstract contract BaseMember is Initializable {
     /// @dev Name of the member
     string internal _name;
 
+    error BaseMemberInvalidAddress();
+
     /**
      * @dev Event emitted when the name of a member is set.
      * @param name The name of the member.
@@ -35,6 +37,10 @@ abstract contract BaseMember is Initializable {
     function _setName(string memory name_) private {
         _name = name_;
         emit NameSet(name_);
+    }
+
+    function _checkAddress(address token) internal view {
+        if (token == address(0) || token.code.length == 0) revert BaseMemberInvalidAddress();
     }
 
     /// @dev See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps

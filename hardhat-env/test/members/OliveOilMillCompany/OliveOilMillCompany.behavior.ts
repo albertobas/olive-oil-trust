@@ -4,28 +4,26 @@ import shouldBehaveLikeInitialize from '@test/members/OliveOilMillCompany/effect
 import { deployOliveOilMillAndDeps } from '@shared/helpers';
 
 export function shouldBehaveLikeOliveOilMillCompany(): void {
-  const oliveOilMillId = dictChainActorsNames.oliveOilMill.id1;
-  const oliveOilMillCompanyContractName = dictContracts.oliveOilMillCompany.v1;
-  const oliveOilMillCompanyOliveOilContractName = dictContracts.oliveOilMillCompanyOliveOil.v1;
-  const oliveOilMillCompanyEscrowContractName = dictContracts.oliveOilMillCompanyEscrow.v1;
-  const uri = baseUri;
+  const { oliveOilMill } = dictChainActorsNames;
+  const { oliveOilMillCompany, oliveOilMillCompanyEscrow, oliveOilMillCompanyOliveOil, validation } = dictContracts;
+
   describe('Effects functions', function () {
     describe('#initialize', function () {
       before(async function () {
         const { oliveOilMill, oliveOilMillOil, oliveOilMillEscrow } = await deployOliveOilMillAndDeps(
-          oliveOilMillCompanyContractName,
-          oliveOilMillCompanyOliveOilContractName,
-          oliveOilMillCompanyEscrowContractName,
-          uri,
+          oliveOilMillCompany.v1,
+          oliveOilMillCompanyOliveOil.v1,
+          oliveOilMillCompanyEscrow.v1,
+          validation.v1,
+          baseUri,
           this.signers.deployer,
-          uupsLibOpts,
-          [dictContracts.validation.v1]
+          uupsLibOpts
         );
         this.contracts.oliveOilMillCompany = oliveOilMill.proxy as OliveOilMillCompany;
         this.contracts.oliveOilMillCompanyOliveOil = oliveOilMillOil.proxy as OliveOilMillCompanyOliveOil;
         this.contracts.oliveOilMillCompanyEscrow = oliveOilMillEscrow.proxy as OliveOilMillCompanyEscrow;
       });
-      shouldBehaveLikeInitialize(oliveOilMillId);
+      shouldBehaveLikeInitialize(oliveOilMill.id1);
     });
   });
 }
